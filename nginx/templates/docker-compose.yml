@@ -4,9 +4,10 @@ services:
   nginx-proxy:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy
+    restart: always
     ports:
       - "80:80"
-      - "443:443"
+
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /docker/nginx/certs:/etc/nginx/certs:ro
@@ -31,14 +32,18 @@ services:
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
       VIRTUAL_PORT: 9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /docker/portainer/data:/data
+    depends_on:
+      - nginx-proxy
 
 networks:
   default:
-    external:
-      name: nginx-proxy
+    name: nginx-proxy
+    external: true
