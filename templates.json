@@ -90,31 +90,6 @@
     },
     {
       "type": 3,
-      "title": "Nginx Proxy",
-      "name": "nginx-proxy",
-      "description": "Automated nginx proxy for Docker containers",
-      "logo": "https://icon2.cleanpng.com/20180329/zdw/kisspng-nginx-reverse-proxy-computer-software-web-cache-tr-container-5abc835fbb1742.2271946815223038397663.jpg",
-      "repository": {
-        "url": "https://github.com/Cilenco/raspberry",
-        "stackfile": "stacks/nginx-proxy.yml"
-      },
-      "env": [
-        {
-          "name": "EMAIL",
-          "description": "Used for let's encrypt",
-          "label": "Email"
-        },
-        {
-          "name": "DOMAIN",
-          "description": "E.g. domain.org",
-          "label": "Domain"
-        }
-      ],
-      "platform": "linux",
-      "administrator_only": false
-    },
-    {
-      "type": 3,
       "title": "Open Thread",
       "name": "thread-router",
       "description": "Border router for Thread networking protocol",
