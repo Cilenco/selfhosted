@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /docker/nginx/certs:/etc/nginx/certs:ro
+  lego-acme:
+    image: cilenco/lego-cron-wrapper
+    container_name: nginx-certs
+    command: >
+      --accept-tos --email=${EMAIL} --dns ionos
+      --domains=*.${DOMAIN} --domains=${DOMAIN}
+    # --server=https://acme-staging-v02.api.letsencrypt.org/directory
+    environment:
+      - RUN_ARGUMENTS=--run-hook=/app/deploy
+      - RENEW_ARGUMENTS=--renew-hook=/app/deploy
+      - IONOS_API_KEY_FILE=/app/credentials
+      - IONOS_PROPAGATION_TIMEOUT=120
+      - IONOS_POLLING_INTERVAL=20
+    volumes:
+      - /docker/nginx/certs:/app/certificates
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./credentials:/app/credentials
+      - ./deploy.sh:/app/deploy
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    environment:
+      VIRTUAL_HOST: "${DOMAIN}"
+      VIRTUAL_PORT: 9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /docker/portainer/data:/data
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
