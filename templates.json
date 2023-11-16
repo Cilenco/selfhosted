@@ -1,204 +1,207 @@
-[
-  {
-    "type": "stack",
-    "title": "Outline",
-    "name": "outline",
-    "description": "The fastest knowledge base for growing teams",
-    "logo": "https://avatars.githubusercontent.com/u/1765001",
-    "repository": {
-      "url": "https://github.com/Cilenco/raspberry",
-      "stackfile": "stacks/outline.yml"
+{
+  "version": "2",
+  "templates": [
+    {
+      "type": "stack",
+      "title": "Outline",
+      "name": "outline",
+      "description": "The fastest knowledge base for growing teams",
+      "logo": "https://avatars.githubusercontent.com/u/1765001",
+      "repository": {
+        "url": "https://github.com/Cilenco/raspberry",
+        "stackfile": "stacks/outline.yml"
+      },
+      "env": [
+        {
+          "name": "VIRTUAL_HOST",
+          "description": "Domain to reach this service",
+          "label": "sub.domain.org"
+        },
+        {
+          "name": "VIRTUAL_PORT",
+          "description": "Port to reach this service",
+          "default": 3000,
+          "label": "Port"
+        },
+        {
+          "name": "SECRET_KEY",
+          "label": "openssl rand -hex 32"
+        },
+        {
+          "name": "UTILS_SECRET",
+          "label": "openssl rand -hex 32"
+        },
+        {
+          "name": "DATABASE_URL",
+          "default": "postgres://user:pass@localhost:5432/outline",
+          "preset": true
+        },
+        {
+          "name": "DATABASE_URL_TEST",
+          "default": "postgres://user:pass@localhost:5432/outline-test",
+          "preset": true
+        },
+        {
+          "name": "REDIS_URL",
+          "default": "redis://localhost:6379",
+          "preset": true
+        },
+        {
+          "name": "URL",
+          "description": "URL"
+        },
+        {
+          "name": "PORT",
+          "description": "Port to reach this service",
+          "default": 3000,
+          "label": "Port"
+        },
+        {
+          "name": "FILE_STORAGE",
+          "default": "local",
+          "preset": true
+        },
+        {
+          "name": "FILE_STORAGE_LOCAL_ROOT_DIR",
+          "default": "/var/lib/outline/data",
+          "preset": true
+        },
+        {
+          "name": "FILE_STORAGE_UPLOAD_MAX_SIZE",
+          "default": 26214400,
+          "preset": true
+        },
+        {
+          "name": "NODE_ENV",
+          "default": "production",
+          "preset": true
+        },
+        {
+          "name": "FORCE_HTTPS",
+          "default": false,
+          "preset": true
+        }
+      ],
+      "platform": "linux",
+      "administrator_only": false
     },
-    "env": [
-      {
-        "name": "VIRTUAL_HOST",
-        "description": "Domain to reach this service",
-        "label": "sub.domain.org"
-      },
-      {
-        "name": "VIRTUAL_PORT",
-        "description": "Port to reach this service",
-        "default": 3000,
-        "label": "Port"
-      },
-      {
-        "name": "SECRET_KEY",
-        "label": "openssl rand -hex 32"
-      },
-      {
-        "name": "UTILS_SECRET",
-        "label": "openssl rand -hex 32"
-      },
-      {
-        "name": "DATABASE_URL",
-        "default": "postgres://user:pass@localhost:5432/outline",
-        "preset": true
-      },
-      {
-        "name": "DATABASE_URL_TEST",
-        "default": "postgres://user:pass@localhost:5432/outline-test",
-        "preset": true
-      },
-      {
-        "name": "REDIS_URL",
-        "default": "redis://localhost:6379",
-        "preset": true
-      },
-      {
-        "name": "URL",
-        "description": "URL"
-      },
-      {
-        "name": "PORT",
-        "description": "Port to reach this service",
-        "default": 3000,
-        "label": "Port"
-      },
-      {
-        "name": "FILE_STORAGE",
-        "default": "local",
-        "preset": true
-      },
-      {
-        "name": "FILE_STORAGE_LOCAL_ROOT_DIR",
-        "default": "/var/lib/outline/data",
-        "preset": true
-      },
-      {
-        "name": "FILE_STORAGE_UPLOAD_MAX_SIZE",
-        "default": 26214400,
-        "preset": true
-      },
-      {
-        "name": "NODE_ENV",
-        "default": "production",
-        "preset": true
-      },
-      {
-        "name": "FORCE_HTTPS",
-        "default": false,
-        "preset": true
-      }
-    ],
-    "platform": "linux",
-    "administrator_only": false
-  },
-  {
-    "type": "container",
-    "title": "Adguard Home",
-    "name": "adguard",
-    "image": "adguard/adguardhome:latest",
-    "description": "Network-wide ads blocking DNS server",
-    "logo": "https://avatars.githubusercontent.com/u/8361145",
-    "restart_policy": "unless-stopped",
-    "ports": [
-      "853:853/tcp",
-      "853:853/udp",
-      "3000:3000/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/opt/adguardhome/work",
-        "bind": "/docker/adguard/work"
-      },
-      {
-        "container": "/opt/adguardhome/conf",
-        "bind": "/docker/adguard/conf"
-      },
-      {
-        "container": "/opt/adguardhome/certs",
-        "bind": "/docker/adguard/certs",
-        "readonly": true
-      }
-    ],
-    "env": [
-      {
-        "name": "VIRTUAL_HOST",
-        "description": "Domain to reach this service",
-        "label": "sub.domain.org"
-      },
-      {
-        "name": "VIRTUAL_PORT",
-        "description": "Port to reach this service",
-        "default": 80,
-        "label": "Port"
-      }
-    ],
-    "platform": "linux",
-    "administrator_only": false,
-    "network": "host"
-  },
-  {
-    "type": "container",
-    "title": "Jellyfin",
-    "name": "jellyfin",
-    "image": "jellyfin/jellyfin:latest",
-    "description": "The Free Software Media System",
-    "logo": "https://jellyfin.org/images/logo.svg",
-    "restart_policy": "unless-stopped",
-    "ports": [
-      "8096:8096/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/cache",
-        "bind": "/docker/jellyfin/cache"
-      },
-      {
-        "container": "/config",
-        "bind": "/docker/jellyfin/config"
-      },
-      {
-        "container": "/media",
-        "bind": "/media"
-      }
-    ],
-    "env": [
-      {
-        "name": "VIRTUAL_HOST",
-        "description": "Domain to reach this service",
-        "label": "sub.domain.org"
-      },
-      {
-        "name": "VIRTUAL_PORT",
-        "description": "Port to reach this service",
-        "default": 8096,
-        "label": "Port"
-      }
-    ],
-    "platform": "linux",
-    "administrator_only": false,
-    "network": "host"
-  },
-  {
-    "type": "container",
-    "title": "PostgreSQL",
-    "name": "postgresql",
-    "image": "postgres:latest",
-    "description": "The most advanced open-source database",
-    "logo": "https://avatars.githubusercontent.com/u/177543",
-    "restart_policy": "unless-stopped",
-    "ports": [
-      "5432:5432/tcp"
-    ],
-    "volumes": [
-      {
-        "container": "/var/lib/postgresql/data",
-        "bind": "/docker/postgresql/data"
-      }
-    ],
-    "env": [
-      {
-        "name": "POSTGRES_USER",
-        "label": "Username"
-      },
-      {
-        "name": "POSTGRES_PASSWORD",
-        "label": "Password"
-      }
-    ],
-    "platform": "linux",
-    "administrator_only": false,
-    "network": "host"
-  }
-]
+    {
+      "type": "container",
+      "title": "Adguard Home",
+      "name": "adguard",
+      "image": "adguard/adguardhome:latest",
+      "description": "Network-wide ads blocking DNS server",
+      "logo": "https://avatars.githubusercontent.com/u/8361145",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        "853:853/tcp",
+        "853:853/udp",
+        "3000:3000/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/opt/adguardhome/work",
+          "bind": "/docker/adguard/work"
+        },
+        {
+          "container": "/opt/adguardhome/conf",
+          "bind": "/docker/adguard/conf"
+        },
+        {
+          "container": "/opt/adguardhome/certs",
+          "bind": "/docker/adguard/certs",
+          "readonly": true
+        }
+      ],
+      "env": [
+        {
+          "name": "VIRTUAL_HOST",
+          "description": "Domain to reach this service",
+          "label": "sub.domain.org"
+        },
+        {
+          "name": "VIRTUAL_PORT",
+          "description": "Port to reach this service",
+          "default": 80,
+          "label": "Port"
+        }
+      ],
+      "platform": "linux",
+      "administrator_only": false,
+      "network": "host"
+    },
+    {
+      "type": "container",
+      "title": "Jellyfin",
+      "name": "jellyfin",
+      "image": "jellyfin/jellyfin:latest",
+      "description": "The Free Software Media System",
+      "logo": "https://jellyfin.org/images/logo.svg",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        "8096:8096/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/cache",
+          "bind": "/docker/jellyfin/cache"
+        },
+        {
+          "container": "/config",
+          "bind": "/docker/jellyfin/config"
+        },
+        {
+          "container": "/media",
+          "bind": "/media"
+        }
+      ],
+      "env": [
+        {
+          "name": "VIRTUAL_HOST",
+          "description": "Domain to reach this service",
+          "label": "sub.domain.org"
+        },
+        {
+          "name": "VIRTUAL_PORT",
+          "description": "Port to reach this service",
+          "default": 8096,
+          "label": "Port"
+        }
+      ],
+      "platform": "linux",
+      "administrator_only": false,
+      "network": "host"
+    },
+    {
+      "type": "container",
+      "title": "PostgreSQL",
+      "name": "postgresql",
+      "image": "postgres:latest",
+      "description": "The most advanced open-source database",
+      "logo": "https://avatars.githubusercontent.com/u/177543",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        "5432:5432/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/var/lib/postgresql/data",
+          "bind": "/docker/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "Username"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password"
+        }
+      ],
+      "platform": "linux",
+      "administrator_only": false,
+      "network": "host"
+    }
+  ]
+}
