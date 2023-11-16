@@ -14,8 +14,8 @@
       "env": [
         {
           "name": "VIRTUAL_HOST",
-          "description": "Domain to reach this service",
-          "label": "sub.domain.org"
+          "description": "E.g. sub.domain.org",
+          "label": "Domain"
         },
         {
           "name": "VIRTUAL_PORT",
@@ -116,8 +116,8 @@
       "env": [
         {
           "name": "VIRTUAL_HOST",
-          "description": "Domain to reach this service",
-          "label": "sub.domain.org"
+          "description": "E.g. sub.domain.org",
+          "label": "Domain"
         },
         {
           "name": "VIRTUAL_PORT",
@@ -158,8 +158,8 @@
       "env": [
         {
           "name": "VIRTUAL_HOST",
-          "description": "Domain to reach this service",
-          "label": "sub.domain.org"
+          "description": "E.g. sub.domain.org",
+          "label": "Domain"
         },
         {
           "name": "VIRTUAL_PORT",
