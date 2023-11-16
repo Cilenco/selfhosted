@@ -2,7 +2,7 @@
   "version": "2",
   "templates": [
     {
-      "type": "stack",
+      "type": 3,
       "title": "Outline",
       "name": "outline",
       "description": "The fastest knowledge base for growing teams",
@@ -86,7 +86,7 @@
       "administrator_only": false
     },
     {
-      "type": "container",
+      "type": 1,
       "title": "Adguard Home",
       "name": "adguard",
       "image": "adguard/adguardhome:latest",
@@ -131,7 +131,7 @@
       "network": "host"
     },
     {
-      "type": "container",
+      "type": 1,
       "title": "Jellyfin",
       "name": "jellyfin",
       "image": "jellyfin/jellyfin:latest",
@@ -173,7 +173,7 @@
       "network": "host"
     },
     {
-      "type": "container",
+      "type": 1,
       "title": "PostgreSQL",
       "name": "postgresql",
       "image": "postgres:latest",
