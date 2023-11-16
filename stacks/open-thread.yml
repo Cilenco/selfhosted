@@ -1,0 +1,18 @@
+version: "2.4"
+services:
+  otbr:
+    image: openthread/otbr
+    container_name: thread-router
+    stdin_open: true
+    privileged: true
+    tty: true
+    ports:
+      - 8080:80
+    dns:
+      - 127.0.0.1
+    volumes:
+      - /dev/ttyACM0:/dev/ttyACM0
+    command: --radio-url spinel+hdlc+uart:///dev/ttyACM0
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0 net.ipv4.conf.all.forwarding=1
+        net.ipv6.conf.all.forwarding=1
