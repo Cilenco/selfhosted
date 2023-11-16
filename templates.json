@@ -25,11 +25,13 @@
         },
         {
           "name": "SECRET_KEY",
-          "label": "openssl rand -hex 32"
+          "description": "openssl rand -hex 32",
+          "label": "Secret key"
         },
         {
           "name": "UTILS_SECRET",
-          "label": "openssl rand -hex 32"
+          "description": "openssl rand -hex 32",
+          "label": "Utils secret"
         },
         {
           "name": "DATABASE_URL",
