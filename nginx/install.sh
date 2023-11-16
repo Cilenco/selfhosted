@@ -10,4 +10,4 @@ read -p "Enter Ionos API secret: " SECRET
 
 echo "$PREFIX.$SECRET" > credentials
 
-(envsubst < templates/docker-compose.yml) > docker-compose.yml
+(envsubst < nginx/templates/docker-compose.yml) > docker-compose.yml
