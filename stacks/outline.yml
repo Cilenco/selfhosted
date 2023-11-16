@@ -1,0 +1,45 @@
+version: "3"
+services:
+  redis:
+    image: redis:latest
+    container_name: outline-redis
+    command: ["redis-server", "/redis.conf"]
+    restart: unless-stopped
+    env_file: stack.env
+    ports:
+      - "6379:6379/tcp"
+    volumes:
+      - /docker/outline/redis/redis.conf:/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+  postgres:
+    image: postgres:latest
+    container_name: outline-db
+    restart: unless-stopped
+    env_file: stack.env
+    ports:
+      - "5432:5432/tcp"
+    volumes:
+      - /docker/outline/db/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: outline
+  outline:
+    image: outlinewiki/outline:latest
+    container_name: outline-server
+    restart: unless-stopped
+    env_file: stack.env
+    volumes:
+      - /docker/outline/data:/var/lib/outline/data
+    depends_on:
+      - postgres
+      - redis
