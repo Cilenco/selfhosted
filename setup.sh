@@ -21,3 +21,13 @@ echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
 
 echo "net.ipv6.conf.all.use_tempaddr=0" >> /etc/sysctl.conf
 echo "net.ipv6.conf.default.use_tempaddr=0" >> /etc/sysctl.conf
+
+echo -e "Setup process of your Raspberry finished successfully."
+echo -e "Please restart the device now to apply all changes.\n"
+
+read -r -p "Would you like to restart the device now? [Y/n] " reboot; 
+
+if [ "$reboot" != "" ]; then echo; fi
+if [ "$reboot" = "${reboot#[Nn]}" ]; then
+    shutdown -r now
+fi
