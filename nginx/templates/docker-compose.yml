@@ -1,19 +1,24 @@
 version: '2'
-
 services:
-  nginx-proxy:
+  nginx:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy
     restart: always
     ports:
       - "80:80"
-
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /docker/nginx/certs:/etc/nginx/certs:ro
-  lego-acme:
+      - certs:/etc/nginx/certs:ro
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+  acme:
     image: cilenco/lego-cron-wrapper
     container_name: nginx-certs
+    restart: always
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
@@ -25,7 +30,7 @@ services:
       - IONOS_PROPAGATION_TIMEOUT=120
       - IONOS_POLLING_INTERVAL=20
     volumes:
-      - /docker/nginx/certs:/app/certificates
+      - certs:/app/certificates
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./credentials:/app/credentials
       - ./deploy.sh:/app/deploy
@@ -39,9 +44,15 @@ services:
       VIRTUAL_PORT: 9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /docker/portainer/data:/data
+      - portainer_data:/data
     depends_on:
-      - nginx-proxy
+      nginx:
+        condition: service_healthy
+
+volumes:
+  portainer_data:
+  certs:
+    external: true
 
 networks:
   default:
