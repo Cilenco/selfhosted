@@ -37,7 +37,7 @@ services:
     image: outlinewiki/outline:latest
     container_name: outline-server
     restart: unless-stopped
-    env_file: stack.env
+    env_file: env.outline
     volumes:
       - /docker/outline/data:/var/lib/outline/data
     depends_on:

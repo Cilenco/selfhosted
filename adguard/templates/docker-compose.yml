@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    ports:
+      - "853:853/tcp"
+      - "853:853/udp"
+      - "3000:3000"
+    environment:
+      VIRTUAL_HOST: "${SERVICE_DOMAIN}"
+      VIRTUAL_PORT: 80
+    volumes:
+      - certs:/opt/adguardhome/certs:ro
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+    restart:
+      unless-stopped
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+volumes:
+  certs:
+    external: true

@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      VIRTUAL_HOST: "${DOMAIN}"
+      VIRTUAL_PORT: 8096
+    volumes:
+      - ./cache:/cache
+      - ./config:/config
+      - /media:/media
