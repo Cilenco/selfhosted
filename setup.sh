@@ -5,6 +5,9 @@ if [[ $EUID > 0 ]]; then
   exit
 fi
 
+groupadd docker
+usermod -aG docker admin
+
 echo "Setting up your RaspberryPi, this may take a while..."
 
 echo "Downloading and installing docker"
