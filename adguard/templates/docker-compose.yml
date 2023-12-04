@@ -3,6 +3,7 @@ version: "2"
 services:
   adguard:
     image: adguard/adguardhome
+    network_mode: nginx_default
     container_name: adguard
     ports:
       - "853:853/tcp"
@@ -17,11 +18,6 @@ services:
       - ./confdir:/opt/adguardhome/conf
     restart:
       unless-stopped
-
-networks:
-  default:
-    external:
-      name: nginx-proxy
 
 volumes:
   certs:
