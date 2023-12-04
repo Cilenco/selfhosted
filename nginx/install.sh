@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker network create nginx-proxy
+docker volume create certs
 
 read -p "Enter Domain: " DOMAIN && export DOMAIN
 read -p "Enter E-Mail address: " EMAIL && export EMAIL
