@@ -7,10 +7,6 @@ fi
 
 echo "Setting up your RaspberryPi, this may take a while..."
 
-echo "Updating system"
-apt update > /dev/null
-apt upgrade > /dev/null
-
 echo "Downloading and installing docker"
 wget -O get-docker.sh https://get.docker.com
 
