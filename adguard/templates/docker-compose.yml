@@ -18,6 +18,11 @@ services:
     restart:
       unless-stopped
 
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
 volumes:
   certs:
     external: true
