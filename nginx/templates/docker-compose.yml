@@ -9,12 +9,8 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./config:/etc/nginx/conf.d:ro
       - certs:/etc/nginx/certs:ro
-    healthcheck:
-      test: ["CMD", "service", "nginx", "status"]
-      interval: 10s
-      timeout: 30s
-      retries: 3
   acme:
     image: cilenco/lego-cron-wrapper
     container_name: nginx-certs
@@ -34,27 +30,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./credentials:/app/credentials
       - ./deploy.sh:/app/deploy
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: always
-    command: -H unix:///var/run/docker.sock
-    environment:
-      VIRTUAL_HOST: "${DOMAIN}"
-      VIRTUAL_PORT: 9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    depends_on:
-      nginx:
-        condition: service_healthy
 
 volumes:
   portainer_data:
   certs:
-    external: true
-
-networks:
-  default:
-    name: nginx-proxy
     external: true
