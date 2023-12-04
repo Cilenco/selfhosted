@@ -9,7 +9,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./config:/etc/nginx/conf.d:ro
+      - ./config:/etc/nginx/conf.d
       - certs:/etc/nginx/certs:ro
   acme:
     image: cilenco/lego-cron-wrapper
