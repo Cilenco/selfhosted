@@ -23,7 +23,7 @@ services:
     ports:
       - "5432:5432/tcp"
     volumes:
-      - /docker/outline/db/data:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 30s
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     env_file: env.outline
     volumes:
-      - /docker/outline/data:/var/lib/outline/data
+      - ./data:/var/lib/outline/data
     depends_on:
       - postgres
       - redis

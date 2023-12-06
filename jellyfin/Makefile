@@ -2,10 +2,10 @@ install:
 	./install.sh
 
 start:
-	docker-compose up -d
+	docker compose up -d
 
 stop:
-	docker-compose down || true
+	docker compose down || true
 
 update:
-	docker-compose pull
+	docker compose pull

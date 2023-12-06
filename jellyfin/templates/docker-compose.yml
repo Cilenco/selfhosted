@@ -3,6 +3,7 @@ version: "3.8"
 services:
   jellyfin:
     image: jellyfin/jellyfin:latest
+    network_mode: nginx_default
     container_name: jellyfin
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
@@ -11,3 +12,5 @@ services:
       - ./cache:/cache
       - ./config:/config
       - /media:/media
+    restart:
+      unless-stopped
