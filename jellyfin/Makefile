@@ -1,3 +1,5 @@
+.SILENT:
+
 install:
 	./install.sh
 
