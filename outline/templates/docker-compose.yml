@@ -9,25 +9,15 @@ services:
       NETWORK_ACCESS: internal
     ports:
       - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 30s
-      retries: 3
   postgres:
     image: postgres:latest
     container_name: outline-db
     network_mode: nginx_default
-    env_file: stack.env
+    env_file: env.outline
     ports:
       - "5432:5432"
     volumes:
       - ./postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
@@ -36,7 +26,7 @@ services:
   outline:
     image: outlinewiki/outline:latest
     container_name: outline-server
-    network_mode: nginx_default    
+    network_mode: nginx_default
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
       VIRTUAL_PORT: 3000
