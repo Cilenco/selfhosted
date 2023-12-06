@@ -1,15 +1,14 @@
-version: "3"
+version: "3.8"
+
 services:
   redis:
     image: redis:latest
     container_name: outline-redis
-    command: ["redis-server", "/redis.conf"]
-    restart: unless-stopped
-    env_file: stack.env
+    network_mode: nginx_default
+    environment:
+      NETWORK_ACCESS: internal
     ports:
-      - "6379:6379/tcp"
-    volumes:
-      - /docker/outline/redis/redis.conf:/redis.conf
+      - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -18,10 +17,10 @@ services:
   postgres:
     image: postgres:latest
     container_name: outline-db
-    restart: unless-stopped
+    network_mode: nginx_default
     env_file: stack.env
     ports:
-      - "5432:5432/tcp"
+      - "5432:5432"
     volumes:
       - ./postgres:/var/lib/postgresql/data
     healthcheck:
@@ -32,11 +31,15 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
+      NETWORK_ACCESS: internal
       POSTGRES_DB: outline
   outline:
     image: outlinewiki/outline:latest
     container_name: outline-server
-    restart: unless-stopped
+    network_mode: nginx_default    
+    environment:
+      VIRTUAL_HOST: "${DOMAIN}"
+      VIRTUAL_PORT: 3000
     env_file: env.outline
     volumes:
       - ./data:/var/lib/outline/data
