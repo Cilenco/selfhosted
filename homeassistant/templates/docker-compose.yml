@@ -23,4 +23,22 @@ services:
       - apparmor=unconfined
     volumes:
       - /run/dbus:/run/dbus:ro
-      - ./matter:/data    
+      - ./matter:/data
+  multipan:
+    image: b2un0/silabs-multipan-docker:latest
+    container_name: home-thread
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./thread:/data
+    environment:
+      DEVICE: "/dev/ttyUSB0"
+      FLOW_CONTROL: "true"
+      BAUDRATE: "460800"
+      BACKBONE_IF: "eth0"
+      NETWORK_ACCESS: internal
+      OTBR_REST_LISTEN_PORT: "8081"
+      OTBR_WEB_PORT: "8086"
+      EZSP_LISTEN_PORT: "20108" #
+      AUTOFLASH_FIRMWARE: 1 # change to 1 for firmware update
+      FIRMWARE: "NabuCasa_SkyConnect_RCP_v4.3.1_rcp-uart-hw-802154_460800.gbl"
