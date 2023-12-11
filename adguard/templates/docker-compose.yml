@@ -5,6 +5,7 @@ services:
     image: adguard/adguardhome
     network_mode: nginx_default
     container_name: adguard
+    restart: unless-stopped
     ports:
       - "853:853/tcp"
       - "853:853/udp"
@@ -16,8 +17,6 @@ services:
       - certs:/opt/adguardhome/certs:ro
       - ./workdir:/opt/adguardhome/work
       - ./confdir:/opt/adguardhome/conf
-    restart:
-      unless-stopped
 
 volumes:
   certs:

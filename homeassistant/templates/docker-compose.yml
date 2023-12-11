@@ -4,6 +4,7 @@ services:
   homeassistant:    
     image: "ghcr.io/home-assistant/home-assistant:stable"
     container_name: home-server
+    restart: unless-stopped
     network_mode: host
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
@@ -16,6 +17,7 @@ services:
   matter-server:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
     container_name: home-matter
+    restart: unless-stopped
     network_mode: host
     environment:
       NETWORK_ACCESS: internal
@@ -27,6 +29,7 @@ services:
   otbr:
     image: openthread/otbr
     container_name: home-thread
+    restart: unless-stopped
     network_mode: host    
     stdin_open: true    
     privileged: true

@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy
-    restart: always
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -14,7 +14,7 @@ services:
   acme:
     image: cilenco/lego-cron-wrapper
     container_name: nginx-certs
-    restart: always
+    restart: unless-stopped
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}

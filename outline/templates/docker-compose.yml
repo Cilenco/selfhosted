@@ -5,6 +5,7 @@ services:
     image: redis:latest
     container_name: outline-redis
     network_mode: nginx_default
+    restart: unless-stopped
     environment:
       NETWORK_ACCESS: internal
     ports:
@@ -13,6 +14,7 @@ services:
     image: postgres:latest
     container_name: outline-db
     network_mode: nginx_default
+    restart: unless-stopped
     env_file: env.outline
     ports:
       - "5432:5432"
@@ -27,6 +29,7 @@ services:
     image: outlinewiki/outline:latest
     container_name: outline-server
     network_mode: nginx_default
+    restart: unless-stopped
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
       VIRTUAL_PORT: 3000

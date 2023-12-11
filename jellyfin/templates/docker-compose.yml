@@ -5,6 +5,7 @@ services:
     image: jellyfin/jellyfin:latest
     network_mode: nginx_default
     container_name: jellyfin
+    restart: unless-stopped
     environment:
       VIRTUAL_HOST: "${DOMAIN}"
       VIRTUAL_PORT: 8096
@@ -12,5 +13,3 @@ services:
       - ./cache:/cache
       - ./config:/config
       - /media:/media
-    restart:
-      unless-stopped
