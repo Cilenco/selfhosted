@@ -5,6 +5,10 @@ mkdir config
 
 read -p "Enter domain: " DOMAIN && export DOMAIN
 
+echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.disable_ipv6=0" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+
 PROXY_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-proxy)
 
 export PROXY_IP
