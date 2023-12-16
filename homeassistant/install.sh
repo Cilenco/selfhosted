@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [[ $EUID > 0 ]]; then
-  echo "Please run as root"
-  exit
-fi
-
 rm -rf config
+rm -rf matter
+rm -rf thread
+
 mkdir config
+mkdir matter
+mkdir thread
 
 read -p "Enter domain: " DOMAIN && export DOMAIN
 
@@ -17,11 +17,4 @@ export PROXY_IP
 (envsubst < templates/docker-compose.yml) > docker-compose.yml
 (envsubst < templates/configuration.yml) > config/configuration.yml
 
-echo "net.ipv6.conf.all.disable_ipv6=0" >> /etc/sysctl.conf
-echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
-echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
-
-modprobe ip6table_filter # persistant
-echo "ip6table_filter" >> /etc/modules
-
-sudo sysctl -p /etc/sysctl.conf 
+echo "Finished setup. Please execute 'sudo modprobe ip6table_filter' now"
