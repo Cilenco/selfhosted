@@ -1,24 +1,26 @@
 version: "3.8"
 
 services:
-  homeassistant:    
+  homeassistant:
     image: "ghcr.io/home-assistant/home-assistant:stable"
     container_name: home-server
     restart: unless-stopped
-    network_mode: host
+    networks:
+      - home_network
     environment:
-      VIRTUAL_HOST: "${DOMAIN}"
+      VIRTUAL_HOST: "home.${DOMAIN}"
       VIRTUAL_PORT: 8123
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-      - ./config:/config      
+      - ./config:/config
     privileged: true
   matter-server:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
     container_name: home-matter
     restart: unless-stopped
-    network_mode: host
+    networks:
+      - home_network
     environment:
       NETWORK_ACCESS: internal
     security_opt:
@@ -27,15 +29,23 @@ services:
       - /run/dbus:/run/dbus:ro
       - ./matter:/data
   otbr:
-    image: openthread/otbr
-    container_name: home-thread
-    restart: unless-stopped
-    network_mode: host    
-    stdin_open: true    
+    image: siliconlabsinc/openthread-border-router:gsdk-4.2.0
+    command: --radio-url spinel+hdlc+uart:///dev/ttyUSB0?uart-baudrate=460800 --backbone-interface eth0
     privileged: true
-    tty: true
-    command: --radio-url spinel+hdlc+uart:///dev/ttyACM0
-    volumes:
-      - /dev/ttyACM0:/dev/ttyACM0
+    networks:
+      - home_network
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv4.conf.all.forwarding=1
+      - net.ipv6.conf.all.forwarding=1
+    ports:
+      - 8080:80
+      - 8081:8081
     dns:
       - 127.0.0.1
+    volumes:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+
+networks:
+  home_network:
+    external: true

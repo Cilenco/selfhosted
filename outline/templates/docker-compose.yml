@@ -31,7 +31,7 @@ services:
     network_mode: nginx_default
     restart: unless-stopped
     environment:
-      VIRTUAL_HOST: "${DOMAIN}"
+      VIRTUAL_HOST: "dancing.${DOMAIN}"
       VIRTUAL_PORT: 3000
     env_file: env.outline
     volumes:

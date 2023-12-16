@@ -54,14 +54,13 @@ access_control:
       policy: one_factor
     - domain: "home.${DOMAIN}" # Home Assistant
       policy: one_factor
-    
+
 session:
   name: authelia_session
   secret: ${SESSION_SECRET}
   domain: ${DOMAIN}
   expiration: 1h
   inactivity: 5m
-
 
 regulation:
   max_retries: 3
@@ -73,7 +72,6 @@ storage:
   local:
     path: /config/db.sqlite3
 
-  
 notifier:
   disable_startup_check: true #true/false
   smtp:
