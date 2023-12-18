@@ -16,6 +16,12 @@ wget -O get-docker.sh https://get.docker.com
 sh get-docker.sh > /dev/null
 rm get-docker.sh > /dev/null
 
+echo "Setting up auto USB mounting"
+
+cp automount /usr/local/bin/automount
+cp usbdrive.rules /etc/udev/rules.d/usbdrive.rules
+cp usbdrive@.service /lib/systemd/system/usbdrive@.service
+
 echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
 
 echo "net.ipv6.conf.all.use_tempaddr=0" >> /etc/sysctl.conf
