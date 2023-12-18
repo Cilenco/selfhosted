@@ -7,7 +7,7 @@ services:
     container_name: jellyfin
     restart: unless-stopped
     environment:
-      VIRTUAL_HOST: "video.${DOMAIN}"
+      VIRTUAL_HOST: "streaming.${DOMAIN}"
       VIRTUAL_PORT: 8096
     volumes:
       - ./cache:/cache

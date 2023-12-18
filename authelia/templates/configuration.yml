@@ -50,7 +50,7 @@ access_control:
       policy: one_factor
     - domain: "dancing.${DOMAIN}" # Outline Wiki
       policy: one_factor
-    - domain: "video.${DOMAIN}" # Jellyfin server
+    - domain: "streaming.${DOMAIN}" # Jellyfin server
       policy: one_factor
     - domain: "home.${DOMAIN}" # Home Assistant
       policy: one_factor
