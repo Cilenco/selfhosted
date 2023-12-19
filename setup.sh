@@ -5,9 +5,6 @@ if [[ $EUID > 0 ]]; then
   exit
 fi
 
-groupadd docker
-usermod -aG docker admin
-
 echo "Setting up your RaspberryPi, this may take a while..."
 
 echo "Setting up ZSH as shell"
@@ -21,6 +18,9 @@ wget -O get-docker.sh https://get.docker.com
 
 sh get-docker.sh > /dev/null
 rm get-docker.sh > /dev/null
+
+groupadd docker
+usermod -aG docker admin
 
 echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
 
