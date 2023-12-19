@@ -84,7 +84,7 @@ identity_providers:
       userinfo_signing_algorithm: none
       authorization_policy: one_factor
       redirect_uris:
-        - https://outline.${DOMAIN}/auth/oidc.callback
+        - https://dancing.${DOMAIN}/auth/oidc.callback
       scopes:
         - openid
         - offline_access
