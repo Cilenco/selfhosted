@@ -3,6 +3,7 @@ version: '3.8'
 services:
   authelia:
     image: authelia/authelia:latest
+    network_mode: nginx_default
     container_name: authelia
     restart: unless-stopped
     environment:
