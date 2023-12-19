@@ -10,6 +10,12 @@ usermod -aG docker admin
 
 echo "Setting up your RaspberryPi, this may take a while..."
 
+echo "Setting up ZSH as shell"
+URL=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+
+apt install zsh
+sh -c "$(curl -fsSL $URL)"
+
 echo "Downloading and installing docker"
 wget -O get-docker.sh https://get.docker.com
 
