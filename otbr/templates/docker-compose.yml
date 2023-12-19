@@ -8,7 +8,11 @@ services:
     restart: unless-stopped
     privileged: true
     networks:
-      - home_network
+      home_network:
+        ipv4_address: 192.168.178.200
+    environment:
+      VIRTUAL_HOST: "thread.${DOMAIN}"
+      VIRTUAL_PORT: 80
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv4.conf.all.forwarding=1
@@ -23,4 +27,13 @@ services:
 
 networks:
   home_network:
-    external: true
+    enable_ipv6: true
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: "192.168.178.0/24"
+          gateway: "192.168.178.1"
+        - subnet: "fd00:4a82:739b::/64"
+          gateway: "fd00:4a82:739b::ca0e:14ff:fe8d:8d84"
