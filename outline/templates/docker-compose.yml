@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   redis:
-    image: redis:latest
+    image: redis:7.2.3
     container_name: outline-redis
     restart: unless-stopped
     networks:
@@ -13,7 +13,7 @@ services:
     ports:
       - "6379:6379"
   postgres:
-    image: postgres:latest
+    image: postgres:13.13
     container_name: outline-db
     restart: unless-stopped
     networks:
@@ -30,7 +30,7 @@ services:
       - POSTGRES_DB: outline
     env_file: env.outline
   outline:
-    image: outlinewiki/outline:latest
+    image: outlinewiki/outline:0.74.0
     container_name: outline-server
     restart: unless-stopped
     networks:
