@@ -3,13 +3,21 @@ version: "3.8"
 services:
   jellyfin:
     image: jellyfin/jellyfin:latest
-    network_mode: nginx_default
     container_name: jellyfin
     restart: unless-stopped
+    networks:
+      - nginx_ip4_network
+      - nginx_ip6_network
     environment:
-      VIRTUAL_HOST: "streaming.${DOMAIN}"
-      VIRTUAL_PORT: 8096
+      - VIRTUAL_HOST: "streaming.${DOMAIN}"
+      - VIRTUAL_PORT: 8096
     volumes:
       - ./cache:/cache
       - ./config:/config
       - /media:/media
+
+networks:
+  nginx_ip4_network:
+    external: true
+  nginx_ip6_network:
+    external: true

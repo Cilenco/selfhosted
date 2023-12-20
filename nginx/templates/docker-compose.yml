@@ -1,9 +1,12 @@
-version: '2'
+version: '3.8'
+
 services:
   nginx:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy
     restart: unless-stopped
+    networks:
+      - nginx_ip4_network
     ports:
       - "80:80"
       - "443:443"
@@ -15,23 +18,38 @@ services:
     image: cilenco/lego-cron-wrapper
     container_name: nginx-certs
     restart: unless-stopped
+    networks:
+      - nginx_ip4_network
+      - nginx_ip6_network
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
     # --server=https://acme-staging-v02.api.letsencrypt.org/directory
     environment:
-      - RUN_ARGUMENTS=--run-hook=/app/deploy
-      - RENEW_ARGUMENTS=--renew-hook=/app/deploy
-      - IONOS_API_KEY_FILE=/app/credentials
-      - IONOS_PROPAGATION_TIMEOUT=120
-      - IONOS_POLLING_INTERVAL=20
+      - RUN_ARGUMENTS: --run-hook=/app/deploy
+      - RENEW_ARGUMENTS: --renew-hook=/app/deploy
+      - IONOS_API_KEY_FILE: /app/credentials
+      - IONOS_PROPAGATION_TIMEOUT: 120
+      - IONOS_POLLING_INTERVAL: 20
     volumes:
       - certs:/app/certificates
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./credentials:/app/credentials
       - ./deploy.sh:/app/deploy
 
+networks:
+  nginx_ip4_network:
+    name: nginx_ip4_network
+    enable_ipv6: false
+    ipam:
+      config:
+        - subnet: "172.24.0.0/24"
+  nginx_ip6_network:
+    name: nginx_ip6_network
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: "fd00:4a82:739b::/64"
 volumes:
-  portainer_data:
   certs:
     external: true
