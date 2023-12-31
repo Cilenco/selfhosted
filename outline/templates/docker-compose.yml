@@ -6,10 +6,10 @@ services:
     container_name: outline-redis
     restart: unless-stopped
     networks:
-      - nginx_proxy_network
-      - nginx_host_network
+      - nginx_ip4_network
+      - nginx_ip6_network
     environment:
-      NETWORK_ACCESS: internal
+      - NETWORK_ACCESS: internal
     ports:
       - "6379:6379"
   postgres:
@@ -17,28 +17,28 @@ services:
     container_name: outline-db
     restart: unless-stopped
     networks:
-      - nginx_proxy_network
-      - nginx_host_network
+      - nginx_ip4_network
+      - nginx_ip6_network
     ports:
       - "5432:5432"
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      NETWORK_ACCESS: internal
-      POSTGRES_DB: outline
+      - POSTGRES_USER: user
+      - POSTGRES_PASSWORD: pass
+      - NETWORK_ACCESS: internal
+      - POSTGRES_DB: outline
     env_file: env.outline
   outline:
     image: outlinewiki/outline:0.74.0
     container_name: outline-server
     restart: unless-stopped
     networks:
-      - nginx_proxy_network
-      - nginx_host_network
+      - nginx_ip4_network
+      - nginx_ip6_network
     environment:
-      VIRTUAL_HOST: "dancing.${DOMAIN}"
-      VIRTUAL_PORT: 3000
+      - VIRTUAL_HOST: "dancing.${DOMAIN}"
+      - VIRTUAL_PORT: 3000
     env_file: env.outline
     volumes:
       - ./data:/var/lib/outline/data
@@ -47,7 +47,7 @@ services:
       - redis
 
 networks:
-  nginx_proxy_network:
+  nginx_ip4_network:
     external: true
-  nginx_host_network:
+  nginx_ip6_network:
     external: true
