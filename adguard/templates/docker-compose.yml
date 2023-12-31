@@ -13,8 +13,8 @@ services:
       - "853:853/udp"
       - "3000:3000"
     environment:
-      - VIRTUAL_HOST: "dns.${DOMAIN}"
-      - VIRTUAL_PORT: 80
+      VIRTUAL_HOST: "dns.${DOMAIN}"
+      VIRTUAL_PORT: 80
     volumes:
       - certs:/opt/adguardhome/certs:ro
       - ./workdir:/opt/adguardhome/work

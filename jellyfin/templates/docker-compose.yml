@@ -9,8 +9,8 @@ services:
       - nginx_ip4_network
       - nginx_ip6_network
     environment:
-      - VIRTUAL_HOST: "streaming.${DOMAIN}"
-      - VIRTUAL_PORT: 8096
+      VIRTUAL_HOST: "streaming.${DOMAIN}"
+      VIRTUAL_PORT: 8096
     volumes:
       - ./cache:/cache
       - ./config:/config
