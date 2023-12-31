@@ -6,24 +6,24 @@ services:
     container_name: adguard
     restart: unless-stopped
     networks:
-      - nginx_ip4_network
-      - nginx_ip6_network
+      - nginx_proxy_network
+      - nginx_host_network
     ports:
       - "853:853/tcp"
       - "853:853/udp"
       - "3000:3000"
     environment:
-      - VIRTUAL_HOST: "dns.${DOMAIN}"
-      - VIRTUAL_PORT: 80
+      VIRTUAL_HOST: "dns.${DOMAIN}"
+      VIRTUAL_PORT: 80
     volumes:
       - certs:/opt/adguardhome/certs:ro
       - ./workdir:/opt/adguardhome/work
       - ./confdir:/opt/adguardhome/conf
 
 networks:
-  nginx_ip4_network:
+  nginx_proxy_network:
     external: true
-  nginx_ip6_network:
+  nginx_host_network:
     external: true
 
 volumes:

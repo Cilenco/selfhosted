@@ -6,7 +6,7 @@ services:
     container_name: nginx-proxy
     restart: unless-stopped
     networks:
-      - nginx_ip4_network
+      - nginx_proxy_network
     ports:
       - "80:80"
       - "443:443"
@@ -19,8 +19,8 @@ services:
     container_name: nginx-certs
     restart: unless-stopped
     networks:
-      - nginx_ip4_network
-      - nginx_ip6_network
+      - nginx_proxy_network
+      - nginx_host_network
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
@@ -38,18 +38,14 @@ services:
       - ./deploy.sh:/app/deploy
 
 networks:
-  nginx_ip4_network:
-    name: nginx_ip4_network
-    enable_ipv6: false
-    ipam:
-      config:
-        - subnet: "172.24.0.0/24"
-  nginx_ip6_network:
-    name: nginx_ip6_network
-    enable_ipv6: true
-    ipam:
-      config:
-        - subnet: "fd00:4a82:739b::/64"
+  nginx_proxy_network:
+    name: nginx_proxy_network
+  nginx_host_network:
+    name: nginx_host_network
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+
 volumes:
   certs:
     external: true
