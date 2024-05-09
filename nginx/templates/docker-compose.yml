@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginxproxy/nginx-proxy:1.4.0
@@ -20,7 +18,6 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-      - nginx_ip6_network
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
@@ -40,16 +37,7 @@ services:
 networks:
   nginx_ip4_network:
     name: nginx_ip4_network
-    enable_ipv6: false
-    ipam:
-      config:
-        - subnet: "172.24.0.0/24"
-  nginx_ip6_network:
-    name: nginx_ip6_network
-    enable_ipv6: true
-    ipam:
-      config:
-        - subnet: "fd00:4a82:739b::/64"
+
 volumes:
   certs:
     external: true

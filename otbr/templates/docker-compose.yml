@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   otbr:
     image: siliconlabsinc/openthread-border-router:gsdk-4.4.0
