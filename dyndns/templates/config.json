@@ -1,0 +1,11 @@
+{
+  "settings": [
+    {
+      "provider": "ionos",
+      "domain": "${DOMAIN}",
+      "api_key": "${API_KEY}",
+      "ip_version": "ipv6",
+      "host": "@"
+    }
+  ]
+}

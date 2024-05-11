@@ -1,10 +1,13 @@
 .SILENT:
 
 install:
-	docker build -t fastapi/dyndns .
+	./install.sh
 
 start:
-	docker run -d --name DynDns -p 8765:80 fastapi/dyndns
+	docker compose up -d
 
 stop:
-	docker stop DynDns
+	docker compose down || true
+
+update:
+	docker compose pull
