@@ -6,7 +6,9 @@ rm -rf secrets
 mkdir config
 mkdir secrets
 
-read -p "Enter domain: " DOMAIN && export DOMAIN
+if [[ -z "${DOMAIN}" ]]; then
+  read -p "Enter domain: " DOMAIN && export DOMAIN
+fi
 
 openssl rand -hex 64 > secrets/STORAGE_ENCRYPTION_KEY
 

@@ -5,7 +5,10 @@ docker volume create certs > /dev/null
 rm -rf config
 mkdir config
 
-read -p "Enter Domain: " DOMAIN && export DOMAIN
+if [[ -z "${DOMAIN}" ]]; then
+  read -p "Enter domain: " DOMAIN && export DOMAIN
+fi
+
 read -p "Enter E-Mail address: " EMAIL && export EMAIL
 
 read -p "Enter Ionos API prefix: " PREFIX

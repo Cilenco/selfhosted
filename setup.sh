@@ -7,6 +7,9 @@ fi
 
 echo "Setting up your RaspberryPi, this may take a while..."
 
+read -p "Enter domain: " DOMAIN
+echo "DOMAIN=$DOMAIN" > env
+
 echo "Downloading and installing docker"
 wget -O get-docker.sh https://get.docker.com
 
