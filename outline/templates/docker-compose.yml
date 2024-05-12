@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
+      - nginx_ip6_network
     environment:
       NETWORK_ACCESS: internal
     ports:
@@ -15,6 +16,7 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
+      - nginx_ip6_network
     ports:
       - "5432:5432"
     volumes:
@@ -31,6 +33,7 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
+      - nginx_ip6_network
     environment:
       VIRTUAL_HOST: "dancing.${DOMAIN}"
       VIRTUAL_PORT: 3000
@@ -43,4 +46,6 @@ services:
 
 networks:
   nginx_ip4_network:
+    external: true
+  nginx_ip6_network:
     external: true
