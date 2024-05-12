@@ -18,6 +18,7 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
+      - nginx_ip6_network
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
