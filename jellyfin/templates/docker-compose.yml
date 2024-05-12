@@ -5,7 +5,6 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-      - nginx_ip6_network
     environment:
       VIRTUAL_HOST: "streaming.${DOMAIN}"
       VIRTUAL_PORT: 8096
@@ -16,6 +15,4 @@ services:
 
 networks:
   nginx_ip4_network:
-    external: true
-  nginx_ip6_network:
     external: true

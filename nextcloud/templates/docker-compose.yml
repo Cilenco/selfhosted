@@ -4,7 +4,6 @@ services:
     container_name: nextcloud
     networks:
       - nginx_ip4_network
-      - nginx_ip6_network
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: "cloud.${DOMAIN}"
@@ -12,6 +11,4 @@ services:
 
 networks:
   nginx_ip4_network:
-    external: true
-  nginx_ip6_network:
     external: true

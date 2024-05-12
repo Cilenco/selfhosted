@@ -18,7 +18,6 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-      - nginx_ip6_network
     command: >
       --accept-tos --email=${EMAIL} --dns ionos
       --domains=*.${DOMAIN} --domains=${DOMAIN}
@@ -38,10 +37,6 @@ services:
 networks:
   nginx_ip4_network:
     name: nginx_ip4_network
-    enable_ipv6: false
-  nginx_ip6_network:
-    name: nginx_ip6_network
-    enable_ipv6: true
 
 volumes:
   certs:
