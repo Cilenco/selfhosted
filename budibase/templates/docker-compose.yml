@@ -1,0 +1,27 @@
+services:
+  budibase:
+    image: budibase/budibase:latest
+    container_name: budibase
+    restart: unless-stopped
+    networks:
+      - nginx_ip4_network
+    environment:
+      VIRTUAL_HOST: "budibase.${DOMAIN}"
+      VIRTUAL_PORT: 80
+      # JWT_SECRET: <secret>
+      # MINIO_ACCESS_KEY: <secret>
+      # MINIO_SECRET_KEY: <secret>
+      # REDIS_PASSWORD: <secret>
+      # COUCHDB_USER: <secret>
+      # COUCHDB_PASSWORD: <secret>
+      # INTERNAL_API_KEY: <secret>
+    volumes:
+      - ./data:/data
+
+networks:
+  nginx_ip4_network:
+    external: true
+
+volumes:
+  certs:
+    external: true
