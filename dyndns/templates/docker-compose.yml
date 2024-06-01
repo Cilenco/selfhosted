@@ -3,14 +3,9 @@ services:
     image: qmcgaw/ddns-updater:v2.6.0
     container_name: dyndns
     restart: unless-stopped
-    networks:
-      - nginx_ip4_network
+    network_mode: host
     environment:
       VIRTUAL_HOST: "dyndns.${DOMAIN}"
       VIRTUAL_PORT: 8000
     volumes:
       - ./data:/updater/data
-
-networks:
-  nginx_ip4_network:
-    external: true
