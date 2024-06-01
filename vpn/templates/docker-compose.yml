@@ -1,0 +1,16 @@
+services:
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    restart: unless-stopped
+    cap_add:
+     - NET_ADMIN
+    ports:
+     - "1194:1194/udp"
+    volumes:
+     # -  certs:/opt/adguardhome/certs:ro
+     - ./data/conf:/etc/openvpn
+
+volumes:
+  certs:
+    external: true
