@@ -1,14 +1,14 @@
 #!/bin/bash
+CONFIG_FILE=$HOME/config.ini
 
 rm -rf data
 mkdir data
 
-if [[ -z "${DOMAIN}" ]]; then
-  read -p "Enter domain: " DOMAIN && export DOMAIN
-fi
+export DOMAIN=$(crudini --get $CONFIG_FILE general domain)
+export EMAIL=$(crudini --get $CONFIG_FILE general email)
 
-read -p "Enter Ionos API prefix: " PREFIX
-read -p "Enter Ionos API secret: " SECRET
+export PREFIX=$(crudini --get $CONFIG_FILE ionos prefix)
+export SECRET=$(crudini --get $CONFIG_FILE ionos secret)
 
 export API_KEY="$PREFIX.$SECRET"
 
