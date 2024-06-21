@@ -23,6 +23,7 @@ echo "Downloading and installing crudini and argon2"
 DEBIAN_FRONTEND=noninteractive apt-get -yq update
 DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
 
+DEBIAN_FRONTEND=noninteractive apt-get -yq install make
 DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
 DEBIAN_FRONTEND=noninteractive apt-get -yq install argon2
 
