@@ -1,8 +1,5 @@
 .SILENT:
 
-include env
-export
-
 install:
 	cd $(app) && make install --no-print-directory
 
