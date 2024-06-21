@@ -1,14 +1,14 @@
 #!/bin/bash
 
-rm -rf config
-rm -rf secrets
+CONFIG_FILE=$HOME/config.ini
 
+rm -rf config
 mkdir config
+
+rm -rf secrets
 mkdir secrets
 
-if [[ -z "${DOMAIN}" ]]; then
-  read -p "Enter domain: " DOMAIN && export DOMAIN
-fi
+export DOMAIN=$(crudini --get $CONFIG_FILE general domain)
 
 openssl rand -hex 64 > secrets/STORAGE_ENCRYPTION_KEY
 

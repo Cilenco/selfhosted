@@ -1,4 +1,5 @@
 #!/bin/bash
+
 CONFIG_FILE=$HOME/config.ini
 
 rm -rf data
