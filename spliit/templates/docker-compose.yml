@@ -6,7 +6,7 @@ services:
     networks:
       - nginx_ip4_network
     env_file:
-      - container.env
+      - env.spliit
     environment:
       VIRTUAL_HOST: "pay.${DOMAIN}"
       VIRTUAL_PORT: 3000
@@ -23,7 +23,7 @@ services:
     ports:
       - 5432:5432
     env_file:
-      - container.env
+      - env.spliit
     volumes:
       - ./postgres:/var/lib/postgresql/data
     healthcheck:
@@ -31,3 +31,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+networks:
+  nginx_ip4_network:
+    external: true
