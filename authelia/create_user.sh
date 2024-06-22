@@ -9,5 +9,5 @@ read -s -p "Password: " PW
 echo # Do not print % after silent read
 SALT=$(openssl rand -hex 16)
 
-export PASSWORD=$(echo $PW | argon2 $SALT -id -t 1 -l 32 -m 10 -p 8 -e)
+export PASSWORD=$(echo -n $PW | argon2 $SALT -id -t 1 -l 32 -m 10 -p 8 -e)
 (envsubst < templates/user_template.yml) >> config/users_database.yml
