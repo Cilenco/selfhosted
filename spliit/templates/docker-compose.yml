@@ -1,13 +1,17 @@
 services:
   spliit-app:
-    image: spliit2:latest
+    image: crazymax/spliit
     container_name: spliit-app
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    env_file:
-      - env.spliit
     environment:
+      TZ: Europe/Berlin 
+      POSTGRES_HOST: spliit-db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: spliit
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
       VIRTUAL_HOST: "pay.${DOMAIN}"
       VIRTUAL_PORT: 3000
     depends_on:
@@ -20,10 +24,13 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    ports:
-      - 5432:5432
-    env_file:
-      - env.spliit
+    #ports:
+    #  - 5432:5432
+    environment:
+      TZ: Europe/Berlin 
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: spliit
     volumes:
       - ./postgres:/var/lib/postgresql/data
     healthcheck:
