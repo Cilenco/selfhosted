@@ -7,6 +7,14 @@ fi
 
 CONFIG_FILE=$HOME/config.ini
 
+echo "Downloading and installing crudini and argon2"
+DEBIAN_FRONTEND=noninteractive apt-get -yq update
+DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
+
+DEBIAN_FRONTEND=noninteractive apt-get -yq install make
+DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
+DEBIAN_FRONTEND=noninteractive apt-get -yq install argon2
+
 read -p "Enter domain: " DOMAIN
 read -p "Enter E-Mail: " EMAIL
 
@@ -18,14 +26,6 @@ crudini --set $CONFIG_FILE general email $EMAIL
 
 crudini --set $CONFIG_FILE ionos prefix $PREFIX
 crudini --set $CONFIG_FILE ionos secret $SECRET
-
-echo "Downloading and installing crudini and argon2"
-DEBIAN_FRONTEND=noninteractive apt-get -yq update
-DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
-
-DEBIAN_FRONTEND=noninteractive apt-get -yq install make
-DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
-DEBIAN_FRONTEND=noninteractive apt-get -yq install argon2
 
 echo "Downloading and installing docker"
 wget -O get-docker.sh https://get.docker.com
