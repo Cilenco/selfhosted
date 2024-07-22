@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginxproxy/nginx-proxy:1.4.0
+    image: nginxproxy/nginx-proxy:1.6.0
     container_name: nginx-proxy
     restart: unless-stopped
     networks:
