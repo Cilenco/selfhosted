@@ -1,0 +1,29 @@
+jwt_secret = "${JWT_SECRET}"
+key_seed = "${KEY_SEED}"
+
+ldap_base_dn = "dc=${DOMAIN},dc=de"
+
+ldap_user_dn = "${USERNAME}"
+ldap_user_pass = "${PASSWORD}"
+ldap_user_email = "${EMAIL}"
+
+database_url = "sqlite:///data/users.db?mode=rwc"
+
+[smtp_options]
+## Whether to enabled password reset via email, from LLDAP.
+#enable_password_reset=true
+## The SMTP server.
+#server="smtp.gmail.com"
+## The SMTP port.
+#port=587
+## How the connection is encrypted, either "NONE" (no encryption), "TLS" or "STARTTLS".
+#smtp_encryption = "TLS"
+## The SMTP user, usually your email address.
+#user="sender@gmail.com"
+## The SMTP password.
+#password="password"
+## The header field, optional: how the sender appears in the email. The first
+## is a free-form name, followed by an email between <>.
+#from="LLDAP Admin <sender@gmail.com>"
+## Same for reply-to, optional.
+#reply_to="Do not reply <noreply@localhost>"

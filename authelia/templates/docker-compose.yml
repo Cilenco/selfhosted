@@ -16,6 +16,17 @@ services:
     volumes:
       - ./config:/config
       - ./secrets:/secrets
+  ldap:
+    image: lldap/lldap:stable
+    restart: unless-stopped
+    container_name: ldap
+    networks:
+      - nginx_ip4_network
+    environment:
+      VIRTUAL_HOST: user.${DOMAIN}
+      VIRTUAL_PORT: 17170
+    volumes:
+      - "./ldap:/data"
 
 networks:
   nginx_ip4_network:

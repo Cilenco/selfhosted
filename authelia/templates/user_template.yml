@@ -1,4 +1,0 @@
-  ${USER_NAME}:
-    displayname: "${DISPLAY_NAME}"
-    password: ${PASSWORD}
-    email: ${E_MAIL}
