@@ -7,25 +7,36 @@ fi
 
 CONFIG_FILE=$HOME/config.ini
 
-echo "Downloading and installing crudini and argon2"
+echo "Downloading and installing make and crudini"
 DEBIAN_FRONTEND=noninteractive apt-get -yq update
 DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
 
 DEBIAN_FRONTEND=noninteractive apt-get -yq install make
 DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
-DEBIAN_FRONTEND=noninteractive apt-get -yq install argon2
 
 read -p "Enter domain: " DOMAIN
 read -p "Enter E-Mail: " EMAIL
 
-read -p "Enter Ionos API prefix: " PREFIX
-read -p "Enter Ionos API secret: " SECRET
-
 crudini --set $CONFIG_FILE general domain $DOMAIN 
 crudini --set $CONFIG_FILE general email $EMAIL
 
+read -p "Enter Ionos API prefix: " PREFIX
+read -p "Enter Ionos API secret: " SECRET
+
 crudini --set $CONFIG_FILE ionos prefix $PREFIX
 crudini --set $CONFIG_FILE ionos secret $SECRET
+
+read -p "Enter SMTP server: " SMTP_SERVER
+read -p "Enter SMTP port: " SMTP_PORT
+
+read    -p "Enter SMTP username: " SMTP_USERNAME
+read -s -p "Enter SMTP password: " SMTP_PASSWORD
+
+crudini --set $CONFIG_FILE smtp server $SMTP_SERVER
+crudini --set $CONFIG_FILE smtp port $SMTP_PORT
+
+crudini --set $CONFIG_FILE smtp username $SMTP_USERNAME
+crudini --set $CONFIG_FILE smtp password $SMTP_PASSWORD
 
 echo "Downloading and installing docker"
 wget -O get-docker.sh https://get.docker.com
