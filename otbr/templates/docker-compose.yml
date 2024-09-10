@@ -9,6 +9,7 @@ services:
       home_network:
         ipv4_address: 192.168.178.200
     environment:
+      NETWORK_ACCESS: internal
       VIRTUAL_HOST: "thread.${DOMAIN}"
       VIRTUAL_PORT: 80
     sysctls:

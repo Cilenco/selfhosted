@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
+      NETWORK_ACCESS: internal
       VIRTUAL_HOST: "dyndns.${DOMAIN}"
       VIRTUAL_PORT: 8000
     volumes:

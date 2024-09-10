@@ -6,6 +6,7 @@ services:
     networks:
       - nginx_ip4_network
     environment:
+      NETWORK_ACCESS: internal
       VIRTUAL_HOST: "streaming.${DOMAIN}"
       VIRTUAL_PORT: 8096
     volumes:
