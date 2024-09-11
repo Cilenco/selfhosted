@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:10.9.8
+    image: jellyfin/jellyfin:10.9.11
     container_name: jellyfin
     restart: unless-stopped
     networks:
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./cache:/cache
       - ./config:/config
-      - /media:/media
+      - /media:/media:ro
 
 networks:
   nginx_ip4_network:
