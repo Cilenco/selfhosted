@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginxproxy/nginx-proxy:1.6.0
+    image: nginxproxy/nginx-proxy:1.6.1
     container_name: nginx-proxy
     restart: unless-stopped
     networks:
@@ -14,26 +14,23 @@ services:
       - ./config:/etc/nginx/conf.d
       - certs:/etc/nginx/certs:ro
   acme:
-    image: cilenco/lego-cron-wrapper:v4.14.2
+    image: nginxproxy/acme-companion:2.4.0
     container_name: nginx-certs
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    command: >
-      --accept-tos --email=${EMAIL} --dns ionos
-      --domains=*.${DOMAIN} --domains=${DOMAIN}
-    # --server=https://acme-staging-v02.api.letsencrypt.org/directory
-    environment:
-      RUN_ARGUMENTS: --run-hook=/app/deploy
-      RENEW_ARGUMENTS: --renew-hook=/app/deploy
-      IONOS_API_KEY_FILE: /app/credentials
-      IONOS_PROPAGATION_TIMEOUT: 120
-      IONOS_POLLING_INTERVAL: 20
     volumes:
-      - certs:/app/certificates
+      - certs:/etc/nginx/certs
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./credentials:/app/credentials
-      - ./deploy.sh:/app/deploy
+      - ./acme.sh:/etc/acme.sh
+    environment:
+      ACMESH_VERSION: 3.0.8
+      DEFAULT_EMAIL: noreply@${DOMAIN}
+      ACME_CHALLENGE: DNS-01
+      ACMESH_DNS_API_CONFIG: |-
+        DNS_API: dns_ionos
+        IONOS_PREFIX: ${PREFIX}
+        IONOS_SECRET: ${SECRET}
 
 networks:
   nginx_ip4_network:
