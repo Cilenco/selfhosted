@@ -11,6 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./internal.conf:/etc/nginx/network_internal.conf
+      - ./html:/usr/share/nginx/html
       - ./config:/etc/nginx/conf.d
       - certs:/etc/nginx/certs:ro
   acme:
@@ -19,10 +20,12 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
+    volumes_from:
+      - nginx
     volumes:
       - certs:/etc/nginx/certs
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./acme.sh:/etc/acme.sh
+      - ./acme:/etc/acme.sh
     environment:
       ACMESH_VERSION: 3.0.8
       DEFAULT_EMAIL: noreply@${DOMAIN}

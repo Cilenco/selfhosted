@@ -7,12 +7,12 @@
 
 CONFIG_FILE=$HOME/config.ini
 
-echo "Downloading and installing make and crudini"
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq update
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
+echo "Installing system updates as well as make and crudini"
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq update
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq upgrade
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install make
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install make
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install crudini
 
 read -p "Enter domain: " DOMAIN
 read -p "Enter E-Mail: " EMAIL

@@ -11,6 +11,7 @@ services:
       - "3000:3000"
     environment:
       VIRTUAL_HOST: "dns.${DOMAIN}"
+      LETSENCRYPT_HOST: "*.${DOMAIN}"
       VIRTUAL_PORT: 80
     volumes:
       - certs:/opt/adguardhome/certs:ro

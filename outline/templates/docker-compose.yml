@@ -33,6 +33,7 @@ services:
       - nginx_ip4_network
     environment:
       VIRTUAL_HOST: "dancing.${DOMAIN}"
+      LETSENCRYPT_HOST: "*.${DOMAIN}"
       VIRTUAL_PORT: 3000
     env_file: env.outline
     volumes:

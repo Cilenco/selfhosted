@@ -11,6 +11,7 @@ services:
     environment:
       NETWORK_ACCESS: internal
       VIRTUAL_HOST: "thread.${DOMAIN}"
+      LETSENCRYPT_HOST: "*.${DOMAIN}"
       VIRTUAL_PORT: 80
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0

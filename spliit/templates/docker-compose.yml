@@ -6,13 +6,14 @@ services:
     networks:
       - nginx_ip4_network
     environment:
-      TZ: Europe/Berlin 
+      TZ: Europe/Berlin
       POSTGRES_HOST: spliit-db
       POSTGRES_PORT: 5432
       POSTGRES_DB: spliit
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       VIRTUAL_HOST: "pay.${DOMAIN}"
+      LETSENCRYPT_HOST: "*.${DOMAIN}"
       VIRTUAL_PORT: 3000
     depends_on:
       spliit-db:
@@ -27,14 +28,14 @@ services:
     #ports:
     #  - 5432:5432
     environment:
-      TZ: Europe/Berlin 
+      TZ: Europe/Berlin
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: spliit
     volumes:
       - ./postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5

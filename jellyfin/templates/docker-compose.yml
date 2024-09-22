@@ -8,6 +8,7 @@ services:
     environment:
       NETWORK_ACCESS: internal
       VIRTUAL_HOST: "streaming.${DOMAIN}"
+      LETSENCRYPT_HOST: "*.${DOMAIN}"
       VIRTUAL_PORT: 8096
     volumes:
       - ./cache:/cache
