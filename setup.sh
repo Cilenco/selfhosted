@@ -1,23 +1,25 @@
 #!/bin/bash
 
-if [[ $EUID > 0 ]]; then
-  echo "Please run as root"
-  exit
-fi
+#if [[ $EUID > 0 ]]; then
+#  echo "Please run as root"
+#  exit
+#fi
 
-CONFIG_FILE=$HOME/config.ini
+HOME_DIR=$( getent passwd ${SUDO_USER:-$USER} | cut -d: -f6 )
+
+CONFIG_FILE=$HOME_DIR/config.ini
 
 echo "Downloading and installing make and crudini"
-DEBIAN_FRONTEND=noninteractive apt-get -yq update
-DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq update
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
 
-DEBIAN_FRONTEND=noninteractive apt-get -yq install make
-DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install make
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install crudini
 
 read -p "Enter domain: " DOMAIN
 read -p "Enter E-Mail: " EMAIL
 
-crudini --set $CONFIG_FILE general domain $DOMAIN 
+crudini --set $CONFIG_FILE general domain $DOMAIN
 crudini --set $CONFIG_FILE general email $EMAIL
 
 read -p "Enter Ionos API prefix: " PREFIX
@@ -44,22 +46,26 @@ wget -O get-docker.sh https://get.docker.com
 sh get-docker.sh > /dev/null
 rm get-docker.sh > /dev/null
 
-if [[ 0 > 0 ]]; then
-  groupadd docker
-  usermod -aG docker admin
+sudo groupadd docker
 
-  echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
+sudo usermod -aG docker ${SUDO_USER:-$USER}
 
-  echo "net.ipv6.conf.all.use_tempaddr=0" >> /etc/sysctl.conf
-  echo "net.ipv6.conf.default.use_tempaddr=0" >> /etc/sysctl.conf
+#if [[ 0 > 0 ]]; then
+#  groupadd docker
+#  usermod -aG docker admin
 
-  echo -e "Setup process of your Raspberry finished successfully."
-  echo -e "Please restart the device now to apply all changes.\n"
-
-  read -r -p "Would you like to restart the device now? [Y/n] " reboot; 
-
-  if [ "$reboot" != "" ]; then echo; fi
-  if [ "$reboot" = "${reboot#[Nn]}" ]; then
-    shutdown -r now
-  fi
-fi
+#  echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
+#
+#  echo "net.ipv6.conf.all.use_tempaddr=0" >> /etc/sysctl.conf
+#  echo "net.ipv6.conf.default.use_tempaddr=0" >> /etc/sysctl.conf
+#
+#  echo -e "Setup process of your Raspberry finished successfully."
+#  echo -e "Please restart the device now to apply all changes.\n"
+#
+#  read -r -p "Would you like to restart the device now? [Y/n] " reboot;
+#
+#  if [ "$reboot" != "" ]; then echo; fi
+#  if [ "$reboot" = "${reboot#[Nn]}" ]; then
+#    shutdown -r now
+#  fi
+#fi
