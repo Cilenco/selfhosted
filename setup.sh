@@ -5,9 +5,7 @@
 #  exit
 #fi
 
-HOME_DIR=$( getent passwd ${SUDO_USER:-$USER} | cut -d: -f6 )
-
-CONFIG_FILE=$HOME_DIR/config.ini
+CONFIG_FILE=$HOME/config.ini
 
 echo "Downloading and installing make and crudini"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq update
@@ -46,8 +44,7 @@ wget -O get-docker.sh https://get.docker.com
 sh get-docker.sh > /dev/null
 rm get-docker.sh > /dev/null
 
-sudo groupadd docker
-
+[ $(getent group docker) ] || sudo groupadd docker
 sudo usermod -aG docker ${SUDO_USER:-$USER}
 
 #if [[ 0 > 0 ]]; then
