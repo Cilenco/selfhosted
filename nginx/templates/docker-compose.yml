@@ -9,7 +9,7 @@ services:
     volumes:
       - ./html:/usr/share/nginx/html
       - ./config:/etc/nginx/conf.d
-      # - certs:/etc/nginx/certs:ro
+      - certs:/etc/nginx/certs:ro
     networks:
       - nginx_ip4_network
   dockergen:
