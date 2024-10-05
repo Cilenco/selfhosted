@@ -24,6 +24,7 @@ services:
       - nginx_ip4_network
     environment:
       VIRTUAL_HOST: user.${DOMAIN}
+      LETSENCRYPT_HOST: "*.${DOMAIN},${DOMAIN}"
       VIRTUAL_PORT: 17170
     volumes:
       - "./ldap:/data"
