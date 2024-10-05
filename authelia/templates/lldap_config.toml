@@ -12,13 +12,13 @@ database_url = "sqlite:///data/users.db?mode=rwc"
 [smtp_options]
 #enable_password_reset=true
 
-server = ${SMTP_SERVER}
-port = ${SMTP_PORT}
+server = "${SMTP_SERVER}"
+port = "${SMTP_PORT}"
 smtp_encryption = "TLS"
 # NONE, TLS, STARTTLS
 
-user = ${SMTP_USERNAME}
-password = ${SMTP_PASSWORD}
+user = "${SMTP_USERNAME}"
+password = "${SMTP_PASSWORD}"
 
 from = "Password reset requested <noreply@${DOMAIN}>"
 reply_to = "Do not reply <noreply@${DOMAIN}>"
