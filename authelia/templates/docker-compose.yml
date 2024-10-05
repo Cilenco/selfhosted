@@ -1,6 +1,6 @@
 services:
   authelia:
-    image: authelia/authelia:4.37.5
+    image: authelia/authelia:4.38.15
     container_name: authelia
     restart: unless-stopped
     networks:

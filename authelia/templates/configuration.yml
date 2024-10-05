@@ -3,12 +3,11 @@ theme: auto
 default_redirection_url: https://google.com/
 
 server:
-  host: 0.0.0.0
-  port: 9091
-  path: ""
-  enable_pprof: false
-  enable_expvars: false
+  address: "tcp://:9091/"
   disable_healthcheck: false
+  endpoints:
+    enable_pprof: false
+    enable_expvars: false
   tls:
     certificate: ""
     key: ""
@@ -51,12 +50,6 @@ access_control:
       policy: one_factor
     - domain: "dancing.${DOMAIN}" # Outline Wiki
       policy: one_factor
-    - domain: "streaming.${DOMAIN}" # Jellyfin server
-      policy: one_factor
-    - domain: "home.${DOMAIN}" # Home Assistant
-      policy: one_factor
-    - domain: "pay.${DOMAIN}" # Spliit
-      policy: one_factor
 
 session:
   name: authelia_session
@@ -76,11 +69,11 @@ storage:
 identity_providers:
   oidc:
     clients:
-      - id: outline
-        description: Outline
+      - client_id: outline
+        client_name: Outline
         secret: "$pbkdf2-sha512$310000$c8p78n7pUMln0jzvd4aK4Q$JNRBzwAo0ek5qKn50cFzzvE9RXV88h1wJn5KGiHrD0YKtZaR/nCb2CJPOsKaPK0hjf.9yHxzQGZziziccp6Yng"
         public: false
-        userinfo_signing_algorithm: none
+        .userinfo_signed_response_alg: none
         authorization_policy: one_factor
         redirect_uris:
           - https://dancing.${DOMAIN}/auth/oidc.callback
@@ -91,16 +84,14 @@ identity_providers:
           - email
 
 notifier:
-  disable_startup_check: true #true/false
+  disable_startup_check: true
   smtp:
-    username: youremail@gmail.com #your email address
-    password: Y0uRp@55W0rD! #your email password
-    host: smtp.gmail.com #email smtp server
-    port: 587 #email smtp port
-    sender: youremail@gmail.com
+    address: "smtp://${SMTP_SERVER}:${SMTP_PORT}"
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    sender: Authelia <norepl@${DOMAIN}>"
     identifier: localhost
-    subject: "[Authelia] {title}" #email subject
-    startup_check_address: youremail@gmail.com
+    subject: "[Authelia] {title}"
     disable_require_tls: false
     disable_html_emails: false
     tls:
