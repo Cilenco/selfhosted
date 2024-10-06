@@ -1,6 +1,6 @@
 services:
   dyndns:
-    image: qmcgaw/ddns-updater:v2.7.0
+    image: qmcgaw/ddns-updater:latest
     container_name: dyndns
     restart: unless-stopped
     network_mode: host

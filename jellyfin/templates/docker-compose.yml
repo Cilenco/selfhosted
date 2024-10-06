@@ -1,6 +1,6 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:10.9.11
+    image: jellyfin/jellyfin:latest
     container_name: jellyfin
     restart: unless-stopped
     networks:
