@@ -12,8 +12,8 @@ database_url = "sqlite:///data/users.db?mode=rwc"
 [smtp_options]
 #enable_password_reset=true
 
+port = ${SMTP_PORT}
 server = "${SMTP_SERVER}"
-port = "${SMTP_PORT}"
 smtp_encryption = "TLS"
 # NONE, TLS, STARTTLS
 
