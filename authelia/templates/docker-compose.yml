@@ -3,6 +3,7 @@ services:
     image: authelia/authelia:4.38.15
     container_name: authelia
     restart: unless-stopped
+    user: 3000:3000
     networks:
       - nginx_ip4_network
     environment:
@@ -21,6 +22,7 @@ services:
     image: lldap/lldap:latest-alpine-rootless
     restart: unless-stopped
     container_name: ldap
+    user: 3000:3000
     networks:
       - nginx_ip4_network
     environment:
