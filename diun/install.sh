@@ -10,7 +10,7 @@ export SMTP_PORT=$(crudini --get $CONFIG_FILE smtp port)
 export SMTP_USERNAME=$(crudini --get $CONFIG_FILE smtp username)
 export SMTP_PASSWORD=$(crudini --get $CONFIG_FILE smtp password)
 
-read -p "Enter notification E-Mail: " EMAIL
+read -p "Enter notification E-Mail: " EMAIL && export EMAIL
 
 (envsubst < templates/config.yml) > config.yml
 (envsubst < templates/observe.yml) > observe.yml

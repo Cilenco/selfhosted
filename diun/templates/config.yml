@@ -25,4 +25,4 @@ regopts:
 
 providers:
   file:
-    directory: ./observe.yml
+    filename: ./observe.yml
