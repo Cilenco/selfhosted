@@ -1,0 +1,13 @@
+upstream home.${DOMAIN} {
+    server home-server:80;
+}
+
+server {
+    server_name home.${DOMAIN};
+    include /etc/nginx/defaults/http
+}
+
+server {
+    server_name home.${DOMAIN};
+    include /etc/nginx/defaults/https
+}

@@ -1,0 +1,13 @@
+upstream home.${DOMAIN} {
+    server adguard:80;
+}
+
+server {
+    server_name dns.${DOMAIN};
+    include /etc/nginx/defaults/http
+}
+
+server {
+    server_name dns.${DOMAIN};
+    include /etc/nginx/defaults/https
+}

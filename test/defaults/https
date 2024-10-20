@@ -1,0 +1,22 @@
+http2 on;
+listen 443 ssl;
+
+ssl_session_timeout 5m;
+ssl_session_cache shared:SSL:50m;
+ssl_session_tickets off;
+
+ssl_certificate /etc/nginx/certs/domain.crt;
+ssl_trusted_certificate /etc/nginx/certs/domain.chain.pem;
+ssl_certificate_key /etc/nginx/certs/domain.key;
+
+ssl_stapling on;
+ssl_stapling_verify on;
+
+set $sts_header "";
+
+add_header Strict-Transport-Security $sts_header always;
+
+location / {
+    proxy_pass http://home.${DOMAIN};
+    set $upstream_keepalive false;
+}
