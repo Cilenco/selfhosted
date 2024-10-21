@@ -1,12 +1,14 @@
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 
-ENV IONOS_PREFIX=
-ENV IONOS_SECRET=
+ARG DOMAIN
+ARG EMAIL
 
-ENV DOMAIN=
-ENV EMAIL=
+ENV DOMAIN=$DOMAIN
+ENV EMAIL=$EMAIL
 
 USER root
+
+COPY entrypoint.sh /entrypoint.sh
 
 # Install dependencies used by acmes.sh
 RUN apk add --no-cache -f openssl socat
@@ -27,10 +29,4 @@ RUN chown nginx /certs/${DOMAIN}.key
 
 USER nginx
 
-RUN /acme/acme.sh --issue --dns dns_ionos -d ${DOMAIN} -d *.${DOMAIN}
-
-RUN /acme/acme.sh --install-cert      \
-    --domain    ${DOMAIN}             \
-    --key-file  /certs/${DOMAIN}.crt  \
-    --cert-file /certs/${DOMAIN}.key  \
-    --reloadcmd "nginx -s reload"
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
