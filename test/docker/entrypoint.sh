@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start nginx server
-nginx -g daemon
+nginx -g "daemon off;"
 
 /acme/acme.sh --issue                         \
               --dns dns_ionos                 \
