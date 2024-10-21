@@ -1,7 +1,7 @@
 services:
   nginx:
     build:
-      context: .
+      context: docker/Dockerfile
     container_name: nginx-server
     restart: unless-stopped
     ports:
@@ -11,8 +11,8 @@ services:
       DOMAIN: ${DOMAIN}
       EMAIL: noreply@${DOMAIN}
     volumes:
-      - ./config:/etc/nginx/templates:ro
-      - ./defaults:/etc/nginx/defaults:ro
+      - ./config:/etc/nginx/conf.d
+      - ./teplates:/etc/nginx/templates:ro
       - certs:/etc/nginx/certs:ro
     networks:
       - nginx_ip4_network

@@ -1,8 +1,5 @@
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 
-ENV DOMAIN=
-ENV EMAIL=
-
 USER root
 
 # Install dependencies used by acmes.sh
@@ -16,8 +13,14 @@ RUN cd acme.sh && ./acme.sh --install --home /acme --email ${EMAIL}
 RUN rm -rf acme.sh
 RUN apk del .acme
 
-#RUN acme.sh --issue --dns dns_ionos \
-#    -d ${DOMAIN} -d *.${DOMAIN} -m ${EMAIL} \
-#    --reloadcmd "nginx -s reload"
+RUN mkdir certs && chown nginx acme
+RUN cd certs && touch ${DOMAIN}.crt ${DOMAIN}.key
+
+RUN chown nginx /nginx/certs/${DOMAIN}.crt
+RUN chown nginx /nginx/certs/${DOMAIN}.key
+
+COPY entrypoint.sh /entrypoint.sh
 
 USER nginx
+
+ENTRYPOINT [ "entrypoint.sh" ]
