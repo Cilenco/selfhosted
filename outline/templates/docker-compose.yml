@@ -5,24 +5,17 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    environment:
-      NETWORK_ACCESS: internal
-    ports:
-      - "6379:6379"
   postgres:
     image: postgres:13.15
     container_name: outline-db
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    ports:
-      - "5432:5432"
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
-      NETWORK_ACCESS: internal
       POSTGRES_DB: outline
     env_file: env.outline
   outline:
@@ -31,10 +24,6 @@ services:
     restart: unless-stopped
     networks:
       - nginx_ip4_network
-    environment:
-      VIRTUAL_HOST: "dancing.${DOMAIN}"
-      LETSENCRYPT_HOST: "*.${DOMAIN},${DOMAIN}"
-      VIRTUAL_PORT: 3000
     env_file: env.outline
     volumes:
       - ./data:/var/lib/outline/data

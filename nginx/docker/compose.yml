@@ -1,0 +1,28 @@
+services:
+  nginx:
+    build:
+      context: docker
+      args:
+        DOMAIN: ${DOMAIN}
+        EMAIL: ${EMAIL}
+    container_name: nginx-server
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      IONOS_PREFIX: ${PREFIX}
+      IONOS_SECRET: ${SECRET}
+    volumes:
+      - ./templates:/etc/nginx/templates:ro
+      - certs:/certs:ro
+    networks:
+      - nginx_ip4_network
+
+networks:
+  nginx_ip4_network:
+    name: nginx_ip4_network
+
+volumes:
+  certs:
+    external: true

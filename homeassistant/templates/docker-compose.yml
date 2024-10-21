@@ -1,20 +1,24 @@
 services:
   homeassistant:
     image: "ghcr.io/home-assistant/home-assistant:stable"
-    container_name: homeassistant
+    container_name: home-server
     restart: unless-stopped
     network_mode: host
     privileged: true
-    ports:
-      - "80:8123"
     volumes:
-      - /PATH_TO_YOUR_CONFIG:/config
+      - ./server/config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-    environment:
-      VIRTUAL_HOST: "home.${DOMAIN}"
-      LETSENCRYPT_HOST: "*.${DOMAIN},${DOMAIN}"
-      VIRTUAL_PORT: 8123
+  matter-server:
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    container_name: home-matter
+    restart: unless-stopped
+    network_mode: host
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ./matter/data:/data/
+      - /run/dbus:/run/dbus:ro
 
 networks:
   nginx_ip4_network:

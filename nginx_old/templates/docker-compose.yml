@@ -12,21 +12,6 @@ services:
       - certs:/etc/nginx/certs:ro
     networks:
       - nginx_ip4_network
-  dockergen:
-    image: nginxproxy/docker-gen:0.14.2
-    container_name: nginx-config
-    restart: unless-stopped
-    command: |
-      -notify-sighup nginx-server -watch
-      /etc/docker-gen/templates/nginx.tmpl
-      /etc/nginx/conf.d/default.conf
-    volumes_from:
-      - nginx
-    volumes:
-      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - nginx_ip4_network
   acme:
     image: nginxproxy/acme-companion:2.5.0
     container_name: nginx-certs

@@ -1,0 +1,6 @@
+server {
+    server_name dns.${DOMAIN};
+    set $upstream adguard:80;
+
+    include /etc/nginx/conf.d/ssl_server.conf;
+}
