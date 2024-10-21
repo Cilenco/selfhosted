@@ -17,5 +17,3 @@ export SECRET=$(crudini --get $CONFIG_FILE ionos secret)
 
 echo "client_max_body_size 10G;" > config/uploadsize.conf
 echo "proxy_request_buffering off;" > config/uploadsize.conf
-
-wget -O nginx.tmpl https://raw.githubusercontent.com/nginx-proxy/nginx-proxy/refs/heads/main/nginx.tmpl

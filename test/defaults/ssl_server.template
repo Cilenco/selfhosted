@@ -1,0 +1,10 @@
+listen 443 ssl;
+
+#include /etc/nginx/defaults/http;
+
+location / {
+    proxy_pass http://$upstream;
+
+    set $upstream_keepalive false;
+    resolver 127.0.0.11 valid=30s;
+}

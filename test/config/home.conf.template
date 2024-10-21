@@ -1,13 +1,8 @@
-upstream home.${DOMAIN} {
-    server home-server:80;
-}
+include /etc/nginx/defaults/redirect_http;
 
 server {
     server_name home.${DOMAIN};
-    include /etc/nginx/defaults/http
-}
+    set $upstream home-server:80;
 
-server {
-    server_name home.${DOMAIN};
-    include /etc/nginx/defaults/https
+    include /etc/nginx/defaults/ssl_server;
 }
