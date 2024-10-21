@@ -10,4 +10,4 @@ export EMAIL=$(crudini --get $CONFIG_FILE general email)
 export PREFIX=$(crudini --get $CONFIG_FILE ionos prefix)
 export SECRET=$(crudini --get $CONFIG_FILE ionos secret)
 
-(envsubst < docker/docker-compose.yml) > docker-compose.yml
+(envsubst < docker/compose.yml) > compose.yml
