@@ -12,7 +12,7 @@ services:
       EMAIL: noreply@${DOMAIN}
     volumes:
       - ./config:/etc/nginx/conf.d
-      - ./teplates:/etc/nginx/templates:ro
+      - ./templates:/etc/nginx/templates:ro
       - certs:/etc/nginx/certs:ro
     networks:
       - nginx_ip4_network
