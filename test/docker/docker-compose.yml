@@ -1,7 +1,7 @@
 services:
   nginx:
     build:
-      context: docker/Dockerfile
+      context: docker
     container_name: nginx-server
     restart: unless-stopped
     ports:

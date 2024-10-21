@@ -4,7 +4,7 @@ ENV IONOS_PREFIX=
 ENV IONOS_SECRET=
 
 ENV DOMAIN=
-ENV MAIL=
+ENV EMAIL=
 
 USER root
 
@@ -27,12 +27,9 @@ RUN chown nginx /certs/${DOMAIN}.key
 
 USER nginx
 
-RUN acme.sh --issue \
-    --dns dns_ionos \
-    -d ${DOMAIN} \
-    -d *.${DOMAIN}
+RUN /acme/acme.sh --issue --dns dns_ionos -d ${DOMAIN} -d *.${DOMAIN}
 
-RUN acme.sh --install-cert            \
+RUN /acme/acme.sh --install-cert      \
     --domain    ${DOMAIN}             \
     --key-file  /certs/${DOMAIN}.crt  \
     --cert-file /certs/${DOMAIN}.key  \
