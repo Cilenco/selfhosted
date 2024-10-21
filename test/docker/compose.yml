@@ -4,18 +4,18 @@ services:
       context: docker
       args:
         DOMAIN: ${DOMAIN}
-        EMAIL: noreply@${DOMAIN}
+        EMAIL: ${EMAIL}
     container_name: nginx-server
     restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
     environment:
-      IONOS_PREFIX: ${DOMAIN}
-      IONOS_SECRET: ${DOMAIN}
+      IONOS_PREFIX: ${PREFIX}
+      IONOS_SECRET: ${SECRET}
     volumes:
       - ./templates:/etc/nginx/templates:ro
-      - certs:/etc/nginx/certs:ro
+      - certs:/certs:ro
     networks:
       - nginx_ip4_network
 
