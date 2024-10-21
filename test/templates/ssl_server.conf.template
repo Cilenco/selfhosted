@@ -1,8 +1,0 @@
-listen 443 ssl;
-
-location / {
-    proxy_pass http://$upstream;
-
-    set $upstream_keepalive false;
-    resolver 127.0.0.11 valid=30s;
-}
