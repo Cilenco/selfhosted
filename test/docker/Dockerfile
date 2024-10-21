@@ -3,15 +3,15 @@ FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 ARG DOMAIN
 ARG EMAIL
 
-ENV DOMAIN=$DOMAIN
-ENV EMAIL=$EMAIL
+ENV DOMAIN $DOMAIN
+ENV EMAIL $EMAIL
 
 USER root
 
 COPY entrypoint.sh /entrypoint.sh
 
 # Install dependencies used by acmes.sh
-RUN apk add --no-cache -f openssl socat
+RUN apk add --no-cache -f openssl curl socat
 
 RUN apk add --no-cache --virtual .acme git && mkdir acme
 
