@@ -1,5 +1,3 @@
-include /etc/nginx/defaults/redirect_http;
-
 server {
     server_name home.${DOMAIN};
     set $upstream home-server:80;

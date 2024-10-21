@@ -14,7 +14,6 @@ services:
       IONOS_PREFIX: ${DOMAIN}
       IONOS_SECRET: ${DOMAIN}
     volumes:
-      - ./config:/etc/nginx/conf.d
       - ./templates:/etc/nginx/templates:ro
       - certs:/etc/nginx/certs:ro
     networks:
