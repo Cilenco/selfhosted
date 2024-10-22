@@ -1,0 +1,21 @@
+[Unit]
+Description=Nginx Container
+
+[Service]
+Restart=always
+
+[Container]
+ContainerName=nginx
+NoNewPrivileges=true
+
+Image=docker.io/nginxinc/nginx-unprivileged:stable-alpine-slim
+
+Volume=$SELFHOST_DIR/nginx/templates:/etc/nginx/templates:ro
+
+Network=nginx.network
+
+PublishPort=4430:443
+PublishPort=8080:80
+
+[Install]
+WantedBy=default.target
