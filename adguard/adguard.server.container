@@ -1,0 +1,23 @@
+[Unit]
+Description=Adguard Container
+
+[Service]
+Restart=always
+
+[Container]
+ContainerName=adguard
+
+Image=docker.io/adguard/adguardhome
+
+Volume=adguard.conf.volume:/opt/adguardhome/conf
+Volume=adguard.work.volume:/opt/adguardhome/work
+
+PublishPort=3000:3000
+PublishPort=3001:80
+#PublishPort=853:853/tcp
+#PublishPort=853:853/udp
+
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
