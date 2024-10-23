@@ -31,7 +31,7 @@ services:
       # OIDC_CLIENT_SECRET: ${OUTLINE_CLIENT_SECRET}
       OIDC_AUTH_URI: https://auth.${DOMAIN}/api/oidc/authorization
       URL: https://dancing.${DOMAIN}
-      SMTP_HOST: ${SMTP_SERVER}
+      SMTP_HOST: ${SMTP_HOST}
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_FROM_EMAIL: noreply@${DOMAIN}
