@@ -5,29 +5,29 @@ if [[ $EUID > 0 ]]; then
   exit
 fi
 
-echo "Installing system updates as well as podman and make"
+echo "Installing system updates as well as podman"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq upgrade
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install make podman
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install podman
 
 read -p "Enter domain: " DOMAIN
-echo $DOMAIN >> /etc/selfhosted.env
+echo "DOMAIN=$DOMAIN" >> /etc/selfhosted.env
 
 read -p "Enter Ionos API prefix: " IONOS_PREFIX
 read -p "Enter Ionos API secret: " IONOS_SECRET
 
-podman secret create --env=true ionos_prefix IONOS_PREFIX
-podman secret create --env=true ionos_secret IONOS_SECRET
+echo $IONOS_PREFIX | podman secret create ionos_prefix -
+echo $IONOS_SECRET | podman secret create ionos_secret -
 
 read -p "Enter SMTP server: " SMTP_SERVER
 read -p "Enter SMTP port: " SMTP_PORT
 
-echo $SMTP_SERVER >> /etc/selfhosted.env
-echo $SMTP_PORT >> /etc/selfhosted.env
+echo "SMTP_SERVER=$SMTP_SERVER" >> /etc/selfhosted.env
+echo "SMTP_PORT=$SMTP_PORT" >> /etc/selfhosted.env
 
 read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
-podman secret create --env=true smtp_username SMTP_USERNAME
-podman secret create --env=true smtp_password SMTP_PASSWORD
+echo $SMTP_USERNAME | podman secret create smtp_username -
+echo $SMTP_PASSWORD | podman secret create smtp_password -
