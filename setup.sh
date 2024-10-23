@@ -45,6 +45,7 @@ if ! [ -x "$(command -v docker)" ]; then
 fi
 
 chown docker:docker $CONFIG_FILE
+chmod 660 $CONFIG_FILE
 
 #  echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
 #
