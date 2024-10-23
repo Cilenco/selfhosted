@@ -1,8 +1,5 @@
 {
   email    noreply@{env.DOMAIN}
-
-  acme_ca  https://acme-staging-v02.api.letsencrypt.org/directory
-  #acme_dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
 }
 
 (internal_only) {
