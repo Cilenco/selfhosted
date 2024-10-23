@@ -1,5 +1,2 @@
 [Unit]
 Description=Volume for Jellyfin config
-
-[Volume]
-VolumeName=config
