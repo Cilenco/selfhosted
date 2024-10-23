@@ -3,13 +3,18 @@ Description=Caddy Reverse Proxy
 
 [Service]
 Restart=always
-EnvironmentFile=/absolute/path/to/systemd_envs
+EnvironmentFile=/etc/selfhosted.env
 
 [Container]
 ContainerName=caddy
 NoNewPrivileges=true
 
 Image=docker.io/glopix/caddy-ionos-dns
+
+Environment=DOMAIN=$DOMAIN
+
+Secret=ionos_prefix,type=env,target=IONOS_PREFIX
+Secret=ionos_secret,type=env,target=IONOS_SECRET
 
 Volume=caddy.data.volume:/data
 Volume=./caddyfile:/etc/caddy/Caddyfile:ro
