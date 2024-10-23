@@ -21,10 +21,10 @@ read -p "Enter Ionos API secret: " IONOS_SECRET
 echo "IONOS_PREFIX=$IONOS_PREFIX" >> $CONFIG_FILE
 echo "IONOS_SECRET=$IONOS_SECRET" >> $CONFIG_FILE
 
-read -p "Enter SMTP server: " SMTP_SERVER
+read -p "Enter SMTP host: " SMTP_HOST
 read -p "Enter SMTP port: " SMTP_PORT
 
-echo "SMTP_SERVER=$SMTP_SERVER" >> $CONFIG_FILE
+echo "SMTP_HOST=$SMTP_HOST" >> $CONFIG_FILE
 echo "SMTP_PORT=$SMTP_PORT" >> $CONFIG_FILE
 
 read    -p "Enter SMTP username: " SMTP_USERNAME
@@ -32,6 +32,9 @@ read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
 echo "SMTP_USERNAME=$SMTP_USERNAME" >> $CONFIG_FILE
 echo "SMTP_PASSWORD=$SMTP_PASSWORD" >> $CONFIG_FILE
+
+#echo "OUTLINE_SECRET_KEY=$(openssl rand -hex 32)" >> $CONFIG_FILE
+#echo "OUTLINE_UTILS_SECRET=$(openssl rand -hex 32)" >> $CONFIG_FILE
 
 if ! [ -x "$(command -v docker)" ]; then
   echo "Downloading and installing docker"

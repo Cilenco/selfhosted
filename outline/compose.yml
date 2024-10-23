@@ -1,0 +1,50 @@
+services:
+  redis:
+    image: redis:7.2.5
+    container_name: outline-redis
+    restart: unless-stopped
+    networks:
+      - caddy_network
+    volumes:
+      - ./redis:/data
+  postgres:
+    image: postgres:13.15
+    container_name: outline-db
+    restart: unless-stopped
+    networks:
+      - caddy_network
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: outline
+  outline:
+    image: outlinewiki/outline:latest
+    container_name: outline-server
+    restart: unless-stopped
+    networks:
+      - caddy_network
+    environment:
+      SECRET_KEY: ${OUTLINE_SECRET_KEY}
+      UTILS_SECRET: ${OUTLINE_UTILS_SECRET}
+      # OIDC_CLIENT_SECRET: ${OUTLINE_CLIENT_SECRET}
+      OIDC_AUTH_URI: https://auth.${DOMAIN}/api/oidc/authorization
+      URL: https://dancing.${DOMAIN}
+      SMTP_HOST: ${SMTP_SERVER}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM_EMAIL: noreply@${DOMAIN}
+      SMTP_REPLY_EMAIL: noreply@${DOMAIN}
+      SMTP_PORT: ${SMTP_PORT}
+    env_file:
+      - env.outline
+    volumes:
+      - ./outline:/var/lib/outline/data
+    depends_on:
+      - postgres
+      - redis
+
+networks:
+  caddy_network:
+    external: true
