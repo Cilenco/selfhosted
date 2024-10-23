@@ -1,0 +1,63 @@
+{
+  email    noreply@{env.DOMAIN}
+}
+
+(internal_only) {
+  @not_local {
+    not remote_ip 192.168.178.0/24
+  }
+
+  respond @not_local 403
+}
+
+
+*.{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+  }
+
+  #################################################
+  # Adguard                                       #
+  #################################################
+  @dns host dns.{env.DOMAIN}
+
+  handle @dns {
+    reverse_proxy adguard:80
+  }
+
+  #################################################
+  # Jellyfin                                      #
+  #################################################
+  @streaming host streaming.{env.DOMAIN}
+
+  handle @streaming {
+    reverse_proxy jellyfin:8096
+    # import internal_only
+  }
+
+  #################################################
+  # Outline                                       #
+  #################################################
+  @dancing host dancing.{env.DOMAIN}
+
+  handle @dancing {
+    reverse_proxy outline:3000
+  }
+
+  #################################################
+  # Home Assistant                                #
+  #################################################
+  @home host home.{env.DOMAIN}
+
+  handle @home {
+    reverse_proxy home:8123
+    import internal_only
+  }
+
+  #################################################
+  # Fallback                                      #
+  #################################################
+  handle { # all other
+    abort
+  }
+}

@@ -1,0 +1,26 @@
+services:
+  caddy:
+    image: glopix/caddy-ionos-dns
+    container_name: caddy
+    restart: unless-stopped
+    networks:
+      - caddy_network
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      DOMAIN: $DOMAIN
+      IONOS_PREFIX: $IONOS_PREFIX
+      IONOS_SECRET: $IONOS_SECRET
+    volumes:
+      - ./data:/data
+      - ./caddyfile:/etc/caddy/Caddyfile:ro
+      - ./config:/config
+
+networks:
+  caddy_network:
+    external: true
+
+volumes:
+  certs:
+    external: true

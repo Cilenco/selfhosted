@@ -1,16 +1,15 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin:latest
+    image: jellyfin/jellyfin
     container_name: jellyfin
     restart: unless-stopped
-    user: 10001:10001
     networks:
-      - nginx_ip4_network
+      - caddy_network
     volumes:
       - ./cache:/cache
       - ./config:/config
       - /media:/media:ro
 
 networks:
-  nginx_ip4_network:
+  caddy_network:
     external: true

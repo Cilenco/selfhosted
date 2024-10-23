@@ -1,9 +1,0 @@
-include /etc/nginx/conf.d/*.app;
-
-server {
-    listen 80;
-
-    location / {
-        return 301 https://$host$request_uri;
-    }
-}

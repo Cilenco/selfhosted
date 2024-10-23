@@ -1,19 +1,20 @@
 services:
   homeassistant:
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: ghcr.io/home-assistant/home-assistant:stable
     container_name: home-server
     restart: unless-stopped
-    network_mode: host
-    privileged: true
+    networks:
+      - caddy_network
     volumes:
-      - ./server/config:/config
+      - ./home:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
   matter-server:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
     container_name: home-matter
     restart: unless-stopped
-    network_mode: host
+    networks:
+      - caddy_network
     security_opt:
       - apparmor:unconfined
     volumes:
@@ -21,5 +22,5 @@ services:
       - /run/dbus:/run/dbus:ro
 
 networks:
-  nginx_ip4_network:
+  caddy_network:
     external: true

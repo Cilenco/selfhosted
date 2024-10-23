@@ -1,6 +1,0 @@
-server {
-    server_name home.${DOMAIN};
-    set $upstream home-server:80;
-
-    include /etc/nginx/conf.d/ssl_server.conf;
-}

@@ -1,0 +1,23 @@
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    restart: unless-stopped
+    networks:
+      - caddy_network
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "3000:3000"
+    volumes:
+      - ./conf:/opt/adguardhome/conf
+      - certs:/opt/adguardhome/certs:ro
+      - ./work:/opt/adguardhome/work
+
+networks:
+  caddy_network:
+    external: true
+
+volumes:
+  certs:
+    external: true
