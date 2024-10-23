@@ -1,0 +1,24 @@
+[Unit]
+Description=Caddy Reverse Proxy
+
+[Service]
+Restart=always
+EnvironmentFile=/absolute/path/to/systemd_envs
+
+[Container]
+ContainerName=caddy
+NoNewPrivileges=true
+
+Image=docker.io/glopix/caddy-ionos-dns
+
+Volume=caddy.data.volume:/data
+Volume=./caddyfile:/etc/caddy/Caddyfile:ro
+Volume=caddy.config.volume:/config
+
+Network=caddy.network
+
+PublishPort=4430:443
+PublishPort=8080:80
+
+[Install]
+WantedBy=default.target

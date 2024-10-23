@@ -1,0 +1,47 @@
+{
+  email    noreply@{env.DOMAIN}
+
+  acme_ca  https://acme-staging-v02.api.letsencrypt.org/directory
+  acme_dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+}
+
+(internal_only) {
+  @not_local {
+    not remote_ip 192.168.178.0/24
+  }
+
+  respond @not_local 403
+}
+
+
+*.{env.DOMAIN} {
+  # @dns host dns.{env.DOMAIN}
+
+  handle host dns.{env.DOMAIN} {
+    reverse_proxy adguard:80
+  }
+
+  # @streaming host streaming.{env.DOMAIN}
+
+  handle host @streaming {
+    reverse_proxy jellyfin:8096
+    # import internal_only
+  }
+
+  # @dancing host dancing.{env.DOMAIN}
+
+  handle host dancing.{env.DOMAIN} {
+    reverse_proxy outline:3000
+  }
+
+  # @home host home.{env.DOMAIN}
+
+  handle host home.{env.DOMAIN} {
+    reverse_proxy home:8123
+    import internal_only
+  }
+
+  handle { # all other
+    abort
+  }
+}
