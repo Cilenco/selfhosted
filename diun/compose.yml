@@ -8,12 +8,12 @@ services:
       - caddy_network
     environment:
       TZ: Europe/Berlin
-      DIUN_NOTIF_MAIL_HOST: $SMTP_HOST
-      DIUN_NOTIF_MAIL_USERNAME: $SMTP_USERNAME
-      DIUN_NOTIF_MAIL_PASSWORD: $SMTP_PASSWORD
-      DIUN_NOTIF_MAIL_FROM: noreply@$DOMAIN
-      DIUN_NOTIF_MAIL_PORT: $SMTP_PORT
-      DIUN_NOTIF_MAIL_TO: $EMAIL
+      DIUN_NOTIF_MAIL_HOST: ${SMTP_HOST:?error}
+      DIUN_NOTIF_MAIL_USERNAME: ${SMTP_USERNAME:?error}
+      DIUN_NOTIF_MAIL_PASSWORD: ${SMTP_PASSWORD:?error}
+      DIUN_NOTIF_MAIL_FROM: noreply@${DOMAIN:?error}
+      DIUN_NOTIF_MAIL_PORT: ${SMTP_PORT:?error}
+      DIUN_NOTIF_MAIL_TO: ${EMAIL:?error}
     volumes:
       - "./config.yml:/diun.yml:ro"
       - "./observe.yml:/observe.yml:ro"

@@ -9,9 +9,9 @@ services:
       - 80:80
       - 443:443
     environment:
-      DOMAIN: $DOMAIN
-      IONOS_PREFIX: $IONOS_PREFIX
-      IONOS_SECRET: $IONOS_SECRET
+      DOMAIN: ${DOMAIN:?error}
+      IONOS_PREFIX: ${IONOS_PREFIX:?error}
+      IONOS_SECRET: ${IONOS_SECRET:?error}
     volumes:
       - ./data:/data
       - ./caddyfile:/etc/caddy/Caddyfile:ro

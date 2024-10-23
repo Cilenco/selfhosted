@@ -26,17 +26,17 @@ services:
     networks:
       - caddy_network
     environment:
-      SECRET_KEY: ${OUTLINE_SECRET_KEY}
-      UTILS_SECRET: ${OUTLINE_UTILS_SECRET}
-      # OIDC_CLIENT_SECRET: ${OUTLINE_CLIENT_SECRET}
-      OIDC_AUTH_URI: https://auth.${DOMAIN}/api/oidc/authorization
-      URL: https://dancing.${DOMAIN}
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_USERNAME: ${SMTP_USERNAME}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      SMTP_FROM_EMAIL: noreply@${DOMAIN}
-      SMTP_REPLY_EMAIL: noreply@${DOMAIN}
-      SMTP_PORT: ${SMTP_PORT}
+      SECRET_KEY: ${OUTLINE_SECRET_KEY:?error}
+      UTILS_SECRET: ${OUTLINE_UTILS_SECRET:?error}
+      # OIDC_CLIENT_SECRET: ${OUTLINE_CLIENT_SECRET:?error}
+      OIDC_AUTH_URI: https://auth.${DOMAIN:?error}/api/oidc/authorization
+      URL: https://dancing.${DOMAIN:?error}
+      SMTP_HOST: ${SMTP_HOST:?error}
+      SMTP_USERNAME: ${SMTP_USERNAME:?error}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:?error}
+      SMTP_FROM_EMAIL: noreply@${DOMAIN:?error}
+      SMTP_REPLY_EMAIL: noreply@${DOMAIN:?error}
+      SMTP_PORT: ${SMTP_PORT:?error}
     env_file:
       - env.outline
     volumes:
