@@ -1,0 +1,24 @@
+services:
+  diun:
+    image: crazymax/diun
+    container_name: imgage-observer
+    restart: unless-stopped
+    command: serve
+    networks:
+      - caddy_network
+    environment:
+      TZ: Europe/Berlin
+      DIUN_NOTIF_MAIL_HOST: $SMTP_HOST
+      DIUN_NOTIF_MAIL_USERNAME: $SMTP_USERNAME
+      DIUN_NOTIF_MAIL_PASSWORD: $SMTP_PASSWORD
+      DIUN_NOTIF_MAIL_FROM: noreply@$DOMAIN
+      DIUN_NOTIF_MAIL_PORT: $SMTP_PORT
+      DIUN_NOTIF_MAIL_TO: $EMAIL
+    volumes:
+      - "./config.yml:/diun.yml:ro"
+      - "./observe.yml:/observe.yml:ro"
+      - "./data:/data"
+
+networks:
+  caddy_network:
+    external: true
