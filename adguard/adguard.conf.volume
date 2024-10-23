@@ -1,5 +1,2 @@
 [Unit]
 Description=Volume for Adguard Home confdir
-
-[Volume]
-VolumeName=conf

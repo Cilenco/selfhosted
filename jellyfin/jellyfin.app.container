@@ -1,19 +1,19 @@
 [Unit]
-Description=Jellyfin Container
+Description=Jellyfin streming server
 
 [Service]
 Restart=always
 
 [Container]
 ContainerName=jellyfin
-Image=jellyfin/jellyfin
 
-Volume=cache.volume:/cache
-Volume=config.volume:/config
+Image=docker.io/jellyfin/jellyfin
+
+Volume=jellyfin.cache.volume:/cache
+Volume=jellyfin.config.volume:/config
 Volume=/media:/media:ro
 
 NoNewPrivileges=true
-PublishPort=8096:8096
 
 [Install]
 WantedBy=default.target

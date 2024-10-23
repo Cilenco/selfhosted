@@ -22,8 +22,8 @@ Volume=caddy.config.volume:/config
 
 Network=caddy.network
 
-PublishPort=4430:443
-PublishPort=8080:80
+PublishPort=443:443
+PublishPort=80:80
 
 [Install]
 WantedBy=default.target

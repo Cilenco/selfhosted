@@ -1,5 +1,5 @@
 [Unit]
-Description=Adguard Container
+Description=Adguard Home server
 
 [Service]
 Restart=always
@@ -13,7 +13,6 @@ Volume=adguard.conf.volume:/opt/adguardhome/conf
 Volume=adguard.work.volume:/opt/adguardhome/work
 
 PublishPort=3000:3000
-PublishPort=3001:80
 #PublishPort=853:853/tcp
 #PublishPort=853:853/udp
 

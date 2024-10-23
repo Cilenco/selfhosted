@@ -17,8 +17,8 @@ echo "DOMAIN=$DOMAIN" >> /etc/selfhosted.env
 read -p "Enter Ionos API prefix: " IONOS_PREFIX
 read -p "Enter Ionos API secret: " IONOS_SECRET
 
-echo $IONOS_PREFIX | podman secret create ionos_prefix -
-echo $IONOS_SECRET | podman secret create ionos_secret -
+printf $IONOS_PREFIX | podman secret create ionos_prefix -
+printf $IONOS_SECRET | podman secret create ionos_secret -
 
 read -p "Enter SMTP server: " SMTP_SERVER
 read -p "Enter SMTP port: " SMTP_PORT
@@ -29,5 +29,5 @@ echo "SMTP_PORT=$SMTP_PORT" >> /etc/selfhosted.env
 read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
-echo $SMTP_USERNAME | podman secret create smtp_username -
-echo $SMTP_PASSWORD | podman secret create smtp_password -
+printf $SMTP_USERNAME | podman secret create smtp_username -
+printf $SMTP_PASSWORD | podman secret create smtp_password -
