@@ -2,4 +2,4 @@
 Description=Netwok for Caddy Server
 
 [Network]
-NetworkName=caddy-data
+NetworkName=caddy-network
