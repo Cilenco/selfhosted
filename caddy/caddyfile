@@ -2,7 +2,7 @@
   email    noreply@{env.DOMAIN}
 
   acme_ca  https://acme-staging-v02.api.letsencrypt.org/directory
-  acme_dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+  #acme_dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
 }
 
 (internal_only) {
@@ -15,32 +15,51 @@
 
 
 *.{env.DOMAIN} {
-  # @dns host dns.{env.DOMAIN}
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+  }
 
-  handle host dns.{env.DOMAIN} {
+  #################################################
+  # Adguard                                       #
+  #################################################
+  @dns host dns.{env.DOMAIN}
+
+  handle @dns {
     reverse_proxy adguard:80
   }
 
-  # @streaming host streaming.{env.DOMAIN}
+  #################################################
+  # Jellyfin                                      #
+  #################################################
+  @streaming host streaming.{env.DOMAIN}
 
-  handle host @streaming {
+  handle @streaming {
     reverse_proxy jellyfin:8096
     # import internal_only
   }
 
-  # @dancing host dancing.{env.DOMAIN}
+  #################################################
+  # Outline                                       #
+  #################################################
+  @dancing host dancing.{env.DOMAIN}
 
-  handle host dancing.{env.DOMAIN} {
+  handle @dancing {
     reverse_proxy outline:3000
   }
 
-  # @home host home.{env.DOMAIN}
+  #################################################
+  # Home Assistant                                #
+  #################################################
+  @home host home.{env.DOMAIN}
 
-  handle host home.{env.DOMAIN} {
+  handle @home {
     reverse_proxy home:8123
     import internal_only
   }
 
+  #################################################
+  # Fallback                                      #
+  #################################################
   handle { # all other
     abort
   }
