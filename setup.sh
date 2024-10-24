@@ -45,7 +45,7 @@ if ! [ -x "$(command -v docker)" ]; then
 fi
 
 if ! id -u selfhost >/dev/null 2>&1; then
-    echo 'Creating selfhost user for docker userns-remap'
+    echo 'Creating selfhost user for docker userns-remap (not set)'
     useradd --no-create-home selfhost
 fi
 
