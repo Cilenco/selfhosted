@@ -37,14 +37,19 @@ echo "SMTP_PASSWORD=$SMTP_PASSWORD" >> $CONFIG_FILE
 #echo "OUTLINE_UTILS_SECRET=$(openssl rand -hex 32)" >> $CONFIG_FILE
 
 if ! [ -x "$(command -v docker)" ]; then
-  echo "Downloading and installing docker"
-  wget -O get-docker.sh https://get.docker.com
+  echo -e "\n\nDownloading and installing docker engine"
+  wget -O get-docker.sh https://get.docker.com > /dev/null
 
   sh get-docker.sh > /dev/null
   rm get-docker.sh > /dev/null
 fi
 
-chown docker:docker $CONFIG_FILE
+if ! id -u selfhost >/dev/null 2>&1; then
+    echo 'Creating selfhost user for docker userns-remap'
+    useradd --no-create-home selfhost
+fi
+
+chown root:root $CONFIG_FILE
 chmod 660 $CONFIG_FILE
 
 #  echo "Disabling IPv6 Privacy Extension for a static IPv6 address"
@@ -52,8 +57,8 @@ chmod 660 $CONFIG_FILE
 #  echo "net.ipv6.conf.all.use_tempaddr=0" >> /etc/sysctl.conf
 #  echo "net.ipv6.conf.default.use_tempaddr=0" >> /etc/sysctl.conf
 
-echo -e "Setup process of your computer finished successfully."
-echo -e "Please restart the device now to apply all changes.\n"
+echo -e "\n\nSetup process of your computer finished successfully."
+echo -e "Please restart the device now to apply all changes.\n\n"
 
 read -r -p "Would you like to restart the device now? [Y/n] " reboot;
 
