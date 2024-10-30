@@ -1,0 +1,27 @@
+version: "3"
+silent: true
+
+vars:
+  ENV_FILE: /etc/selfhosted.env
+  HELP_MSG: "(in root directory use -- APP_NAME)"
+
+tasks:
+  out:
+    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    cmds:
+      - echo $PWD
+  start:
+    desc: "Creates the specified container \t {{.HELP_MSG}}"
+    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    cmd: sudo docker compose --env-file {{.ENV_FILE}} up -d
+  update:
+    desc: "Updates the specified container \t {{.HELP_MSG}}"
+    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    cmd: sudo docker compose --env-file {{.ENV_FILE}} update
+  stop:
+    desc: "Removes the specified container \t {{.HELP_MSG}}"
+    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    cmd: sudo docker compose --env-file {{.ENV_FILE}} down
+  clean:
+    desc: "Cleans up all unused docker resources"
+    cmd: sudo docker system prune -a
