@@ -3,8 +3,9 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: home-server
     restart: unless-stopped
-    networks:
-      - caddy_network
+    privileged: true
+    network_mode: host
+    userns_mode: host
     volumes:
       - ./home:/config
       - /etc/localtime:/etc/localtime:ro
@@ -13,14 +14,11 @@ services:
     image: ghcr.io/home-assistant-libs/python-matter-server:stable
     container_name: home-matter
     restart: unless-stopped
-    networks:
-      - caddy_network
+    privileged: true
+    network_mode: host
+    userns_mode: host
     security_opt:
       - apparmor:unconfined
     volumes:
       - ./matter/data:/data/
       - /run/dbus:/run/dbus:ro
-
-networks:
-  caddy_network:
-    external: true
