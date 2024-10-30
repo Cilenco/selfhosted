@@ -6,22 +6,22 @@ vars:
   HELP_MSG: "(in root directory use -- APP_NAME)"
 
 tasks:
-  out:
-    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
-    cmds:
-      - echo $PWD
   start:
-    desc: "Creates the specified container \t {{.HELP_MSG}}"
     dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    desc: "Creates the specified container \t {{.HELP_MSG}}"
     cmd: sudo docker compose --env-file {{.ENV_FILE}} up -d
   update:
-    desc: "Updates the specified container \t {{.HELP_MSG}}"
     dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    desc: "Updates the specified container \t {{.HELP_MSG}}"
     cmd: sudo docker compose --env-file {{.ENV_FILE}} update
   stop:
-    desc: "Removes the specified container \t {{.HELP_MSG}}"
     dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    desc: "Removes the specified container \t {{.HELP_MSG}}"
     cmd: sudo docker compose --env-file {{.ENV_FILE}} down
+  config:
+    dir: "{{.CLI_ARGS | default .USER_WORKING_DIR}}"
+    desc: "Outputs the specified container config \t {{.HELP_MSG}}"
+    cmd: sudo docker compose --env-file {{.ENV_FILE}} config
   clean:
     desc: "Cleans up all unused docker resources"
     cmd: sudo docker system prune -a
