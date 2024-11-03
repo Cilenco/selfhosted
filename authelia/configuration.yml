@@ -6,12 +6,12 @@ server:
   endpoints:
     enable_pprof: false
     enable_expvars: false
-  tls:
-    certificate: ""
-    key: ""
+  #tls:
+  #  certificate: ""
+  #  key: ""
 
 totp:
-  issuer: ${DOMAIN}
+  issuer: '{{env "DOMAIN"}}'
   period: 30
   skew: 1
 
@@ -24,7 +24,7 @@ authentication_backend:
     address: ldap://ldap:3890
     timeout: 5s
     start_tls: false
-    base_dn: dc=${DOMAIN},dc=de
+    base_dn: "dc=example,dc=com"
     users_filter: "(&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))"
     additional_users_dn: ou=people
     additional_groups_dn: ou=groups
@@ -34,29 +34,34 @@ authentication_backend:
       username: uid
       group_name: cn
       mail: mail
-      # distinguished_name: distinguishedName
-      # member_of: memberOf
-    user: uid=${USERNAME},ou=people,dc=example,dc=com
-    password: ${PASSWORD}
+    user: 'uid={{env "LDAP_USERNAME"}},ou=people,dc=example,dc=com'
+    password: '{{env "LDAP_PASSWORD"}}'
+
+identity_validation:
+  reset_password:
+    jwt_secret: '{{env "JWT_SECRET"}}'
+    jwt_lifespan: "5 minutes"
+    jwt_algorithm: "HS256"
 
 access_control:
   default_policy: deny
   rules:
-    - domain: "${DOMAIN}"
+    - domain: '{{env "DOMAIN"}}'
       policy: bypass
-    - domain: "dns.${DOMAIN}" # Adguard Home
+    - domain: 'dns.{{env "DOMAIN"}}' # Adguard Home
       policy: one_factor
-    - domain: "dancing.${DOMAIN}" # Outline Wiki
+    - domain: 'dancing.{{env "DOMAIN"}}' # Outline Wiki
       policy: one_factor
 
 session:
   name: authelia_session
+  secret: '{{env "SESSION_SECRET"}}'
   expiration: 1h
   inactivity: 5m
   cookies:
-    - domain: ${DOMAIN}
-      authelia_url: auth.${DOMAIN}
-      default_redirection_url: https://google.com/
+    - domain: '{{env "DOMAIN"}}'
+      authelia_url: 'https://auth.{{env "DOMAIN"}}'
+      default_redirection_url: 'https://{{env "DOMAIN"}}'
 
 regulation:
   max_retries: 3
@@ -64,33 +69,36 @@ regulation:
   ban_time: 12h
 
 storage:
+  encryption_key: '{{env "STORAGE_ENCRYPTION_KEY"}}'
   local:
     path: /config/db.sqlite3
 
 identity_providers:
   oidc:
+    hmac_secret: '{{env "OIDC_HMAC_SECRET"}}'
+    jwks:
+      - key: |
+          {{ fileContent "/secrets/test_key.pem" | nindent 10 }}
     clients:
       - client_id: outline
         client_name: Outline
-        client_secret: "$pbkdf2-sha512$310000$c8p78n7pUMln0jzvd4aK4Q$JNRBzwAo0ek5qKn50cFzzvE9RXV88h1wJn5KGiHrD0YKtZaR/nCb2CJPOsKaPK0hjf.9yHxzQGZziziccp6Yng"
-        public: false
-        .userinfo_signed_response_alg: none
+        client_secret: '{{ env "OUTLINE_CLIENT_SECRET"}}'
         authorization_policy: one_factor
         redirect_uris:
-          - https://dancing.${DOMAIN}/auth/oidc.callback
+          - https://dancing.{{env "DOMAIN"}}/auth/oidc.callback
         scopes:
           - openid
-          - offline_access
+          #- offline_access
           - profile
           - email
 
 notifier:
   disable_startup_check: true
   smtp:
-    address: "smtp://${SMTP_SERVER}:${SMTP_PORT}"
-    username: ${SMTP_USERNAME}
-    password: ${SMTP_PASSWORD}
-    sender: Authelia <norepl@${DOMAIN}>"
+    address: 'smtp://{{env "SMTP_HOST"}}:{{env "SMTP_PORT"}}'
+    username: '{{env "SMTP_USERNAME"}}'
+    password: '{{env "SMTP_PASSWORD"}}'
+    sender: 'Authelia <norepl@{{env "DOMAIN"}}>'
     identifier: localhost
     subject: "[Authelia] {title}"
     disable_require_tls: false
