@@ -11,32 +11,37 @@ rm -rf $CONFIG_FILE
 
 echo -e "Setting up your computer for selfhosting\n\n"
 
-read -p "Enter domain: " DOMAIN
-read -p "Enter E-Mail: " E_MAIL
+read -p "Enter domain: " DOMAIN && export DOMAIN
+read -p "Enter E-Mail: " E_MAIL && export E_MAIL
 
-echo "DOMAIN=$DOMAIN" >> $CONFIG_FILE
-echo "EMAIL=$E_MAIL" >> $CONFIG_FILE
+read -p "Enter Ionos API prefix: " IONOS_PREFIX && export IONOS_PREFIX
+read -p "Enter Ionos API secret: " IONOS_SECRET && export IONOS_SECRET
 
-read -p "Enter Ionos API prefix: " IONOS_PREFIX
-read -p "Enter Ionos API secret: " IONOS_SECRET
+read -p "Enter SMTP host: " SMTP_HOST && export SMTP_HOST
+read -p "Enter SMTP port: " SMTP_PORT && export SMTP_PORT
 
-echo "IONOS_PREFIX=$IONOS_PREFIX" >> $CONFIG_FILE
-echo "IONOS_SECRET=$IONOS_SECRET" >> $CONFIG_FILE
+read    -p "Enter SMTP username: " SMTP_USERNAME && export SMTP_USERNAME
+read -s -p "Enter SMTP password: " SMTP_PASSWORD && export SMTP_PASSWORD
 
-read -p "Enter SMTP host: " SMTP_HOST
-read -p "Enter SMTP port: " SMTP_PORT
+########################
+########################
 
-echo "SMTP_HOST=$SMTP_HOST" >> $CONFIG_FILE
-echo "SMTP_PORT=$SMTP_PORT" >> $CONFIG_FILE
+#openssl genrsa 4096 > secrets/OIDC_PRIVATE_KEY
 
-read    -p "Enter SMTP username: " SMTP_USERNAME
-read -s -p "Enter SMTP password: " SMTP_PASSWORD
+export AUTHELIA_JWT_SECRET=$(openssl rand -hex 64)
+export AUTHELIA_OIDC_HMAC_SECRET=$(openssl rand -hex 64)
+export AUTHELIA_STORAGE_ENCRYPTION_KEY=$(openssl rand -hex 64)
+export AUTHELIA_SESSION_SECRET=$(openssl rand -hex 64)
 
-echo "SMTP_USERNAME=$SMTP_USERNAME" >> $CONFIG_FILE
-echo "SMTP_PASSWORD=$SMTP_PASSWORD" >> $CONFIG_FILE
+export LDAP_JWT_KEY=$(openssl rand -hex 64)
+export LDAP_KEY_SEED=$(openssl rand -hex 64)
+export LDAP_PASSWORD=$(openssl rand -hex 12)
+export LDAP_USERNAME=$(openssl rand -hex 8)
 
-#echo "OUTLINE_SECRET_KEY=$(openssl rand -hex 32)" >> $CONFIG_FILE
-#echo "OUTLINE_UTILS_SECRET=$(openssl rand -hex 32)" >> $CONFIG_FILE
+export OUTLINE_SECRET_KEY=$(openssl rand -hex 64)
+export OUTLINE_UTILS_SECRET=$(openssl rand -hex 64)
+
+(envsubst < selfhosted.env) > $CONFIG_FILE
 
 chown root:root $CONFIG_FILE
 chmod 660 $CONFIG_FILE
