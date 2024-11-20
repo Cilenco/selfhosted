@@ -1,19 +1,6 @@
 {
   email    noreply@{env.DOMAIN}
-
-  admin {
-    disabled true
-  }
 }
-
-(internal_only) {
-  @not_local {
-    not remote_ip 192.168.178.0/24
-  }
-
-  respond @not_local 403
-}
-
 
 *.{env.DOMAIN} {
   tls {
@@ -30,32 +17,31 @@
   }
 
   #################################################
-  # Jellyfin                                      #
-  #################################################
-  @streaming host streaming.{env.DOMAIN}
-
-  handle @streaming {
-    reverse_proxy jellyfin:8096
-    # import internal_only
-  }
-
-  #################################################
-  # Outline                                       #
-  #################################################
-  @dancing host dancing.{env.DOMAIN}
-
-  handle @dancing {
-    reverse_proxy outline:3000
-  }
-
-  #################################################
   # Home Assistant                                #
   #################################################
   @home host home.{env.DOMAIN}
 
   handle @home {
-    reverse_proxy home:8123
-    import internal_only
+    reverse_proxy {env.MY_FRITZ_URL}:8123
+  }
+
+  #################################################
+  # Dance knowledge                               #
+  #################################################
+  @dancing host dancing.{env.DOMAIN}
+
+  handle @dancing {
+    root * /var/www/
+
+    file_server {
+      hide .git
+    }
+
+    basic_auth {
+      # Username "Bob", password "hiccup"
+      {env.USERNAME} {env.PASSWORD}
+      Bob $2a$14$Zkx19XLiW6VYouLHR5NmfOFU0z2GTNmpkT/5qqR7hx4IjWJPDhjvG
+    }
   }
 
   #################################################

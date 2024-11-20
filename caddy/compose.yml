@@ -12,6 +12,7 @@ services:
       DOMAIN: ${DOMAIN:?error}
       IONOS_PREFIX: ${IONOS_PREFIX:?error}
       IONOS_SECRET: ${IONOS_SECRET:?error}
+      MY_FRITZ_URL: ${MY_FRITZ_URL:?error}
     volumes:
       - ./data:/data
       - ./caddyfile:/etc/caddy/Caddyfile:ro
