@@ -1,5 +1,8 @@
 [Unit]
-Description=Netwok for Caddy Server
+Description=Caddy network
 
 [Network]
-NetworkName=caddy-network
+NetworkName=caddy
+
+[Install]
+WantedBy=default.target

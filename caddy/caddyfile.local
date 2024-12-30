@@ -1,0 +1,23 @@
+http://dns.localhost:8080 {
+  reverse_proxy adguard:80
+}
+
+http://auth.localhost:8080 {
+  reverse_proxy authelia:9091
+}
+
+http://home.localhost:8080 {
+  reverse_proxy homeassistant:8123
+}
+
+http://streaming.localhost:8080 {
+  reverse_proxy jellyfin:8096
+}
+
+http://dancing.localhost:8080 {
+  reverse_proxy outline:3000
+}
+
+http://cloud.localhost:8080 {
+  reverse_proxy owncloud:9200
+}

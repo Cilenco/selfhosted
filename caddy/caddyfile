@@ -1,5 +1,6 @@
 {
   email    noreply@{env.DOMAIN}
+  admin    off
 }
 
 (internal_only) {
@@ -9,7 +10,6 @@
 
   respond @not_local 403
 }
-
 
 *.{env.DOMAIN} {
   tls {
@@ -23,6 +23,25 @@
 
   handle @dns {
     reverse_proxy adguard:80
+  }
+
+  #################################################
+  # Authelia                                      #
+  #################################################
+  @auth host auth.{env.DOMAIN}
+
+  handle @auth {
+    reverse_proxy authelia:80
+  }
+
+  #################################################
+  # Home Assistant                                #
+  #################################################
+  @home host home.{env.DOMAIN}
+
+  handle @home {
+    reverse_proxy home:8123
+    import internal_only
   }
 
   #################################################
@@ -45,13 +64,12 @@
   }
 
   #################################################
-  # Home Assistant                                #
+  # OwnCloud                                      #
   #################################################
-  @home host home.{env.DOMAIN}
+  @cloud host cloud.{env.DOMAIN}
 
-  handle @home {
-    reverse_proxy home:8123
-    import internal_only
+  handle @cloud {
+    reverse_proxy owncloud:3000
   }
 
   #################################################

@@ -2,21 +2,28 @@
 Description=Adguard Home server
 
 [Service]
-Restart=always
+Restart=no
+TimeoutStartSec=300
 
 [Container]
-ContainerName=adguard
-
 Image=docker.io/adguard/adguardhome
 
-Volume=adguard.conf.volume:/opt/adguardhome/conf
-Volume=adguard.work.volume:/opt/adguardhome/work
+ContainerName=adguard
+
+AutoUpdate=registry
+#UserNS=auto
+#:size=1024
+NoNewPrivileges=true
+User=nobody:nobody
+
+Network=caddy.network
 
 PublishPort=3000:3000
-#PublishPort=853:853/tcp
-#PublishPort=853:853/udp
+PublishPort=853:853/tcp
+PublishPort=853:853/udp
 
-NoNewPrivileges=true
+Volume=adguard.config.volume:/opt/adguardhome/conf
+Volume=adguard.work.volume:/opt/adguardhome/work
 
 [Install]
 WantedBy=default.target

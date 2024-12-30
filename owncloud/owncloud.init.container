@@ -1,0 +1,24 @@
+[Unit]
+Description=OwnCloud Init
+
+[Service]
+Restart=no
+Type=oneshot
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/owncloud/ocis
+ContainerName=owncloud-init
+
+Exec=init
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS=keep-id
+
+Volume=.:/etc/ocis:z
+
+Environment=OCIS_INSECURE=true
+
+[Install]
+WantedBy=default.target

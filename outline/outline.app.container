@@ -1,0 +1,33 @@
+[Unit]
+Description=Outline Wiki
+
+Requires=outline.postgres.service outline.redis.service
+After=outline.postgres.service outline.redis.service
+
+[Service]
+Restart=no
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/outlinewiki/outline
+
+ContainerName=outline
+#Pod=outline.pod
+
+AutoUpdate=registry
+#UserNS=auto:size=1024
+NoNewPrivileges=true
+
+Network=caddy.network
+
+Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
+Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
+Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+
+EnvironmentFile=./env.outline
+
+Environment=URL=http://dancing.localhost
+Environment=OIDC_AUTH_URI=http://auth.localhost/api/oidc/authorization
+
+[Install]
+WantedBy=default.target

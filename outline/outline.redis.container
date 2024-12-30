@@ -1,0 +1,24 @@
+[Unit]
+Description=Outline Redis
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/redis
+
+ContainerName=outline-redis
+#Pod=outline.pod
+
+AutoUpdate=registry
+NoNewPrivileges=true
+User=redis:redis
+
+Network=caddy.network
+
+Volume=outline.redis.volume:/data
+
+[Install]
+WantedBy=default.target

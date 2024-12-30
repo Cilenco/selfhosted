@@ -1,2 +1,5 @@
 [Unit]
-Description=Volume for Adguard Home workdir
+Description=Volume for Adguard work
+
+[Volume]
+VolumeName=adguard_work
