@@ -21,8 +21,8 @@ NoNewPrivileges=true
 Network=caddy.network
 
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
-Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 
 EnvironmentFile=./env.outline
 

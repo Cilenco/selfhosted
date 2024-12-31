@@ -31,8 +31,9 @@ printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD -
 ########################
 ########################
 
-printf $(openssl rand -hex 64) | podman secret create OUTLINE_SECRET_KEY -
-printf $(openssl rand -hex 64) | podman secret create OUTLINE_UTILS_SECRET -
+printf $(openssl rand -hex 32) | podman secret create OUTLINE_SECRET_KEY -
+printf $(openssl rand -hex 64) | podman secret create OUTLINE_CLIENT_SECRET -
+printf $(openssl rand -hex 32) | podman secret create OUTLINE_UTILS_SECRET -
 
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_JWT_SECRET -
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET -
