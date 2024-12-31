@@ -1,4 +1,4 @@
-name: Autoupdate build on base-image change (caddy)
+name: Update Caddy Image
 # check if Base-Image library/caddy:alpine has been updated, if so do rebuild
 
 on:
