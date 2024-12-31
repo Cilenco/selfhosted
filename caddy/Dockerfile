@@ -7,4 +7,4 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 RUN adduser --system --no-create-home caddy
 
 RUN mkdir /certs
-RUN CHOWN caddy /certs
+RUN chown caddy /certs
