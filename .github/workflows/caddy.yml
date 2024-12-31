@@ -19,7 +19,7 @@ jobs:
         uses: lucacome/docker-image-update-checker@v1
         with:
           base-image: library/caddy:alpine
-          image: glopix/caddy-ionos-dns
+          image: cilenco/caddy-ionos-dns
 
   build:
     name: build new docker image
