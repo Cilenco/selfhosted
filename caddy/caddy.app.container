@@ -25,6 +25,7 @@ Network=caddy.network
 PublishPort=80:8080
 PublishPort=443:4430
 
+Volume=caddy.data.volume:/certs
 Volume=./caddyfile:/etc/caddy/Caddyfile:ro,Z
 
 [Install]
