@@ -1,6 +1,8 @@
 {
-  email    noreply@{env.DOMAIN}
-  admin    off
+  email      noreply@{env.DOMAIN}
+
+  http_port  8080
+  admin      off
 }
 
 (internal_only) {
@@ -11,7 +13,7 @@
   respond @not_local 403
 }
 
-*.{env.DOMAIN} {
+https://*.{env.DOMAIN}:4430 {
   tls {
     dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
   }
