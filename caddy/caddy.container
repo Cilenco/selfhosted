@@ -7,13 +7,13 @@ RestartSec=10
 TimeoutStartSec=300
 
 [Container]
-Image=docker.io/glopix/caddy-ionos-dns
+Image=docker.io/caddy/caddy-ionos-dns
 
 ContainerName=caddy
 
 AutoUpdate=registry
 NoNewPrivileges=true
-User=nobody:nobody
+User=caddy:caddy
 
 #Environment=DOMAIN=$DOMAIN
 
