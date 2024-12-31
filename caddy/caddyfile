@@ -1,5 +1,6 @@
 {
   email      noreply@{env.DOMAIN}
+  storage    file_system /certs
 
   http_port  8080
   admin      off

@@ -7,7 +7,7 @@ RestartSec=10
 TimeoutStartSec=300
 
 [Container]
-Image=docker.io/caddy/caddy-ionos-dns
+Image=docker.io/cilenco/caddy-ionos-dns
 
 ContainerName=caddy
 
