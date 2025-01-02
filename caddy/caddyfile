@@ -74,7 +74,7 @@ https://*.{env.DOMAIN} {
   @cloud host cloud.{env.DOMAIN}
 
   handle @cloud {
-    reverse_proxy owncloud:3000
+    reverse_proxy owncloud:9200
   }
 
   #################################################

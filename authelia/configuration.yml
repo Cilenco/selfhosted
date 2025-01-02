@@ -15,7 +15,7 @@ totp:
 authentication_backend:
   refresh_interval: always
   password_reset:
-    disable: true
+    disable: false
   ldap:
     implementation: custom
     address: ldap://ldap:3890
@@ -87,16 +87,45 @@ identity_providers:
         client_name: Outline
         client_secret: '{{ env "OUTLINE_CLIENT_SECRET"}}'
         authorization_policy: one_factor
-        response_types: code
+        response_types:
+          - code
         redirect_uris:
-          - http://dancing.localhost/auth/oidc.callback
+          - https://dancing.{{env "DOMAIN"}}/auth/oidc.callback
         scopes:
           - openid
           - offline_access
           - profile
           - email
-        token_endpoint_auth_method: "client_secret_post"
-        userinfo_signed_response_alg: "none"
+      - client_id: ownCloud_web
+        client_name: ownCloud Web app
+        client_secret: '{{ env "OWNCLOUD_CLIENT_SECRET"}}'
+        authorization_policy: one_factor
+        response_types:
+          - code
+        redirect_uris:
+          - https://cloud.{{env "DOMAIN"}}
+          - https://cloud.{{env "DOMAIN"}}/oidc-callback.html
+          - https://cloud.{{env "DOMAIN"}}/oidc-silent-redirect.html
+        scopes:
+          - openid
+          - offline_access
+          - groups
+          - profile
+          - email
+      - client_id: ownCloud_app
+        client_name: ownCloud Android app
+        client_secret: '{{ env "OWNCLOUD_CLIENT_SECRET"}}'
+        authorization_policy: one_factor
+        response_types:
+          - code
+        redirect_uris:
+          - oc://android.owncloud.com
+        scopes:
+          - openid
+          - offline_access
+          - groups
+          - profile
+          - email
 
 notifier:
   disable_startup_check: true
