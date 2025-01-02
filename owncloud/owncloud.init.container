@@ -16,7 +16,7 @@ AutoUpdate=registry
 NoNewPrivileges=true
 UserNS=keep-id
 
-Volume=.:/etc/ocis:z
+Volume=owncloud.config.volume:/etc/ocis
 
 Environment=OCIS_INSECURE=true
 

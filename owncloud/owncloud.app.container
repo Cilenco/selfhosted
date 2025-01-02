@@ -12,17 +12,14 @@ Image=docker.io/owncloud/ocis
 ContainerName=owncloud
 
 #AutoUpdate=registry
-#UserNS=auto:size=1024
 NoNewPrivileges=true
 
 Network=caddy.network
 PublishPort=9200:9200
 
-Volume=./ocis.yaml:/etc/ocis/ocis.yaml:ro,z
+Volume=owncloud.config.volume:/etc/ocis
 
-Environment=OCIS_INSECURE=true
 Environment=OCIS_URL=https://localhost:9200
-Environment=OCIS_LOG_LEVEL=info
 
 Environment=OCIS_OIDC_ISSUER=https://auth.localhost
 Environment=PROXY_OIDC_ACCESS_TOKEN_VERIFY_METHOD=none

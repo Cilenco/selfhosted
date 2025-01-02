@@ -1,0 +1,24 @@
+[Unit]
+Description=HomeAssistant Server
+
+[Service]
+Restart=no
+TimeoutStartSec=300
+
+[Container]
+Image=ghcr.io/home-assistant/home-assistant:stable
+
+ContainerName=homeassistant
+
+AutoUpdate=registry
+UserNS=auto:size=1024
+NoNewPrivileges=true
+
+Network=caddy.network
+
+Volume=homeassistant.config.volume:/config
+Volume=./config.yaml:/config/configuration.yaml:Z
+Volume=/etc/localtime:/etc/localtime:ro
+
+[Install]
+WantedBy=default.target
