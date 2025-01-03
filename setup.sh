@@ -31,7 +31,10 @@ printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD -
 ########################
 ########################
 
-printf $(openssl rand -hex 64) | podman secret create OWNCLOUD_CLIENT_SECRET -
+printf $(openssl rand -hex 64) | podman secret create NEXTCLOUD_CLIENT_SECRET -
+
+printf $(openssl rand -hex 64) | podman secret create POSTGRES_USERNAME -
+printf $(openssl rand -hex 64) | podman secret create POSTGRES_PASSWORD -
 
 printf $(openssl rand -hex 32) | podman secret create OUTLINE_SECRET_KEY -
 printf $(openssl rand -hex 64) | podman secret create OUTLINE_CLIENT_SECRET -

@@ -1,0 +1,41 @@
+[Unit]
+Description=Nextcloud Server
+
+Requires=postgres.app.service redis.app.service
+After=postgres.app.service redis.app.service
+
+[Service]
+#always
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/nextcloud:fpm
+
+ContainerName=nextcloud
+
+#AutoUpdate=registry
+NoNewPrivileges=true
+
+Network=caddy.network
+
+Secret=DOMAIN,type=env,target=DOMAIN
+
+#Environment=POSTGRES_DB=nextcloud
+#Environment=POSTGRES_HOST=postgres
+#Environment=REDIS_HOST=redis
+
+#Secret=POSTGRES_USERNAME,type=env,target=POSTGRES_USER
+#Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
+
+Environment=SQLITE_DATABASE=nextcloud-db
+
+Environment=NEXTCLOUD_ADMIN_USER=admin
+Environment=NEXTCLOUD_ADMIN_PASSWORD=password
+
+Volume=nextcloud.web.volume:/var/www/html
+Volume=./selfhost.config.php:/var/www/html/config/selfhost.config.php:z
+
+[Install]
+WantedBy=default.target

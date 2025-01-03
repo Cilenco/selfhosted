@@ -87,8 +87,7 @@ identity_providers:
         client_name: Outline
         client_secret: '{{ env "OUTLINE_CLIENT_SECRET"}}'
         authorization_policy: one_factor
-        response_types:
-          - code
+        public: false
         redirect_uris:
           - https://dancing.{{env "DOMAIN"}}/auth/oidc.callback
         scopes:
@@ -96,6 +95,8 @@ identity_providers:
           - offline_access
           - profile
           - email
+        userinfo_signed_response_alg: "none"
+        token_endpoint_auth_method: "client_secret_post"
       - client_id: ownCloud_web
         client_name: ownCloud Web app
         client_secret: '{{ env "OWNCLOUD_CLIENT_SECRET"}}'

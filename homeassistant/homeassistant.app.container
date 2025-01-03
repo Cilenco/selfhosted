@@ -3,6 +3,7 @@ Description=HomeAssistant Server
 
 [Service]
 Restart=no
+RestartSec=10
 TimeoutStartSec=300
 
 [Container]

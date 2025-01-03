@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for OwnCloud config
-
-[Volume]
-VolumeName=owncloud_config

@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Outline Database
-
-[Volume]
-VolumeName=outline_postgres_data

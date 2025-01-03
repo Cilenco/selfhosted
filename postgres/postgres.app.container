@@ -1,5 +1,5 @@
 [Unit]
-Description=Outline Database
+Description=Postgres database
 
 [Service]
 Restart=no
@@ -9,8 +9,7 @@ TimeoutStartSec=300
 [Container]
 Image=docker.io/postgres
 
-ContainerName=outline-db
-#Pod=outline.pod
+ContainerName=postgres
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -18,11 +17,10 @@ User=postgres:postgres
 
 Network=caddy.network
 
-Environment=POSTGRES_USER=user
-Environment=POSTGRES_PASSWORD=pass
-Environment=POSTGRES_DB=outline
+Secret=POSTGRES_USER,type=env,target=POSTGRES_USER
+Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=outline.postgres.volume:/var/lib/postgresql/data
+Volume=postgres.data.volume:/var/lib/postgresql/data
 
 [Install]
 WantedBy=default.target

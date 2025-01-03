@@ -1,8 +1,12 @@
 [Unit]
 Description=Authelia
 
+Requires=ldap.app.service
+After=ldap.app.service
+
 [Service]
 Restart=no
+RestartSec=10
 TimeoutStartSec=300
 
 [Container]

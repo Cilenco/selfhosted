@@ -1,11 +1,12 @@
 [Unit]
 Description=Outline Wiki
 
-Requires=outline.postgres.service outline.redis.service
-After=outline.postgres.service outline.redis.service
+Requires=postgres.app.service redis.app.service
+After=postgres.app.service redis.app.service
 
 [Service]
 Restart=no
+RestartSec=10
 TimeoutStartSec=300
 
 [Container]
@@ -28,6 +29,8 @@ EnvironmentFile=./env.outline
 
 Environment=URL=http://dancing.localhost
 Environment=OIDC_AUTH_URI=http://auth.localhost/api/oidc/authorization
+
+Volume=outline.data.volume:/var/lib/outline/data
 
 [Install]
 WantedBy=default.target

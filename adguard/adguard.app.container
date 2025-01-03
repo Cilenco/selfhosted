@@ -3,6 +3,7 @@ Description=Adguard Home server
 
 [Service]
 Restart=no
+RestartSec=10
 TimeoutStartSec=300
 
 [Container]

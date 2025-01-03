@@ -1,5 +1,5 @@
 [Unit]
-Description=Outline Redis
+Description=Redis Server
 
 [Service]
 Restart=no
@@ -9,8 +9,7 @@ TimeoutStartSec=300
 [Container]
 Image=docker.io/redis
 
-ContainerName=outline-redis
-#Pod=outline.pod
+ContainerName=redis
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -18,7 +17,7 @@ User=redis:redis
 
 Network=caddy.network
 
-Volume=outline.redis.volume:/data
+Volume=redis.data.volume:/data
 
 [Install]
 WantedBy=default.target
