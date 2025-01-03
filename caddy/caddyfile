@@ -36,7 +36,7 @@ https://*.{env.DOMAIN} {
   @auth host auth.{env.DOMAIN}
 
   handle @auth {
-    reverse_proxy authelia:80
+    reverse_proxy authelia:9091
   }
 
   #################################################
@@ -69,12 +69,27 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # OwnCloud                                      #
+  # Nextcloud                                     #
   #################################################
   @cloud host cloud.{env.DOMAIN}
 
   handle @cloud {
-    reverse_proxy owncloud:9200
+    root * /var/www/html
+    file_server
+
+    php_fastcgi nextcloud:9000 {
+      root /var/www/html
+      env front_controller_active true
+    }
+
+    encode gzip
+
+    header {
+      Strict-Transport-Security "max-age=15768000;includeSubDomains;preload"
+    }
+
+    redir /.well-known/carddav /remote.php/dav 301
+    redir /.well-known/caldav /remote.php/dav 301
   }
 
   #################################################
