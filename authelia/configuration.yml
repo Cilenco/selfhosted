@@ -40,6 +40,22 @@ identity_validation:
     jwt_lifespan: "5 minutes"
     jwt_algorithm: "HS256"
 
+access_control:
+  default_policy: deny
+  rules:
+    - domain: '{{env "DOMAIN"}}'
+      policy: bypass
+    - domain: 'dns.{{env "DOMAIN"}}' # Adguard
+      policy: one_factor
+    - domain: 'home.{{env "DOMAIN"}}' # HomeAssistant
+      policy: one_factor
+    - domain: 'streaming.{{env "DOMAIN"}}' # Jellyfin
+      policy: one_factor
+    - domain: 'dancing.{{env "DOMAIN"}}' # Outline
+      policy: one_factor
+    - domain: 'cloud.{{env "DOMAIN"}}' # Nextcloud
+      policy: one_factor
+
 session:
   name: authelia_session
   secret: '{{env "SESSION_SECRET"}}'
@@ -87,9 +103,7 @@ identity_providers:
         pkce_challenge_method: "S256"
         require_pkce: true
         redirect_uris:
-          - https://cloud.{{env "DOMAIN"}}
-          - https://cloud.{{env "DOMAIN"}}/oidc-callback.html
-          - https://cloud.{{env "DOMAIN"}}/oidc-silent-redirect.html
+          - https://nextcloud.example.com/apps/oidc_login/oidc
         scopes:
           - openid
           - groups
