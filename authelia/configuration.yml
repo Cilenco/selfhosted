@@ -103,7 +103,7 @@ identity_providers:
         pkce_challenge_method: "S256"
         require_pkce: true
         redirect_uris:
-          - https://nextcloud.example.com/apps/oidc_login/oidc
+          - https://cloud.{{env "DOMAIN"}}/apps/user_oidc/code
         scopes:
           - openid
           - groups
