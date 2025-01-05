@@ -18,10 +18,8 @@ AutoUpdate=registry
 NoNewPrivileges=true
 
 Network=caddy.network
-PublishPort=9091:9091
 
-Volume=./configuration.yml:/config/configuration.yml:ro,z
-Volume=./id_rsa:/secrets/test_key.pem:ro,z
+Secret=DOMAIN,type=env,target=DOMAIN
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET
@@ -34,7 +32,9 @@ Secret=LDAP_PASSWORD,type=env,target=LDAP_PASSWORD
 
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
-Environment=DOMAIN=auth.localhost
+
+Volume=./configuration.yml:/config/configuration.yml:ro,z
+Volume=./id_rsa:/secrets/test_key.pem:ro,z
 
 [Install]
 WantedBy=default.target
