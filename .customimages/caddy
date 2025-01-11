@@ -1,0 +1,18 @@
+FROM caddy:builder AS builder
+RUN xcaddy build --with github.com/caddy-dns/ionos
+
+FROM caddy:latest
+
+# Install IONOS extension for DNS-01 challenge
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+
+# Create non root user and group
+RUN addgroup -S caddy && adduser -S -H -G caddy caddy
+
+RUN chown -R caddy:caddy /etc/caddy
+RUN chmod -R g+rw /etc/caddy
+
+RUN mkdir /certs
+RUN chown caddy /certs
+
+USER caddy

@@ -7,12 +7,11 @@ RestartSec=10
 TimeoutStartSec=300
 
 [Container]
-Image=ghcr.io/home-assistant/home-assistant:stable
+Image=docker.io/cilenco/homeassistant
 
 ContainerName=homeassistant
 
 AutoUpdate=registry
-UserNS=auto:size=1024
 NoNewPrivileges=true
 
 Network=caddy.network

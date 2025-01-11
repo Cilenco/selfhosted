@@ -27,3 +27,12 @@ sensor:
   - platform: time_date
     display_options:
       - "date_time_iso"
+
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+    - type: command_line
+      command: /config/lldap-ha-auth.sh
+      # arguments: [<LDAP Host>, <group for login>, <admin user group>]
+      args: ["http://ldap", "homeassistant", "admin"]
+      meta: true
