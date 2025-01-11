@@ -12,7 +12,4 @@ RUN addgroup -S caddy && adduser -S -H -G caddy caddy
 RUN chown -R caddy:caddy /etc/caddy
 RUN chmod -R g+rw /etc/caddy
 
-RUN mkdir /certs
-RUN chown caddy /certs
-
 USER caddy

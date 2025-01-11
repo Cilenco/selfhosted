@@ -1,23 +1,50 @@
-http://dns.localhost:8080 {
+{
+  http_port   8080
+  admin       off
+}
+
+http://dns.localhost {
   reverse_proxy adguard:80
 }
 
-http://auth.localhost:8080 {
+http://auth.localhost {
   reverse_proxy authelia:9091
 }
 
-http://home.localhost:8080 {
+http://home.localhost {
   reverse_proxy homeassistant:8123
 }
 
-http://streaming.localhost:8080 {
+http://streaming.localhost {
   reverse_proxy jellyfin:8096
 }
 
-http://dancing.localhost:8080 {
+http://dancing.localhost {
   reverse_proxy outline:3000
 }
 
-http://cloud.localhost:8080 {
-  reverse_proxy owncloud:9200
+http://cloud.localhost {
+  root * /var/www/html
+  file_server
+
+  php_fastcgi nextcloud:9000
+
+  redir /.well-known/carddav /remote.php/dav 301
+  redir /.well-known/caldav /remote.php/dav 301
+
+  @forbidden {
+    path    /.htaccess
+    path    /data/*
+    path    /config/*
+    path    /db_structure
+    path    /.xml
+    path    /README
+    path    /3rdparty/*
+    path    /lib/*
+    path    /templates/*
+    path    /occ
+    path    /console.php
+  }
+
+  respond @forbidden 404
 }
