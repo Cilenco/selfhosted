@@ -48,13 +48,13 @@ access_control:
     - domain: 'dns.{{env "DOMAIN"}}' # Adguard
       policy: one_factor
     - domain: 'home.{{env "DOMAIN"}}' # HomeAssistant
-      policy: one_factor
+      policy: two_factor
     - domain: 'streaming.{{env "DOMAIN"}}' # Jellyfin
-      policy: one_factor
+      policy: two_factor
     - domain: 'dancing.{{env "DOMAIN"}}' # Outline
-      policy: one_factor
+      policy: two_factor
     - domain: 'cloud.{{env "DOMAIN"}}' # Nextcloud
-      policy: one_factor
+      policy: two_factor
 
 session:
   name: authelia_session
@@ -62,9 +62,9 @@ session:
   expiration: 1h
   inactivity: 5m
   cookies:
-    - domain: '{{env "DOMAIN"}}'
+    - domain: 'auth.{{env "DOMAIN"}}'
       authelia_url: 'https://auth.{{env "DOMAIN"}}'
-      default_redirection_url: 'https://{{env "DOMAIN"}}'
+      #default_redirection_url: 'https://www.{{env "DOMAIN"}}'
 
 regulation:
   max_retries: 3
@@ -113,16 +113,12 @@ identity_providers:
         token_endpoint_auth_method: "client_secret_basic"
 
 notifier:
-  disable_startup_check: true
+  disable_startup_check: false
   smtp:
-    address: 'smtp://{{env "SMTP_HOST"}}:{{env "SMTP_PORT"}}'
     username: '{{env "SMTP_USERNAME"}}'
     password: '{{env "SMTP_PASSWORD"}}'
-    sender: 'Authelia <norepl@{{env "DOMAIN"}}>'
-    identifier: localhost
-    subject: "[Authelia] {title}"
+    address: 'submissions://{{env "SMTP_HOST"}}:{{env "SMTP_PORT"}}'
+    sender: 'Authelia <noreply@{{env "DOMAIN"}}>'
+    subject: "{title}"
     disable_require_tls: false
-    disable_html_emails: false
-    tls:
-      skip_verify: false
-      minimum_version: TLS1.2
+    disable_starttls: false

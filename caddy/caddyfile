@@ -7,18 +7,12 @@
   admin       off
 }
 
-(internal_only) {
-  @not_local {
-    not remote_ip 192.168.178.0/24
-  }
-
-  respond @not_local 403
-}
-
 https://*.{env.DOMAIN} {
   tls {
     dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
   }
+
+  # tls internal
 
   #################################################
   # Adguard                                       #
@@ -44,8 +38,7 @@ https://*.{env.DOMAIN} {
   @home host home.{env.DOMAIN}
 
   handle @home {
-    reverse_proxy home:8123
-    import internal_only
+    reverse_proxy homeassistant:8123
   }
 
   #################################################
@@ -55,7 +48,16 @@ https://*.{env.DOMAIN} {
 
   handle @streaming {
     reverse_proxy jellyfin:8096
-    # import internal_only
+  }
+
+  #################################################
+  # LDAP                                          #
+  #################################################
+  @user host user.{env.DOMAIN}
+
+  handle @user {
+    reverse_proxy ldap:17170
+    # respond 404
   }
 
   #################################################
