@@ -12,7 +12,7 @@ jobs:
         uses: shrink/actions-docker-latest-image@v1
         id: latest_image
         with:
-          repository: docker.io/library/caddy:alpine
+          repository: docker.io/library/caddy
 
       - name: Checkout
         uses: actions/checkout@v3
