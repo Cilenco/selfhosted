@@ -26,10 +26,10 @@ jobs:
     needs: check
     steps:
       - name: Get Latest Image
-        uses: kyanagimoto/get-latest-version@main
+        uses: sylvanld/action-search-docker-tag@v1
         id: latest_image
         with:
-          repo-name: caddy
+          image: library/caddy
 
       - name: Checkout
         uses: actions/checkout@v3
