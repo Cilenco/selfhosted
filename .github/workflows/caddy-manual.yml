@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Latest Image
-        uses: shrink/actions-docker-latest-image@v1
+        uses: kyanagimoto/get-latest-version@main
         id: latest_image
         with:
-          repository: docker.io/library/caddy
+          repo-name: caddy
 
       - name: Checkout
         uses: actions/checkout@v3
