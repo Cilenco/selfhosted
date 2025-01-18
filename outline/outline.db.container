@@ -1,0 +1,27 @@
+[Unit]
+Description=Outline database
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/postgres
+ContainerName=outline-db
+
+Pod=outline.pod
+
+AutoUpdate=registry
+NoNewPrivileges=true
+User=postgres:postgres
+
+Environment=POSTGRES_DB=outline
+
+Secret=OUTLINE_DB_USERNAME,type=env,target=POSTGRES_USER
+Secret=OUTLINE_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+
+Volume=outline.db.volume:/var/lib/postgresql/data
+
+[Install]
+WantedBy=default.target

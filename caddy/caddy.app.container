@@ -13,7 +13,7 @@ ContainerName=caddy
 
 AutoUpdate=registry
 NoNewPrivileges=true
-User=caddy:caddy
+User=caddy
 
 Secret=DOMAIN,type=env,target=DOMAIN
 
@@ -26,6 +26,8 @@ PublishPort=80:8080
 PublishPort=443:4430
 
 Volume=caddy.data.volume:/certs
+
+Volume=nextcloud.app.volume:/var/www/html:ro
 Volume=./caddyfile:/etc/caddy/Caddyfile:ro,Z
 
 [Install]

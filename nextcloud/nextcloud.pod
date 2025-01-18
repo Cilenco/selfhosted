@@ -1,0 +1,6 @@
+[Unit]
+Description=Nextcloud
+
+[Pod]
+PodName=nextcloud
+Network=caddy.network

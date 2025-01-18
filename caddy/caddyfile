@@ -12,6 +12,7 @@ https://*.{env.DOMAIN} {
     dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
   }
 
+  # Local testing
   # tls internal
 
   #################################################

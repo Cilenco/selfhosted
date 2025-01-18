@@ -12,7 +12,7 @@ Image=docker.io/cilenco/homeassistant
 ContainerName=homeassistant
 
 AutoUpdate=registry
-NoNewPrivileges=true
+#NoNewPrivileges=true
 
 Network=caddy.network
 

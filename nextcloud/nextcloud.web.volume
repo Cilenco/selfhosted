@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Nextcloud web
-
-[Volume]
-VolumeName=nextcloud_web

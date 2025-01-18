@@ -73,8 +73,11 @@ regulation:
 
 storage:
   encryption_key: '{{env "STORAGE_ENCRYPTION_KEY"}}'
-  local:
-    path: /config/db.sqlite3
+  postgres:
+    address: "tcp://postgres:5432"
+    username: '{{env "POSTGRES_USERNAME"}}'
+    password: '{{env "POSTGRES_PASSWORD"}}'
+    database: "authelia"
 
 identity_providers:
   oidc:
@@ -113,7 +116,7 @@ identity_providers:
         token_endpoint_auth_method: "client_secret_basic"
 
 notifier:
-  disable_startup_check: false
+  disable_startup_check: true
   smtp:
     username: '{{env "SMTP_USERNAME"}}'
     password: '{{env "SMTP_PASSWORD"}}'

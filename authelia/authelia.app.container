@@ -1,8 +1,8 @@
 [Unit]
 Description=Authelia
 
-Requires=ldap.app.service
-After=ldap.app.service
+Requires=postgres.app.service ldap.app.service
+After=postgres.app.service ldap.app.service
 
 [Service]
 Restart=no
@@ -16,6 +16,7 @@ ContainerName=authelia
 
 AutoUpdate=registry
 NoNewPrivileges=true
+#User=nobody:nobody
 
 Network=caddy.network
 
@@ -29,6 +30,9 @@ Secret=NEXTCLOUD_CLIENT_SECRET,type=env,target=NEXTCLOUD_CLIENT_SECRET
 Secret=OUTLINE_CLIENT_SECRET,type=env,target=OUTLINE_CLIENT_SECRET
 Secret=LDAP_USERNAME,type=env,target=LDAP_USERNAME
 Secret=LDAP_PASSWORD,type=env,target=LDAP_PASSWORD
+
+Secret=POSTGRES_USERNAME,type=env,target=POSTGRES_USERNAME
+Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
 Secret=SMTP_USERNAME,type=env,target=SMTP_USERNAME
 Secret=SMTP_PASSWORD,type=env,target=SMTP_PASSWORD

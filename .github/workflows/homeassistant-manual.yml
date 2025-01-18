@@ -1,31 +1,20 @@
-name: Update HomeAssistant Image
+name: HomeAssistant Manual
 
 on:
-  schedule:
-    - cron: "00 03 * * */1"
   workflow_dispatch:
 
 jobs:
-  check:
-    name: check for new release of home assistant
-    runs-on: ubuntu-latest
-    outputs:
-      needs-updating: ${{ steps.check.outputs.needs-updating }}
-
-    steps:
-      - name: Check if update available
-        uses: lucacome/docker-image-update-checker@v1
-        id: check
-        with:
-          base-image: homeassistant/home-assistant
-          image: cilenco/homeassistant
-
   build:
     name: build new docker image
-    if: needs.check.outputs.needs-updating == 'true'
     runs-on: ubuntu-latest
     needs: check
     steps:
+      - name: Get Latest Image
+        uses: shrink/actions-docker-latest-image@v1
+        id: latest_image
+        with:
+          repository: docker.io/homeassistant/home-assistant
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -49,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./.customimages/homeassistant
+          tags: cilenco/homeassistant:latest,cilenco/homeassistant:${{ steps.latest_image.outputs.tag }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          tags: cilenco/homeassistant:latest
           push: true

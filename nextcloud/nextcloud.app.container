@@ -1,34 +1,32 @@
 [Unit]
 Description=Nextcloud Server
 
-Requires=postgres.app.service redis.app.service
-After=postgres.app.service redis.app.service
+Requires=nextcloud.db.service
+After=nextcloud.db.service
 
 [Service]
-#always
 Restart=no
 RestartSec=10
 TimeoutStartSec=300
 
 [Container]
 Image=docker.io/nextcloud:fpm
+ContainerName=nextcloud-app
 
-ContainerName=nextcloud
+Pod=nextcloud.pod
 
 AutoUpdate=registry
 NoNewPrivileges=true
 User=www-data:www-data
 
-Network=caddy.network
+Secret=DOMAIN,type=env,target=DOMAIN
 
-Secret=DOMAIN,type=env,target=NEXTCLOUD_TRUSTED_DOMAINS
-
+Environment=POSTGRES_HOST=nextcloud-db
 Environment=POSTGRES_DB=nextcloud
-Environment=POSTGRES_HOST=postgres
-Environment=REDIS_HOST=redis
+#Environment=REDIS_HOST=redis
 
-Secret=POSTGRES_USERNAME,type=env,target=POSTGRES_USER
-Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
+Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
 Secret=NEXTCLOUD_CLIENT_SECRET,type=env,target=CLIENT_SECRET
 
@@ -41,10 +39,9 @@ Secret=NEXTCLOUD_CLIENT_SECRET,type=env,target=CLIENT_SECRET
 Environment=NEXTCLOUD_ADMIN_USER=admin
 Environment=NEXTCLOUD_ADMIN_PASSWORD=password
 
-Volume=nextcloud.web.volume:/var/www/html
+Volume=nextcloud.app.volume:/var/www/html
 
-Volume=./selfhost.config.php:/var/www/html/config/selfhost.config.php:z
-Volume=./init.sh:/docker-entrypoint-hooks.d/post-installation/init.sh:z
+#Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:z
 
 [Install]
 WantedBy=default.target
