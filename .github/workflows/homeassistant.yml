@@ -1,4 +1,4 @@
-name: HomeAssistant Schedule
+name: Update HomeAssistant Image
 
 on:
   schedule:
