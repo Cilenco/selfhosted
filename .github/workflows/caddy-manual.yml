@@ -39,6 +39,6 @@ jobs:
           context: ./.customimages/caddy
           tags: |
             cilenco/caddy-ionos-dns:latest
-            cilenco/caddy-ionos-dns${{ steps.latest_version.outputs.tag#v }}
+            cilenco/caddy-ionos-dns${{ steps.latest_version.outputs.tag }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
