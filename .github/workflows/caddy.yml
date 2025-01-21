@@ -1,15 +1,16 @@
-name: CaddyServer Schedule
+name: Update CaddyServer image
 
 on:
   schedule:
     - cron: "00 03 * * */1"
+  workflow_dispatch:
 
 jobs:
   check:
     name: check for new release of caddy
     runs-on: ubuntu-latest
     outputs:
-      needs-updating: ${{ steps.check.outputs.needs-updating }}
+      needs-updating: ${{ (steps.check.outputs.needs-updating) || (github.event_name == 'workflow_dispatch') }}
 
     steps:
       - name: Check if update available
@@ -25,7 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: check
     steps:
-      - uses: oprypin/find-latest-tag@v1
+      - name: Find latest version tag
+        uses: oprypin/find-latest-tag@v1
         id: latest_version
         with:
           repository: caddyserver/caddy
@@ -53,9 +55,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./.customimages/caddy
+          file: ./.customimages/caddy
           tags: |
             cilenco/caddy-ionos-dns:latest
-            cilenco/caddy-ionos-dns${{ steps.latest_version.outputs.tag#v }}
+            cilenco/caddy-ionos-dns${{ steps.latest_version.outputs.tag }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
