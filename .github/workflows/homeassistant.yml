@@ -58,6 +58,6 @@ jobs:
           file: ./.customimages/homeassistant
           tags: |
             cilenco/homeassistant:latest
-            cilenco/homeassistant:latest${{ steps.latest_version.outputs.tag }}
+            cilenco/homeassistant:${{ steps.latest_version.outputs.tag }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
