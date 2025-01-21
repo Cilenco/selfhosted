@@ -36,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./.customimages/caddy
+          file: ./.customimages/caddy
           tags: |
             cilenco/caddy-ionos-dns:latest
             cilenco/caddy-ionos-dns${{ steps.latest_version.outputs.tag }}
