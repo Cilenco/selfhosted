@@ -16,6 +16,12 @@ AutoUpdate=registry
 NoNewPrivileges=true
 User=redis:redis
 
+HealthCmd="redis-cli ping | grep PONG"
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
 Volume=outline.redis.volume:/data
 
 [Install]

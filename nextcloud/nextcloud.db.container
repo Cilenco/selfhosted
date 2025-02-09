@@ -16,6 +16,12 @@ AutoUpdate=registry
 NoNewPrivileges=true
 User=postgres:postgres
 
+HealthCmd=pg_isready
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
 Environment=POSTGRES_DB=nextcloud
 
 Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
