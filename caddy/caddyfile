@@ -8,12 +8,12 @@
 }
 
 https://*.{env.DOMAIN} {
-  tls {
-    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
-  }
+  #tls {
+  #  dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+  #}
 
   # Local testing
-  # tls internal
+  tls internal
 
   #################################################
   # Adguard                                       #
@@ -49,6 +49,15 @@ https://*.{env.DOMAIN} {
 
   handle @streaming {
     reverse_proxy jellyfin:8096
+  }
+
+  #################################################
+  # ActualMoney                                   #
+  #################################################
+  @money host money.{env.DOMAIN}
+
+  handle @money {
+    reverse_proxy money:5006
   }
 
   #################################################
