@@ -1,0 +1,14 @@
+name: Test
+
+on:
+  schedule:
+    - cron: "00 03 * * */1"
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: check for new release of caddy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if update available
+        run: echo "${{github.event_name == 'workflow_dispatch'}}"
