@@ -19,6 +19,8 @@ jobs:
         with:
           base-image: library/caddy:alpine
           image: cilenco/caddy-ionos-dns
+      - name: Debug
+        run: echo "${{ (steps.check.outputs.needs-updating) || (github.event_name == 'workflow_dispatch') }}"
 
   build:
     name: build new docker image
