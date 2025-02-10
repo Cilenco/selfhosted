@@ -52,12 +52,12 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # ActualMoney                                   #
+  # ActualBudge                                   #
   #################################################
-  @money host money.{env.DOMAIN}
+  @budget host money.{env.DOMAIN}
 
-  handle @money {
-    reverse_proxy money:5006
+  handle @budget {
+    reverse_proxy budget:5006
   }
 
   #################################################

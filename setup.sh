@@ -30,6 +30,7 @@ printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD - >/dev/null
 
 ########################
 ########################
+printf $(openssl rand -hex    64) | podman secret create ACTUAL_BUDGET_CLIENT_SECRET - >/dev/null
 
 printf $(openssl rand -hex    64) | podman secret create NEXTCLOUD_CLIENT_SECRET - >/dev/null
 printf $(openssl rand -hex    12) | podman secret create NEXTCLOUD_DB_USERNAME   - >/dev/null
