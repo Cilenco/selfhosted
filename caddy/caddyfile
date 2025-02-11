@@ -54,7 +54,7 @@ https://*.{env.DOMAIN} {
   #################################################
   # ActualBudge                                   #
   #################################################
-  @budget host money.{env.DOMAIN}
+  @budget host budget.{env.DOMAIN}
 
   handle @budget {
     reverse_proxy budget:5006

@@ -21,7 +21,7 @@ ssdp:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 10.89.0.2
+    - 10.89.0.0/24
 
 sensor:
   - platform: time_date
