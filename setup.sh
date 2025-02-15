@@ -1,5 +1,12 @@
 #!/bin/bash
 
+########################
+########################
+
+rm -rf $HOME/.config/containers
+mkdir -p $HOME/.config/containers
+
+ln -s $PWD $HOME/.config/containers/systemd
 
 ########################
 ########################
@@ -7,29 +14,34 @@
 read -p "Enter domain: " DOMAIN
 read -p "Enter E-Mail: " E_MAIL
 
-printf $DOMAIN | podman secret create DOMAIN - >/dev/null
-printf $E_MAIL | podman secret create E_MAIL - >/dev/null
-
 read -p "Enter Ionos API prefix: " IONOS_PREFIX
 read -p "Enter Ionos API secret: " IONOS_SECRET
-
-printf $IONOS_PREFIX | podman secret create IONOS_PREFIX - >/dev/null
-printf $IONOS_SECRET | podman secret create IONOS_SECRET - >/dev/null
 
 read -p "Enter SMTP host: " SMTP_HOST
 read -p "Enter SMTP port: " SMTP_PORT
 
-printf $SMTP_HOST | podman secret create SMTP_HOST - >/dev/null
-printf $SMTP_PORT | podman secret create SMTP_PORT - >/dev/null
-
 read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
+
+echo -e "\n\n"
+
+########################
+########################
+
+echo "Setting up podman secrets..."
+
+printf $DOMAIN | podman secret create DOMAIN - >/dev/null
+printf $E_MAIL | podman secret create E_MAIL - >/dev/null
+
+printf $IONOS_PREFIX | podman secret create IONOS_PREFIX - >/dev/null
+printf $IONOS_SECRET | podman secret create IONOS_SECRET - >/dev/null
+
+printf $SMTP_HOST | podman secret create SMTP_HOST - >/dev/null
+printf $SMTP_PORT | podman secret create SMTP_PORT - >/dev/null
 
 printf $SMTP_USERNAME | podman secret create SMTP_USERNAME - >/dev/null
 printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD - >/dev/null
 
-########################
-########################
 printf $(openssl rand -hex    64) | podman secret create ACTUAL_BUDGET_CLIENT_SECRET - >/dev/null
 
 printf $(openssl rand -hex    64) | podman secret create NEXTCLOUD_CLIENT_SECRET - >/dev/null
@@ -52,7 +64,19 @@ printf $(openssl rand -hex    64) | podman secret create LDAP_KEY_SEED - >/dev/n
 printf $(openssl rand -hex    12) | podman secret create LDAP_USERNAME - >/dev/null
 printf $(openssl rand -base64 24) | podman secret create LDAP_PASSWORD - >/dev/null
 
+echo "Finished setting up podman secrets"
+
 echo -e "\n\n"
+
+########################
+########################
+
+read -r -p "Would you like to setup unprivileged port binding? [Y/n] " SETUP_PORTS;
+
+if [ "$SETUP_PORTS" != "" ]; then :; fi
+if [ "$SETUP_PORTS" = "${SETUP_PORTS#[Nn]}" ]; then
+  sudo echo "net.ipv4.ip_unprivileged_port_start=80" >> /etc/sysctl.d/10-network-security.conf
+fi
 
 ########################
 ########################
