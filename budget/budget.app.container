@@ -13,16 +13,23 @@ ContainerName=budget
 
 AutoUpdate=registry
 NoNewPrivileges=true
-User=node:node
+#User=node:node
 
 Network=caddy.network
 
+Environment=DEBUG=actual:config
 Environment=ACTUAL_OPENID_CLIENT_ID=budget
+Environment=ACTUAL_OPENID_SERVER_HOSTNAME=http://budget.homelab.com
+Environment=ACTUAL_OPENID_DISCOVERY_URL=http://auth.homelab.com/.well-known/oauth-authorization-server
+#Environment=ACTUAL_OPENID_CLIENT_SECRET=123fkjdsfhskdf
+
+#Environment=ACTUAL_ALLOWED_LOGIN_METHODS=openid
+#Environment=ACTUAL_LOGIN_METHOD=openid
+
 Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
-Environment=ACTUAL_OPENID_SERVER_HOSTNAME=https://money.
-Environment=ACTUAL_OPENID_DISCOVERY_URL=https://auth.
 
 Volume=budget.data.volume:/data
+#Volume=./config.json:/data/config.json:z
 
 [Install]
 WantedBy=default.target

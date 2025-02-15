@@ -12,16 +12,16 @@ Image=docker.io/adguard/adguardhome
 ContainerName=adguard
 
 AutoUpdate=registry
-#UserNS=auto
+UserNS=auto
 #:size=1024
 NoNewPrivileges=true
-User=nobody:nobody
+#User=nobody:nobody
 
 Network=caddy.network
 
-PublishPort=3000:3000
-PublishPort=853:853/tcp
-PublishPort=853:853/udp
+PublishPort=3001:3000
+PublishPort=53:53/tcp
+PublishPort=53:53/udp
 
 Volume=adguard.config.volume:/opt/adguardhome/conf
 Volume=adguard.work.volume:/opt/adguardhome/work

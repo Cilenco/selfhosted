@@ -41,7 +41,7 @@ Environment=NEXTCLOUD_ADMIN_PASSWORD=password
 
 Volume=nextcloud.app.volume:/var/www/html
 
-#Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:z
+Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:z
 
 [Install]
 WantedBy=default.target

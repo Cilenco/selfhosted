@@ -1,9 +1,0 @@
-{
-  "openId": {
-    "client_id": "budget",
-    "issuer": "https://auth.example.com",
-    "client_secret": "insecure_secret",
-    "server_hostname": "https://actual-budget.example.com",
-    "authMethod": "oauth2"
-  }
-}
