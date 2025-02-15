@@ -26,5 +26,7 @@ PublishPort=853:853/udp
 Volume=adguard.config.volume:/opt/adguardhome/conf
 Volume=adguard.work.volume:/opt/adguardhome/work
 
+Volume=caddy.certs.volume:/certs:ro
+
 [Install]
 WantedBy=default.target
