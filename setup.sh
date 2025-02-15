@@ -83,6 +83,8 @@ fi
 ########################
 ########################
 
+echo -e "\n\n"
+
 read -r -p "Would you like to setup a static IPv6 address? [Y/n] " SETUP_IP6;
 
 if [ "$SETUP_IP6" != "" ]; then :; fi
@@ -101,5 +103,5 @@ read -r -p "Would you like to restart the machine now? [Y/n] " reboot;
 
 if [ "$reboot" != "" ]; then :; fi
 if [ "$reboot" = "${reboot#[Nn]}" ]; then
-  shutdown -r now
+  sudo /bin/sh -c "shutdown -r now"
 fi
