@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Caddy data
-
-[Volume]
-VolumeName=caddy_data

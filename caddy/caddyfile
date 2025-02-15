@@ -1,19 +1,20 @@
 {
   email       noreply@{env.DOMAIN}
+  storage     file_system /certs
 
   http_port   8080
   https_port  4430
+
+  acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 
   admin       off
 }
 
 https://*.{env.DOMAIN} {
-  #tls {
-  #  dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
-  #}
-
-  # Local testing
-  tls internal
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
 
   #################################################
   # Adguard                                       #

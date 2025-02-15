@@ -19,9 +19,9 @@ NoNewPrivileges=true
 
 Network=caddy.network
 
-PublishPort=3001:3000
-PublishPort=53:53/tcp
-PublishPort=53:53/udp
+PublishPort=3000:3000
+PublishPort=853:853/tcp
+PublishPort=853:853/udp
 
 Volume=adguard.config.volume:/opt/adguardhome/conf
 Volume=adguard.work.volume:/opt/adguardhome/work

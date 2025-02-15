@@ -1,0 +1,5 @@
+[Unit]
+Description=Volume for Caddy certificates
+
+[Volume]
+VolumeName=caddy_certs
