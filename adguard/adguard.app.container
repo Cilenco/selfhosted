@@ -12,8 +12,6 @@ Image=docker.io/adguard/adguardhome
 ContainerName=adguard
 
 AutoUpdate=registry
-UserNS=auto
-#:size=1024
 NoNewPrivileges=true
 #User=nobody:nobody
 
