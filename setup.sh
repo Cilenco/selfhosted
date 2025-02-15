@@ -77,7 +77,7 @@ read -r -p "Would you like to setup unprivileged port binding? [Y/n] " SETUP_POR
 
 if [ "$SETUP_PORTS" != "" ]; then :; fi
 if [ "$SETUP_PORTS" = "${SETUP_PORTS#[Nn]}" ]; then
-  sudo /bin/sh -c '"net.ipv4.ip_unprivileged_port_start=80" >> /etc/sysctl.d/10-network-security.conf'
+  sudo /bin/sh -c 'echo "net.ipv4.ip_unprivileged_port_start=80" >> /etc/sysctl.d/10-network-security.conf'
 fi
 
 ########################
