@@ -6,10 +6,8 @@ FROM caddy:latest
 # Install IONOS extension for DNS-01 challenge
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
-# Create non root user and group
+# Create non root user, group and certs directory
 RUN addgroup -S caddy && adduser -S -H -G caddy caddy
-
-RUN mkdir /certs
-RUN chown caddy /certs
+RUN mkdir /certs && chown caddy:caddy /certs
 
 USER caddy
