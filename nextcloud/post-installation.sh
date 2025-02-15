@@ -16,6 +16,7 @@ php occ config:system:set default_timezone --type="string" --value="Europe/Berli
 php occ config:system:set hide_login_form --type="boolean" --value="false"
 php occ config:system:set updatechecker --type="boolean" --value="false"
 
+php occ config:system:set skeletondirectory --type="string" --value=""
 php occ config:system:set defaultapp --type="string" --value="files"
 
 #"files.chunked_upload.max_size" => 4 * 1024 * 1024 * 1024, // 4 GB
