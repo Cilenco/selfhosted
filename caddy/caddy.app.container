@@ -13,8 +13,7 @@ ContainerName=caddy
 
 AutoUpdate=registry
 NoNewPrivileges=true
-#User=caddy:caddy
-User=root:root
+User=caddy:caddy
 
 Secret=DOMAIN,type=env,target=DOMAIN
 
