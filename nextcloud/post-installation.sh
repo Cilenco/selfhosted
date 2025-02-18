@@ -28,7 +28,7 @@ php occ config:system:set defaultapp --type="string" --value="files"
 php occ app:install calendar
 php occ app:install contacts
 php occ app:install user_oidc
-php occ app:install user_ldap
+php occ app:enable user_ldap
 
 php occ app:install unroundedcorners
 
@@ -98,5 +98,5 @@ php occ ldap:set-config s01 ldapUuidUserAttribute auto
 #################################################
 
 php occ user_oidc:provider authelia \
-    --clientid="nextcloud" --clientsecret=$CLIENT_SECRET \
+    --clientid="nextcloud" --clientsecret="$CLIENT_SECRET" \
     --discoveryuri="https://auth.$DOMAIN/.well-known/openid-configuration"
