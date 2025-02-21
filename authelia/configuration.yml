@@ -103,7 +103,7 @@ identity_providers:
         pkce_challenge_method: "S256"
         require_pkce: true
         redirect_uris:
-          - https://cloud.{{env "DOMAIN"}}/apps/user_oidc/code
+          - https://cloud.{{env "DOMAIN"}}/index.php/apps/user_oidc/code
         scopes:
           - openid
           - groups
@@ -116,7 +116,7 @@ identity_providers:
         client_secret: '{{ env "ACTUAL_BUDGET_CLIENT_SECRET"}}'
         authorization_policy: one_factor
         redirect_uris:
-          - https://money.{{env "DOMAIN"}}/openid/callback
+          - https://budget.{{env "DOMAIN"}}/openid/callback
         scopes:
           - openid
           - groups
