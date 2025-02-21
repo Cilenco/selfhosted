@@ -19,7 +19,7 @@ Network=caddy.network
 Volume=homeassistant-config:/config
 Volume=/etc/localtime:/etc/localtime:ro
 
-Volume=./config.yaml:/config/configuration.yaml:Z
+Volume=./configuration.yaml:/config/configuration.yaml:Z
 
 [Install]
 WantedBy=default.target
