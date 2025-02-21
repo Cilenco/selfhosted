@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Authelia config
-
-[Volume]
-VolumeName=authelia_config

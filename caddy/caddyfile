@@ -22,7 +22,11 @@ https://*.{env.DOMAIN} {
   @dns host dns.{env.DOMAIN}
 
   handle @dns {
-    reverse_proxy adguard:80
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+    }
+
+    reverse_proxy adguard:3000
   }
 
   #################################################

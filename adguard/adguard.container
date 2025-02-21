@@ -13,20 +13,20 @@ ContainerName=adguard
 
 AutoUpdate=registry
 NoNewPrivileges=true
-#User=nobody:nobody
+UserNS=keep-id
 
 Network=caddy.network
 
 PublishPort=3000:3000
 
-PublishPort=127.0.0.1:53:53/tcp
-PublishPort=127.0.0.1:53:53/udp
+#PublishPort=127.0.0.1:53:5300/tcp
+#PublishPort=127.0.0.1:53:5300/udp
 
-PublishPort=<DEVICE_IP>:53:53/tcp
-PublishPort=<DEVICE_IP>:53:53/udp
+#PublishPort=<DEVICE_IP>:53:5300/tcp
+#PublishPort=<DEVICE_IP>:53:5300/udp
 
-Volume=adguard-config:/opt/adguardhome/conf
-Volume=adguard-work:/opt/adguardhome/work
+Volume=./conf:/opt/adguardhome/conf:Z
+Volume=./work:/opt/adguardhome/work:Z
 
 Volume=caddy.certs.volume:/certs:ro
 

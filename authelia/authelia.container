@@ -40,8 +40,10 @@ Secret=SMTP_PORT,type=env,target=SMTP_PORT
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume=./configuration.yml:/config/configuration.yml:ro,z
-Volume=./id_rsa:/secrets/test_key.pem:ro,z
+Volume=authelia-config:/config
+
+Volume=./configuration.yml:/config/configuration.yml:ro,Z
+Volume=./oidc_jwks_key:/secrets/oidc_jwks_key.pem:ro,Z
 
 [Install]
 WantedBy=default.target

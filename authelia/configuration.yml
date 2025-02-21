@@ -46,6 +46,7 @@ access_control:
     - domain: '{{env "DOMAIN"}}'
       policy: bypass
     - domain: 'dns.{{env "DOMAIN"}}' # Adguard
+      subject: "group:admin"
       policy: one_factor
     - domain: 'home.{{env "DOMAIN"}}' # HomeAssistant
       policy: two_factor
@@ -81,7 +82,7 @@ identity_providers:
     hmac_secret: '{{env "OIDC_HMAC_SECRET"}}'
     jwks:
       - key: |
-          {{ fileContent "/secrets/test_key.pem" | nindent 10 }}
+          {{ fileContent "/secrets/oidc_jwks_key.pem" | nindent 10 }}
     clients:
       - client_id: outline
         client_name: Outline
