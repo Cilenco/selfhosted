@@ -28,7 +28,7 @@ Environment=ACTUAL_OPENID_DISCOVERY_URL=http://auth.homelab.com/.well-known/oaut
 
 Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
 
-Volume=budget.data.volume:/data
+Volume=budget-data:/data
 
 [Install]
 WantedBy=default.target

@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Jellyfin cache
-
-[Volume]
-VolumeName=jellyfin_cache

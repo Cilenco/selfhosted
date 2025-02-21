@@ -25,8 +25,8 @@ PublishPort=127.0.0.1:53:53/udp
 PublishPort=<DEVICE_IP>:53:53/tcp
 PublishPort=<DEVICE_IP>:53:53/udp
 
-Volume=adguard.config.volume:/opt/adguardhome/conf
-Volume=adguard.work.volume:/opt/adguardhome/work
+Volume=adguard-config:/opt/adguardhome/conf
+Volume=adguard-work:/opt/adguardhome/work
 
 Volume=caddy.certs.volume:/certs:ro
 

@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for HomeAssistant config
-
-[Volume]
-VolumeName=homeassistant_config

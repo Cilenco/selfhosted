@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Adguard config
-
-[Volume]
-VolumeName=adguard_config

@@ -17,8 +17,8 @@ User=nobody:nogroup
 
 Network=caddy.network
 
-Volume=jellyfin.cache.volume:/cache
-Volume=jellyfin.config.volume:/config
+Volume=jellyfin-cache:/cache
+Volume=jellyfin-config:/config
 Volume=/media:/media:ro
 
 [Install]

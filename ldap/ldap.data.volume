@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for LDAP data
-
-[Volume]
-VolumeName=ldap_data

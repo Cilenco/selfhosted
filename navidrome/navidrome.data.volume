@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Navidrome data
-
-[Volume]
-VolumeName=navidrome_data

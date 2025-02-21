@@ -17,7 +17,7 @@ NoNewPrivileges=true
 Network=caddy.network
 PublishPort=17170:17170
 
-Volume=ldap.data.volume:/data
+Volume=ldap-data:/data
 
 Environment=LLDAP_LDAP_BASE_DN=dc=example,dc=com
 #Environment=LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET=true

@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for ActualBudget data
-
-[Volume]
-VolumeName=budget_data

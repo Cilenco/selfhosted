@@ -20,7 +20,7 @@ Network=caddy.network
 
 Environment=ND_ENABLEINSIGHTSCOLLECTOR=false
 
-Volume=navidrome.data.volume:/data
+Volume=navidrome-data:/data
 Volume=/media:/media:ro
 
 [Install]
