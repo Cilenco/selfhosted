@@ -85,6 +85,24 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Vaultwarden                                   #
+  #################################################
+  @passwords host passwords.{env.DOMAIN}
+
+  handle @passwords {
+    reverse_proxy vaultwarden:8080
+  }
+
+  #################################################
+  # Immich                                        #
+  #################################################
+  @photos host photos.{env.DOMAIN}
+
+  handle @passwords {
+    reverse_proxy immich:2283
+  }
+
+  #################################################
   # Nextcloud                                     #
   #################################################
   @cloud host cloud.{env.DOMAIN}
