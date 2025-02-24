@@ -1,0 +1,25 @@
+[Unit]
+Description=Immich server
+
+Requires=immich.db.service immich.redis.service
+After=immich.db.service immich.redis.service
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=ghcr.io/immich-app/immich-server:release
+
+ContainerName=immich-app
+
+AutoUpdate=registry
+NoNewPrivileges=true
+
+Network=caddy.network
+
+Volume=/etc/localtime:/etc/localtime:ro
+
+[Install]
+WantedBy=default.target
