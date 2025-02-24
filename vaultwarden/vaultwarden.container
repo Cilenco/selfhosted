@@ -13,7 +13,7 @@ ContainerName=vaultwarden
 
 AutoUpdate=registry
 NoNewPrivileges=true
-#User=node:node
+User=www-data:www-data
 
 Network=caddy.network
 

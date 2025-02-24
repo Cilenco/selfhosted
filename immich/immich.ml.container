@@ -13,6 +13,7 @@ ContainerName=immich-ml
 
 AutoUpdate=registry
 NoNewPrivileges=true
+User=www-data:www-data
 
 Network=caddy.network
 

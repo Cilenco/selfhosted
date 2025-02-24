@@ -16,6 +16,7 @@ ContainerName=immich-app
 
 AutoUpdate=registry
 NoNewPrivileges=true
+#User=node:node
 
 Network=caddy.network
 

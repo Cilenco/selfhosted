@@ -13,7 +13,7 @@ ContainerName=budget
 
 AutoUpdate=registry
 NoNewPrivileges=true
-#User=node:node
+User=node:node
 
 Network=caddy.network
 

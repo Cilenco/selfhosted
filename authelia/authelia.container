@@ -1,8 +1,8 @@
 [Unit]
 Description=Authelia
 
-Requires= ldap.app.service
-After= ldap.app.service
+Requires= ldap.service
+After= ldap.service
 
 [Service]
 Restart=no
@@ -16,7 +16,7 @@ ContainerName=authelia
 
 AutoUpdate=registry
 NoNewPrivileges=true
-#User=nobody:nobody
+User=nobody:nobody
 
 Network=caddy.network
 
