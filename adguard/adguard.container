@@ -6,6 +6,9 @@ Restart=no
 RestartSec=10
 TimeoutStartSec=300
 
+ExecStartPre=mkdir -p ./conf && mkdir -p ./conf
+ExecStartPre=cp --update=none AdGuardHome.yaml ./conf
+
 [Container]
 Image=docker.io/adguard/adguardhome
 
