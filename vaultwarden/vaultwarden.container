@@ -1,0 +1,27 @@
+[Unit]
+Description=Vaultwarden server
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/vaultwarden/server
+
+ContainerName=vaultwarden
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#User=node:node
+
+Network=caddy.network
+
+Environment=SIGNUPS_ALLOWED=false
+Environment=INVITATIONS_ALLOWED=false
+Environment=ROCKET_PORT=8080
+
+Volume=vaultwarden-data:/data
+
+[Install]
+WantedBy=default.target
