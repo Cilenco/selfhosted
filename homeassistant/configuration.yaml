@@ -9,6 +9,7 @@ media_source:
 mobile_app:
 zeroconf:
 ssdp:
+usb:
 
 # Load frontend themes from the themes folder
 #frontend:

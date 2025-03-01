@@ -13,6 +13,7 @@ ContainerName=homeassistant
 
 AutoUpdate=registry
 #NoNewPrivileges=true
+#GroupsAdd=dialout
 
 Network=caddy.network
 
@@ -20,6 +21,10 @@ Volume=homeassistant-config:/config
 Volume=/etc/localtime:/etc/localtime:ro
 
 Volume=./configuration.yaml:/config/configuration.yaml:Z
+Volume=./bubblecard/bubble-popup.js.js:/config/www/bubble-popup.js.js:Z
+Volume=./bubblecard/bubble-card.js:/config/www/bubble-card.js:Z
+
+AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
 
 [Install]
 WantedBy=default.target
