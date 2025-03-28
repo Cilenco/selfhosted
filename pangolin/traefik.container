@@ -1,0 +1,25 @@
+[Unit]
+Description=Traefik reverse server
+
+Requires=pangolin.service
+After=pangolin.service
+
+[Service]
+Restart=unless-stopped
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/library/traefik:latest
+Exec=--configFile=/etc/traefik/traefik_config.yml
+
+ContainerName=traefik
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#User=node:node
+
+Volume=./config/traefik:/etc/traefik:z,ro
+Volume=./config/letsencrypt:/letsencrypt:z
+
+[Install]
+WantedBy=default.target
