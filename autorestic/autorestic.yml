@@ -1,0 +1,19 @@
+version: 2
+
+global:
+  forget:
+    keep-daily: 30
+
+locations:
+  home:
+    from: /data
+    to: hdd
+
+backends:
+  hdd:
+    type: local
+    path: /backup
+  microsoft:
+    type: rclone
+    path: "microsoft:/Backups"
+    key: "redacted-password"
