@@ -1,0 +1,24 @@
+[Unit]
+Description=FileBrowser server
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/filebrowser/filebrowser
+
+ContainerName=filebrowser
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#User=nobody:nogroup
+
+Network=caddy.network
+
+Volume=/media:/srv
+Volume=filebrowser-db:/database.db
+
+[Install]
+WantedBy=default.target

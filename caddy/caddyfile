@@ -85,6 +85,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # FileBrowser                                   #
+  #################################################
+  @files host files.{env.DOMAIN}
+
+  handle @files {
+    reverse_proxy filebrowser:80
+  }
+
+  #################################################
   # Vaultwarden                                   #
   #################################################
   @passwords host passwords.{env.DOMAIN}
