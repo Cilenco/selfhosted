@@ -25,6 +25,9 @@ read -p "Enter SMTP port: " SMTP_PORT
 read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
+OUTLINE_DB_USERNAME=$(openssl rand -hex    12)
+OUTLINE_DB_PASSWORD=$(openssl rand -base64 24)
+
 echo -e "\n\n"
 
 ########################
@@ -44,11 +47,6 @@ printf $SMTP_PORT | podman secret create SMTP_PORT - >/dev/null
 printf $SMTP_USERNAME | podman secret create SMTP_USERNAME - >/dev/null
 printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD - >/dev/null
 
-OUTLINE_DB_USERNAME=$(openssl rand -hex    12)
-OUTLINE_DB_PASSWORD=$(openssl rand -base64 24)
-
-printf "postgres://$OUTLINE_DB_USERNAME:$OUTLINE_DB_PASSWORD@outline-db:5432/outline" | podman secret create OUTLINE_DATABASE_URL - >/dev/null
-
 printf $(openssl rand -hex    64) | podman secret create ACTUAL_BUDGET_CLIENT_SECRET - >/dev/null
 
 printf $(openssl rand -hex    64) | podman secret create NEXTCLOUD_CLIENT_SECRET - >/dev/null
@@ -58,6 +56,11 @@ printf $(openssl rand -base64 24) | podman secret create NEXTCLOUD_DB_PASSWORD  
 printf $(openssl rand -hex    32) | podman secret create OUTLINE_SECRET_KEY    - >/dev/null
 printf $(openssl rand -hex    64) | podman secret create OUTLINE_CLIENT_SECRET - >/dev/null
 printf $(openssl rand -hex    32) | podman secret create OUTLINE_UTILS_SECRET  - >/dev/null
+printf $OUTLINE_DB_USERNAME       | podman secret create OUTLINE_DB_USERNAME   - >/dev/null
+printf $OUTLINE_DB_PASSWORD       | podman secret create OUTLINE_DB_PASSWORD   - >/dev/null
+
+printf "postgres://$OUTLINE_DB_USERNAME:$OUTLINE_DB_PASSWORD@outline-db:5432/outline" | podman secret create OUTLINE_DATABASE_URL - >/dev/null
+
 
 printf $(openssl rand -hex    64) | podman secret create AUTHELIA_JWT_SECRET             - >/dev/null
 printf $(openssl rand -hex    64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET       - >/dev/null
