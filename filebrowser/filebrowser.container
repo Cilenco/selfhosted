@@ -17,6 +17,8 @@ NoNewPrivileges=true
 
 Network=caddy.network
 
+Environment=FB_NOAUTH=true
+
 Volume=/media:/srv
 Volume=filebrowser-db:/database.db
 
