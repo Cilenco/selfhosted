@@ -14,6 +14,8 @@ AutoUpdate=registry
 NoNewPrivileges=true
 User=redis:redis
 
+Network=caddy.network
+
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
 HealthInterval=30s

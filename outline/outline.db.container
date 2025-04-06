@@ -14,6 +14,8 @@ AutoUpdate=registry
 NoNewPrivileges=true
 User=postgres:postgres
 
+Network=caddy.network
+
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s
 HealthInterval=30s

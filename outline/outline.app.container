@@ -17,6 +17,8 @@ AutoUpdate=registry
 NoNewPrivileges=true
 User=nodejs:nodejs
 
+Network=caddy.network
+
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
 Secret=OUTLINE_DATABASE_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
