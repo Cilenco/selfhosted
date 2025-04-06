@@ -10,8 +10,6 @@ TimeoutStartSec=300
 Image=docker.io/redis
 ContainerName=outline-redis
 
-Pod=outline.pod
-
 AutoUpdate=registry
 NoNewPrivileges=true
 User=redis:redis
@@ -22,7 +20,7 @@ HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume=outline.redis.volume:/data
+Volume=outline-redis:/data
 
 [Install]
 WantedBy=default.target

@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Outline Redis
-
-[Volume]
-VolumeName=outline_redis_data

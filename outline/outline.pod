@@ -1,6 +1,0 @@
-[Unit]
-Description=Outline
-
-[Pod]
-PodName=outline
-Network=caddy.network

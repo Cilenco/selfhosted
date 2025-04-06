@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Outline database
-
-[Volume]
-VolumeName=outline_db_data

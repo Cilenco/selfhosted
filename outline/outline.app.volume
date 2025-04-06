@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Outline app
-
-[Volume]
-VolumeName=outline_app_data

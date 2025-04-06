@@ -13,13 +13,12 @@ TimeoutStartSec=300
 Image=docker.io/outlinewiki/outline
 ContainerName=outline-app
 
-Pod=outline.pod
-
 AutoUpdate=registry
 NoNewPrivileges=true
 User=nodejs:nodejs
 
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
+Secret=OUTLINE_DATABASE_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 
@@ -28,7 +27,7 @@ EnvironmentFile=./env.outline
 Environment=URL=http://dancing.localhost
 Environment=OIDC_AUTH_URI=http://auth.localhost/api/oidc/authorization
 
-Volume=outline.app.volume:/var/lib/outline/data
+Volume=outline-app:/var/lib/outline/data
 
 [Install]
 WantedBy=default.target
