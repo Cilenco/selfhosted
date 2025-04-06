@@ -4,6 +4,9 @@ server:
   address: "tcp://:9091/"
   disable_healthcheck: false
   endpoints:
+    authz:
+      forward-auth:
+        implementation: "ForwardAuth"
     enable_pprof: false
     enable_expvars: false
 
@@ -63,9 +66,8 @@ session:
   expiration: 1h
   inactivity: 5m
   cookies:
-    - domain: 'auth.{{env "DOMAIN"}}'
+    - domain: '{{env "DOMAIN"}}'
       authelia_url: 'https://auth.{{env "DOMAIN"}}'
-      #default_redirection_url: 'https://www.{{env "DOMAIN"}}'
 
 regulation:
   max_retries: 3
