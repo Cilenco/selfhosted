@@ -1,0 +1,35 @@
+[Unit]
+Description=Immich server
+
+Requires=immich.db.service immich.redis.service
+After=immich.db.service immich.redis.service
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=ghcr.io/immich-app/immich-server:release
+
+ContainerName=immich-app
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#User=node:node
+
+Network=caddy.network
+
+Environment=DB_DATABASE_NAME=immich
+
+Environment=TZ=Europe/Berlin
+Environment=DB_HOSTNAME=immich-db
+Environment=REDIS_HOSTNAME=immich-redis
+
+Secret=IMMICH_DB_USERNAME,type=env,target=DB_USERNAME
+Secret=IMMICH_DB_PASSWORD,type=env,target=DB_PASSWORD
+
+Volume=/etc/localtime:/etc/localtime:ro
+
+[Install]
+WantedBy=default.target

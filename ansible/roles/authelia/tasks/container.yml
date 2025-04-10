@@ -1,0 +1,9 @@
+- name: Copying Authelia container file
+  template:
+    dest: "{{ quadlet_path }}/authelia/authelia.container"
+    src: authelia.container
+
+- name: Copying Adguard configuration file
+  copy:
+    dest: "{{ storage }}/authelia/configuration.yaml"
+    src: configuration.yml

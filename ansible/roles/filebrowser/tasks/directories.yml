@@ -1,0 +1,7 @@
+- name: Create FileBrowser container directory
+  ansible.builtin.file:
+    path: "{{ quadlet_path }}/filebrowser"
+
+- name: Create FileBrowser data directory
+  ansible.builtin.file:
+    path: "{{ storage }}/filebrowser"

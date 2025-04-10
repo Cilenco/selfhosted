@@ -1,0 +1,7 @@
+- name: Create Vaultwarden app container directory
+  ansible.builtin.file:
+    path: "{{ quadlet_path }}/vaultwarden"
+
+- name: Create Vaultwarden data directory
+  ansible.builtin.file:
+    path: "{{ storage }}/vaultwarden"

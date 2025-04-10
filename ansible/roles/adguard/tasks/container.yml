@@ -1,0 +1,9 @@
+- name: Copying Adguard app container file
+  template:
+    dest: "{{ quadlet_path }}/adguard/adguard.container"
+    src: adguard.container
+
+- name: Copying Adguard configuration file
+  template:
+    dest: "{{ storage }}/adguard/conf/configuration.yaml"
+    src: configuration.yml

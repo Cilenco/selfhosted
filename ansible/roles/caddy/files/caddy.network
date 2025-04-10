@@ -1,0 +1,8 @@
+[Unit]
+Description=Caddy network
+
+[Network]
+NetworkName=caddy
+
+[Install]
+WantedBy=default.target

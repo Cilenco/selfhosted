@@ -1,0 +1,8 @@
+- name: Create Actual Budget directories
+  import_tasks: directories.yml
+
+- name: Copy Actual Budget container files
+  import_tasks: container.yml
+
+- name: Create Actual Budget secrets
+  import_tasks: secrets.yml

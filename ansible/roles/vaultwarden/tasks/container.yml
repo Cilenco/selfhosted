@@ -1,0 +1,4 @@
+- name: Copying Vaultwarden app container file
+  template:
+    dest: "{{ quadlet_path }}/vaultwarden/vaultwarden.container"
+    src: vaultwarden.container

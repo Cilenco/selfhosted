@@ -1,0 +1,5 @@
+- name: Create Vaultwarden directories
+  import_tasks: directories.yml
+
+- name: Copy Vaultwarden container files
+  import_tasks: container.yml

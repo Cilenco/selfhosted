@@ -1,0 +1,4 @@
+- name: Copying Jellyfin app container file
+  template:
+    dest: "{{ quadlet_path }}/jellyfin/jellyfin.container"
+    src: jellyfin.container

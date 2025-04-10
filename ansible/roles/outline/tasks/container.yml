@@ -1,0 +1,19 @@
+- name: Copying Outline container file
+  template:
+    dest: "{{ quadlet_path }}/outline/outline.app.container"
+    src: outline.app.container
+
+- name: Copying Outline redis file
+  template:
+    dest: "{{ quadlet_path }}/outline/outline.cache.container"
+    src: outline.cache.container
+
+- name: Copying Outline database file
+  template:
+    dest: "{{ quadlet_path }}/outline/outline.db.container"
+    src: outline.db.container
+
+- name: Copying Outline database file
+  template:
+    dest: "{{ quadlet_path }}/outline/env.outline"
+    src: env.outline

@@ -1,0 +1,7 @@
+- name: Create Actual Budget app container directory
+  ansible.builtin.file:
+    path: "{{ quadlet_path }}/budget"
+
+- name: Create Actual Budget storage directory
+  ansible.builtin.file:
+    path: "{{ storage }}/budget"

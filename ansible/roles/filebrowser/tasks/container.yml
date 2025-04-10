@@ -1,0 +1,10 @@
+- name: Copying FileBrowser container file
+  template:
+    dest: "{{ quadlet_path }}/filebrowser/filebrowser.container"
+    src: filebrowser.container
+
+- name: Create FileBrowser database file
+  ansible.builtin.file:
+    path: "{{ storage }}/filebrowser/database.db"
+    recurse: false
+    state: touch

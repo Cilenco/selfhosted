@@ -1,0 +1,7 @@
+- name: Create LDAP app container directory
+  ansible.builtin.file:
+    path: "{{ quadlet_path }}/ldap"
+
+- name: Create LDAP storage directory
+  ansible.builtin.file:
+    path: "{{ storage }}/ldap"

@@ -1,0 +1,5 @@
+- name: Create FileBrowser directories
+  import_tasks: directories.yml
+
+- name: Copy FileBrowser container files
+  import_tasks: container.yml

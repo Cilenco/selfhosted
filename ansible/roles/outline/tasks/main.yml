@@ -1,0 +1,8 @@
+- name: Create Outline directories
+  import_tasks: directories.yml
+
+- name: Copy Outline container files
+  import_tasks: container.yml
+
+- name: Create Outline secrets
+  import_tasks: secrets.yml

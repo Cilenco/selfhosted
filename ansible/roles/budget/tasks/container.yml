@@ -1,0 +1,4 @@
+- name: Copying Budget app container file
+  template:
+    dest: "{{ quadlet_path }}/budget/budget.container"
+    src: budget.container

@@ -1,0 +1,8 @@
+- name: Create Authelia directories
+  import_tasks: directories.yml
+
+- name: Copy Authelia container files
+  import_tasks: container.yml
+
+- name: Create Authelia secrets
+  import_tasks: secrets.yml

@@ -1,0 +1,59 @@
+- name: Setup Homelab
+  hosts: all
+
+  module_defaults:
+    containers.podman.podman_secret:
+      skip_existing: true
+
+    ansible.builtin.file:
+      state: directory
+      recurse: true
+
+  vars_prompt:
+    - name: domain
+      prompt: Enter domain
+      private: false
+    - name: email
+      prompt: Enter E-Mail
+      private: false
+    - name: ionos_prefix
+      prompt: Enter Ionos API prefix
+      private: false
+    - name: ionos_secret
+      prompt: Enter Ionos API secret
+      private: false
+    - name: smtp_host
+      prompt: Enter SMTP host
+      private: false
+    - name: smtp_port
+      prompt: Enter SMTP port
+      private: false
+    - name: smtp_username
+      prompt: Enter SMTP username
+      private: false
+    - name: smtp_password
+      prompt: Enter SMTP password
+      private: true
+      unsafe: true
+
+  vars:
+    hex_chars: 0123456789abcdef
+    quadlet_path: "{{  ansible_facts['env']['HOME'] }}/containers/systemd"
+    storage: "{{  ansible_facts['env']['HOME'] }}/volumes"
+
+  #tasks:
+  #  - debug:
+  #      var: ansible_facts
+
+  roles:
+    - adguard
+    - authelia
+    - budget
+    - caddy
+    - filebrowser
+    #- homeassistant
+    #- immich
+    - jellyfin
+    - ldap
+    - outline
+    - vaultwarden

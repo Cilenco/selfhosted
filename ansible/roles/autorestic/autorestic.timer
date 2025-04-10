@@ -1,0 +1,9 @@
+[Unit]
+Description=Autorestic backup timer
+
+[Timer]
+Unit=autorestic.service
+OnCalendar=*:0/15
+
+[Install]
+WantedBy=default.target

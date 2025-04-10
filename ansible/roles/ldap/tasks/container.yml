@@ -1,0 +1,4 @@
+- name: Copying LDAP container file
+  template:
+    dest: "{{ quadlet_path }}/ldap/ldap.container"
+    src: ldap.container

@@ -1,0 +1,5 @@
+- name: Create Jellyfin directories
+  import_tasks: directories.yml
+
+- name: Copy Jellyfin container files
+  import_tasks: container.yml

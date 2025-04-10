@@ -1,0 +1,14 @@
+- name: Copying Caddy container file
+  template:
+    dest: "{{ quadlet_path }}/caddy/caddy.container"
+    src: caddy.container
+
+- name: Copying Caddy network file
+  copy:
+    dest: "{{ quadlet_path }}/caddy/caddy.network"
+    src: caddy.network
+
+- name: Copying Caddy network file
+  copy:
+    dest: "{{ storage }}/caddy/caddyfile"
+    src: caddyfile

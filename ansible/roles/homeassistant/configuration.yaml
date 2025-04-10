@@ -1,0 +1,39 @@
+dhcp:
+backup:
+config:
+#conversation:
+#assist_pipeline:
+homeassistant_alerts:
+image_upload:
+media_source:
+mobile_app:
+zeroconf:
+ssdp:
+usb:
+
+# Load frontend themes from the themes folder
+#frontend:
+#  themes: !include_dir_merge_named themes
+
+#automation: !include automations.yaml
+#script: !include scripts.yaml
+#scene: !include scenes.yaml
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.89.0.0/24
+
+sensor:
+  - platform: time_date
+    display_options:
+      - "date_time_iso"
+
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+    - type: command_line
+      command: /config/lldap-ha-auth.sh
+      # arguments: [<LDAP Host>, <group for login>, <admin user group>]
+      args: ["http://ldap", "homeassistant", "admin"]
+      meta: true
