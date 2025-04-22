@@ -1,8 +1,8 @@
-- name: Create Caddy directories
-  import_tasks: directories.yml
-
-- name: Copy Caddy container files
+- name: Copy {{ container_name }} container files
   import_tasks: container.yml
 
-- name: Create Caddy secrets
+- name: Create {{ container_name }} volumes
+  import_tasks: volumes.yml
+
+- name: Create {{ container_name }} secrets
   import_tasks: secrets.yml

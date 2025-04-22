@@ -1,0 +1,8 @@
+- name: Copy Immich container files
+  import_tasks: container.yml
+
+- name: Create Immich volumes
+  import_tasks: volumes.yml
+
+- name: Create Immich secrets
+  import_tasks: secrets.yml

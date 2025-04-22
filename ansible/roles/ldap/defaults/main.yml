@@ -1,0 +1,8 @@
+---
+container_name: ldap
+
+jwt_key: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
+key_seed: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
+
+username: "{{ lookup('community.general.random_string', override_all=hex_chars, length=24) }}"
+password: "{{ lookup('community.general.random_string', base64=True, length=48) }}"

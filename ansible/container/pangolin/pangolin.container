@@ -1,0 +1,25 @@
+[Unit]
+Description=Pangolin server
+
+[Service]
+Restart=unless-stopped
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/fosrl/pangolin:latest
+
+ContainerName=pangolin
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#User=node:node
+
+HealthCmd="curl -f http://localhost:3001/api/v1/"
+HealthInterval=3s
+HealthTimeout=3s
+HealthRetries=5
+
+Volume=./config:/app/config:z
+
+[Install]
+WantedBy=default.target

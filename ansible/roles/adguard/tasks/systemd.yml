@@ -1,0 +1,6 @@
+- name: "Copy {{ container_name }} systemd conf files"
+  ansible.builtin.copy:
+    dest: "/{{ item.path }}"
+    src: "{{ item.src }}"
+  with_filetree: files/
+  when: item.state == 'file

@@ -1,10 +1,12 @@
-- name: Copying FileBrowser container file
-  template:
-    dest: "{{ quadlet_path }}/filebrowser/filebrowser.container"
-    src: filebrowser.container
-
-- name: Create FileBrowser database file
+- name: Create {{ container_name }} container directory
   ansible.builtin.file:
-    path: "{{ storage }}/filebrowser/database.db"
-    recurse: false
-    state: touch
+    path: "{{ quadlet_path }}/{{ container_name }}"
+    state: directory
+    recurse: true
+
+- name: "Copy {{ container_name }} container files"
+  ansible.builtin.template:
+    dest: "{{ quadlet_path }}/{{ container_name }}/{{ item.path }}"
+    src: "{{ item.src }}"
+  with_filetree: "templates/container/"
+  when: item.state == 'file'

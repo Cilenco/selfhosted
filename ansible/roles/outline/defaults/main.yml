@@ -1,0 +1,11 @@
+---
+container_name: outline
+
+utils_secret: "{{ query('community.general.random_string', override_all=hex_chars, length=64) }}"
+client_secret: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
+secret_key: "{{ query('community.general.random_string', override_all=hex_chars, length=64) }}"
+
+db_username: "{{ lookup('community.general.random_string', override_all=hex_chars, length=24) }}"
+db_password: "{{ lookup('community.general.random_string', base64=True, length=48) }}"
+
+db_url: "postgres://{{ db_username }}:{{ db_password }}@outline-db:5432/outline"

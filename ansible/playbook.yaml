@@ -5,41 +5,42 @@
     containers.podman.podman_secret:
       skip_existing: true
 
-    ansible.builtin.file:
-      state: directory
-      recurse: true
-
-  vars_prompt:
-    - name: domain
-      prompt: Enter domain
-      private: false
-    - name: email
-      prompt: Enter E-Mail
-      private: false
-    - name: ionos_prefix
-      prompt: Enter Ionos API prefix
-      private: false
-    - name: ionos_secret
-      prompt: Enter Ionos API secret
-      private: false
-    - name: smtp_host
-      prompt: Enter SMTP host
-      private: false
-    - name: smtp_port
-      prompt: Enter SMTP port
-      private: false
-    - name: smtp_username
-      prompt: Enter SMTP username
-      private: false
-    - name: smtp_password
-      prompt: Enter SMTP password
-      private: true
-      unsafe: true
+  #vars_prompt:
+  #  - name: domain
+  #    prompt: Enter domain
+  #    private: false
+  #  - name: email
+  #    prompt: Enter E-Mail
+  #    private: false
+  #  - name: ionos_prefix
+  #    prompt: Enter Ionos API prefix
+  #    private: false
+  #  - name: ionos_secret
+  #    prompt: Enter Ionos API secret
+  #    private: false
+  #  - name: smtp_host
+  #    prompt: Enter SMTP host
+  #    private: false
+  #  - name: smtp_port
+  #    prompt: Enter SMTP port
+  #    private: false
+  #  - name: smtp_username
+  #    prompt: Enter SMTP username
+  #    private: false
+  #  - name: smtp_password
+  #    prompt: Enter SMTP password
+  #    private: true
+  #    unsafe: true
 
   vars:
     hex_chars: 0123456789abcdef
+    user_ns: keep-id:uid=65534,gid=65534
+
+    #quadlet_path: "{{ ansible_facts['env']['HOME'] }}/.config/containers/systemd"
     quadlet_path: "{{  ansible_facts['env']['HOME'] }}/containers/systemd"
-    storage: "{{  ansible_facts['env']['HOME'] }}/volumes"
+
+    volumes: "{{  ansible_facts['env']['HOME'] }}/storage/volumes"
+    media: "{{  ansible_facts['env']['HOME'] }}/storage/media"
 
   #tasks:
   #  - debug:
@@ -51,7 +52,7 @@
     - budget
     - caddy
     - filebrowser
-    #- homeassistant
+    - homeassistant
     #- immich
     - jellyfin
     - ldap

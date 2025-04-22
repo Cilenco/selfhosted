@@ -1,0 +1,20 @@
+- name: "Create {{ container_name }} volume base directory"
+  ansible.builtin.file:
+    path: "{{ volumes }}/{{ container_name }}"
+    state: directory
+    recurse: true
+
+- name: "Create {{ container_name }} volume directories"
+  ansible.builtin.file:
+    path: "{{ volumes }}/{{ container_name }}/{{ item.path }}"
+    state: directory
+    recurse: true
+  with_filetree: "templates/volumes/"
+  when: item.state == 'directory'
+
+- name: "Copy {{ container_name }} configuration files"
+  ansible.builtin.template:
+    dest: "{{ volumes }}/{{ container_name }}/{{ item.path }}"
+    src: "{{ item.src }}"
+  with_filetree: "templates/volumes"
+  when: item.state == 'file'

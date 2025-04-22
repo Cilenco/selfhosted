@@ -1,9 +1,12 @@
-- name: Copying Authelia container file
-  template:
-    dest: "{{ quadlet_path }}/authelia/authelia.container"
-    src: authelia.container
+- name: Create {{ container_name }} container directory
+  ansible.builtin.file:
+    path: "{{ quadlet_path }}/{{ container_name }}"
+    state: directory
+    recurse: true
 
-- name: Copying Adguard configuration file
-  copy:
-    dest: "{{ storage }}/authelia/configuration.yaml"
-    src: configuration.yml
+- name: "Copy {{ container_name }} container files"
+  ansible.builtin.template:
+    dest: "{{ quadlet_path }}/{{ container_name }}/{{ item.path }}"
+    src: "{{ item.src }}"
+  with_filetree: "templates/container/"
+  when: item.state == 'file'

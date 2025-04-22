@@ -1,7 +1,7 @@
-- name: Create Adguard Home directories
-  import_tasks: directories.yml
-
-- name: Copy Adguard Home container files
+- name: Copy {{ container_name }} container files
   import_tasks: container.yml
+
+- name: Create {{ container_name }} volumes
+  import_tasks: volumes.yml
 #- name: Configure systemd for Adguard Home
 #  import_tasks: container.yml

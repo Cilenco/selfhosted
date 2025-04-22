@@ -1,7 +1,0 @@
-- name: Create Authelia container directory
-  ansible.builtin.file:
-    path: "{{ quadlet_path }}/authelia"
-
-- name: Create Authelia config directory
-  ansible.builtin.file:
-    path: "{{ storage }}/authelia"

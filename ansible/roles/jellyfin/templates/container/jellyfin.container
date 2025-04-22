@@ -1,0 +1,26 @@
+[Unit]
+Description=Jellyfin streming server
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=300
+
+[Container]
+Image=docker.io/jellyfin/jellyfin
+
+ContainerName=jellyfin
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS={{ user_ns }}
+
+Network=caddy.network
+
+Volume={{ volumes }}/jellyfin/cache:/cache
+Volume={{ volumes }}/jellyfin/config:/config
+
+Volume={{ volumes }}:/media:ro
+
+[Install]
+WantedBy=default.target
