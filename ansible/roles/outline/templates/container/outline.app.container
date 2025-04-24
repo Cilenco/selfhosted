@@ -19,8 +19,8 @@ UserNS={{ user_ns }}
 
 Network=caddy.network
 
+Secret=OUTLINE_DB_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
-Secret=OUTLINE_DATABASE_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 
