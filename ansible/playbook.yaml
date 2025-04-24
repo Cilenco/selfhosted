@@ -1,5 +1,5 @@
 - name: Setup Homelab
-  hosts: all
+  hosts: raspberry
 
   module_defaults:
     containers.podman.podman_secret:
@@ -36,17 +36,21 @@
     hex_chars: 0123456789abcdef
     user_ns: keep-id:uid=65534,gid=65534
 
-    #quadlet_path: "{{ ansible_facts['env']['HOME'] }}/.config/containers/systemd"
-    quadlet_path: "{{  ansible_facts['env']['HOME'] }}/containers/systemd"
+    container_start_timeout: 900
+
+    quadlet_path: "{{ ansible_facts['env']['HOME'] }}/.config/containers/systemd"
+    #quadlet_path: "{{  ansible_facts['env']['HOME'] }}/containers/systemd"
 
     volumes: "{{  ansible_facts['env']['HOME'] }}/storage/volumes"
     media: "{{  ansible_facts['env']['HOME'] }}/storage/media"
 
   #tasks:
   #  - debug:
-  #      var: ansible_facts
+  #      var: ansible_user_id
 
   roles:
+    - systemd
+    # Setup containers
     - adguard
     - authelia
     - budget

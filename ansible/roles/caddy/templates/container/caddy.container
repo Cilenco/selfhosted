@@ -4,7 +4,7 @@ Description=Caddy Reverse Proxy
 [Service]
 Restart=no
 RestartSec=10
-TimeoutStartSec=300
+TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/glopix/caddy-ionos-dns
@@ -25,8 +25,8 @@ Network=caddy.network
 PublishPort=80:8080
 PublishPort=443:4430
 
-Volume={{ volumes }}/caddy/certs:/certs
-Volume={{ volumes }}/caddy/caddyfile:/etc/caddy/Caddyfile:ro,Z
+Volume={{ volumes }}/caddy/data:/data
+Volume={{ volumes }}/caddy/conf:/etc/caddy/:ro
 
 [Install]
 WantedBy=default.target

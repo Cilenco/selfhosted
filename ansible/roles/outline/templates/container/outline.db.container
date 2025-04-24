@@ -4,7 +4,7 @@ Description=Outline database
 [Service]
 Restart=no
 RestartSec=10
-TimeoutStartSec=300
+TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/postgres

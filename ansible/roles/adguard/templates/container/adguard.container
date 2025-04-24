@@ -4,7 +4,7 @@ Description=Adguard Home server
 [Service]
 Restart=no
 RestartSec=10
-TimeoutStartSec=300
+TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/adguard/adguardhome
@@ -25,8 +25,6 @@ PublishPort={{ ansible_facts['default_ipv4']['address'] }}:53:5300/udp
 
 Volume={{ volumes }}/adguard/conf:/opt/adguardhome/conf:Z
 Volume={{ volumes }}/adguard/work:/opt/adguardhome/work:Z
-
-Volume=caddy.certs.volume:/certs:ro
 
 [Install]
 WantedBy=default.target

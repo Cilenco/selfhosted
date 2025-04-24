@@ -4,7 +4,7 @@ Description=FileBrowser server
 [Service]
 Restart=no
 RestartSec=10
-TimeoutStartSec=300
+TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/filebrowser/filebrowser
@@ -19,7 +19,9 @@ Network=caddy.network
 
 Environment=FB_NOAUTH=true
 
-Volume={{ volumes }}:/srv
+Volume={{ media }}:/srv
+
+Volume={{ volumes }}/filebrowser/settings.json:/.filebrowser.json
 Volume={{ volumes }}/filebrowser/database.db:/database.db
 
 [Install]

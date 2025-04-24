@@ -7,7 +7,7 @@ After=immich.db.service immich.redis.service
 [Service]
 Restart=no
 RestartSec=10
-TimeoutStartSec=300
+TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=ghcr.io/immich-app/immich-server:release

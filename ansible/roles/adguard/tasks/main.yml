@@ -3,5 +3,6 @@
 
 - name: Create {{ container_name }} volumes
   import_tasks: volumes.yml
-#- name: Configure systemd for Adguard Home
-#  import_tasks: container.yml
+
+- name: Configure systemd for Adguard Home
+  import_tasks: systemd.yml
