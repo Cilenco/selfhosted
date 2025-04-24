@@ -8,8 +8,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/actualbudget/actual-server
-
-ContainerName=budget
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -28,7 +27,7 @@ Environment=ACTUAL_OPENID_DISCOVERY_URL=http://auth.homelab.com/.well-known/oaut
 
 Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
 
-Volume={{ volumes }}/budget:/data
+Volume={{ volumes }}/{{ container_name }}:/data
 
 [Install]
 WantedBy=default.target

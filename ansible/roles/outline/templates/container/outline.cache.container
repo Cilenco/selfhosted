@@ -22,7 +22,7 @@ HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume={{ volumes }}/outline/cache:/data
+Volume={{ volumes }}/{{ container_name }}/cache:/data
 
 [Install]
 WantedBy=default.target

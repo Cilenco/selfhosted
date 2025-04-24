@@ -8,22 +8,18 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/cilenco/homeassistant
-
-ContainerName=homeassistant
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
-#NoNewPrivileges=true
+NoNewPrivileges=true
+UserNS={{ user_ns }}
 #GroupsAdd=dialout
 
 Network=caddy.network
 
-Volume=homeassistant-config:/config
+Volume={{ volumes }}/{{ container_name }}:/config
+
 Volume=/etc/localtime:/etc/localtime:ro
-
-Volume=./configuration.yaml:/config/configuration.yaml:Z
-Volume=./bubblecard/bubble-popup.js.js:/config/www/bubble-popup.js.js:Z
-Volume=./bubblecard/bubble-card.js:/config/www/bubble-card.js:Z
-
 AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
 
 [Install]

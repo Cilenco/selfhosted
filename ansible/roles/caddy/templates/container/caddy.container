@@ -8,8 +8,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/glopix/caddy-ionos-dns
-
-ContainerName=caddy
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -25,8 +24,8 @@ Network=caddy.network
 PublishPort=80:8080
 PublishPort=443:4430
 
-Volume={{ volumes }}/caddy/data:/data
-Volume={{ volumes }}/caddy/conf:/etc/caddy/:ro
+Volume={{ volumes }}/{{ container_name }}/data:/data
+Volume={{ volumes }}/{{ container_name }}/conf:/etc/caddy/:ro
 
 [Install]
 WantedBy=default.target

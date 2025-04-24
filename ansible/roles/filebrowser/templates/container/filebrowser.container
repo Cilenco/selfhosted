@@ -8,8 +8,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/filebrowser/filebrowser
-
-ContainerName=filebrowser
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -21,8 +20,8 @@ Environment=FB_NOAUTH=true
 
 Volume={{ media }}:/srv
 
-Volume={{ volumes }}/filebrowser/settings.json:/.filebrowser.json
-Volume={{ volumes }}/filebrowser/database.db:/database.db
+Volume={{ volumes }}/{{ container_name }}/settings.json:/.filebrowser.json
+Volume={{ volumes }}/{{ container_name }}/database.db:/database.db
 
 [Install]
 WantedBy=default.target

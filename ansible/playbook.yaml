@@ -5,19 +5,19 @@
     containers.podman.podman_secret:
       skip_existing: true
 
-  #vars_prompt:
-  #  - name: domain
-  #    prompt: Enter domain
-  #    private: false
-  #  - name: email
-  #    prompt: Enter E-Mail
-  #    private: false
-  #  - name: ionos_prefix
-  #    prompt: Enter Ionos API prefix
-  #    private: false
-  #  - name: ionos_secret
-  #    prompt: Enter Ionos API secret
-  #    private: false
+  vars_prompt:
+    - name: domain
+      prompt: Enter domain
+      private: false
+    #  - name: email
+    #    prompt: Enter private E-Mail
+    #    private: false
+    - name: ionos_prefix
+      prompt: Enter Ionos API prefix
+      private: false
+    - name: ionos_secret
+      prompt: Enter Ionos API secret
+      private: false
   #  - name: smtp_host
   #    prompt: Enter SMTP host
   #    private: false
@@ -44,10 +44,6 @@
     volumes: "{{  ansible_facts['env']['HOME'] }}/storage/volumes"
     media: "{{  ansible_facts['env']['HOME'] }}/storage/media"
 
-  #tasks:
-  #  - debug:
-  #      var: ansible_user_id
-
   roles:
     - systemd
     # Setup containers
@@ -62,3 +58,8 @@
     - ldap
     - outline
     - vaultwarden
+
+  post_tasks:
+    - name: Reboot machine to apply changes
+      ansible.builtin.reboot:
+      become: true

@@ -8,8 +8,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless
-
-ContainerName=ldap
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -31,7 +30,7 @@ Secret=LDAP_KEY_SEED,type=env,target=LLDAP_KEY_SEED
 #Secret=SMTP_HOST,type=env,target=LLDAP_SMTP_OPTIONS__SERVER
 #Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
 
-Volume={{ volumes }}/ldap:/data
+Volume={{ volumes }}/{{ container_name }}:/data
 
 [Install]
 WantedBy=default.target

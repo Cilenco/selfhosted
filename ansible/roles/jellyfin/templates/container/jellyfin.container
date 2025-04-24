@@ -8,8 +8,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/jellyfin/jellyfin
-
-ContainerName=jellyfin
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -17,8 +16,8 @@ UserNS={{ user_ns }}
 
 Network=caddy.network
 
-Volume={{ volumes }}/jellyfin/cache:/cache
-Volume={{ volumes }}/jellyfin/config:/config
+Volume={{ volumes }}/{{ container_name }}/cache:/cache
+Volume={{ volumes }}/{{ container_name }}/config:/config
 
 Volume={{ volumes }}:/media:ro
 

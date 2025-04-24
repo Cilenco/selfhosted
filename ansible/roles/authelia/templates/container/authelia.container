@@ -11,8 +11,7 @@ TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
 Image=docker.io/authelia/authelia
-
-ContainerName=authelia
+ContainerName={{ container_name }}
 
 AutoUpdate=registry
 NoNewPrivileges=true
@@ -40,8 +39,8 @@ Secret=SMTP_PORT,type=env,target=SMTP_PORT
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume={{ volumes }}/authelia:/config
-Volume=./oidc_jwks_key:/secrets/oidc_jwks_key.pem:ro,Z
+Volume={{ volumes }}/{{ container_name }}/config:/config:ro
+Volume={{ volumes }}/{{ container_name }}/secrets:/secrets:ro
 
 [Install]
 WantedBy=default.target
