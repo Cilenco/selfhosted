@@ -84,6 +84,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # SplitPro                                      #
+  #################################################
+  @split host split.{env.DOMAIN}
+
+  handle @split {
+    reverse_proxy split-app:3000
+  }
+
+  #################################################
   # FileBrowser                                   #
   #################################################
   @files host files.{env.DOMAIN}
