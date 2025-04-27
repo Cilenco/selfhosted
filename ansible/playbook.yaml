@@ -57,6 +57,7 @@
     - jellyfin
     - ldap
     - outline
+    - splitpro
     - vaultwarden
 
   post_tasks:

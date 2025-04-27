@@ -1,3 +1,7 @@
+- name: Install Podman
+  ansible.builtin.apt:
+    name: podman
+
 - name: Set unprivileged port binding to 53
   ansible.builtin.copy:
     src: 10-unprivileged-port.conf
