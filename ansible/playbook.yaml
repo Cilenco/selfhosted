@@ -1,5 +1,5 @@
 - name: Setup Homelab
-  hosts: raspberry
+  hosts: homelab
 
   module_defaults:
     containers.podman.podman_secret:
@@ -45,7 +45,7 @@
     media: "{{  ansible_facts['env']['HOME'] }}/storage/media"
 
   roles:
-    - systemd
+    #- systemd
     # Setup containers
     - adguard
     - authelia
@@ -58,6 +58,7 @@
     - jellyfin
     - ldap
     - outline
+    - pyload
     - splitpro
     - vaultwarden
 

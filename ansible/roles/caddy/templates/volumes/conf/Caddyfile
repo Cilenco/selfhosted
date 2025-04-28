@@ -4,7 +4,7 @@
   http_port   8080
   https_port  4430
 
-  acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
+  # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 
   admin       off
 }
@@ -108,7 +108,7 @@ https://*.{env.DOMAIN} {
 
   handle @files {
     handle /share/* {
-      reverse_proxy filebrowser:80
+      reverse_proxy filebrowser:8000
     }
 
     handle {
@@ -116,8 +116,21 @@ https://*.{env.DOMAIN} {
         uri /api/authz/forward-auth
       }
 
-      reverse_proxy filebrowser:80
+      reverse_proxy filebrowser:8000
     }
+  }
+
+  #################################################
+  # PyLoad                                        #
+  #################################################
+  @downloads host downloads.{env.DOMAIN}
+
+  handle @downloads {
+    #forward_auth authelia:9091 {
+    #  uri /api/authz/forward-auth
+    #}
+
+    reverse_proxy pyload:8000
   }
 
   #################################################

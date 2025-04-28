@@ -26,8 +26,12 @@
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin-light.svg
     - Outline:
         href: https://dancing.{{ domain }}
-        description: Knowledge base for dance
+        description: Knowledge base for dancing
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
+    - PyLoad:
+        href: http://downloads.c-dielitz.de
+        description: Download Manager
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit-downvote-light.svg
     - SplitPro:
         href: https://split.{{ domain }}
         description: Splitwise alternative
