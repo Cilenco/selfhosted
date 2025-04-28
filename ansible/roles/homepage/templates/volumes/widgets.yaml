@@ -1,0 +1,6 @@
+---
+- search:
+    provider: google
+    showSearchSuggestions: false
+    target: _blank
+    focus: false

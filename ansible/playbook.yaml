@@ -53,6 +53,7 @@
     - caddy
     - filebrowser
     - homeassistant
+    - homepage
     #- immich
     - jellyfin
     - ldap

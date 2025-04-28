@@ -1,0 +1,19 @@
+---
+title: HomeLab
+
+color: slate
+theme: dark
+
+useEqualHeights: true
+disableCollapse: true
+
+disableUpdateCheck: true
+
+headerStyle: clean
+hideVersion: true
+
+layout:
+  Services:
+    style: row
+    header: false
+    columns: 3

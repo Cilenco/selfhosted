@@ -1,0 +1,5 @@
+- name: Copy {{ container_name }} container files
+  import_tasks: container.yml
+
+- name: Create {{ container_name }} volumes
+  import_tasks: volumes.yml

@@ -1,0 +1,25 @@
+[Unit]
+Description=Get Homepage
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec={{ container_start_timeout }}
+
+[Container]
+Image=docker.io/gethomepage/homepage
+ContainerName={{ container_name }}
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS={{ user_ns }}
+
+Network=caddy.network
+
+Secret=DOMAIN,type=env,target=HOMEPAGE_ALLOWED_HOSTS
+Secret=DOMAIN,type=env,target=HOMEPAGE_VAR_DOMAIN
+
+Volume={{ volumes }}/{{ container_name }}:/app/config
+
+[Install]
+WantedBy=default.target

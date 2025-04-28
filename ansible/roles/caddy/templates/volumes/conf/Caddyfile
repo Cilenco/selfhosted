@@ -9,6 +9,15 @@
   admin       off
 }
 
+https://{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
+
+  reverse_proxy homepage:3000
+}
+
 https://*.{env.DOMAIN} {
   tls {
     dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
