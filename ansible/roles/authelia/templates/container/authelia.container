@@ -39,7 +39,7 @@ Secret=SMTP_PORT,type=env,target=SMTP_PORT
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume={{ volumes }}/{{ container_name }}/config:/config:ro
+Volume={{ volumes }}/{{ container_name }}/config:/config
 Volume={{ volumes }}/{{ container_name }}/secrets:/secrets:ro
 
 [Install]
