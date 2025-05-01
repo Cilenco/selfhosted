@@ -1,5 +1,0 @@
-[Unit]
-Description=Volume for Nextcloud app
-
-[Volume]
-VolumeName=nextcloud_app_data

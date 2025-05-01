@@ -1,0 +1,51 @@
+dhcp:
+backup:
+config:
+#conversation:
+#assist_pipeline:
+homeassistant_alerts:
+image_upload:
+media_source:
+mobile_app:
+zeroconf:
+ssdp:
+usb:
+
+# Load frontend themes from the themes folder
+#frontend:
+#  themes: !include_dir_merge_named themes
+
+#automation: !include automations.yaml
+#script: !include scripts.yaml
+#scene: !include scenes.yaml
+
+homeassistant:
+  name: HomeLab
+  time_zone: Europe/Berlin
+  unit_system: metric
+  auth_providers:
+    - type: trusted_networks
+      allow_bypass_login: true
+      trusted_networks:
+        - 0.0.0.0/0
+    - type: homeassistant
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.89.0.0/24
+
+sensor:
+  - platform: time_date
+    display_options:
+      - "date_time_iso"
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /local/bubble-card.js
+      type: module
+    - url: /local/bubble-pop-up-fix.js
+      type: module
+    - url: /local/mini-graph-card-bundle.js
+      type: module

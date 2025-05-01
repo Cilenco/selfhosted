@@ -1,13 +1,10 @@
 FROM caddy:builder AS builder
-RUN xcaddy build --with github.com/caddy-dns/ionos
+
+RUN xcaddy build \
+--with github.com/caddy-dns/ionos
+--with github.com/mholt/caddy-webdav
 
 FROM caddy:latest
 
-# Install IONOS extension for DNS-01 challenge
+# Install IONOS and webdav extension
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
-
-# Create non root user, group and certs directory
-RUN addgroup -S caddy && adduser -S -H -G caddy caddy
-RUN mkdir /certs && chown caddy:caddy /certs
-
-USER caddy

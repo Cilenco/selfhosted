@@ -1,0 +1,33 @@
+{
+  "webdavd": {
+    "bindings": [
+      {
+        "port": 8000
+      }
+    ]
+  },
+  "httpd": {
+    "hide_support_link": true,
+    "bindings": [
+      {
+        "port": 8080,
+        "enable_rest_api": false,
+        "enabled_login_methods": 3,
+        "render_openapi": false,
+        "hide_login_url": 0,
+        "oidc": {
+          "client_id": "sftpgo",
+          "config_url": "https://auth.{{ domain }}",
+          "redirect_base_url": "https://files.{{ domain }}",
+          "username_field": "preferred_username",
+          "role_field": "sftpgo_role",
+          "implicit_roles": false
+        }
+      }
+    ]
+  },
+  "mfa": {
+    "totp": []
+  },
+  "plugins": []
+}

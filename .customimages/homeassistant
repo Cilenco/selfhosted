@@ -5,17 +5,3 @@ RUN mkdir -p etc/services.d/home-assistant/
 
 RUN curl -o etc/services.d/home-assistant/run \
     https://raw.githubusercontent.com/tribut/homeassistant-docker-venv/refs/heads/master/run
-
-# Create non root user and group
-RUN addgroup -S hass && adduser -S -H -G hass hass
-
-RUN chown -R hass:hass /config
-RUN chmod -R g+rwx /config
-
-USER hass
-
-# Install script for LDAP auth
-RUN curl -o /config/lldap-ha-auth.sh \
-    https://raw.githubusercontent.com/lldap/lldap/refs/heads/main/example_configs/lldap-ha-auth.sh
-
-RUN chmod +x /config/lldap-ha-auth.sh

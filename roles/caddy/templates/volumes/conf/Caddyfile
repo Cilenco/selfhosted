@@ -1,0 +1,156 @@
+{
+  email       noreply@{env.DOMAIN}
+
+  http_port   8080
+  https_port  4430
+
+  # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
+
+  admin       off
+}
+
+https://{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
+
+  reverse_proxy homepage:3000
+}
+
+https://*.{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
+
+  #################################################
+  # Adguard                                       #
+  #################################################
+  @dns host dns.{env.DOMAIN}
+
+  handle @dns {
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+    }
+
+    reverse_proxy adguard:3000
+  }
+
+  #################################################
+  # Authelia                                      #
+  #################################################
+  @auth host auth.{env.DOMAIN}
+
+  handle @auth {
+    reverse_proxy authelia:9091
+  }
+
+  #################################################
+  # Home Assistant                                #
+  #################################################
+  @home host home.{env.DOMAIN}
+
+  handle @home {
+    #forward_auth authelia:9091 {
+    #  uri /api/authz/forward-auth
+    #}
+
+    reverse_proxy homeassistant:8123 {
+      header_up X-Forwarded-For 0.0.0.0
+    }
+  }
+
+  #################################################
+  # Jellyfin                                      #
+  #################################################
+  @streaming host streaming.{env.DOMAIN}
+
+  handle @streaming {
+    reverse_proxy jellyfin:8096
+  }
+
+  #################################################
+  # ActualBudge                                   #
+  #################################################
+  @budget host budget.{env.DOMAIN}
+
+  handle @budget {
+    reverse_proxy budget:5006
+  }
+
+  #################################################
+  # LDAP                                          #
+  #################################################
+  @user host user.{env.DOMAIN}
+
+  handle @user {
+    reverse_proxy ldap:17170
+    # respond 404
+  }
+
+  #################################################
+  # Outline                                       #
+  #################################################
+  @dancing host dancing.{env.DOMAIN}
+
+  handle @dancing {
+    reverse_proxy outline-app:3000
+  }
+
+  #################################################
+  # SplitPro                                      #
+  #################################################
+  @split host split.{env.DOMAIN}
+
+  handle @split {
+    reverse_proxy split-app:3000
+  }
+
+  #################################################
+  # FileBrowser                                   #
+  #################################################
+  @files host files.{env.DOMAIN}
+
+  handle @files {
+    reverse_proxy sftpgo:8080
+  }
+
+  #################################################
+  # PyLoad                                        #
+  #################################################
+  @downloads host downloads.{env.DOMAIN}
+
+  handle @downloads {
+    #forward_auth authelia:9091 {
+    #  uri /api/authz/forward-auth
+    #}
+
+    reverse_proxy pyload:8000
+  }
+
+  #################################################
+  # Vaultwarden                                   #
+  #################################################
+  @passwords host passwords.{env.DOMAIN}
+
+  handle @passwords {
+    reverse_proxy vaultwarden:8080
+  }
+
+  #################################################
+  # Immich                                        #
+  #################################################
+  @photos host photos.{env.DOMAIN}
+
+  handle @photos {
+    reverse_proxy immich-app:2283
+  }
+
+  #################################################
+  # Fallback                                      #
+  #################################################
+  handle { # all other
+    abort
+  }
+}
