@@ -41,7 +41,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
         with:
           image: tonistiigi/binfmt:latest
-          platforms: amd64
+          platforms: arm64,arm
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -59,5 +59,5 @@ jobs:
           tags: |
             cilenco/caddy-ionos-dns:latest
             cilenco/caddy-ionos-dns:${{ steps.latest_version.outputs.tag }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64
           push: true
