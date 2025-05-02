@@ -113,7 +113,12 @@ https://*.{env.DOMAIN} {
   @files host files.{env.DOMAIN}
 
   handle @files {
-    reverse_proxy sftpgo:8080
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+      copy_headers Remote-User
+    }
+
+    reverse_proxy filebrowser:8000
   }
 
   #################################################

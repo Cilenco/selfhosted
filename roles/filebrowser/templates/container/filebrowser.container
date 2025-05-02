@@ -7,22 +7,24 @@ RestartSec=10
 TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
-Image=docker.io/gtstef/filebrowser
+Image=docker.io/filebrowser/filebrowser
 ContainerName={{ container_name }}
+
+Entrypoint=/bin/sh
+Exec=/config/bootstrap.sh
 
 AutoUpdate=registry
 NoNewPrivileges=true
-UserNS={{ user_ns }}
+#UserNS={{ user_ns }}
 
 Network=caddy.network
-PublishPort=7777:80
 
-Environment=FB_NOAUTH=true
+Environment=FB_DATABASE=/data/database.db
 
 Volume={{ media }}:/srv
 
-#Volume={{ volumes }}/{{ container_name }}/settings.json:/.filebrowser.json
-#Volume={{ volumes }}/{{ container_name }}/database.db:/database.db
+Volume={{ volumes }}/{{ container_name }}/config:/config:ro
+Volume={{ volumes }}/{{ container_name }}/data:/data
 
 [Install]
 WantedBy=default.target

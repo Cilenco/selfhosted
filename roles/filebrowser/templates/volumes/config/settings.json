@@ -1,0 +1,39 @@
+{
+  "server": {
+    "root": "/srv",
+    "log": "stdout",
+
+    "baseURL": "",
+    "address": "",
+    "port": "8000",
+
+    "enableExec": false
+  },
+  "settings": {
+    "signup": false,
+    "authMethod": "proxy",
+
+    "createUserDir": true,
+    "userHomeBasePath": "/users",
+
+    "defaults": {
+      "locale": "en",
+      "viewMode": "list",
+      "singleClick": true,
+      "hideDotfiles": true,
+      "perm": {
+        "admin": false,
+        "execute": false,
+        "download": true,
+        "create": true,
+        "rename": true,
+        "modify": true,
+        "delete": true,
+        "share": true
+      }
+    }
+  },
+  "auther": {
+    "header": "Remote-User"
+  }
+}
