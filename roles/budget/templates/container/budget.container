@@ -7,7 +7,7 @@ RestartSec=10
 TimeoutStartSec={{ container_start_timeout }}
 
 [Container]
-Image=docker.io/actualbudget/actual-server
+Image=docker.io/actualbudget/actual-server:edge-alpine
 ContainerName={{ container_name }}
 
 AutoUpdate=registry
@@ -18,7 +18,10 @@ Network=caddy.network
 
 Environment=DEBUG=actual:config
 
-#Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
+Environment=ACTUAL_USER_CREATION_MODE=login
+Environment=ACTUAL_OPENID_ENFORCE=true
+
+Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
 
 Volume={{ volumes }}/{{ container_name }}:/data
 

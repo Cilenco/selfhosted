@@ -1,10 +1,8 @@
 {
-  "loginMethod": "openid",
-  "allowedLoginMethods": ["openid"],
   "openId": {
-    "discoveryURL": "https://auth.{{ domain }}",
+    "discoveryURL": "https://auth.{{ domain }}/.well-known/openid-configuration",
     "server_hostname": "https://budget.{{ domain }}",
-    "authMethod": "oauth2",
+    "authMethod": "openid",
     "client_id": "budget"
   }
 }
