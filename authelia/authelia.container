@@ -9,7 +9,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh authelia.bootstrap
+ExecStartPre=sh authelia.bootstrap
 
 [Container]
 Image=docker.io/authelia/authelia

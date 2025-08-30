@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh outline.db.bootstrap
+ExecStartPre=sh outline.db.bootstrap
 
 [Container]
 Image=docker.io/postgres

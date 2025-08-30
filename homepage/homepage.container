@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh homepage.bootstrap
+ExecStartPre=sh homepage.bootstrap
 
 [Container]
 Image=docker.io/gethomepage/homepage

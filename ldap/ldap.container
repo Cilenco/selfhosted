@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh ldap.bootstrap
+ExecStartPre=sh ldap.bootstrap
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless

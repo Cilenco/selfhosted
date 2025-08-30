@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh budget.bootstrap
+ExecStartPre=sh budget.bootstrap
 
 [Container]
 Image=docker.io/actualbudget/actual-server:edge-alpine

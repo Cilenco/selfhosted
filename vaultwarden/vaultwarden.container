@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh vaultwarden.bootstrap
+ExecStartPre=sh vaultwarden.bootstrap
 
 [Container]
 Image=docker.io/vaultwarden/server

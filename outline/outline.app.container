@@ -9,7 +9,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh outline.app.bootstrap
+ExecStartPre=sh outline.app.bootstrap
 
 [Container]
 Image=docker.io/outlinewiki/outline

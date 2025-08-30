@@ -6,7 +6,7 @@ Restart=no
 RestartSec=10
 
 TimeoutStartSec=${CONTAINER_START_TIMEOUT}
-ExecStart=sh outline.cache.bootstrap
+ExecStartPre=sh outline.cache.bootstrap
 
 [Container]
 Image=docker.io/redis
