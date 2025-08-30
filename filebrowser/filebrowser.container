@@ -1,0 +1,32 @@
+[Unit]
+Description=FileBrowser server
+
+[Service]
+Restart=no
+RestartSec=10
+
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStart=sh filebrowser.bootstrap
+
+[Container]
+Image=docker.io/filebrowser/filebrowser
+ContainerName=filebrowser
+
+Entrypoint=/bin/sh
+Exec=/config/bootstrap.sh
+
+AutoUpdate=registry
+NoNewPrivileges=true
+#UserNS=${USER_NAMESPACE}
+
+Network=caddy.network
+
+Environment=FB_DATABASE=/data/database.db
+
+Volume={{ media }}:/srv
+
+Volume=${VOLUME_DIR}/filebrowser/config:/config
+Volume=${VOLUME_DIR}/filebrowser/database:/database
+
+[Install]
+WantedBy=default.target

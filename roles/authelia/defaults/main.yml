@@ -1,8 +1,0 @@
----
-container_name: authelia
-
-jwt_secret: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
-
-session_secret: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
-oidc_hmac_secret: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"
-storage_enc_key: "{{ query('community.general.random_string', override_all=hex_chars, length=128) }}"

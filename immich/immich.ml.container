@@ -1,0 +1,23 @@
+[Unit]
+Description=Immich ML server
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+
+[Container]
+Image=ghcr.io/immich-app/immich-machine-learning:release
+
+ContainerName=immich-ml
+
+AutoUpdate=registry
+NoNewPrivileges=true
+User=www-data:www-data
+
+Network=caddy.network
+
+Volume=immich-ml:/cache
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir -p $VOLUME_DIR/homepage
+
+(envsubst < config/services.yaml) > $VOLUMES_DIR/homepage/services.yaml
+(envsubst < config/bookmarks.yaml) > $VOLUMES_DIR/homepage/bookmarks.yaml
+(envsubst < config/settings.yaml) > $VOLUMES_DIR/homepage/settings.yaml
+(envsubst < config/widgets.yaml) > $VOLUMES_DIR/homepage/widgets.yaml
+(envsubst < config/custom.css) > $VOLUMES_DIR/homepage/custom.css

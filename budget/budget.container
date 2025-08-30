@@ -1,0 +1,31 @@
+[Unit]
+Description=ActualBudget server
+
+[Service]
+Restart=no
+RestartSec=10
+
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStart=sh budget.bootstrap
+
+[Container]
+Image=docker.io/actualbudget/actual-server:edge-alpine
+ContainerName=budget
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS=${USER_NAMESPACE}
+
+Network=caddy.network
+
+Environment=DEBUG=actual:config
+
+Environment=ACTUAL_USER_CREATION_MODE=login
+Environment=ACTUAL_OPENID_ENFORCE=true
+
+Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
+
+Volume=${VOLUME_DIR}/budget/data:/data
+
+[Install]
+WantedBy=default.target

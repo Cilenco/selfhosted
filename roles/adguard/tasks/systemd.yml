@@ -1,5 +1,0 @@
-- name: Disable resolved DNSStubListener
-  ansible.builtin.copy:
-    src: resolved.conf
-    dest: /etc/systemd
-  become: true

@@ -1,0 +1,42 @@
+---
+- Services:
+    - Adguard Home:
+        href: https://dns.${DOMAIN}
+        description: Networkwide Adblocker
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/adguard-home-light.svg
+    - Actual Budget:
+        href: https://budget.${DOMAIN}
+        description: Personal finance app
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/actual-budget-light.svg
+    - File Browser:
+        href: https://files.${DOMAIN}
+        description: Cloud & Web File Browser
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/file-browser-light.svg
+    - Home Assistant:
+        href: https://home.${DOMAIN}
+        description: Local and private Home automation
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant-light.svg
+    - Immich:
+        href: https://photos.${DOMAIN}
+        description: Photo and video management
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich-light.svg
+    - Jellyfin:
+        href: https://streaming.${DOMAIN}
+        description: Media streaming system
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin-light.svg
+    - Outline:
+        href: https://dancing.${DOMAIN}
+        description: Knowledge base for dancing
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
+    - PyLoad:
+        href: http://downloads.c-dielitz.de
+        description: Download Manager
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit-downvote-light.svg
+    - SplitPro:
+        href: https://split.${DOMAIN}
+        description: Splitwise alternative
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/budget-board-light.svg
+    - Vaultwarden:
+        href: https://passwords.${DOMAIN}
+        description: Password manager
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg

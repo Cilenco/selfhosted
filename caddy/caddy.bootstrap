@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIRcaddy/data
+mkdir -p $VOLUMES_DIR/caddy/conf
+
+ln -sf Caddyfile $VOLUME_DIR/caddy/conf/Caddyfile

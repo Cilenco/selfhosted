@@ -1,0 +1,31 @@
+[Unit]
+Description=Adguard Home server
+
+[Service]
+Restart=no
+RestartSec=10
+
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStart=sh adguard.bootstrap
+
+[Container]
+Image=docker.io/adguard/adguardhome
+ContainerName=adguard
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS=${USER_NAMESPACE}
+
+Network=caddy.network
+
+PublishPort=127.0.0.1:53:5300/tcp
+PublishPort=127.0.0.1:53:5300/udp
+
+PublishPort={{ ansible_facts['default_ipv4']['address'] }}:53:5300/tcp
+PublishPort={{ ansible_facts['default_ipv4']['address'] }}:53:5300/udp
+
+Volume=${VOLUME_DIR}/adguard/conf:/opt/adguardhome/conf:Z
+Volume=${VOLUME_DIR}/adguard/work:/opt/adguardhome/work:Z
+
+[Install]
+WantedBy=default.target

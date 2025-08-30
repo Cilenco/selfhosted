@@ -1,0 +1,30 @@
+[Unit]
+Description=Outline Redis
+
+[Service]
+Restart=no
+RestartSec=10
+
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStart=sh outline.cache.bootstrap
+
+[Container]
+Image=docker.io/redis
+ContainerName=outline-redis
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS=${USER_NAMESPACE}
+
+Network=caddy.network
+
+HealthCmd="redis-cli ping | grep PONG"
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Volume=${VOLUME_DIR}/outline/cache:/data
+
+[Install]
+WantedBy=default.target

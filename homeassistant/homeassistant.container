@@ -1,0 +1,25 @@
+[Unit]
+Description=HomeAssistant Server
+
+[Service]
+Restart=no
+RestartSec=10
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+
+[Container]
+Image=docker.io/cilenco/homeassistant
+ContainerName=homeassistant
+
+AutoUpdate=registry
+UserNS=${USER_NAMESPACE}
+#GroupsAdd=dialout
+
+Network=caddy.network
+
+Volume=${VOLUME_DIR}/homeassistant:/config
+
+Volume=/etc/localtime:/etc/localtime:ro
+AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
+
+[Install]
+WantedBy=default.target

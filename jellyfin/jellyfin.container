@@ -1,0 +1,27 @@
+[Unit]
+Description=Jellyfin streming server
+
+[Service]
+Restart=no
+RestartSec=10
+
+TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStart=sh jellyfin.bootstrap
+
+[Container]
+Image=docker.io/jellyfin/jellyfin
+ContainerName=jellyfin
+
+AutoUpdate=registry
+NoNewPrivileges=true
+UserNS=${USER_NAMESPACE}
+
+Network=caddy.network
+
+Volume=${VOLUME_DIR}/jellyfin/cache:/cache
+Volume=${VOLUME_DIR}/jellyfin/config:/config
+
+Volume=${MEDIA_DIR}:/media:ro
+
+[Install]
+WantedBy=default.target

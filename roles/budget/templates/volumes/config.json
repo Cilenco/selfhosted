@@ -1,8 +1,0 @@
-{
-  "openId": {
-    "discoveryURL": "https://auth.{{ domain }}/.well-known/openid-configuration",
-    "server_hostname": "https://budget.{{ domain }}",
-    "authMethod": "openid",
-    "client_id": "budget"
-  }
-}

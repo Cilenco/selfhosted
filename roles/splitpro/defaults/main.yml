@@ -1,9 +1,0 @@
----
-container_name: split
-
-secret: "{{ lookup('community.general.random_string', ignore_similar_chars=true, base64=True, length=32) }}"
-
-db_username: "{{ lookup('community.general.random_string', ignore_similar_chars=true, override_all=hex_chars, length=24) }}"
-db_password: "{{ lookup('community.general.random_string', ignore_similar_chars=true, base64=True, length=48) }}"
-
-db_url: "postgres://{{ db_username_fixed }}:{{ db_password_fixed }}@split-db:5432/splitpro"
