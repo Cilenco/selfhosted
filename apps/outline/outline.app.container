@@ -5,21 +5,11 @@ Requires=outline.db.service outline.cache.service
 After=outline.db.service outline.cache.service
 
 [Service]
-Restart=no
-RestartSec=10
-
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
 ExecStartPre=sh outline.app.bootstrap
 
 [Container]
 Image=docker.io/outlinewiki/outline
 ContainerName=outline-app
-
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
-Network=caddy.network
 
 Secret=OUTLINE_DB_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
@@ -29,6 +19,3 @@ Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 EnvironmentFile=${VOLUME_DIR}/outline/env.outline
 
 Volume=${VOLUME_DIR}/outline/data:/var/lib/outline/data
-
-[Install]
-WantedBy=default.target

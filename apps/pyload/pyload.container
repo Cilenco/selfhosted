@@ -10,16 +10,7 @@ TimeoutStartSec=${CONTAINER_START_TIMEOUT}
 Image=docker.io/mobilistics/pyload
 ContainerName=pyload
 
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
-Network=caddy.network
-
 Environment=TZ=Europe/Berlin
 Volume={{ media }}:/downloads
 
 Volume=${VOLUME_DIR}/pyload:/config
-
-[Install]
-WantedBy=default.target

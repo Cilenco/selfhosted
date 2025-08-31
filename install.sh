@@ -5,8 +5,6 @@ if [[ $EUID > 0 ]]; then
   exit
 fi
 
-UNPRIVILEGED_PORT_FILE=/etc/sysctl.d/10-unprivileged-port.conf
-
 apt install podman    # Install container runtime
 apt install bzip2     # Used by autorestic install
 
@@ -41,7 +39,15 @@ printf $SMTP_PORT | podman secret create SMTP_PORT -
 printf $SMTP_USERNAME | podman secret create SMTP_USERNAME -
 printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD -
 
+# Add default config for containers
+CONTAINER_CONF_DIR=~/.config/containers/systemd/container.d
+
+mkdir -p $CONTAINER_CONF_DIR
+ln -sf config/container.conf $CONTAINER_CONF_DIR
+
 # Allow unprivileged port binding
-if [[ -e $UNPRIVILEGED_PORT_FILE ]]; then
+UNPRIVILEGED_PORT_FILE=/etc/sysctl.d/10-unprivileged-port.conf
+
+if [ ! -f $UNPRIVILEGED_PORT_FILE ]; then
   echo "net.ipv4.ip_unprivileged_port_start=53" >> $UNPRIVILEGED_PORT_FILE
 fi

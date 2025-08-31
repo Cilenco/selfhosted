@@ -2,21 +2,12 @@
 Description=LDAP Server
 
 [Service]
-Restart=no
-RestartSec=10
-
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
 ExecStartPre=sh ldap.bootstrap
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless
 ContainerName=ldap
 
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
-Network=caddy.network
 PublishPort=17170:17170
 
 Environment=LLDAP_LDAP_BASE_DN=dc=example,dc=com
@@ -33,6 +24,3 @@ Secret=LDAP_KEY_SEED,type=env,target=LLDAP_KEY_SEED
 #Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
 
 Volume=${VOLUME_DIR}/ldap:/data
-
-[Install]
-WantedBy=default.target

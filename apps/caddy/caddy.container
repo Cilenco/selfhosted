@@ -2,32 +2,19 @@
 Description=Caddy Reverse Proxy
 
 [Service]
-Restart=no
-RestartSec=10
-
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
 ExecStartPre=sh caddy.bootstrap
 
 [Container]
 Image=docker.io/glopix/caddy-ionos-dns
 ContainerName=caddy
 
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
 Secret=DOMAIN,type=env,target=DOMAIN
 
 Secret=IONOS_PREFIX,type=env,target=IONOS_PREFIX
 Secret=IONOS_SECRET,type=env,target=IONOS_SECRET
-
-Network=caddy.network
 
 PublishPort=80:8080
 PublishPort=443:4430
 
 Volume=${VOLUME_DIR}/caddy/data:/data
 Volume=${VOLUME_DIR}/caddy/conf:/etc/caddy/:ro
-
-[Install]
-WantedBy=default.target
