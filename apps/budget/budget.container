@@ -13,6 +13,6 @@ Environment=DEBUG=actual:config
 Environment=ACTUAL_USER_CREATION_MODE=login
 Environment=ACTUAL_OPENID_ENFORCE=true
 
-Secret=ACTUAL_BUDGET_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
 
 Volume=${VOLUME_DIR}/budget/data:/data

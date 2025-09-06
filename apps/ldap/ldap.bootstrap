@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/ldap
+mkdir -p $VOLUMES_DIR/ldap/data
 
 openssl rand -hex 64 | podman secret create LDAP_JWT_KEY -  | true
 openssl rand -hex 64 | podman secret create LDAP_USERNAME - | true

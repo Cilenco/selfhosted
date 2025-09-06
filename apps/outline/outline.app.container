@@ -13,9 +13,9 @@ ContainerName=outline-app
 
 Secret=OUTLINE_DB_URL,type=env,target=DATABASE_URL
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
-Secret=OUTLINE_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 
 EnvironmentFile=${VOLUME_DIR}/outline/env.outline
 
-Volume=${VOLUME_DIR}/outline/data:/var/lib/outline/data
+Volume=${VOLUME_DIR}/outline/app/data:/var/lib/outline/data

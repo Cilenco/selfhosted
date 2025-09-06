@@ -1,0 +1,18 @@
+[Unit]
+Description=Navidrome server
+
+[Service]
+ExecStartPre=sh navidrome.bootstrap
+
+[Container]
+Image=docker.io/deluan/navidrome
+ContainerName=navidrome
+
+Environment=ND_MUSICFOLDER="./"
+Environment=ND_ENABLESHARING=true
+Environment=ND_REVERSEPROXYWHITELIST=10.89.0.0/24
+Environment=ND_ENABLEUSEREDITING=false
+Environment=ND_AGENTS=""
+
+Volume=${VOLUME_DIR}/navidrome/data:/data
+Volume=${MEDIA_DIR}:/music:ro

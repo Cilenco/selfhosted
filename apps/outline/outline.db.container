@@ -19,4 +19,4 @@ Environment=POSTGRES_DB=outline
 Secret=OUTLINE_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=OUTLINE_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUME_DIR}/outline/db:/var/lib/postgresql/data
+Volume=${VOLUME_DIR}/outline/db/data:/var/lib/postgresql/data

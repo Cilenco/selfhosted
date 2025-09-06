@@ -2,19 +2,11 @@
 Description=SplitPro database
 
 [Service]
-Restart=no
-RestartSec=10
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStartPre=sh splitpro.db.bootstrap
 
 [Container]
 Image=docker.io/postgres
 ContainerName=split-db
-
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
-Network=caddy.network
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s
@@ -27,7 +19,4 @@ Environment=POSTGRES_DB=splitpro
 Secret=SPLIT_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=SPLIT_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUME_DIR}/splitpro:/var/lib/postgresql/data
-
-[Install]
-WantedBy=default.target
+Volume=${VOLUME_DIR}/splitpro/db/data:/var/lib/postgresql/data

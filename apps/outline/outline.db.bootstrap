@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/outline/db
+mkdir -p $VOLUMES_DIR/outline/db/data
 
 openssl rand -hex  8 | podman secret create OUTLINE_DB_USERNAME - | true
 openssl rand -hex 12 | podman secret create OUTLINE_DB_PASSWORD - | true

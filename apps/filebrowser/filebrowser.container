@@ -13,7 +13,7 @@ Exec=/config/bootstrap.sh
 
 Environment=FB_DATABASE=/data/database.db
 
-Volume={{ media }}:/srv
-
 Volume=${VOLUME_DIR}/filebrowser/config:/config
 Volume=${VOLUME_DIR}/filebrowser/database:/database
+
+Volume=${MEDIA_DIR}:/srv

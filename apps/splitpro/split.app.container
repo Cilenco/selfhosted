@@ -5,25 +5,25 @@ Requires=split.db.service
 After=split.db.service
 
 [Service]
-Restart=no
-RestartSec=10
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStartPre=sh split.app.bootstrap
 
 [Container]
 Image=docker.io/ossapps/splitpro
 ContainerName=split-app
 
-AutoUpdate=registry
-NoNewPrivileges=true
-UserNS=${USER_NAMESPACE}
-
-Network=caddy.network
-PublishPort=3000:3000
-
 Environment=NEXTAUTH_URL="http://localhost:3000"
+Environment=DEFAULT_HOMEPAGE="/balances"
 
-Secret=SPLIT_DB_URL,type=env,target=DATABASE_URL
-Secret=SPLIT_SECRET,type=env,target=NEXTAUTH_SECRET
+Environment=ENABLE_SENDING_INVITES=false
+Environment=DISABLE_EMAIL_SIGNUP=true
 
-[Install]
-WantedBy=default.target
+Environment=OIDC_NAME=Authelia
+Environment=OIDC_CLIENT_ID=split
+Environment=OIDC_WELL_KNOWN_URL=
+
+Secret=SPLIT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+
+Secret=SMTP_USERNAME,type=env,target=EMAIL_SERVER_USER
+Secret=SMTP_PASSWORD,type=env,target=EMAIL_SERVER_PASSWORD
+Secret=SMTP_HOST,type=env,target=EMAIL_SERVER_HOST
+Secret=SMTP_PORT,type=env,target=EMAIL_SERVER_PORT

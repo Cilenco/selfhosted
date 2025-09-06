@@ -1,6 +1,3 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/adguard/conf
-mkdir -p $VOLUMES_DIR/adguard/work
-
-(envsubst < AdguardHome.yaml) > $VOLUMES_DIR/adguard/conf/AdguardHome.yaml
+mkdir -p $VOLUMES_DIR/vaultwarden/data

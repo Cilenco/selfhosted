@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/outline/data
+mkdir -p $VOLUMES_DIR/outline/app/data
 
 openssl rand -hex 64 | podman secret create OUTLINE_SECRET_KEY - | true
 openssl rand -hex 64 | podman secret create OUTLINE_UTILS_SECRET - | true
