@@ -10,7 +10,7 @@ printf $(openssl rand -hex 64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET 
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_STORAGE_ENCRYPTION_KEY - | true
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_SESSION_SECRET - | true
 
-openssl rand -hex 64 | podman secret create AUTHELIA_CLIENT_SECRET - | true
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_CLIENT_SECRET - | true
 
 if [ ! -f $OIDC_KEY_FILE ]; then
   openssl genrsa 4096 > $OIDC_KEY_FILE
