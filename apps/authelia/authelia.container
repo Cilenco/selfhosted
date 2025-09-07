@@ -1,9 +1,6 @@
 [Unit]
 Description=Authelia
 
-Requires= ldap.service
-After= ldap.service
-
 [Service]
 ExecStartPre=sh authelia/authelia.bootstrap
 
@@ -19,9 +16,6 @@ Secret=AUTHELIA_OIDC_HMAC_SECRET,type=env,target=OIDC_HMAC_SECRET
 Secret=AUTHELIA_STORAGE_ENCRYPTION_KEY,type=env,target=STORAGE_ENCRYPTION_KEY
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=CLIENT_SECRET
-
-Secret=LDAP_USERNAME,type=env,target=LDAP_USERNAME
-Secret=LDAP_PASSWORD,type=env,target=LDAP_PASSWORD
 
 Secret=SMTP_USERNAME,type=env,target=SMTP_USERNAME
 Secret=SMTP_PASSWORD,type=env,target=SMTP_PASSWORD

@@ -22,6 +22,9 @@ authentication_backend:
   file:
     path: '/config/users.yml'
     watch: true
+    search:
+      email: true
+      case_insensitive: true
     password:
       algorithm: 'argon2'
       argon2:
