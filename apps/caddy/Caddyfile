@@ -118,7 +118,7 @@ https://*.{env.DOMAIN} {
       copy_headers Remote-User
     }
 
-    reverse_proxy filebrowser:8000
+    reverse_proxy filebrowser:8080
   }
 
   #################################################
