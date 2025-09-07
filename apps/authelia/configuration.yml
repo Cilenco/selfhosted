@@ -86,11 +86,11 @@ identity_providers:
     hmac_secret: '{{env "OIDC_HMAC_SECRET"}}'
     jwks:
       - key: |
-          {{ fileContent "/secrets/oidc_jwks_key.pem" | nindent 10 }}
+          {{ fileContent "/secrets/OIDC_PRIVATE_KEY" | nindent 10 }}
     clients:
       - client_id: outline
         client_name: Outline
-        client_secret: '{{ env "AUTHELIA_CLIENT_SECRET"}}'
+        client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         redirect_uris:
           - https://dancing.{{env "DOMAIN"}}/auth/oidc.callback
@@ -103,7 +103,7 @@ identity_providers:
         token_endpoint_auth_method: "client_secret_post"
       - client_id: budget
         client_name: ActualBudget
-        client_secret: '{{ env "AUTHELIA_CLIENT_SECRET"}}'
+        client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         redirect_uris:
           - https://budget.{{env "DOMAIN"}}/openid/callback
@@ -116,7 +116,7 @@ identity_providers:
         token_endpoint_auth_method: "client_secret_basic"
       - client_id: split
         client_name: SplitPro
-        client_secret: '{{ env "AUTHELIA_CLIENT_SECRET"}}'
+        client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         redirect_uris:
           - https://split.{{env "DOMAIN"}}/api/auth/callback/oidc
