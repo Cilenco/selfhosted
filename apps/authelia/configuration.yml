@@ -19,23 +19,18 @@ authentication_backend:
   refresh_interval: always
   password_reset:
     disable: false
-  ldap:
-    implementation: custom
-    address: ldap://ldap:3890
-    timeout: 5s
-    start_tls: false
-    base_dn: "dc=example,dc=com"
-    users_filter: "(&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))"
-    additional_users_dn: ou=people
-    additional_groups_dn: ou=groups
-    groups_filter: "(member={dn})"
-    attributes:
-      display_name: displayName
-      username: uid
-      group_name: cn
-      mail: mail
-    user: 'uid={{env "LDAP_USERNAME"}},ou=people,dc=example,dc=com'
-    password: '{{env "LDAP_PASSWORD"}}'
+  file:
+    path: '/config/users.yml'
+    watch: true
+    password:
+      algorithm: 'argon2'
+      argon2:
+        variant: 'argon2id'
+        iterations: 3
+        memory: 65536
+        parallelism: 4
+        key_length: 32
+        salt_length: 16
 
 identity_validation:
   reset_password:
