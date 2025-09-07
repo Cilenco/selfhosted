@@ -5,7 +5,7 @@ Requires= ldap.service
 After= ldap.service
 
 [Service]
-ExecStartPre=sh authelia.bootstrap
+ExecStartPre=sh authelia/authelia.bootstrap
 
 [Container]
 Image=docker.io/authelia/authelia

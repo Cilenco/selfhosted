@@ -17,5 +17,3 @@ openssl rand -hex 64 | podman secret create AUTHELIA_CLIENT_SECRET - | true
 if [ ! -f $OIDC_KEY_FILE ]; then
   openssl genrsa 4096 > $OIDC_KEY_FILE
 fi
-
-

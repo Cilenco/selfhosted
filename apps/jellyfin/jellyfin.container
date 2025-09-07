@@ -2,7 +2,7 @@
 Description=Jellyfin streming server
 
 [Service]
-ExecStartPre=sh jellyfin.bootstrap
+ExecStartPre=sh jellyfin/jellyfin.bootstrap
 
 [Container]
 Image=docker.io/jellyfin/jellyfin

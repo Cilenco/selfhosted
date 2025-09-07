@@ -2,7 +2,7 @@
 Description=Navidrome server
 
 [Service]
-ExecStartPre=sh navidrome.bootstrap
+ExecStartPre=sh navidrome/navidrome.bootstrap
 
 [Container]
 Image=docker.io/deluan/navidrome

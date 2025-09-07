@@ -5,7 +5,7 @@ Requires=outline.db.service outline.cache.service
 After=outline.db.service outline.cache.service
 
 [Service]
-ExecStartPre=sh outline.app.bootstrap
+ExecStartPre=sh outline/outline.app.bootstrap
 
 [Container]
 Image=docker.io/outlinewiki/outline

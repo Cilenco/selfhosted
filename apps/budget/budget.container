@@ -2,7 +2,7 @@
 Description=ActualBudget server
 
 [Service]
-ExecStartPre=sh budget.bootstrap
+ExecStartPre=sh budget/budget.bootstrap
 
 [Container]
 Image=docker.io/actualbudget/actual-server:edge-alpine

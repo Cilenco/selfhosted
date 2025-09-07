@@ -5,7 +5,7 @@ Requires=split.db.service
 After=split.db.service
 
 [Service]
-ExecStartPre=sh split.app.bootstrap
+ExecStartPre=sh splitpro/split.app.bootstrap
 
 [Container]
 Image=docker.io/ossapps/splitpro

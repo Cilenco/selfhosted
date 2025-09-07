@@ -2,7 +2,7 @@
 Description=Caddy Reverse Proxy
 
 [Service]
-ExecStartPre=sh caddy.bootstrap
+ExecStartPre=sh caddy/caddy.bootstrap
 
 [Container]
 Image=docker.io/glopix/caddy-ionos-dns

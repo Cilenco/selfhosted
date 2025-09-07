@@ -2,7 +2,7 @@
 Description=Adguard Home server
 
 [Service]
-ExecStartPre=sh adguard.bootstrap
+ExecStartPre=sh adguard/adguard.bootstrap
 
 [Container]
 Image=docker.io/adguard/adguardhome

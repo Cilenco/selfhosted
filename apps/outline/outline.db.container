@@ -2,7 +2,7 @@
 Description=Outline database
 
 [Service]
-ExecStartPre=sh outline.db.bootstrap
+ExecStartPre=sh outline/outline.db.bootstrap
 
 [Container]
 Image=docker.io/postgres

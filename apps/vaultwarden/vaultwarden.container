@@ -2,7 +2,7 @@
 Description=Vaultwarden server
 
 [Service]
-ExecStartPre=sh vaultwarden.bootstrap
+ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 
 [Container]
 Image=docker.io/vaultwarden/server

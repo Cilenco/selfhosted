@@ -2,7 +2,7 @@
 Description=LDAP Server
 
 [Service]
-ExecStartPre=sh ldap.bootstrap
+ExecStartPre=sh ldap/ldap.bootstrap
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless

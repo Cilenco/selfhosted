@@ -2,7 +2,7 @@
 Description=SplitPro database
 
 [Service]
-ExecStartPre=sh splitpro.db.bootstrap
+ExecStartPre=sh splitpro/split.db.bootstrap
 
 [Container]
 Image=docker.io/postgres

@@ -2,7 +2,7 @@
 Description=FileBrowser server
 
 [Service]
-ExecStartPre=sh filebrowser.bootstrap
+ExecStartPre=sh filebrowser/filebrowser.bootstrap
 
 [Container]
 Image=docker.io/filebrowser/filebrowser

@@ -2,7 +2,7 @@
 Description=Outline Redis
 
 [Service]
-ExecStartPre=sh outline.cache.bootstrap
+ExecStartPre=sh outline/outline.cache.bootstrap
 
 [Container]
 Image=docker.io/redis
