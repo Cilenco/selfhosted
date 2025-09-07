@@ -16,5 +16,6 @@ Secret=IONOS_SECRET,type=env,target=IONOS_SECRET
 PublishPort=80:8080
 PublishPort=443:4430
 
+Volume=${VOLUMES_DIR}/caddy/conf/Caddyfile:/etc/caddy/Caddyfile:ro
+
 Volume=${VOLUMES_DIR}/caddy/data:/data
-Volume=${VOLUMES_DIR}/caddy/conf:/etc/caddy/:ro
