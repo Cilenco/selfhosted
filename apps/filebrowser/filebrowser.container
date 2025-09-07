@@ -8,7 +8,11 @@ ExecStartPre=sh filebrowser/filebrowser.bootstrap
 Image=docker.io/filebrowser/filebrowser
 ContainerName=filebrowser
 
+Environment=FB_DATABASE=/database/database.db
+
 Volume=${VOLUMES_DIR}/filebrowser/config:/config
 Volume=${VOLUMES_DIR}/filebrowser/database:/database
+
+Volume=./settings.json:/config/settings.json:ro
 
 Volume=${MEDIA_DIR}:/srv

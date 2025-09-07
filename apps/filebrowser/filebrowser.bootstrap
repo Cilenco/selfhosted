@@ -2,5 +2,3 @@
 
 mkdir -p $VOLUMES_DIR/filebrowser/config
 mkdir -p $VOLUMES_DIR/filebrowser/database
-
-ln -sf $PWD/filebrowser/settings.json $VOLUMES_DIR/filebrowser/config/settings.json
