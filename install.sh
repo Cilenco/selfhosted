@@ -1,15 +1,15 @@
 #!/bin/bash
 
-if [[ $EUID > 0 ]]; then
-  echo "Please run as root"
-  exit
-fi
+#if [[ $EUID > 0 ]]; then
+#  echo "Please run as root"
+#  exit
+#fi
 
-apt install podman    # Install container runtime
-apt install bzip2     # Used by autorestic install
+#apt install podman    # Install container runtime
+#apt install bzip2     # Used by autorestic install
 
 # Install restic and autorestic for backing up all data
-wget -qO - https://raw.githubusercontent.com/cupcakearmy/autorestic/master/install.sh | bash
+#wget -qO - https://raw.githubusercontent.com/cupcakearmy/autorestic/master/install.sh | bash
 
 # Gather general information for
 echo -e "Setting up your machine for selfhosting\n\n"
@@ -43,12 +43,12 @@ printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD -
 CONF_DIR=~/.config/containers/systemd
 mkdir -p $CONF_DIR/container.d
 
-ln -sf config/container.conf $CONF_DIR/container.d
-ln -sf config/shared.env $CONF_DIR/shared.env
+ln -sf $PWD/config/container.conf $CONF_DIR/container.d
+ln -sf $PWD/config/shared.env $CONF_DIR/shared.env
 
 # Allow unprivileged port binding
-UNPRIVILEGED_PORT_FILE=/etc/sysctl.d/10-unprivileged-port.conf
+#UNPRIVILEGED_PORT_FILE=/etc/sysctl.d/10-unprivileged-port.conf
 
-if [ ! -f $UNPRIVILEGED_PORT_FILE ]; then
-  echo "net.ipv4.ip_unprivileged_port_start=53" >> $UNPRIVILEGED_PORT_FILE
-fi
+#if [ ! -f $UNPRIVILEGED_PORT_FILE ]; then
+#  echo "net.ipv4.ip_unprivileged_port_start=53" >> $UNPRIVILEGED_PORT_FILE
+#fi
