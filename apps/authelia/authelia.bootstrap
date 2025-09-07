@@ -5,7 +5,7 @@ OIDC_KEY_FILE=$VOLUMES_DIR/authelia/secrets/OIDC_PRIVATE_KEY
 mkdir -p $VOLUMES_DIR/authelia/config
 mkdir -p $VOLUMES_DIR/authelia/secrets
 
-ln -sf > $VOLUMES_DIR/authelia/config/configuration.yml
+ln -sf $VOLUMES_DIR/authelia/config/configuration.yml
 
 openssl rand -hex 64 | podman secret create AUTHELIA_JWT_SECRET - | true
 openssl rand -hex 64 | podman secret create AUTHELIA_OIDC_HMAC_SECRET - | true

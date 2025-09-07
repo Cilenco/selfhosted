@@ -2,4 +2,4 @@
 
 mkdir -p $VOLUMES_DIR/homeassistant/
 
-ln -sf configuration.yaml $VOLUMES_DIR/homeassistant/configuration.yaml
+ln -sf $VOLUMES_DIR/homeassistant/configuration.yaml
