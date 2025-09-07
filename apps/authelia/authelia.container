@@ -33,3 +33,5 @@ Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
 Volume=${VOLUMES_DIR}/authelia/config:/config
 Volume=${VOLUMES_DIR}/authelia/secrets:/secrets:ro
+
+Volume=./configuration.yml:/config/configuration.yml
