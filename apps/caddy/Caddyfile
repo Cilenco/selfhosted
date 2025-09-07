@@ -122,16 +122,17 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # PyLoad                                        #
+  # Navidrome                                     #
   #################################################
-  @downloads host downloads.{env.DOMAIN}
+  @music host music.{env.DOMAIN}
 
-  handle @downloads {
-    #forward_auth authelia:9091 {
-    #  uri /api/authz/forward-auth
-    #}
+  handle @music {
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+      copy_headers Remote-User
+    }
 
-    reverse_proxy pyload:8000
+    reverse_proxy navidrome:4533
   }
 
   #################################################
