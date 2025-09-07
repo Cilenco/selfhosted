@@ -2,5 +2,5 @@
 
 mkdir -p $VOLUMES_DIR/splitpro/db/data
 
-openssl rand -hex  8 | podman secret create SPLIT_DB_USERNAME - | true
-openssl rand -hex 12 | podman secret create SPLIT_DB_PASSWORD - | true
+printf $(openssl rand -hex  8) | podman secret create SPLIT_DB_USERNAME - | true
+printf $(openssl rand -hex 12) | podman secret create SPLIT_DB_PASSWORD - | true
