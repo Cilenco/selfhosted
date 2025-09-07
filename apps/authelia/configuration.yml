@@ -55,10 +55,10 @@ access_control:
     - domain: 'home.{{env "DOMAIN"}}' # HomeAssistant
       subject: "group:admin"
       policy: one_factor
-    - domain: 'streaming.{{env "DOMAIN"}}' # Jellyfin
-      policy: two_factor
+    - domain: 'music.{{env "DOMAIN"}}' # Navidrome
+      policy: one_factor
     - domain: 'dancing.{{env "DOMAIN"}}' # Outline
-      policy: two_factor
+      policy: one_factor
 
 session:
   name: authelia_session
