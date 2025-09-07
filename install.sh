@@ -40,10 +40,11 @@ printf $SMTP_USERNAME | podman secret create SMTP_USERNAME -
 printf $SMTP_PASSWORD | podman secret create SMTP_PASSWORD -
 
 # Add default config for containers
-CONTAINER_CONF_DIR=~/.config/containers/systemd/container.d
+CONF_DIR=~/.config/containers/systemd
+mkdir -p $CONF_DIR/container.d
 
-mkdir -p $CONTAINER_CONF_DIR
-ln -sf config/container.conf $CONTAINER_CONF_DIR
+ln -sf config/container.conf $CONF_DIR/container.d
+ln -sf config/shared.env $CONF_DIR/shared.env
 
 # Allow unprivileged port binding
 UNPRIVILEGED_PORT_FILE=/etc/sysctl.d/10-unprivileged-port.conf
