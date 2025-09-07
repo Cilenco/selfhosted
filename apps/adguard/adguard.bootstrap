@@ -3,6 +3,4 @@
 mkdir -p $VOLUMES_DIR/adguard/conf
 mkdir -p $VOLUMES_DIR/adguard/work
 
-export IP_ADDRESS=$(ip route get 8.8.8.8 | head -1 | cut -d' ' -f7)
-
-(envsubst < AdGuardHome.yaml) > $VOLUMES_DIR/adguard/conf/AdGuardHome.yaml
+(envsubst < $PWD/adguard/AdGuardHome.yaml) > $VOLUMES_DIR/adguard/conf/AdGuardHome.yaml
