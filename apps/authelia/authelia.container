@@ -31,5 +31,5 @@ Secret=SMTP_PORT,type=env,target=SMTP_PORT
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume=${VOLUME_DIR}/authelia/config:/config
-Volume=${VOLUME_DIR}/authelia/secrets:/secrets:ro
+Volume=${VOLUMES_DIR}/authelia/config:/config
+Volume=${VOLUMES_DIR}/authelia/secrets:/secrets:ro

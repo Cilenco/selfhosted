@@ -2,4 +2,4 @@
 
 mkdir -p $VOLUMES_DIR/budget/data
 
-(envsubst < config.json) > $VOLUME_DIR/budget/data/config.json
+(envsubst < config.json) > $VOLUMES_DIR/budget/data/config.json

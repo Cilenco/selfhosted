@@ -8,7 +8,7 @@ ExecStartPre=sh jellyfin/jellyfin.bootstrap
 Image=docker.io/jellyfin/jellyfin
 ContainerName=jellyfin
 
-Volume=${VOLUME_DIR}/jellyfin/cache:/cache
-Volume=${VOLUME_DIR}/jellyfin/config:/config
+Volume=${VOLUMES_DIR}/jellyfin/cache:/cache
+Volume=${VOLUMES_DIR}/jellyfin/config:/config
 
 Volume=${MEDIA_DIR}:/media:ro

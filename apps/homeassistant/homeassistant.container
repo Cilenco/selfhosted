@@ -16,7 +16,7 @@ UserNS=${USER_NAMESPACE}
 
 Network=caddy.network
 
-Volume=${VOLUME_DIR}/homeassistant:/config
+Volume=${VOLUMES_DIR}/homeassistant:/config
 
 Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0

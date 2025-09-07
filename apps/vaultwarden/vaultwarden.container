@@ -12,4 +12,4 @@ Environment=SIGNUPS_ALLOWED=false
 Environment=INVITATIONS_ALLOWED=false
 Environment=ROCKET_PORT=8080
 
-Volume=${VOLUME_DIR}/vaultwarden/data:/data
+Volume=${VOLUMES_DIR}/vaultwarden/data:/data

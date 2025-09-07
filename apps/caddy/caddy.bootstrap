@@ -3,4 +3,4 @@
 mkdir -p $VOLUMES_DIR/caddy/data
 mkdir -p $VOLUMES_DIR/caddy/conf
 
-ln -sf Caddyfile $VOLUME_DIR/caddy/conf/Caddyfile
+ln -sf Caddyfile $VOLUMES_DIR/caddy/conf/Caddyfile

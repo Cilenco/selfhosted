@@ -10,4 +10,4 @@ ContainerName=homepage
 Secret=DOMAIN,type=env,target=HOMEPAGE_ALLOWED_HOSTS
 Secret=DOMAIN,type=env,target=HOMEPAGE_VAR_DOMAIN
 
-Volume=${VOLUME_DIR}/homepage:/app/config
+Volume=${VOLUMES_DIR}/homepage:/app/config

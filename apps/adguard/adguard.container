@@ -14,5 +14,5 @@ PublishPort=127.0.0.1:53:5300/udp
 PublishPort={{ ansible_facts['default_ipv4']['address'] }}:53:5300/tcp
 PublishPort={{ ansible_facts['default_ipv4']['address'] }}:53:5300/udp
 
-Volume=${VOLUME_DIR}/adguard/conf:/opt/adguardhome/conf:Z
-Volume=${VOLUME_DIR}/adguard/work:/opt/adguardhome/work:Z
+Volume=${VOLUMES_DIR}/adguard/conf:/opt/adguardhome/conf:Z
+Volume=${VOLUMES_DIR}/adguard/work:/opt/adguardhome/work:Z
