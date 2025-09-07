@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/homeassistant/
+mkdir -p $VOLUMES_DIR/homeassistant
 
 ln -sf $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/configuration.yaml

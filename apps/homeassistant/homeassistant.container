@@ -1,6 +1,9 @@
 [Unit]
 Description=HomeAssistant Server
 
+[Service]
+ExecStartPre=sh homeassistant/homeassistant.bootstrap
+
 [Container]
 Image=docker.io/cilenco/homeassistant
 ContainerName=homeassistant
