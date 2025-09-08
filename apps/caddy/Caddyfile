@@ -1,6 +1,8 @@
 {
   email       noreply@{env.DOMAIN}
 
+  order       webdav before file_server
+
   http_port   8080
   https_port  4430
 
@@ -114,8 +116,7 @@ https://*.{env.DOMAIN} {
     }
 
     webdav {
-      root /media
-      prefix /{header.Remote-User}
+      root /media/{header.Remote-User}
     }
   }
 
