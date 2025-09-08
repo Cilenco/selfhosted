@@ -62,31 +62,12 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # Jellyfin                                      #
-  #################################################
-  @streaming host streaming.{env.DOMAIN}
-
-  handle @streaming {
-    reverse_proxy jellyfin:8096
-  }
-
-  #################################################
-  # ActualBudge                                   #
+  # ActualBudget                                  #
   #################################################
   @budget host budget.{env.DOMAIN}
 
   handle @budget {
     reverse_proxy budget:5006
-  }
-
-  #################################################
-  # LDAP                                          #
-  #################################################
-  @user host user.{env.DOMAIN}
-
-  handle @user {
-    reverse_proxy ldap:17170
-    # respond 404
   }
 
   #################################################
