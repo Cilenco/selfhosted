@@ -59,6 +59,8 @@ access_control:
       policy: one_factor
     - domain: 'dancing.{{env "DOMAIN"}}' # Outline
       policy: one_factor
+    - domain: 'cloud.{{env "DOMAIN"}}' # WebDav Cloud
+      policy: one_factor
 
 session:
   name: authelia_session
