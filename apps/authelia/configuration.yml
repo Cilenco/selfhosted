@@ -57,15 +57,6 @@ access_control:
     - domain: 'files.{{env "DOMAIN"}}' # FileBrowser
       subject: "group:admin"
       policy: one_factor
-      resources:
-        - "^/api/public/dl/*"
-        - "/share/*"
-        - "/static/js/*"
-        - "/static/css/*"
-        - "/static/img/*"
-        - "/static/themes/*"
-        - "/static/fonts/*"
-      policy: bypass
     - domain: 'home.{{env "DOMAIN"}}' # HomeAssistant
       subject: "group:admin"
       policy: one_factor
