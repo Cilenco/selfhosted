@@ -7,6 +7,11 @@ server:
     authz:
       forward-auth:
         implementation: "ForwardAuth"
+        authn_strategies:
+          - name: 'HeaderAuthorization'
+            schemes:
+              - 'Basic'
+          - name: 'CookieSession'
     enable_pprof: false
     enable_expvars: false
 
