@@ -95,8 +95,12 @@ https://*.{env.DOMAIN} {
   #################################################
   @files host files.{env.DOMAIN}
 
+  @not_share_path {
+    not path /share/*
+  }
+
   handle @files {
-    forward_auth authelia:9091 {
+    forward_auth @not_share_path authelia:9091 {
       uri /api/authz/forward-auth
       copy_headers Remote-User
     }
