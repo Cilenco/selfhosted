@@ -5,7 +5,7 @@ Description=Caddy Reverse Proxy
 ExecStartPre=sh caddy/caddy.bootstrap
 
 [Container]
-Image=docker.io/glopix/caddy-ionos-dns
+Image=docker.io/cilenco/caddy-ionos-dns
 ContainerName=caddy
 
 Secret=DOMAIN,type=env,target=DOMAIN
