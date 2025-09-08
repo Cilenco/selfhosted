@@ -95,9 +95,9 @@ https://*.{env.DOMAIN} {
   #################################################
   @files host files.{env.DOMAIN}
 
-  @not_share_path {
-    not path /share/*
-  }
+  #@not_share_path {
+  #  not path /share/*
+  #}
 
   handle @files {
     forward_auth @not_share_path authelia:9091 {
