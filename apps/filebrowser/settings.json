@@ -3,9 +3,11 @@
     "root": "/srv",
     "log": "stdout",
 
+    "database": "/database/filebrowser.db",
+
     "baseURL": "",
     "address": "",
-    "port": "8000",
+    "port": "8080",
 
     "enableExec": false
   },
@@ -14,7 +16,7 @@
     "authMethod": "proxy",
 
     "createUserDir": true,
-    "userHomeBasePath": "/users",
+    "userHomeBasePath": "/",
 
     "defaults": {
       "locale": "en",
