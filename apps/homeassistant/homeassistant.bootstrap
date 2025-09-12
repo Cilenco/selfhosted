@@ -3,4 +3,4 @@
 mkdir -p $VOLUMES_DIR/homeassistant/config
 mkdir -p $VOLUMES_DIR/homeassistant/run
 
-ln -sf $PWD/homeassistant/config/configuration.yaml $VOLUMES_DIR/homeassistant/config/configuration.yaml
+ln -sf $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/config/configuration.yaml
