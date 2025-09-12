@@ -2,7 +2,7 @@
 Description=Get Homepage
 
 [Service]
-ExecStartPre=sh homepage.bootstrap
+ExecStartPre=sh homepage/homepage.bootstrap
 
 [Container]
 Image=docker.io/gethomepage/homepage
