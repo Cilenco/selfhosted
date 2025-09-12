@@ -5,10 +5,13 @@ Description=HomeAssistant Server
 ExecStartPre=sh homeassistant/homeassistant.bootstrap
 
 [Container]
-Image=docker.io/cilenco/homeassistant
+Image=docker.io/homeassistant/home-assistant
 ContainerName=homeassistant
 
-Volume=${VOLUMES_DIR}/homeassistant:/config
+User=65534:65534
+
+Volume=${VOLUMES_DIR}/homeassistant/config:/config
+Volume=${VOLUMES_DIR}/homeassistant/run:/run
 
 Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
