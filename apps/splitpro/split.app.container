@@ -11,7 +11,6 @@ ExecStartPre=sh splitpro/split.app.bootstrap
 Image=docker.io/ossapps/splitpro
 ContainerName=split-app
 
-Environment=NEXTAUTH_URL="http://localhost:3000"
 Environment=DEFAULT_HOMEPAGE="/balances"
 
 Environment=ENABLE_SENDING_INVITES=false
@@ -22,7 +21,14 @@ Environment=OIDC_CLIENT_ID=split
 Environment=OIDC_WELL_KNOWN_URL=https://auth.${DOMAIN}/.well-known/openid-configuration
 Environment=NEXTAUTH_URL=https://auth.${DOMAIN}
 
+Environment=POSTGRES_CONTAINER_NAME=splitpro-db
+Environment=POSTGRES_DB=splitpro
+Environment=POSTGRES_PORT=5432
+
 Secret=SPLIT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+
+Secret=SPLIT_DB_USERNAME,type=env,target=POSTGRES_USER="postgres"
+Secret=SPLIT_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
 Secret=SMTP_USERNAME,type=env,target=EMAIL_SERVER_USER
 Secret=SMTP_PASSWORD,type=env,target=EMAIL_SERVER_PASSWORD
