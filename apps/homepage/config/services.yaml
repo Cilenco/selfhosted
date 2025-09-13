@@ -20,6 +20,10 @@
         href: https://photos.${DOMAIN}
         description: Photo and video management
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich-light.svg
+    - Navidrome:
+        href: https://music.${DOMAIN}
+        description: Music streaming server
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/navidrome-light.svg
     #- Jellyfin:
     #    href: https://streaming.${DOMAIN}
     #    description: Media streaming system
