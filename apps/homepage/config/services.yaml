@@ -20,18 +20,18 @@
         href: https://photos.${DOMAIN}
         description: Photo and video management
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich-light.svg
-    - Jellyfin:
-        href: https://streaming.${DOMAIN}
-        description: Media streaming system
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin-light.svg
+    #- Jellyfin:
+    #    href: https://streaming.${DOMAIN}
+    #    description: Media streaming system
+    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin-light.svg
     - Outline:
         href: https://dancing.${DOMAIN}
         description: Knowledge base for dancing
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
-    - PyLoad:
-        href: http://downloads.c-dielitz.de
-        description: Download Manager
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit-downvote-light.svg
+    #- PyLoad:
+    #    href: http://downloads.c-dielitz.de
+    #    description: Download Manager
+    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit-downvote-light.svg
     - SplitPro:
         href: https://split.${DOMAIN}
         description: Splitwise alternative
