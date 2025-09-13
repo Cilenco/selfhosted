@@ -19,7 +19,8 @@ Environment=DISABLE_EMAIL_SIGNUP=true
 
 Environment=OIDC_NAME=Authelia
 Environment=OIDC_CLIENT_ID=split
-Environment=OIDC_WELL_KNOWN_URL=
+Environment=OIDC_WELL_KNOWN_URL=https://auth.${DOMAIN}/.well-known/openid-configuration
+Environment=NEXTAUTH_URL=https://auth.${DOMAIN}
 
 Secret=SPLIT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 
