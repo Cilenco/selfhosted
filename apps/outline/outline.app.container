@@ -28,6 +28,7 @@ Environment=ENABLE_UPDATES=false
 Environment=WEB_CONCURRENCY=1
 
 Environment=OIDC_DISPLAY_NAME=Authelia
+Environment=OIDC_ISSUER_URL=https://auth.${DOMAIN}
 Environment=OIDC_SCOPES=openid offline_access profile email
 Environment=OIDC_USERNAME_CLAIM=preferred_username
 Environment=OIDC_DISABLE_REDIRECT=false
