@@ -2,5 +2,5 @@
 
 mkdir -p $VOLUMES_DIR/outline/app/data
 
-printf $(openssl rand -hex 64) | podman secret create OUTLINE_SECRET_KEY - | true
-printf $(openssl rand -hex 64) | podman secret create OUTLINE_UTILS_SECRET - | true
+printf $(openssl rand -hex 32) | podman secret create OUTLINE_SECRET_KEY - | true
+printf $(openssl rand -hex 32) | podman secret create OUTLINE_UTILS_SECRET - | true
