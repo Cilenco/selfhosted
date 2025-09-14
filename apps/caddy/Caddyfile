@@ -26,6 +26,8 @@ https://*.{env.DOMAIN} {
     resolvers 8.8.8.8   8.8.4.4
   }
 
+  @private not remote_ip private_ranges
+
   #################################################
   # Adguard                                       #
   #################################################
@@ -54,6 +56,8 @@ https://*.{env.DOMAIN} {
   @home host home.{env.DOMAIN}
 
   handle @home {
+    abort @private
+    
     #forward_auth authelia:9091 {
     #  uri /api/authz/forward-auth
     #}
@@ -67,8 +71,9 @@ https://*.{env.DOMAIN} {
   # ActualBudget                                  #
   #################################################
   @budget host budget.{env.DOMAIN}
-
+  
   handle @budget {
+    abort @private
     reverse_proxy budget:5006
   }
 
@@ -147,6 +152,7 @@ https://*.{env.DOMAIN} {
   @passwords host passwords.{env.DOMAIN}
 
   handle @passwords {
+    abort @private
     reverse_proxy vaultwarden:8080
   }
 
