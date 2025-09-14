@@ -11,11 +11,41 @@ ExecStartPre=sh outline/outline.app.bootstrap
 Image=docker.io/outlinewiki/outline
 ContainerName=outline-app
 
-Secret=OUTLINE_DB_URL,type=env,target=DATABASE_URL
+Environment=NODE_ENV=production
+
+Environment=FILE_STORAGE=local
+Environment=PGSSLMODE=disable
+
+Environment=URL=https://dancing.{{ domain }}
+Environment=REDIS_URL=redis://outline-redis:6379
+
+Environment=FILE_STORAGE_LOCAL_ROOT_DIR=/var/lib/outline/data
+Environment=FILE_STORAGE_UPLOAD_MAX_SIZE=26214400
+
+Environment=FORCE_HTTPS=false
+Environment=ENABLE_UPDATES=false
+
+Environment=WEB_CONCURRENCY=1
+
+Environment=OIDC_DISPLAY_NAME=Authelia
+Environment=OIDC_SCOPES=openid offline_access profile email
+Environment=OIDC_USERNAME_CLAIM=preferred_username
+Environment=OIDC_DISABLE_REDIRECT=false
+Environment=OIDC_CLIENT_ID=outline
+
+Environment=RATE_LIMITER_ENABLED=true
+Environment=RATE_LIMITER_DURATION_WINDOW=60
+Environment=RATE_LIMITER_REQUESTS=1000
+
+Environment=DATABASE_NAME=outline
+Environment=DATABASE_HOST=outline-db
+Environment=DATABASE_PORT=5432
+
+Secret=OUTLINE_DB_USERNAME,type=env,target=DATABASE_USER
+Secret=OUTLINE_DB_PASSWORD,type=env,target=DATABASE_PASSWORD
+
 Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
-
-EnvironmentFile=${VOLUMES_DIR}/outline/env.outline
 
 Volume=${VOLUMES_DIR}/outline/app/data:/var/lib/outline/data
