@@ -16,7 +16,7 @@ Environment=NODE_ENV=production
 Environment=FILE_STORAGE=local
 Environment=PGSSLMODE=disable
 
-Environment=URL=https://dancing.{{ domain }}
+Environment=URL=https://dancing.${DOMAIN}
 Environment=REDIS_URL=redis://outline-redis:6379
 
 Environment=FILE_STORAGE_LOCAL_ROOT_DIR=/var/lib/outline/data
