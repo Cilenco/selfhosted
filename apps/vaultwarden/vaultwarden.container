@@ -16,7 +16,9 @@ Environment=ROCKET_PORT=8080
 
 Environment=SSO_PKCE=true
 Environment=SSO_ENABLED=true
-Environment=SSO_ONLY=true
+
+#Needed for Android app login
+Environment=SSO_ONLY=false
 
 Environment=SSO_CLIENT_ID=vaultwarden
 Environment=SSO_AUTHORITY=https://auth.${DOMAIN}
