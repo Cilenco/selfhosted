@@ -5,7 +5,7 @@ Description=ActualBudget server
 ExecStartPre=sh budget/budget.bootstrap
 
 [Container]
-Image=docker.io/actualbudget/actual-server:edge-alpine
+Image=docker.io/actualbudget/actual-server
 ContainerName=budget
 
 Environment=DEBUG=actual:config
