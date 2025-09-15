@@ -5,11 +5,21 @@ Description=Vaultwarden server
 ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 
 [Container]
-Image=docker.io/vaultwarden/server
+Image=docker.io/vaultwarden/server:testing
 ContainerName=vaultwarden
 
 Environment=SIGNUPS_ALLOWED=false
 Environment=INVITATIONS_ALLOWED=false
 Environment=ROCKET_PORT=8080
+
+Environment=SSO_PKCE=true
+Environment=SSO_ENABLED=true
+Environment=SSO_ONLY=true
+
+Environment=SSO_CLIENT_ID=vaultwarden
+Environment=SSO_AUTHORITY=https://auth.${DOMAIN}
+Environment=SSO_SCOPES="openid offline_access profile email"
+
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=SSO_CLIENT_SECRET
 
 Volume=${VOLUMES_DIR}/vaultwarden/data:/data
