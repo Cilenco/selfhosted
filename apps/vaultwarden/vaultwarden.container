@@ -8,7 +8,7 @@ ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 Image=docker.io/vaultwarden/server:testing
 ContainerName=vaultwarden
 
-Environment=DOMAIN=${DOMAIN}
+Environment=DOMAIN=https://passwords.${DOMAIN}
 
 Environment=SIGNUPS_ALLOWED=false
 Environment=INVITATIONS_ALLOWED=false
