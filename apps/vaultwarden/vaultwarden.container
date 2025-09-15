@@ -8,6 +8,8 @@ ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 Image=docker.io/vaultwarden/server:testing
 ContainerName=vaultwarden
 
+Environment=DOMAIN=${DOMAIN}
+
 Environment=SIGNUPS_ALLOWED=false
 Environment=INVITATIONS_ALLOWED=false
 Environment=ROCKET_PORT=8080
