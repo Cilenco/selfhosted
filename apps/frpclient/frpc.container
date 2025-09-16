@@ -1,0 +1,11 @@
+[Unit]
+Description=FRP Client
+
+[Service]
+ExecStartPre=sh frpclient/frpc.bootstrap
+
+[Container]
+Image=docker.io/snowdreamtech/frpc
+ContainerName=frpc
+
+Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frpc.toml
