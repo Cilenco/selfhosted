@@ -1,11 +1,11 @@
-dnsServer = 8.8.8.8
+dnsServer = "8.8.8.8"
 
-serverAddr = ${DOMAIN}
+serverAddr = "${DOMAIN}"
 serverPort = 7000
 
 [[proxies]]
-name = https
-type = https
-localIP = caddy
+type = "tcp"
+name = "https"
+localIP = "caddy"
 localPort = 4430
-remotePort=443
+remotePort = 443
