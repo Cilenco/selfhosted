@@ -8,4 +8,4 @@ ExecStartPre=sh frpclient/frpc.bootstrap
 Image=docker.io/snowdreamtech/frpc
 ContainerName=frpc
 
-Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frpc/frpc.toml
+Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml
