@@ -2,4 +2,4 @@
 
 mkdir -p $VOLUMES_DIR/frpc
 
-(envsubst < $PWD/frpc/frpc.toml) > $VOLUMES_DIR/frpc/frpc.toml
+(envsubst < $PWD/frpclient/frpc.toml) > $VOLUMES_DIR/frpc/frpc.toml
