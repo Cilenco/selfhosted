@@ -8,6 +8,9 @@ ExecStartPre=sh wireguard/wireguard.bootstrap
 Image=docker.io/linuxserver/wireguard
 ContainerName=wireguard
 
+AddCapability=NET_ADMIN
+AddCapability=SYS_MODULE
+
 User=65534:65534
 
 Volume=${VOLUMES_DIR}/wireguard/conf/vps.conf:/config/wg_confs/vps.conf
