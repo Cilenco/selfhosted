@@ -1,0 +1,11 @@
+[Unit]
+Description=Vaultwarden server
+
+[Service]
+ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
+
+[Container]
+Image=docker.io/linuxserver/wireguard
+ContainerName=wireguard
+
+Volume=${VOLUMES_DIR}/wireguard/vps.conf:/config/wg_confs/vps.conf
