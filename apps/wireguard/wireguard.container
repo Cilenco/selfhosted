@@ -2,7 +2,7 @@
 Description=Vaultwarden server
 
 [Service]
-ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
+ExecStartPre=sh wireguard/wireguard.bootstrap
 
 [Container]
 Image=docker.io/linuxserver/wireguard
