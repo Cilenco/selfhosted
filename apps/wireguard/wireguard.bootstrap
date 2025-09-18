@@ -1,3 +1,4 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/wireguard
+mkdir -p $VOLUMES_DIR/wireguard/conf
+mkdir -p $VOLUMES_DIR/wireguard/run

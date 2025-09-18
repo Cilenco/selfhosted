@@ -10,5 +10,5 @@ ContainerName=wireguard
 
 User=65534:65534
 
-Volume=${VOLUMES_DIR}/wireguard/config/vps.conf:/config/wg_confs/vps.conf
+Volume=${VOLUMES_DIR}/wireguard/conf/vps.conf:/config/wg_confs/vps.conf
 Volume=${VOLUMES_DIR}/wireguard/run:/run
