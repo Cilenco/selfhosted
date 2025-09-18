@@ -11,7 +11,8 @@ ContainerName=wireguard
 AddCapability=NET_ADMIN
 AddCapability=SYS_MODULE
 
+Sysctl=net.ipv4.conf.all.src_valid_mark=1
+
 User=65534:65534
 
 Volume=${VOLUMES_DIR}/wireguard/conf/vps.conf:/config/wg_confs/vps.conf
-Volume=${VOLUMES_DIR}/wireguard/run:/run
