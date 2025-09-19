@@ -4,8 +4,8 @@ serverAddr = "${DOMAIN}"
 serverPort = 7000
 
 [[proxies]]
-type = "tcp"
-name = "https"
-localIP = "caddy"
-localPort = 4430
-remotePort = 443
+type = "udp"
+name = "wireguard"
+localIP = "wireguard"
+remotePort = 51820
+localPort = 51820

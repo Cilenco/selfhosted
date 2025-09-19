@@ -166,6 +166,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Wireguard                                     #
+  #################################################
+  @wireguard host wireguard.{env.DOMAIN}
+
+  handle @wireguard {
+    reverse_proxy wireguard:51821
+  }
+
+  #################################################
   # Fallback                                      #
   #################################################
   handle { # all other
