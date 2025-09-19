@@ -15,6 +15,7 @@ AddCapability=SYS_MODULE
 AddCapability=NET_RAW
 
 Environment=WG_HOST=${DOMAIN}
+Environment=WG_DEFAULT_DNS=${IP_ADDRESS}
 Environment=DISABLE_IPV6=true
 
 Sysctl=net.ipv4.ip_forward=1
