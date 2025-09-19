@@ -1,0 +1,38 @@
+{
+  "server": {
+    "externalDomain": "photos.${DOMAIN}"
+  },
+  "logging": {
+    "enabled": true,
+    "level": "log"
+  },
+  "storageTemplate": {
+    "enabled": true,
+    "template": "{{y}}-{{MM}}/{{filename}}",
+    "hashVerificationEnabled": true
+  },
+  "passwordLogin": {
+    "enabled": true
+  },
+  "oauth": {
+    "enabled": false,
+    "autoLaunch": true,
+    "autoRegister": true,
+    "buttonText": "Login with Authelia",
+    "issuerUrl": "https://auth.${DOMAIN}/.well-known/openid-configuration",
+    "clientSecret": "",
+    "clientId": "immich",
+    "defaultStorageQuota": null,
+    "mobileOverrideEnabled": false,
+    "mobileRedirectUri": "",
+    "storageLabelClaim": "preferred_username",
+    "scope": "openid email profile"
+  },
+  "newVersionCheck": {
+    "enabled": false
+  },
+  "trash": {
+    "enabled": true,
+    "days": 30
+  }
+}

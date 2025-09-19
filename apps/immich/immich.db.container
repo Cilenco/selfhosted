@@ -2,21 +2,12 @@
 Description=Immich database
 
 [Service]
-Restart=no
-RestartSec=10
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStartPre=sh immich/immich.db.bootstrap
 
 [Container]
-Image=docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
-Exec=postgres -c shared_preload_libraries=vectors.so -c 'search_path="$$user", public, vectors' -c logging_collector=on -c max_wal_size=2GB -c shared_buffers=512MB -c wal_compression=on
+Image=ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:8d292bdb796aa58bbbaa47fe971c8516f6f57d6a47e7172e62754feb6ed4e7b0
 
 ContainerName=immich-db
-
-AutoUpdate=registry
-NoNewPrivileges=true
-User=postgres:postgres
-
-Network=caddy.network
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s
@@ -26,10 +17,9 @@ HealthRetries=3
 
 Environment=POSTGRES_DB=immich
 
+Environment=POSTGRES_INITDB_ARGS="--data-checksums"
+
 Secret=IMMICH_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=IMMICH_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=immich-db:/var/lib/postgresql/data
-
-[Install]
-WantedBy=default.target
+Volume=${VOLUMES_DIR}/immich/db:/var/lib/postgresql/data

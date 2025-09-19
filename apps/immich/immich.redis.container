@@ -2,19 +2,11 @@
 Description=Immich Redis
 
 [Service]
-Restart=no
-RestartSec=10
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStartPre=sh immich/immich.redis.bootstrap
 
 [Container]
 Image=docker.io/redis
 ContainerName=immich-redis
-
-AutoUpdate=registry
-NoNewPrivileges=true
-User=redis:redis
-
-Network=caddy.network
 
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
@@ -22,7 +14,4 @@ HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume=immich-redis:/data
-
-[Install]
-WantedBy=default.target
+Volume=${VOLUMES_DIR}/immich/redis:/data

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/immich/app
+
+(envsubst < $PWD/immich/settings.json) > $VOLUMES_DIR/immich/app/settings.json

@@ -5,31 +5,26 @@ Requires=immich.db.service immich.redis.service
 After=immich.db.service immich.redis.service
 
 [Service]
-Restart=no
-RestartSec=10
-TimeoutStartSec=${CONTAINER_START_TIMEOUT}
+ExecStartPre=sh immich/immich.app.bootstrap
 
 [Container]
 Image=ghcr.io/immich-app/immich-server:release
 
 ContainerName=immich-app
 
-AutoUpdate=registry
-NoNewPrivileges=true
-#User=node:node
+Environment=IMMICH_ENV=production
+Environment=TZ=Europe/Berlin
 
-Network=caddy.network
+Environment=IMMICH_CONFIG_FILE=/settings.json
 
 Environment=DB_DATABASE_NAME=immich
-
-Environment=TZ=Europe/Berlin
-Environment=DB_HOSTNAME=immich-db
 Environment=REDIS_HOSTNAME=immich-redis
+Environment=DB_HOSTNAME=immich-db
 
 Secret=IMMICH_DB_USERNAME,type=env,target=DB_USERNAME
 Secret=IMMICH_DB_PASSWORD,type=env,target=DB_PASSWORD
 
+Volume=${VOLUMES_DIR}/immich/app/seetings.json:/settings.json
 Volume=/etc/localtime:/etc/localtime:ro
 
-[Install]
-WantedBy=default.target
+Volume=${MEDIA_DIR}:/data
