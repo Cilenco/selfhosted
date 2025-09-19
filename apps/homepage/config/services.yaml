@@ -24,18 +24,10 @@
         href: https://music.${DOMAIN}
         description: Music streaming server
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/navidrome-light.svg
-    #- Jellyfin:
-    #    href: https://streaming.${DOMAIN}
-    #    description: Media streaming system
-    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin-light.svg
     - Outline:
         href: https://dancing.${DOMAIN}
         description: Knowledge base for dancing
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
-    #- PyLoad:
-    #    href: http://downloads.c-dielitz.de
-    #    description: Download Manager
-    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/reddit-downvote-light.svg
     - SplitPro:
         href: https://split.${DOMAIN}
         description: Splitwise alternative
@@ -44,3 +36,7 @@
         href: https://passwords.${DOMAIN}
         description: Password manager
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
+    - Wireguard:
+        href: https://wireguard.${DOMAIN}
+        description: VPN Manager
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wireguard-light.svg
