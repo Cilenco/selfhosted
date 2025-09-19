@@ -4,3 +4,15 @@ mkdir -p $VOLUMES_DIR/homeassistant/config
 mkdir -p $VOLUMES_DIR/homeassistant/run
 
 cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/config/configuration.yaml
+
+# https://github.com/scottsweb/ham?tab=readme-ov-file#home-assistant
+
+# change owner of /dev/ttyUSB0 to your username
+# sudo nano /etc/udev/rules.d/99-skyconnect.rules
+
+# add the following to the rule file (based on what you get from lsusb)
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", OWNER="<USER_NAME>", GROUP="<USER_NAME>"
+
+# apply changes
+# sudo udevadm control --reload-rules
+# sudo udevadm trigger
