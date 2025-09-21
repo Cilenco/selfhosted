@@ -1,0 +1,19 @@
+[Unit]
+Description=Ntfy server
+
+[Service]
+ExecStartPre=sh ntfy/ntfy.bootstrap
+
+[Container]
+Image=docker.io/binwiederhier/ntfy
+ContainerName=ntfy
+
+User=65534:65534
+
+Environment=ZC=UTC
+
+Environment=NTFY_BASE_URL=https://notifications.${DOMAIN}
+Environment=NTFY_CACHE_DURATION=12h
+
+Volume=${VOLUMES_DIR}/ntfy/config:/ect/ntfy
+Volume=${VOLUMES_DIR}/ntfy/cache:/var/cache/ntfy

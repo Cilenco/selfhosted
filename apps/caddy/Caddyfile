@@ -117,6 +117,22 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Radicale                                      #
+  #################################################
+  @calendar host calendar.{env.DOMAIN}
+
+  handle @calendar {
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+      copy_headers Remote-User
+    }
+
+    reverse_proxy radicale:5232 {
+      header_up X-remote-user {http.auth.user.id}
+    }
+  }
+
+  #################################################
   # WebDav Cloud                                  #
   #################################################
   @cloud host cloud.{env.DOMAIN}

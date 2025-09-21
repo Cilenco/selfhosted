@@ -8,7 +8,7 @@
   },
   "storageTemplate": {
     "enabled": true,
-    "template": "{{y}}-{{MM}}/{{filename}}",
+    "template": "Fotos/{{y}}-{{MM}}/{{filename}}",
     "hashVerificationEnabled": true
   },
   "passwordLogin": {
