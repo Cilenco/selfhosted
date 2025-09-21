@@ -1,6 +1,6 @@
 {
   "server": {
-    "externalDomain": "photos.${DOMAIN}"
+    "externalDomain": "https://photos.${DOMAIN}"
   },
   "logging": {
     "enabled": true,
