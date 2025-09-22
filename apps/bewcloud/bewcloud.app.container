@@ -11,8 +11,6 @@ ExecStartPre=sh bewcloud/bewcloud.app.bootstrap
 Image=ghcr.io/bewcloud/bewcloud
 ContainerName=bewcloud-app
 
-User=65534:65534
-
 Environment=PORT=8000
 
 Environment=OIDC_CLIENT_ID=bewcloud
