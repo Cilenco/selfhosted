@@ -21,8 +21,8 @@ const config: PartialDeep<Config> = {
     enabledApps: ['news', 'photos'], //, 'contacts', 'calendar'],
   },
   visuals: {
-    title: 'My own cloud',
-    description: 'This is my own cloud!',
+    title: 'bewCloud',
+    description: '',
     helpEmail: '',
   },
   // contacts: {

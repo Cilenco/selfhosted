@@ -92,6 +92,9 @@ identity_providers:
     jwks:
       - key: |
           {{ fileContent "/secrets/OIDC_PRIVATE_KEY" | nindent 10 }}
+    claims_policies:
+      email:
+        id_token: [ 'email', 'email_verified' ]
     clients:
       - client_id: outline
         client_name: Outline
