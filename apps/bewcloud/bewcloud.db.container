@@ -8,8 +8,6 @@ ExecStartPre=sh bewcloud/bewcloud.db.bootstrap
 Image=docker.io/postgres
 ContainerName=bewcloud-db
 
-User=65534:65534
-
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s
 HealthInterval=30s
