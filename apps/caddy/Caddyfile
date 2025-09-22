@@ -133,19 +133,12 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # WebDav Cloud                                  #
+  # BewCloud                                      #
   #################################################
   @cloud host cloud.{env.DOMAIN}
 
-  handle @cloud {
-    forward_auth authelia:9091 {
-      uri /api/authz/forward-auth
-      copy_headers Remote-User
-    }
-
-    webdav {
-      root /media/{header.Remote-User}
-    }
+  handle @photos {
+    reverse_proxy bewcloud-app:8000
   }
 
   #################################################

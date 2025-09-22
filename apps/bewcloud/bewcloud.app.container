@@ -1,0 +1,40 @@
+[Unit]
+Description=Easy Wireguard server
+
+Requires=bewcloud.db.service
+After=bewcloud.db.service
+
+[Service]
+ExecStartPre=sh bewcloud/bewcloud.app.bootstrap
+
+[Container]
+Image=ghcr.io/bewcloud/bewcloud
+ContainerName=bewcloud-app
+
+User=65534:65534
+
+Environment=PORT=8000
+
+Environment=OIDC_CLIENT_ID=bewcloud
+
+Environment=RATE_LIMITER_ENABLED=true
+Environment=RATE_LIMITER_DURATION_WINDOW=60
+Environment=RATE_LIMITER_REQUESTS=1000
+
+Environment=POSTGRESQL_HOST=bewcloud-db
+Environment=POSTGRESQL_DBNAME=bewcloud
+Environment=POSTGRESQL_PORT=5432
+
+Secret=BEWCLOUD_JWT_SECRET,type=env,target=JWT_SECRET
+Secret=BEWCLOUD_PW_SALT,type=env,target=PASSWORD_SALT
+
+Secret=BEWCLOUD_DB_USERNAME,type=env,target=POSTGRESQL_USER
+Secret=BEWCLOUD_DB_PASSWORD,type=env,target=POSTGRESQL_PASSWORD
+
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+
+Volume=${VOLUMES_DIR}/bewcloud/conf/settings.ts:/app/bewcloud.config.ts
+
+# For testing set this to volumes, later to MEDIA_DIR
+Volume=${VOLUMES_DIR}/bewcloud/data:/app/data-files
+

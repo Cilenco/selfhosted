@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/bewcloud/conf
+mkdir -p $VOLUMES_DIR/bewcloud/data
+
+printf $(openssl rand -hex 32) | podman secret create BEWCLOUD_JWT_SECRET - | true
+printf $(openssl rand -hex 32) | podman secret create BEWCLOUD_PW_SALT - | true
