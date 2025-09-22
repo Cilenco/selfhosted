@@ -18,13 +18,13 @@ const config: PartialDeep<Config> = {
     allowPublicSharing: true,
   },
   core: {
-    enabledApps: ['news', 'notes', 'photos'], //, 'contacts', 'calendar'],
+    enabledApps: ['news', 'photos'], //, 'contacts', 'calendar'],
   },
-  // visuals: {
-  //   title: 'My own cloud',
-  //   description: 'This is my own cloud!',
-  //   helpEmail: '',
-  // },
+  visuals: {
+    title: 'My own cloud',
+    description: 'This is my own cloud!',
+    helpEmail: '',
+  },
   // contacts: {
   //   enableCardDavServer: true,
   //   cardDavUrl: 'http://radicale:5232',
