@@ -123,6 +123,7 @@ identity_providers:
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
         consent_mode: 'implicit'
+        claims_policy: 'email'
         require_pkce: true
         public: false
         redirect_uris:
