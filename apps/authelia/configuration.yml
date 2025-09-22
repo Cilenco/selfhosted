@@ -119,6 +119,7 @@ identity_providers:
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
+        consent_mode: 'implicit'
         require_pkce: true
         public: false
         redirect_uris:
@@ -140,7 +141,7 @@ identity_providers:
           - profile
           - email
         userinfo_signed_response_alg: "none"
-        token_endpoint_auth_method: "client_secret_basic"
+        token_endpoint_auth_method: "client_secret_post"
       - client_id: split
         client_name: SplitPro
         client_secret: '{{ env "CLIENT_SECRET"}}'
