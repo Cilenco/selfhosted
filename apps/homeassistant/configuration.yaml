@@ -49,3 +49,5 @@ lovelace:
       type: module
     - url: /local/mini-graph-card-bundle.js
       type: module
+    - url: /local/navbar-card.js
+      type: module
