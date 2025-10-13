@@ -1,6 +1,7 @@
 dhcp:
 backup:
 config:
+history:
 #conversation:
 #assist_pipeline:
 homeassistant_alerts:
