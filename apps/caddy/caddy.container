@@ -11,7 +11,8 @@ ContainerName=caddy
 AutoUpdate=registry
 Network=caddy
 
-Secret=DOMAIN,type=env,target=DOMAIN
+Environment=HOST_IP=${IP_ADDRESS}
+Environment=DOMAIN=${DOMAIN}
 
 Secret=IONOS_PREFIX,type=env,target=IONOS_PREFIX
 Secret=IONOS_SECRET,type=env,target=IONOS_SECRET
