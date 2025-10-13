@@ -6,6 +6,9 @@ ExecStartPre=sh immich/immich.ml.bootstrap
 
 [Container]
 Image=ghcr.io/immich-app/immich-machine-learning:release
+
 ContainerName=immich-ml
+AutoUpdate=registry
+Network=caddy
 
 Volume=${VOLUMES_DIR}/immich/ml:/cache

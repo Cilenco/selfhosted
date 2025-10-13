@@ -6,15 +6,17 @@ Description=CalDav & CardDAV server
 
 [Container]
 Image=ghcr.io/kozea/radicale
+
 ContainerName=radicale
+AutoUpdate=registry
+Network=caddy
 
 User=65534:65534
-UserNS=keep-id:uid=65534,gid=65534
 
 PublishPort=5232:5232
 
 #Volume=${VOLUMES_DIR}/radicale/config:/etc/radicale/config:ro
-#Volume=${VOLUMES_DIR}/radicale/data:/var/lib/radicale   
+#Volume=${VOLUMES_DIR}/radicale/data:/var/lib/radicale
 
 Volume=/home/christian/test/config/settings.ini:/etc/radicale/config:ro
-Volume=/home/christian/test/data:/var/lib/radicale   
+Volume=/home/christian/test/data:/var/lib/radicale

@@ -6,7 +6,10 @@ ExecStartPre=sh jellyfin/jellyfin.bootstrap
 
 [Container]
 Image=docker.io/jellyfin/jellyfin
+
 ContainerName=jellyfin
+AutoUpdate=registry
+Network=caddy
 
 Volume=${VOLUMES_DIR}/jellyfin/cache:/cache
 Volume=${VOLUMES_DIR}/jellyfin/config:/config

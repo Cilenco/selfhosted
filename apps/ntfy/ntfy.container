@@ -6,7 +6,10 @@ ExecStartPre=sh ntfy/ntfy.bootstrap
 
 [Container]
 Image=docker.io/binwiederhier/ntfy
+
 ContainerName=ntfy
+AutoUpdate=registry
+Network=caddy
 
 User=65534:65534
 

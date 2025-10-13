@@ -11,6 +11,8 @@ ExecStartPre=sh immich/immich.app.bootstrap
 Image=ghcr.io/immich-app/immich-server:release
 
 ContainerName=immich-app
+AutoUpdate=registry
+Network=caddy
 
 Environment=IMMICH_ENV=production
 Environment=TZ=Europe/Berlin

@@ -6,7 +6,10 @@ ExecStartPre=sh navidrome/navidrome.bootstrap
 
 [Container]
 Image=docker.io/deluan/navidrome
+
 ContainerName=navidrome
+AutoUpdate=registry
+Network=caddy
 
 Environment=ND_MUSICFOLDER="./"
 Environment=ND_ENABLESHARING=true

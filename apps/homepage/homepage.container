@@ -6,7 +6,11 @@ ExecStartPre=sh homepage/homepage.bootstrap
 
 [Container]
 Image=docker.io/gethomepage/homepage
+
 ContainerName=homepage
+AutoUpdate=registry
+Network=caddy
+
 Secret=DOMAIN,type=env,target=HOMEPAGE_ALLOWED_HOSTS
 Secret=DOMAIN,type=env,target=HOMEPAGE_VAR_DOMAIN
 

@@ -6,7 +6,10 @@ ExecStartPre=sh authelia/authelia.bootstrap
 
 [Container]
 Image=docker.io/authelia/authelia
+
 ContainerName=authelia
+AutoUpdate=registry
+Network=caddy
 
 Secret=DOMAIN,type=env,target=DOMAIN
 

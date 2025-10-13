@@ -10,7 +10,10 @@ ExecStartPost=podman exec bewcloud-app bash -c "cd /app && make migrate-db"
 
 [Container]
 Image=ghcr.io/bewcloud/bewcloud
+
 ContainerName=bewcloud-app
+AutoUpdate=registry
+Network=caddy
 
 Environment=PORT=8000
 
@@ -36,4 +39,3 @@ Volume=${VOLUMES_DIR}/bewcloud/conf/settings.ts:/app/bewcloud.config.ts
 
 # For testing set this to volumes, later to MEDIA_DIR
 Volume=${VOLUMES_DIR}/bewcloud/data:/app/data-files
-

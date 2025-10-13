@@ -6,7 +6,10 @@ ExecStartPre=sh outline/outline.cache.bootstrap
 
 [Container]
 Image=docker.io/redis
+
 ContainerName=outline-redis
+AutoUpdate=registry
+Network=caddy
 
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s

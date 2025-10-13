@@ -6,7 +6,10 @@ ExecStartPre=sh budget/budget.bootstrap
 
 [Container]
 Image=docker.io/actualbudget/actual-server
+
 ContainerName=budget
+AutoUpdate=registry
+Network=caddy
 
 Environment=DEBUG=actual:config
 

@@ -6,7 +6,10 @@ ExecStartPre=sh bewcloud/bewcloud.db.bootstrap
 
 [Container]
 Image=docker.io/postgres
+
 ContainerName=bewcloud-db
+AutoUpdate=registry
+Network=caddy
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s

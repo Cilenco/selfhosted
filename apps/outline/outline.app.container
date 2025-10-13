@@ -9,7 +9,10 @@ ExecStartPre=sh outline/outline.app.bootstrap
 
 [Container]
 Image=docker.io/outlinewiki/outline
+
 ContainerName=outline-app
+AutoUpdate=registry
+Network=caddy
 
 Environment=NODE_ENV=production
 

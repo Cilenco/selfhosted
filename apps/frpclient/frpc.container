@@ -6,6 +6,9 @@ ExecStartPre=sh frpclient/frpc.bootstrap
 
 [Container]
 Image=docker.io/snowdreamtech/frpc
+
 ContainerName=frpc
+AutoUpdate=registry
+Network=caddy
 
 Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml

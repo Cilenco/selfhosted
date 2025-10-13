@@ -6,7 +6,10 @@ ExecStartPre=sh outline/outline.db.bootstrap
 
 [Container]
 Image=docker.io/postgres
+
 ContainerName=outline-db
+AutoUpdate=registry
+Network=caddy
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s

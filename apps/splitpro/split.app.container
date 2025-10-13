@@ -9,7 +9,10 @@ ExecStartPre=sh splitpro/split.app.bootstrap
 
 [Container]
 Image=docker.io/ossapps/splitpro
+
 ContainerName=split-app
+AutoUpdate=registry
+Network=caddy
 
 Environment=DEFAULT_HOMEPAGE="/balances"
 

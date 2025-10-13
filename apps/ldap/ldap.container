@@ -6,7 +6,10 @@ ExecStartPre=sh ldap/ldap.bootstrap
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless
+
 ContainerName=ldap
+AutoUpdate=registry
+Network=caddy
 
 PublishPort=17170:17170
 

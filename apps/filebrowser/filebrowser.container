@@ -6,7 +6,10 @@ ExecStartPre=sh filebrowser/filebrowser.bootstrap
 
 [Container]
 Image=docker.io/filebrowser/filebrowser
+
 ContainerName=filebrowser
+AutoUpdate=registry
+Network=caddy
 
 Entrypoint=sh
 Exec=/config/bootstrap.sh
