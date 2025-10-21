@@ -78,6 +78,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Jellyfin                                      #
+  #################################################
+  @streaming host streaming.{env.DOMAIN}
+
+  handle @streaming {
+    reverse_proxy jellyfin:8096
+  }
+
+  #################################################
   # Outline                                       #
   #################################################
   @dancing host dancing.{env.DOMAIN}
