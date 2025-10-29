@@ -18,5 +18,5 @@ Environment=TZ=Europe/Berlin
 
 Volume=${VOLUMES_DIR}/zigbee2mqtt/data:/app/data
 
-AddDevice=-/dev/ttyUSB0:/dev/ttyACM0
+AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
 Volume=/run/udev:/run/udev:ro
