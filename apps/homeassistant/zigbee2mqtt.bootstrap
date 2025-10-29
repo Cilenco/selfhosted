@@ -1,0 +1,28 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/homeassistant/config
+mkdir -p $VOLUMES_DIR/homeassistant/run
+
+cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/config/configuration.yaml
+
+# Download some Dashboard extensions
+
+WWW_DIR=$VOLUMES_DIR/homeassistant/config/www
+
+wget -q -O $WWW_DIR/navbar-card.js https://github.com/joseluis9595/lovelace-navbar-card/releases/latest/download/navbar-card.js
+
+wget -q -O $WWW_DIR/bubble-card.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-card.js
+wget -q -O $WWW_DIR/bubble-pop-up-fix.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-pop-up-fix.js
+
+
+# https://github.com/scottsweb/ham?tab=readme-ov-file#home-assistant
+
+# change owner of /dev/ttyUSB0 to your username
+# sudo nano /etc/udev/rules.d/99-skyconnect.rules
+
+# add the following to the rule file (based on what you get from lsusb)
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", OWNER="<USER_NAME>", GROUP="<USER_NAME>"
+
+# apply changes
+# sudo udevadm control --reload-rules
+# sudo udevadm trigger

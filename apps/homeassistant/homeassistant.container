@@ -9,7 +9,7 @@ Image=docker.io/homeassistant/home-assistant
 
 ContainerName=homeassistant
 AutoUpdate=registry
-Network=host
+Network=caddy
 
 User=65534:65534
 

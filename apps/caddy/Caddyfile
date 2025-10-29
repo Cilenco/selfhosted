@@ -62,7 +62,7 @@ https://*.{env.DOMAIN} {
     #  uri /api/authz/forward-auth
     #}
 
-    reverse_proxy {env.HOST_IP}:8123 {
+    reverse_proxy homeassistant:8123 {
       header_up X-Forwarded-For 0.0.0.0
     }
   }
