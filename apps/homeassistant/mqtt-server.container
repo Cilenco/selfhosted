@@ -1,0 +1,17 @@
+[Unit]
+Description=Mosquitto MQTT Server
+
+[Service]
+ExecStartPre=sh homeassistant/mosquitto.bootstrap
+
+[Container]
+Image=docker.io/library/eclipse-mosquitto
+
+ContainerName=mqtt-server
+AutoUpdate=registry
+Network=caddy
+
+User=65534:65534
+
+Exec=mosquitto -c /mosquitto-no-auth.conf
+Volume=${VOLUMES_DIR}/mosquitto:/mosquitto
