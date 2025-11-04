@@ -14,6 +14,8 @@ wget -q -O $WWW_DIR/navbar-card.js https://github.com/joseluis9595/lovelace-navb
 wget -q -O $WWW_DIR/bubble-card.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-card.js
 wget -q -O $WWW_DIR/bubble-pop-up-fix.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-pop-up-fix.js
 
+wget -q -O $WWW_DIR/kiosk-mode.js https://github.com/NemesisRE/kiosk-mode/releases/latest/download/kiosk-mode.js
+
 
 # https://github.com/scottsweb/ham?tab=readme-ov-file#home-assistant
 
