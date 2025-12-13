@@ -1,3 +1,4 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/vaultwarden/data
+mkdir -p $VOLUMES_DIR/ntfy/config
+mkdir -p $VOLUMES_DIR/ntfy/cache

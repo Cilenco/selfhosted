@@ -13,10 +13,11 @@ Network=caddy
 
 User=65534:65534
 
-Environment=ZC=UTC
+Environment=NTFY_LISTEN_HTTP=8080
+Environment=NTFY_BEHIND_PROXY=true
+Environment=TZ=Europe/Berlin
 
 Environment=NTFY_BASE_URL=https://notifications.${DOMAIN}
-Environment=NTFY_CACHE_DURATION=12h
 
-Volume=${VOLUMES_DIR}/ntfy/config:/ect/ntfy
 Volume=${VOLUMES_DIR}/ntfy/cache:/var/cache/ntfy
+Volume=${VOLUMES_DIR}/ntfy/config:/ect/ntfy
