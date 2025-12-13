@@ -165,6 +165,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Ntfy                                          #
+  #################################################
+  @notifications host notifications.{env.DOMAIN}
+
+  handle @notifications {
+    reverse_proxy ntfy:8080
+  }
+
+  #################################################
   # Vaultwarden                                   #
   #################################################
   @passwords host passwords.{env.DOMAIN}
