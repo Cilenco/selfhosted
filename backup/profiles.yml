@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+
+includes: general.yml
+
+default:
+  inherit: base
+
+  backup:
+    source: "./data"
