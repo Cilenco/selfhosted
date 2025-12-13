@@ -6,6 +6,7 @@ ExecStartPre=sh ntfy/ntfy.bootstrap
 
 [Container]
 Image=docker.io/binwiederhier/ntfy
+Exec=serve
 
 ContainerName=ntfy
 AutoUpdate=registry
