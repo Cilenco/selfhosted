@@ -14,6 +14,9 @@
   "passwordLogin": {
     "enabled": true
   },
+  "machineLearning": {
+    "urls": ["http://immich-ml:3003"]
+  },
   "oauth": {
     "enabled": false,
     "autoLaunch": true,
