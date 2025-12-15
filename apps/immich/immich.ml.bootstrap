@@ -1,3 +1,6 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/immich/ml
+mkdir -p $VOLUMES_DIR/immich/ml/.cache
+mkdir -p $VOLUMES_DIR/immich/ml/.config
+
+mkdir -p $VOLUMES_DIR/immich/ml/cache

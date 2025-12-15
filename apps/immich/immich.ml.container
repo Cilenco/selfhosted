@@ -11,4 +11,7 @@ ContainerName=immich-ml
 AutoUpdate=registry
 Network=caddy
 
-Volume=${VOLUMES_DIR}/immich/ml:/cache
+Volume=${VOLUMES_DIR}/immich/ml/.cache:/.cache
+Volume=${VOLUMES_DIR}/immich/ml/.config:/.config
+
+Volume=${VOLUMES_DIR}/immich/ml/cache:/cache
