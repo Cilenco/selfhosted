@@ -78,6 +78,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Rustical                                      #
+  #################################################
+  @rustical host rustical.{env.DOMAIN}
+
+  handle @rustical {
+    reverse_proxy rustical:4000
+  }
+
+  #################################################
   # Jellyfin                                      #
   #################################################
   @streaming host streaming.{env.DOMAIN}

@@ -1,0 +1,26 @@
+[Unit]
+Description=CalDav & CardDAV server
+
+[Service]
+ExecStartPre=sh rustical/rustical.bootstrap
+
+[Container]
+Image=ghcr.io/lennart-k/rustical
+
+ContainerName=rustical
+AutoUpdate=registry
+Network=caddy
+
+Environment=RUSTICAL_OIDC__NAME=Authelia
+Environment=RUSTICAL_OIDC__CLIENT_ID=rustical
+Environment=RUSTICAL_OIDC__ISSUER=https://auth.${DOMAIN}
+Environment=RUSTICAL_OIDC__CLAIM_USERID=preferred_username
+Environment=RUSTICAL_OIDC__SCOPES='["openid", "profile", "groups"]'
+Environment=RUSTICAL_OIDC__ALLOW_SIGN_UP=true
+
+Environment=RUSTICAL_FRONTEND__ALLOW_PASSWORD_LOGIN=false
+
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=RUSTICAL_OIDC__CLIENT_SECRET
+
+Volume=${VOLUMES_DIR}/rustical:/var/lib/rustical
+#Volume=${VOLUMES_DIR}/radicale/data:/var/lib/radicale

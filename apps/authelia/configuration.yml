@@ -133,6 +133,17 @@ identity_providers:
           - email
         userinfo_signed_response_alg: "none"
         token_endpoint_auth_method: "client_secret_post"
+      - client_id: rustical
+        client_secret: '{{ env "CLIENT_SECRET"}}'
+        consent_mode: implicit
+        public: false
+        redirect_uris:
+          - https://rustical.{{env "DOMAIN"}}/frontend/login/oidc/callback
+        scopes:
+          - openid
+          - profile
+          - groups
+        token_endpoint_auth_method: client_secret_basic
       - client_id: budget
         client_name: ActualBudget
         client_secret: '{{ env "CLIENT_SECRET"}}'
