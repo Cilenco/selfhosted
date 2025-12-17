@@ -11,10 +11,6 @@ ContainerName=homeassistant-app
 AutoUpdate=registry
 Network=host
 
-AddCapability=NET_ADMIN
-AddCapability=NET_RAW
-#GroupAdd=bluetooth
-
 Environment=TZ=Europe/Berlin
 
 AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
@@ -23,4 +19,3 @@ Volume=${VOLUMES_DIR}/homeassistant/app/config:/config
 Volume=${VOLUMES_DIR}/homeassistant/app/run:/run
 
 Volume=/etc/localtime:/etc/localtime:ro
-Volume=/run/dbus:/run/dbus:ro
