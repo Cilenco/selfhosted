@@ -11,7 +11,9 @@ ContainerName=homeassistant-app
 AutoUpdate=registry
 Network=host
 
-GroupAdd=bluetooth
+AddCapability=NET_ADMIN
+AddCapability=NET_RAW
+#GroupAdd=bluetooth
 
 Environment=TZ=Europe/Berlin
 
