@@ -1,0 +1,18 @@
+[Unit]
+Description=HomeAssistant Matter Server
+
+[Service]
+ExecStartPre=sh homeassistant/homeassistant-matter.bootstrap
+
+[Container]
+Image=ghcr.io/matter-js/python-matter-server:stable
+
+ContainerName=matter-server
+AutoUpdate=registry
+Network=host
+
+# Should be replaced with AppArmor in newer version
+PodmanArgs=--security-opt apparmor=unconfined
+
+Volume=${VOLUMES_DIR}/homeassistant/matter:/data
+Volume=/run/dbus:/run/dbus:ro

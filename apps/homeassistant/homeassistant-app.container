@@ -1,0 +1,22 @@
+[Unit]
+Description=HomeAssistant Server
+
+[Service]
+ExecStartPre=sh homeassistant/homeassistant-app.bootstrap
+
+[Container]
+Image=docker.io/homeassistant/home-assistant
+
+ContainerName=homeassistant
+AutoUpdate=registry
+Network=host
+
+Environment=TZ=Europe/Berlin
+
+AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
+
+Volume=${VOLUMES_DIR}/homeassistant/app/config:/config
+Volume=${VOLUMES_DIR}/homeassistant/app/run:/run
+
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=/run/dbus:/run/dbus:ro
