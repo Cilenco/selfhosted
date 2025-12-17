@@ -7,9 +7,11 @@ ExecStartPre=sh homeassistant/homeassistant-app.bootstrap
 [Container]
 Image=docker.io/homeassistant/home-assistant
 
-ContainerName=homeassistant
+ContainerName=homeassistant-app
 AutoUpdate=registry
 Network=host
+
+GroupAdd=bluetooth
 
 Environment=TZ=Europe/Berlin
 

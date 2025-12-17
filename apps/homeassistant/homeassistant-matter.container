@@ -7,7 +7,7 @@ ExecStartPre=sh homeassistant/homeassistant-matter.bootstrap
 [Container]
 Image=ghcr.io/matter-js/python-matter-server:stable
 
-ContainerName=matter-server
+ContainerName=homeassistant-matter
 AutoUpdate=registry
 Network=host
 

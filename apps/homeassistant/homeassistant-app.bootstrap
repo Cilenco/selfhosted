@@ -1,12 +1,12 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/homeassistant/app/config
+mkdir -p $VOLUMES_DIR/homeassistant/app/config/www
 mkdir -p $VOLUMES_DIR/homeassistant/app/run
 
 cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/app/config/configuration.yaml
+touch $VOLUMES_DIR/homeassistant/app/config/automations.yaml
 
 # Download some Dashboard extensions
-
 WWW_DIR=$VOLUMES_DIR/homeassistant/app/config/www
 
 wget -q -O $WWW_DIR/navbar-card.js https://github.com/joseluis9595/lovelace-navbar-card/releases/latest/download/navbar-card.js
