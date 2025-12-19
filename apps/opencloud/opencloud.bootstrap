@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/opencloud/data
+mkdir -p $VOLUMES_DIR/opencloud/config

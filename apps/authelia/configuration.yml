@@ -96,6 +96,36 @@ identity_providers:
       email:
         id_token: [ 'email', 'email_verified' ]
     clients:
+      - client_id: OpenCloudWeb
+        client_name: OpenCloud Web
+        authorization_policy: one_factor
+        require_pkce: false
+        public: true
+        redirect_uris:
+          - https://cloud.{{env "DOMAIN"}}
+          - https://cloud.{{env "DOMAIN"}}/oidc-callback.html
+          - https://cloud.{{env "DOMAIN"}}/oidc-silent-redirect.html
+        scopes:
+          - openid
+          - offline_access
+          - profile
+          - email
+        response_types:
+          - 'code'
+      - client_id: OpenCloudAndroid
+        client_name: OpenCloud Android
+        authorization_policy: one_factor
+        require_pkce: false
+        public: true
+        redirect_uris:
+          - oc://android.opencloud.eu
+        scopes:
+          - openid
+          - offline_access
+          - profile
+          - email
+        response_types:
+          - 'code'
       - client_id: outline
         client_name: Outline
         client_secret: '{{ env "CLIENT_SECRET"}}'

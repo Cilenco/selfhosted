@@ -1,0 +1,26 @@
+[Unit]
+Description=Opencloud server
+
+[Service]
+ExecStartPre=sh opencloud/opencloud.bootstrap
+
+[Container]
+Image=docker.io/opencloudeu/opencloud
+
+ContainerName=opencloud
+AutoUpdate=registry
+Network=caddy
+
+Environment=OC_OIDC_ISSUER=https://auth.${DOMAIN}
+
+Environment=OC_EXCLUDE_RUN_SERVICES=idp
+Environment=PROXY_AUTOPROVISION_ACCOUNTS=true
+Environment=GRAPH_ASSIGN_DEFAULT_USER_ROLE=false
+Environment=PROXY_OIDC_REWRITE_WELLKNOWN=false
+Environment=GRAPH_USERNAME_MATCH=false
+
+Environment=PROXY_USER_OIDC_CLAIM=preferred_username
+Environment=PROXY_USER_CS3_CLAIM=username
+
+Volume=${VOLUMES_DIR}/opencloud/data:/var/lib/opencloud
+Volume=${VOLUMES_DIR}/opencloud/data:/etc/opencloud

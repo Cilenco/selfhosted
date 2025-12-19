@@ -149,12 +149,12 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # BewCloud                                      #
+  # OpenCloud                                     #
   #################################################
   @cloud host cloud.{env.DOMAIN}
 
   handle @cloud {
-    reverse_proxy bewcloud-app:8000
+    reverse_proxy opencloud:9200
   }
 
   #################################################
