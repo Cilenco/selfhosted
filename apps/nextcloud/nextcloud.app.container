@@ -8,7 +8,7 @@ After=nextcloud.db.service
 ExecStartPre=sh nextcloud/nextcloud.app.bootstrap
 
 [Container]
-Image=docker.io/nextcloud:fpm
+Image=docker.io/nextcloud
 
 ContainerName=nextcloud-app
 AutoUpdate=registry
