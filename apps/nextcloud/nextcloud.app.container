@@ -23,7 +23,7 @@ Environment=POSTGRES_DB=nextcloud
 Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Secret=NEXTCLOUD_CLIENT_SECRET,type=env,target=CLIENT_SECRET
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=CLIENT_SECRET
 
 #Secret=SMTP_HOST,type=env,target=SMTP_HOST
 #Secret=SMTP_PORT,type=env,target=SMTP_PORT
