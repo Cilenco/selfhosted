@@ -151,10 +151,41 @@ https://*.{env.DOMAIN} {
   #################################################
   # OpenCloud                                     #
   #################################################
+  #@cloud host cloud.{env.DOMAIN}
+  #
+  #handle @cloud {
+  #  reverse_proxy opencloud:9200
+  #}
+
+  #################################################
+  # Nextcloud                                     #
+  #################################################
   @cloud host cloud.{env.DOMAIN}
 
   handle @cloud {
-    reverse_proxy opencloud:9200
+    root * /var/www/html
+    file_server
+
+    php_fastcgi nextcloud:9000
+
+    redir /.well-known/carddav /remote.php/dav 301
+    redir /.well-known/caldav /remote.php/dav 301
+
+    @forbidden {
+      path    /.htaccess
+      path    /data/*
+      path    /config/*
+      path    /db_structure
+      path    /.xml
+      path    /README
+      path    /3rdparty/*
+      path    /lib/*
+      path    /templates/*
+      path    /occ
+      path    /console.php
+    }
+
+    respond @forbidden 404
   }
 
   #################################################
