@@ -22,4 +22,4 @@ Environment=POSTGRES_DB=bewcloud
 Secret=BEWCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=BEWCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/bewcloud/db/data:/var/lib/postgresql/data
+Volume=${VOLUMES_DIR}/bewcloud/db/data:/var/lib/postgresql
