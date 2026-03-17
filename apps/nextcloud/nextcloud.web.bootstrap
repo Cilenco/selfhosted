@@ -2,4 +2,4 @@
 
 mkdir -p $VOLUMES_DIR/nextcloud/web
 
-cp $PWD/nextcloud/nginx.conf) > $VOLUMES_DIR/nextcloud/web/nginx.conf
+cp -n $PWD/nextcloud/nginx.conf $VOLUMES_DIR/nextcloud/web/nginx.conf
