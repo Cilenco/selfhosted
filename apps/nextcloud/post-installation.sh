@@ -1,8 +1,9 @@
 #################################################
 # Setup basic config                            #
 #################################################
-php occ config:system:set allow_local_remote_servers --type="boolean" --value="true"
+php occ config:system:set overwriteprotocol --value="https"
 
+php occ config:system:set allow_local_remote_servers --type="boolean" --value="true"
 php occ config:system:set trusted_domains 2 --type="string" --value="cloud.$DOMAIN"
 
 php occ config:system:set default_language --type="string" --value="de"
@@ -33,6 +34,7 @@ php occ app:install unroundedcorners
 php occ app:disable dashboard
 php occ app:disable weather_status
 php occ app:disable user_status
+php occ app:disable photos
 
 #################################################
 # Setup LDAP                                    #
