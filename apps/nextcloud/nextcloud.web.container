@@ -8,7 +8,7 @@ After=nextcloud.app.service
 ExecStartPre=sh nextcloud/nextcloud.web.bootstrap
 
 [Container]
-Image=docker.io/library/nginx:alpine-slim
+Image=docker.io/nginxinc/nginx-unprivileged:alpine-slim
 
 ContainerName=nextcloud-web
 AutoUpdate=registry
