@@ -1,5 +1,7 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/nextcloud/web
+mkdir -p $VOLUMES_DIR/nextcloud/web/conf
+mkdir -p $VOLUMES_DIR/nextcloud/web/cache
+mkdir -p $VOLUMES_DIR/nextcloud/web/run
 
-cp -n $PWD/nextcloud/nginx.conf $VOLUMES_DIR/nextcloud/web/nginx.conf
+cp -n $PWD/nextcloud/nginx.conf $VOLUMES_DIR/nextcloud/web/conf/nginx.conf
