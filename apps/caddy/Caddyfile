@@ -163,7 +163,8 @@ https://*.{env.DOMAIN} {
   @cloud host cloud.{env.DOMAIN}
 
   handle @cloud {
-    reverse_proxy opencloud:9200
+    reverse_proxy nextcloud-web:8080
+    # reverse_proxy opencloud:9200
   }
 
   #################################################

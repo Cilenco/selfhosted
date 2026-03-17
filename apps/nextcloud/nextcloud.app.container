@@ -1,5 +1,5 @@
 [Unit]
-Description=Nextcloud Server
+Description=Nextcloud App
 
 Requires=nextcloud.db.service
 After=nextcloud.db.service
@@ -8,7 +8,7 @@ After=nextcloud.db.service
 ExecStartPre=sh nextcloud/nextcloud.app.bootstrap
 
 [Container]
-Image=docker.io/nextcloud
+Image=docker.io/nextcloud:fpm-alpine
 
 ContainerName=nextcloud-app
 AutoUpdate=registry

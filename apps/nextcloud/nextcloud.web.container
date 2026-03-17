@@ -1,0 +1,18 @@
+[Unit]
+Description=Nextcloud Web Server
+
+Requires=nextcloud.app.service
+After=nextcloud.app.service
+
+[Service]
+# ExecStartPre=sh nextcloud/nextcloud.web.bootstrap
+
+[Container]
+Image=docker.io/library/nginx:alpine-slim
+
+ContainerName=nextcloud-web
+AutoUpdate=registry
+Network=caddy
+
+Volume=${VOLUMES_DIR}/nextcloud/app:/var/www/html:z,ro
+Volume=./web/nginx.conf:/etc/nginx/nginx.conf:ro
