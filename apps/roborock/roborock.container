@@ -1,0 +1,24 @@
+[Unit]
+Description=ActualBudget server
+
+[Service]
+ExecStartPre=sh roborock/roborock.bootstrap
+
+[Container]
+Image=ghcr.io/python-roborock/local_roborock_server
+
+ContainerName=roborock
+AutoUpdate=registry
+Network=caddy
+
+HealthCmd="curl -skf https://127.0.0.1:555/admin"
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Volume=${VOLUMES_DIR}/roborock/data:/data
+Volume=${VOLUMES_DIR}/roborock/config.toml:/app/config.toml:ro
+
+Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.crt:/data/certs/certificate.crt:ro
+Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.key:/data/certs/certificate.key:ro
