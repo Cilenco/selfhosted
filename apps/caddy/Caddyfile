@@ -5,9 +5,8 @@
   https_port  4430
 
   events {
-		on cert_obtained exec cp {event.data.certificate_path} /certs/{event.data.identifier}.crt
-		on cert_obtained exec cp {event.data.key_path} /certs/{event.data.identifier}.key
-	}
+    on cert_obtained store_cert /certs
+  }
 
   # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 

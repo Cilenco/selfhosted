@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/radicale/config
-mkdir -p $VOLUMES_DIR/radicale/data
-
-(envsubst < $PWD/radicale/settings.json) > $VOLUMES_DIR/radicale/config/settings.ini
