@@ -11,7 +11,7 @@ ContainerName=roborock
 AutoUpdate=registry
 Network=caddy
 
-HealthCmd="curl -skf https://127.0.0.1:555/admin"
+HealthCmd="curl -skf https://127.0.0.1:5555/admin"
 HealthStartPeriod=1m20s
 HealthInterval=30s
 HealthTimeout=30s
