@@ -1,10 +1,13 @@
 {
   email       noreply@{env.DOMAIN}
 
-  order       webdav before file_server
-
   http_port   8080
   https_port  4430
+
+  events {
+		on cert_obtained exec cp {event.data.certificate_path} /certs/{event.data.identifier}.crt
+		on cert_obtained exec cp {event.data.key_path} /certs/{event.data.identifier}.key
+	}
 
   # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 

@@ -23,4 +23,3 @@ PublishPort=443:4430
 Volume=${VOLUMES_DIR}/caddy/conf/Caddyfile:/etc/caddy/Caddyfile:ro
 
 Volume=${VOLUMES_DIR}/caddy/data:/data
-Volume=${MEDIA_DIR}:/media
