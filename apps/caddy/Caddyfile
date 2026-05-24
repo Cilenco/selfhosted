@@ -173,9 +173,9 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # Sparky Fitness                                #
+  # Roborock local API                            #
   #################################################
-  #@roborock host api-roborock.{env.DOMAIN}
+  @roborock host api-roborock.{env.DOMAIN}
 
   handle @roborock {
     reverse_proxy https://roborock:555
