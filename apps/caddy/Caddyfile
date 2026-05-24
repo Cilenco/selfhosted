@@ -171,6 +171,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Sparky Fitness                                #
+  #################################################
+  #@cloud host fitness.{env.DOMAIN}
+
+  handle @cloud {
+    reverse_proxy fitness-ui:80
+  }
+
+  #################################################
   # Navidrome                                     #
   #################################################
   @music host music.{env.DOMAIN}

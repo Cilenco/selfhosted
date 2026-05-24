@@ -1,0 +1,46 @@
+[Unit]
+Description=SparkyFitness Server
+
+Requires=fitness.db.service
+After=fitness.db.service
+
+[Service]
+ExecStartPre=sh fitness/fitness.srv.bootstrap
+
+[Container]
+Image=docker.io/codewithcj/sparkyfitness_server
+
+ContainerName=fitness-srv
+AutoUpdate=registry
+Network=caddy
+
+Environment=NODE_ENV=production
+
+Environment=SPARKY_FITNESS_OIDC_AUTO_REGISTER=true
+Environment=SPARKY_FITNESS_DISABLE_EMAIL_LOGIN=true
+Environment=SPARKY_FITNESS_OIDC_AUTO_REDIRECT=true
+Environment=SPARKY_FITNESS_OIDC_AUTH_ENABLED=true
+
+Environment=SPARKY_FITNESS_OIDC_PROVIDER_SLUG=authelia
+Environment=SPARKY_FITNESS_OIDC_PROVIDER_NAME=Authelia
+
+Environment=SPARKY_FITNESS_OIDC_CLIENT_ID=fitness
+Environment=SPARKY_FITNESS_OIDC_ISSUER_URL=https://auth.${DOMAIN}
+Environment=SPARKY_FITNESS_OIDC_SCOPE="openid email profile"
+Environment=SPARKY_FITNESS_OIDC_ADMIN_GROUP=admin
+
+Environment=SPARKY_FITNESS_DB_NAME=fitness
+Environment=SPARKY_FITNESS_DB_HOST=fitness-db
+Environment=SPARKY_FITNESS_DB_PORT=5432
+
+Secret=FITNESS_DB_USERNAME,type=env,target=SPARKY_FITNESS_DB_USER
+Secret=FITNESS_DB_PASSWORD,type=env,target=SPARKY_FITNESS_DB_PASSWORD
+
+Secret=FITNESS_DB_USERNAME,type=env,target=SPARKY_FITNESS_APP_DB_USER
+Secret=FITNESS_DB_PASSWORD,type=env,target=SPARKY_FITNESS_APP_DB_PASSWORD
+
+Secret=FITNESS_API_SECRET,type=env,target=SPARKY_FITNESS_API_ENCRYPTION_KEY
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=SPARKY_FITNESS_OIDC_CLIENT_SECRET
+Secret=FITNESS_AUTH_SECRET,type=env,target=BETTER_AUTH_SECRET
+
+Volume=${VOLUMES_DIR}/fitness/srv/uploads:/app/SparkyFitnessServer/uploads

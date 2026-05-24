@@ -1,0 +1,22 @@
+[Unit]
+Description=SparkyFitness Web UI
+
+Requires=fitness.srv.service
+After=fitness.srv.service
+
+[Service]
+ExecStartPre=sh fitness/fitness.ui.bootstrap
+
+[Container]
+Image=docker.io/codewithcj/sparkyfitness
+
+ContainerName=fitness-ui
+AutoUpdate=registry
+Network=caddy
+
+Environment=NODE_ENV=production
+
+Environment=SPARKY_FITNESS_FRONTEND_URL=https://fitness.${DOMAIN}
+
+Environment=SPARKY_FITNESS_SERVER_HOST=fitness-srv
+Environment=SPARKY_FITNESS_SERVER_PORT=3010
