@@ -1,6 +1,9 @@
 [Unit]
 Description=OxiCloud app
 
+Requires=oxicloud.db.service
+After=oxicloud.db.service
+
 [Service]
 ExecStartPre=sh oxicloud/oxicloud.app.bootstrap
 
