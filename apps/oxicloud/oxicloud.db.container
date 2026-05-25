@@ -19,10 +19,7 @@ HealthRetries=3
 
 Environment=POSTGRES_DB=oxicloud
 
-Environment=POSTGRES_USER=postgres
-Environment=POSTGRES_PASSWORD=postgres
-
-#Secret=OXICLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
-#Secret=OXICLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=OXICLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
+Secret=OXICLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
 Volume=${VOLUMES_DIR}/oxicloud/db/data:/var/lib/postgresql
