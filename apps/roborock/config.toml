@@ -1,5 +1,5 @@
 [network]
-stack_fqdn = "api-roborock.c-dielitz.de"
+stack_fqdn = "api-roborock.${DOMAIN}"
 bind_host = "0.0.0.0"
 mqtt_tls_port = 8881
 https_port = 5555
