@@ -247,7 +247,7 @@ identity_providers:
         client_name: OxiCloud
         public: false
         redirect_uris:
-          - https://files.${DOMAIN}/api/auth/oidc/callback
+          - https://files.{{env "DOMAIN"}}/api/auth/oidc/callback
         scopes: [openid, profile, email, groups]
       - client_id: vaultwarden
         client_name: Vaultwarden

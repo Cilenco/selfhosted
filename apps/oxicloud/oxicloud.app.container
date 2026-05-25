@@ -37,7 +37,7 @@ Environment=OXICLOUD_OIDC_REDIRECT_URI=https://files.${DOMAIN}/api/auth/oidc/cal
 Environment=OXICLOUD_OIDC_FRONTEND_URL=https://files.${DOMAIN}
 Environment=OXICLOUD_OIDC_ISSUER_URL=https://auth.${DOMAIN}
 
-Secret=OXICLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
-Secret=OXICLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OXICLOUD_OIDC_CLIENT_SECRET
+Secret=OXICLOUD_JWT_SECRET,type=env,target=OXICLOUD_JWT_SECRET
 
 Volume=${VOLUMES_DIR}:/app/storage
