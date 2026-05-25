@@ -21,7 +21,3 @@ cert_file = "/data/certs/certificate.crt"
 key_file = "/data/certs/certificate.key"
 
 [admin]
-protocol_login_pin_hash = "pbkdf2_sha256$600000$iliWj8q54-twuHgpAnoyXg$puR31xOpBZMfxUWVVyCy5Bj4cLdu7iPo93hxILDHj-0"
-password_hash = "pbkdf2_sha256$600000$jG1Xu6xsIzAGr9P-c2Et8Q$RrXWcnNTi1UoIMhVs0k5JySr2ba6EuyGcpygeOk7lx8"
-session_secret = "LwtGrBoI2uDrtODg0OKG2MYysRlD2inPlwN7HW7pj1E"
-protocol_login_email = "christian@dielitz.net"
