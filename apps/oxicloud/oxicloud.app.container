@@ -1,0 +1,40 @@
+[Unit]
+Description=OxiCloud app
+
+[Service]
+ExecStartPre=sh oxicloud/oxicloud.app.bootstrap
+
+[Container]
+Image=docker.io/diocrafts/oxicloud
+
+ContainerName=oxicloud-app
+AutoUpdate=registry
+Network=caddy
+
+HealthCmd=wget -qO- http://localhost:8086/ready || exit 1
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Environment=OXICLOUD_SERVER_HOST=0.0.0.0
+Environment=OXICLOUD_SERVER_PORT=8086
+
+Environment=OXICLOUD_DB_CONNECTION_STRING=postgres://postgres:postgres@oxicloud-db/oxicloud
+
+Environment=OXICLOUD_OIDC_ENABLED=true
+Environment=OXICLOUD_OIDC_ADMIN_GROUPS=admin
+Environment=OXICLOUD_OIDC_AUTO_PROVISION=true
+Environment=OXICLOUD_OIDC_DISABLE_PASSWORD_LOGIN=true
+Environment=OXICLOUD_OIDC_SCOPES="openid profile email"
+Environment=OXICLOUD_OIDC_PROVIDER_NAME=Authelia
+Environment=OXICLOUD_OIDC_CLIENT_ID=oxicloud
+
+Environment=OXICLOUD_OIDC_REDIRECT_URI=https://files.${DOMAIN}/api/auth/oidc/callback
+Environment=OXICLOUD_OIDC_FRONTEND_URL=https://files.${DOMAIN}
+Environment=OXICLOUD_OIDC_ISSUER_URL=https://auth.${DOMAIN}
+
+Secret=OXICLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
+Secret=OXICLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+
+Volume=${VOLUMES_DIR}:/app/storage

@@ -1,0 +1,28 @@
+[Unit]
+Description=OxiCloud database
+
+[Service]
+ExecStartPre=sh oxicloud/oxicloud.db.bootstrap
+
+[Container]
+Image=docker.io/postgres
+
+ContainerName=oxicloud-db
+AutoUpdate=registry
+Network=caddy
+
+HealthCmd=pg_isready
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Environment=POSTGRES_DB=oxicloud
+
+Environment=POSTGRES_USER=postgres
+Environment=POSTGRES_PASSWORD=postgres
+
+#Secret=OXICLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
+#Secret=OXICLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+
+Volume=${VOLUMES_DIR}/oxicloud/db/data:/var/lib/postgresql

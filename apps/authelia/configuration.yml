@@ -243,6 +243,12 @@ identity_providers:
         userinfo_signed_response_alg: 'none'
         token_endpoint_auth_method: 'client_secret_basic'
         access_token_signed_response_alg: 'none'
+      - client_id: oxicloud
+        client_name: OxiCloud
+        public: false
+        redirect_uris:
+          - https://files.${DOMAIN}/api/auth/oidc/callback
+        scopes: [openid, profile, email, groups]
       - client_id: vaultwarden
         client_name: Vaultwarden
         client_secret: '{{ env "CLIENT_SECRET"}}'

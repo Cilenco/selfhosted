@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/oxicloud/db/data
+
+printf $(openssl rand -hex  8) | podman secret create OXICLOUD_DB_USERNAME - | true
+printf $(openssl rand -hex 12) | podman secret create OXICLOUD_DB_PASSWORD - | true

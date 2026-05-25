@@ -116,23 +116,23 @@ https://*.{env.DOMAIN} {
   #################################################
   # FileBrowser                                   #
   #################################################
-  @files host files.{env.DOMAIN}
+  #@files host files.{env.DOMAIN}
+  #
+  #@not_share_path {
+  #  not path /share/*
+  #  not path /static/*
+  #
+  #  not path /api/public/*
+  #}
 
-  @not_share_path {
-    not path /share/*
-    not path /static/*
-
-    not path /api/public/*
-  }
-
-  handle @files {
-    forward_auth @not_share_path authelia:9091 {
-      uri /api/authz/forward-auth
-      copy_headers Remote-User
-    }
-
-    reverse_proxy filebrowser:8080
-  }
+  #handle @files {
+  #  forward_auth @not_share_path authelia:9091 {
+  #    uri /api/authz/forward-auth
+  #    copy_headers Remote-User
+  #  }
+  #
+  #  reverse_proxy filebrowser:8080
+  #}
 
   #################################################
   # Radicale                                      #
@@ -160,16 +160,12 @@ https://*.{env.DOMAIN} {
   #}
 
   #################################################
-  # Nextcloud                                     #
+  # OxiCloud                                      #
   #################################################
-  @cloud host cloud.{env.DOMAIN}
+  @files host files.{env.DOMAIN}
 
-  handle @cloud {
-    reverse_proxy nextcloud-web:8080 {
-      header_up X-Forwarded-Proto {scheme}
-      header_up X-Forwarded-Host {host}
-      header_up X-Forwarded-For {remote}
-    }
+  handle @files {
+    reverse_proxy oxicloud-app:8086
   }
 
   #################################################
@@ -184,9 +180,9 @@ https://*.{env.DOMAIN} {
   #################################################
   # Sparky Fitness                                #
   #################################################
-  #@cloud host fitness.{env.DOMAIN}
+  @fitness host fitness.{env.DOMAIN}
 
-  handle @cloud {
+  handle @fitness {
     reverse_proxy fitness-ui:80
   }
 
