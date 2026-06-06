@@ -1,0 +1,20 @@
+[Unit]
+Description=Securo Redis
+
+[Service]
+ExecStartPre=sh securo/securo.cache.bootstrap
+
+[Container]
+Image=docker.io/redis
+
+ContainerName=securo-redis
+AutoUpdate=registry
+Network=caddy
+
+HealthCmd="redis-cli ping | grep PONG"
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Volume=${VOLUMES_DIR}/securo/cache/data:/data

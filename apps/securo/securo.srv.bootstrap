@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/securo/srv/data
+
+printf $(openssl rand -hex 32) | podman secret create SECURO_SECRET_KEY - | true

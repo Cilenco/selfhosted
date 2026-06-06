@@ -1,0 +1,18 @@
+[Unit]
+Description=Securo Web
+
+Requires=securo.srv.service
+After=securo.srv.service
+
+[Service]
+ExecStartPre=sh securo/securo.web.bootstrap
+
+[Container]
+Image=ghcr.io/securo-finance/securo-frontend
+
+ContainerName=securo-web
+AutoUpdate=registry
+Network=caddy
+
+Environment=FRONTEND_URL=https://money.${DOMAIN}
+Environment=BACKEND_URL=http://securo-srv:8000

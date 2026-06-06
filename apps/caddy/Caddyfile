@@ -78,6 +78,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Securo                                        #
+  #################################################
+  @money host money.{env.DOMAIN}
+
+  handle @money {
+    reverse_proxy securo-web:3000
+  }
+
+  #################################################
   # Rustical                                      #
   #################################################
   @rustical host rustical.{env.DOMAIN}
@@ -173,8 +182,11 @@ https://*.{env.DOMAIN} {
   #################################################
   @roborock host api-roborock.{env.DOMAIN}
 
-  handle @roborock {
-    reverse_proxy https://roborock:5555
+  reverse_proxy roborock:5555 {
+    transport http {
+      tls
+      tls_insecure_skip_verify
+    }
   }
 
   #################################################

@@ -1,0 +1,22 @@
+[Unit]
+Description=Securo Web
+
+Requires=securo.db.service securo.cache.service
+After=securo.db.service securo.cache.service
+
+[Service]
+ExecStartPre=sh securo/securo.srv.bootstrap
+
+[Container]
+Image=ghcr.io/securo-finance/securo-backend
+
+ContainerName=securo-web
+AutoUpdate=registry
+Network=caddy
+
+Environment=DEBUG=false
+
+Environment=DATABASE_URL=postgresql+asyncpg://postgres:postgres@securo-db:5432/securo
+
+Environment=FRONTEND_URL=https://money.${DOMAIN}
+Secret=SECURO_SECRET_KEY,type=env,target=SECRET_KEY
