@@ -5,7 +5,7 @@ Description=Securo database
 ExecStartPre=sh securo/securo.db.bootstrap
 
 [Container]
-Image=docker.io/postgres
+Image=docker.io/pgvector/pgvector:pg16
 
 ContainerName=securo-db
 AutoUpdate=registry
@@ -22,4 +22,4 @@ Environment=POSTGRES_DB=securo
 Secret=SECURO_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=SECURO_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/securo/db/data:/var/lib/postgresql
+Volume=${VOLUMES_DIR}/securo/db/data:/var/lib/postgresql/data

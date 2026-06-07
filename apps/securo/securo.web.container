@@ -8,6 +8,7 @@ After=securo.srv.service
 ExecStartPre=sh securo/securo.web.bootstrap
 
 [Container]
+# Needs to run as root for now as it binds port 80
 Image=ghcr.io/securo-finance/securo-frontend
 
 ContainerName=securo-web
@@ -16,3 +17,5 @@ Network=caddy
 
 Environment=FRONTEND_URL=https://money.${DOMAIN}
 Environment=BACKEND_URL=http://securo-srv:8000
+
+Volume=${VOLUMES_DIR}/securo/web/cache:/var/cache/nginx

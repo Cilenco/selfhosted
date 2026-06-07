@@ -83,7 +83,7 @@ https://*.{env.DOMAIN} {
   @money host money.{env.DOMAIN}
 
   handle @money {
-    reverse_proxy securo-web:3000
+    reverse_proxy securo-web:80
   }
 
   #################################################

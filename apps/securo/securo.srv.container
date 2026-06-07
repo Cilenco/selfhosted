@@ -10,12 +10,17 @@ ExecStartPre=sh securo/securo.srv.bootstrap
 [Container]
 Image=ghcr.io/securo-finance/securo-backend
 
-ContainerName=securo-web
+Exec=sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+ContainerName=securo-srv
 AutoUpdate=registry
 Network=caddy
 
 Environment=DEBUG=false
+Environment=AGENTS_ENABLED=false
+Environment=REDIS_URL=redis://securo-cache:6379/0
 
+# Adjust username and password as for now these settings cannot be set through env
 Environment=DATABASE_URL=postgresql+asyncpg://postgres:postgres@securo-db:5432/securo
 
 Environment=FRONTEND_URL=https://money.${DOMAIN}
