@@ -16,6 +16,9 @@ ContainerName=securo-srv
 AutoUpdate=registry
 Network=caddy
 
+# Used in securo-web nginx conf
+NetworkAlias=backend
+
 Environment=DEBUG=false
 Environment=AGENTS_ENABLED=false
 Environment=REDIS_URL=redis://securo-cache:6379/0
