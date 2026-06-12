@@ -7,6 +7,7 @@ ExecStartPre=sh roborock/roborock.bootstrap
 [Container]
 Image=ghcr.io/python-roborock/local_roborock_server
 
+HostName=roborock
 ContainerName=roborock
 AutoUpdate=registry
 Network=caddy

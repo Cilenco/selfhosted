@@ -10,10 +10,10 @@ ExecStartPre=sh securo/securo.web.bootstrap
 [Container]
 # Needs to run as root for now as it binds port 80
 Image=ghcr.io/securo-finance/securo-frontend
-Pod=securo.app.pod
 
 ContainerName=securo-web
 AutoUpdate=registry
+Pod=securo.pod
 
 Environment=FRONTEND_URL=https://money.${DOMAIN}
 Environment=BACKEND_URL=http://localhost:8000

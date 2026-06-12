@@ -9,12 +9,12 @@ ExecStartPre=sh securo/securo.srv.bootstrap
 
 [Container]
 Image=ghcr.io/securo-finance/securo-backend
-Pod=securo.app.pod
 
 Exec=sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
 ContainerName=securo-srv
 AutoUpdate=registry
+Pod=securo.pod
 
 Environment=DEBUG=false
 Environment=AGENTS_ENABLED=false

@@ -12,11 +12,11 @@ Image=docker.io/codewithcj/sparkyfitness
 
 ContainerName=fitness-ui
 AutoUpdate=registry
-Network=caddy
+Pod=fitness.pod
 
 Environment=NODE_ENV=production
 
 Environment=SPARKY_FITNESS_FRONTEND_URL=https://fitness.${DOMAIN}
 
-Environment=SPARKY_FITNESS_SERVER_HOST=fitness-srv
+Environment=SPARKY_FITNESS_SERVER_HOST=localhost
 Environment=SPARKY_FITNESS_SERVER_PORT=3010

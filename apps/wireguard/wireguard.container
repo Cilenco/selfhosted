@@ -7,6 +7,7 @@ ExecStartPre=sh wireguard/wireguard.bootstrap
 [Container]
 Image=ghcr.io/wg-easy/wg-easy
 
+HostName=wireguard
 ContainerName=wireguard
 AutoUpdate=registry
 Network=caddy

@@ -9,7 +9,7 @@ Image=docker.io/postgres
 
 ContainerName=fitness-db
 AutoUpdate=registry
-Network=caddy
+Pod=fitness.pod
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s

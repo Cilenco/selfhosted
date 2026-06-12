@@ -9,7 +9,7 @@ Image=docker.io/postgres
 
 ContainerName=oxicloud-db
 AutoUpdate=registry
-Network=caddy
+Pod=oxicloud.pod
 
 HealthCmd=pg_isready
 HealthStartPeriod=1m20s

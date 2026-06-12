@@ -12,7 +12,7 @@ Image=docker.io/codewithcj/sparkyfitness_server
 
 ContainerName=fitness-srv
 AutoUpdate=registry
-Network=caddy
+Pod=fitness.pod
 
 Environment=NODE_ENV=production
 
@@ -30,7 +30,7 @@ Environment=SPARKY_FITNESS_OIDC_SCOPE="openid email profile"
 Environment=SPARKY_FITNESS_OIDC_ADMIN_GROUP=admin
 
 Environment=SPARKY_FITNESS_DB_NAME=fitness
-Environment=SPARKY_FITNESS_DB_HOST=fitness-db
+Environment=SPARKY_FITNESS_DB_HOST=localhost
 Environment=SPARKY_FITNESS_DB_PORT=5432
 
 Secret=FITNESS_DB_USERNAME,type=env,target=SPARKY_FITNESS_DB_USER

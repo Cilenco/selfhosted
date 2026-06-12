@@ -3,6 +3,7 @@ Description=Caddy network
 
 [Network]
 NetworkName=caddy
+Subnet=10.42.35.0/24
 
 [Install]
 WantedBy=default.target

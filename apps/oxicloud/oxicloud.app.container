@@ -12,7 +12,7 @@ Image=docker.io/diocrafts/oxicloud
 
 ContainerName=oxicloud-app
 AutoUpdate=registry
-Network=caddy
+Pod=oxicloud.pod
 
 HealthCmd=wget -qO- http://localhost:8086/ready || exit 1
 HealthStartPeriod=1m20s
@@ -23,7 +23,7 @@ HealthRetries=3
 Environment=OXICLOUD_SERVER_HOST=0.0.0.0
 Environment=OXICLOUD_SERVER_PORT=8086
 
-Environment=OXICLOUD_DB_CONNECTION_STRING=postgres://postgres:postgres@oxicloud-db/oxicloud
+Environment=OXICLOUD_DB_CONNECTION_STRING=postgres://postgres:postgres@localhost/oxicloud
 
 Environment=OXICLOUD_OIDC_ENABLED=true
 Environment=OXICLOUD_OIDC_ADMIN_GROUPS=admin

@@ -7,6 +7,7 @@ ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 [Container]
 Image=docker.io/vaultwarden/server:testing
 
+HostName=vaultwarden
 ContainerName=vaultwarden
 AutoUpdate=registry
 Network=caddy

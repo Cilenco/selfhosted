@@ -1,0 +1,9 @@
+[Unit]
+Description=Securo
+
+[Pod]
+UserNS=keep-id:uid=65534,gid=65534
+
+PodName=securo
+HostName=securo
+Network=caddy
