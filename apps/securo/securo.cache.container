@@ -6,10 +6,10 @@ ExecStartPre=sh securo/securo.cache.bootstrap
 
 [Container]
 Image=docker.io/redis
+Pod=securo
 
 ContainerName=securo-redis
 AutoUpdate=registry
-Network=caddy
 
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
