@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/bewcloud/db/data
-
-printf $(openssl rand -hex  8) | podman secret create BEWCLOUD_DB_USERNAME - | true
-printf $(openssl rand -hex 12) | podman secret create BEWCLOUD_DB_PASSWORD - | true

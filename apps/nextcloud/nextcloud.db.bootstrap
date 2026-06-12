@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/nextcloud/db
-
-printf $(openssl rand -hex  8) | podman secret create NEXTCLOUD_DB_USERNAME - | true
-printf $(openssl rand -hex 12) | podman secret create NEXTCLOUD_DB_PASSWORD - | true

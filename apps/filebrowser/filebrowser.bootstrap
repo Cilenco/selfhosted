@@ -1,4 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/filebrowser/config
-mkdir -p $VOLUMES_DIR/filebrowser/database

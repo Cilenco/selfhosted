@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/splitpro
-
-(envsubst < AdguardHome.yaml) > $VOLUMES_DIR/adguard/conf/AdguardHome.yaml
