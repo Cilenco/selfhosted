@@ -6,7 +6,7 @@ ExecStartPre=sh securo/securo.db.bootstrap
 
 [Container]
 Image=docker.io/pgvector/pgvector:pg16
-Pod=securo
+Pod=securo.app.pod
 
 ContainerName=securo-db
 AutoUpdate=registry

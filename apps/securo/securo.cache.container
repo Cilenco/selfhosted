@@ -6,7 +6,7 @@ ExecStartPre=sh securo/securo.cache.bootstrap
 
 [Container]
 Image=docker.io/redis
-Pod=securo
+Pod=securo.app.pod
 
 ContainerName=securo-redis
 AutoUpdate=registry

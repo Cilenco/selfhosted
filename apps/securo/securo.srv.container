@@ -9,7 +9,7 @@ ExecStartPre=sh securo/securo.srv.bootstrap
 
 [Container]
 Image=ghcr.io/securo-finance/securo-backend
-Pod=securo
+Pod=securo.app.pod
 
 Exec=sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
@@ -18,10 +18,35 @@ AutoUpdate=registry
 
 Environment=DEBUG=false
 Environment=AGENTS_ENABLED=false
-Environment=REDIS_URL=redis://securo-cache:6379/0
-
-# Adjust username and password as for now these settings cannot be set through env
-Environment=DATABASE_URL=postgresql+asyncpg://postgres:postgres@securo-db:5432/securo
 
 Environment=FRONTEND_URL=https://money.${DOMAIN}
+Environment=REDIS_URL=redis://localhost:6379/0
+
 Secret=SECURO_SECRET_KEY,type=env,target=SECRET_KEY
+
+Environment=ENABLE_BANKING_APP_ID=your-application-id
+Environment=ENABLE_BANKING_OAUTH_REDIRECT_URI=https://money.${DOMAIN}/oauth/callback
+Environment=ENABLE_BANKING_PRIVATE_KEY_FILE=/app/secrets/enable-banking-key.pem
+
+Secret=SECURO_ENABLE_BANKING_SECRET_KEY,type=mount,target=/app/secrets/enable-banking-key.pem
+
+Environment=OIDC_ENABLED=true
+Environment=OIDC_PROVIDER_NAME=Authelia
+Environment=OIDC_SCOPES="openid email profile"
+Environment=OIDC_CLIENT_ID=securo
+
+Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
+
+Environment=OIDC_AUTO_REGISTER=true
+Environment=OIDC_EXISTING_USER_LINK_MODE=disabled
+Environment=OIDC_REQUIRE_VERIFIED_EMAIL=true
+
+Environment=OIDC_SYNC_ROLES=true
+Environment=OIDC_ROLES_CLAIM=groups
+Environment=OIDC_ADMIN_ROLES=admin
+
+Environment=OIDC_WORKSPACE_ROLE_MAP={"securo-owners":"owner","securo-editors":"editor","securo-viewers":"viewer"}
+Environment=OIDC_DISCOVERY_URL=https://auth.${DOMAIN}/.well-known/openid-configuration
+
+# Adjust username and password as for now these settings cannot be set through env
+Environment=DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/securo
