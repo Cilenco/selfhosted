@@ -1,0 +1,8 @@
+[Unit]
+Description=Caddy network
+
+[Network]
+NetworkName=securo
+
+[Install]
+WantedBy=default.target

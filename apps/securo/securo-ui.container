@@ -1,11 +1,11 @@
 [Unit]
 Description=Securo Web
 
-Requires=securo.srv.service
-After=securo.srv.service
+Requires=securo-srv.service
+After=securo-srv.service
 
 [Service]
-ExecStartPre=sh securo/securo.web.bootstrap
+ExecStartPre=sh securo/securo-ui.bootstrap
 
 [Container]
 # Needs to run as root for now as it binds port 80
@@ -18,4 +18,4 @@ Pod=securo.pod
 Environment=FRONTEND_URL=https://money.${DOMAIN}
 Environment=BACKEND_URL=http://localhost:8000
 
-Volume=${VOLUMES_DIR}/securo/web/cache:/var/cache/nginx
+Volume=${VOLUMES_DIR}/securo/ui/cache:/var/cache/nginx

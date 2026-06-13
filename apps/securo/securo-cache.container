@@ -2,7 +2,7 @@
 Description=Securo Redis
 
 [Service]
-ExecStartPre=sh securo/securo.cache.bootstrap
+ExecStartPre=sh securo/securo-cache.bootstrap
 
 [Container]
 Image=docker.io/redis

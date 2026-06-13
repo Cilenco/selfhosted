@@ -2,7 +2,7 @@
 Description=Securo database
 
 [Service]
-ExecStartPre=sh securo/securo.db.bootstrap
+ExecStartPre=sh securo/securo-db.bootstrap
 
 [Container]
 Image=docker.io/pgvector/pgvector:pg16

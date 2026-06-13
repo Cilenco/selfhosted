@@ -1,11 +1,11 @@
 [Unit]
 Description=Securo Web
 
-Requires=securo.db.service securo.cache.service
-After=securo.db.service securo.cache.service
+Requires=securo-db.service securo-cache.service
+After=securo-db.service securo-cache.service
 
 [Service]
-ExecStartPre=sh securo/securo.srv.bootstrap
+ExecStartPre=sh securo/securo-srv.bootstrap
 
 [Container]
 Image=ghcr.io/securo-finance/securo-backend
