@@ -5,5 +5,7 @@ Description=Sparky Fitness
 UserNS=keep-id:uid=65534,gid=65534
 
 PodName=fitness
-HostName=fitness
-Network=caddy
+# HostName=fitness
+Network=fitness
+
+PublishPort=8080:8080

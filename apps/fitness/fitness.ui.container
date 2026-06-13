@@ -14,8 +14,6 @@ ContainerName=fitness-ui
 AutoUpdate=registry
 Pod=fitness.pod
 
-Environment=NODE_ENV=production
-
 Environment=SPARKY_FITNESS_FRONTEND_URL=https://fitness.${DOMAIN}
 
 Environment=SPARKY_FITNESS_SERVER_HOST=localhost

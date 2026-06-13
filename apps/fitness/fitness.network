@@ -1,0 +1,9 @@
+[Unit]
+Description=SparyFitness network
+
+[Network]
+NetworkName=fitness
+Internal=true
+
+[Install]
+WantedBy=default.target
