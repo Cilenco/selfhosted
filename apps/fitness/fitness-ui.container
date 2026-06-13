@@ -1,11 +1,11 @@
 [Unit]
 Description=SparkyFitness Web UI
 
-Requires=fitness.srv.service
-After=fitness.srv.service
+Requires=fitness-srv.service
+After=fitness-srv.service
 
 [Service]
-ExecStartPre=sh fitness/fitness.ui.bootstrap
+ExecStartPre=sh fitness/fitness-ui.bootstrap
 
 [Container]
 Image=docker.io/codewithcj/sparkyfitness

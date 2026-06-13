@@ -1,11 +1,11 @@
 [Unit]
 Description=SparkyFitness Server
 
-Requires=fitness.db.service
-After=fitness.db.service
+Requires=fitness-db.service
+After=fitness-db.service
 
 [Service]
-ExecStartPre=sh fitness/fitness.srv.bootstrap
+ExecStartPre=sh fitness/fitness-srv.bootstrap
 
 [Container]
 Image=docker.io/codewithcj/sparkyfitness_server
@@ -45,4 +45,5 @@ Secret=FITNESS_API_SECRET,type=env,target=SPARKY_FITNESS_API_ENCRYPTION_KEY
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=SPARKY_FITNESS_OIDC_CLIENT_SECRET
 Secret=FITNESS_AUTH_SECRET,type=env,target=BETTER_AUTH_SECRET
 
-Volume=${VOLUMES_DIR}/fitness/srv/uploads:/app/SparkyFitnessServer/uploads
+Volume=${VOLUMES_DIR}/securo/srv/backup:/app/SparkyFitnessServer/backup
+Volume=${VOLUMES_DIR}/securo/srv/uploads:/app/SparkyFitnessServer/uploads

@@ -2,7 +2,7 @@
 Description=SparkyFitness database
 
 [Service]
-ExecStartPre=sh fitness/fitness.db.bootstrap
+ExecStartPre=sh fitness/fitness-db.bootstrap
 
 [Container]
 Image=docker.io/postgres
