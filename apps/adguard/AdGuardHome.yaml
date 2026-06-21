@@ -10,6 +10,10 @@ dns:
     - domain: "*.${DOMAIN}"
       answer: "${IP_ADDRESS}"
 
+filtering:
+  safe_search:
+    enabled: false
+
 tls:
   enabled: false
   #  server_name: ""
