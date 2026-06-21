@@ -1,0 +1,9 @@
+[Unit]
+Description=Remote Access (Wireguard + FRP Cleint)
+
+[Pod]
+UserNS=keep-id:uid=65534,gid=65534
+
+PodName=remote
+# HostName=remote
+Network=caddy

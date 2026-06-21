@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p $VOLUMES_DIR/roborock/data
+
+(envsubst < $PWD/homeassistant/roborock.toml) > $VOLUMES_DIR/roborock/config.toml

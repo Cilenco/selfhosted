@@ -2,18 +2,18 @@
 Description=LDAP Server
 
 [Service]
-ExecStartPre=sh ldap/ldap.bootstrap
+ExecStartPre=sh auth/auth-ldap.bootstrap
 
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless
 
 ContainerName=ldap
 AutoUpdate=registry
-Network=caddy
+Pod=auth.pod
 
-PublishPort=17170:17170
+# PublishPort=17170:17170
 
-Environment=LLDAP_LDAP_BASE_DN=dc=example,dc=com
+Environment=LLDAP_LDAP_BASE_DN=dc=homelab,dc=com
 #Environment=LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET=true
 
 Secret=LDAP_JWT_KEY,type=env,target=LLDAP_JWT_SECRET
@@ -26,4 +26,4 @@ Secret=LDAP_KEY_SEED,type=env,target=LLDAP_KEY_SEED
 #Secret=SMTP_HOST,type=env,target=LLDAP_SMTP_OPTIONS__SERVER
 #Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
 
-Volume=${VOLUMES_DIR}/ldap/data:/data
+Volume=${VOLUMES_DIR}/auth/ldap/data:/data

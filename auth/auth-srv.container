@@ -1,18 +1,18 @@
 [Unit]
 Description=Authelia
 
+Requires=auth-ldap.service
+After=auth-ldap.service
+
 [Service]
-ExecStartPre=sh authelia/authelia.bootstrap
+ExecStartPre=sh auth/auth-srv.bootstrap
 
 [Container]
 Image=docker.io/authelia/authelia
 
-HostName=authelia
 ContainerName=authelia
 AutoUpdate=registry
-Network=caddy
-
-Secret=DOMAIN,type=env,target=DOMAIN
+Pod=auth.pod
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET
@@ -21,15 +21,20 @@ Secret=AUTHELIA_STORAGE_ENCRYPTION_KEY,type=env,target=STORAGE_ENCRYPTION_KEY
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=CLIENT_SECRET
 
+Secret=LDAP_USERNAME,type=env,target=LDAP_USERNAME
+Secret=LDAP_PASSWORD,type=env,target=LDAP_PASSWORD
+
 Secret=SMTP_USERNAME,type=env,target=SMTP_USERNAME
 Secret=SMTP_PASSWORD,type=env,target=SMTP_PASSWORD
 Secret=SMTP_HOST,type=env,target=SMTP_HOST
 Secret=SMTP_PORT,type=env,target=SMTP_PORT
 
+Environment=DOMAIN=${DOMAIN}
+
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume=${VOLUMES_DIR}/authelia/config:/config
-Volume=${VOLUMES_DIR}/authelia/secrets:/secrets:ro
+Volume=${VOLUMES_DIR}/auth/authelia/config:/config
+Volume=${VOLUMES_DIR}/auth/authelia/secrets:/secrets
 
 Volume=./configuration.yml:/config/configuration.yml

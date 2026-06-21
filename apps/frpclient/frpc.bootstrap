@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/frpc
-
-(envsubst < $PWD/frpclient/frpc.toml) > $VOLUMES_DIR/frpc/frpc.toml

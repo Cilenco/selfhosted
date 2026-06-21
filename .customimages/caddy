@@ -2,9 +2,9 @@ FROM caddy:builder AS builder
 
 RUN xcaddy build \
 --with github.com/caddy-dns/ionos \
---with github.com/Lenart12/caddy-events-store_cert
+--with github.com/mholt/caddy-l4
 
 FROM caddy:latest
 
-# Install IONOS and webdav extension
+# Install IONOS and layer 4 extension (Roborock)
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy

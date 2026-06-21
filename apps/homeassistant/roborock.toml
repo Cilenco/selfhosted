@@ -1,8 +1,14 @@
 [network]
 stack_fqdn = "api-roborock.${DOMAIN}"
+listener_mode = "external_tls"
 bind_host = "0.0.0.0"
+# Backend listener ports.
 mqtt_tls_port = 8881
 https_port = 5555
+# Public ports advertised to clients.
+advertised_mqtt_tls_port = 8883
+advertised_https_port = 443
+
 region = "us"
 
 [broker]
@@ -17,7 +23,10 @@ data_dir = "/data"
 
 [tls]
 mode = "provided"
-cert_file = "/data/certs/certificate.crt"
-key_file = "/data/certs/certificate.key"
 
 [admin]
+password_hash = "abc"
+session_secret = "123123123123123123123123"
+
+protocol_login_email = "christian@dielitz.net"
+protocol_login_pin_hash = "sdfhk"

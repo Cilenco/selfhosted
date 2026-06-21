@@ -2,7 +2,7 @@ theme: auto
 
 server:
   address: "tcp://:9091/"
-  disable_healthcheck: false
+  disable_healthcheck: true
   endpoints:
     authz:
       forward-auth:
@@ -20,25 +20,19 @@ totp:
   period: 30
   skew: 1
 
+
 authentication_backend:
   refresh_interval: always
   password_reset:
     disable: false
-  file:
-    path: '/config/users.yml'
-    watch: true
-    search:
-      email: true
-      case_insensitive: true
-    password:
-      algorithm: 'argon2'
-      argon2:
-        variant: 'argon2id'
-        iterations: 3
-        memory: 65536
-        parallelism: 4
-        key_length: 32
-        salt_length: 16
+  password_change:
+    disable: false
+  ldap:
+    implementation: 'lldap'
+    address: 'ldap://localhost:3890'
+    user: 'UID={{env "LDAP_USERNAME"}},OU=people,DC=homelab,DC=com'
+    password: '{{env "LDAP_PASSWORD"}}'
+    base_dn: 'DC=homelab,DC=com'
 
 identity_validation:
   reset_password:

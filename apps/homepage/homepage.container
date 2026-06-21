@@ -12,7 +12,7 @@ ContainerName=homepage
 AutoUpdate=registry
 Network=caddy
 
-Secret=DOMAIN,type=env,target=HOMEPAGE_ALLOWED_HOSTS
-Secret=DOMAIN,type=env,target=HOMEPAGE_VAR_DOMAIN
+Environment=HOMEPAGE_ALLOWED_HOSTS=${DOMAIN}
+Environment=HOMEPAGE_VAR_DOMAIN=${DOMAIN}
 
 Volume=${VOLUMES_DIR}/homepage:/app/config

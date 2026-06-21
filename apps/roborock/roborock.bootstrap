@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p $VOLUMES_DIR/roborock/data
-
-(envsubst < $PWD/roborock/config.toml) > $VOLUMES_DIR/roborock/config.toml

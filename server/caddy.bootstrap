@@ -4,4 +4,4 @@ mkdir -p $VOLUMES_DIR/caddy/data
 mkdir -p $VOLUMES_DIR/caddy/certs
 mkdir -p $VOLUMES_DIR/caddy/conf
 
-ln -sf $PWD/caddy/Caddyfile $VOLUMES_DIR/caddy/conf/Caddyfile
+# ln -sf $PWD/caddy/Caddyfile $VOLUMES_DIR/caddy/conf/Caddyfile

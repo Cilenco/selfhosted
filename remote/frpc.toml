@@ -1,11 +1,13 @@
 dnsServer = "8.8.8.8"
 
+loginFailExit = false
+
 serverAddr = "${DOMAIN}"
 serverPort = 7000
 
 [[proxies]]
 type = "udp"
-name = "wireguard"
-localIP = "wireguard"
+name = "homelab"
+localIP = "localhost"
 remotePort = 51820
 localPort = 51820

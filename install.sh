@@ -27,7 +27,6 @@ read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
 # Create podman secrets
-printf $DOMAIN | podman secret create DOMAIN -
 printf $E_MAIL | podman secret create E_MAIL -
 
 printf $IONOS_PREFIX | podman secret create IONOS_PREFIX -

@@ -4,13 +4,23 @@
   http_port   8080
   https_port  4430
 
-  events {
-    on cert_obtained store_cert /certs
-  }
+  #events {
+  #  on cert_obtained store_cert /certs
+  #}
 
   # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 
   admin       off
+}
+
+# Roborock MQTT
+:8883 {
+  route {
+    tls
+    proxy {
+      upstream roborock:8881
+    }
+  }
 }
 
 https://{env.DOMAIN} {
@@ -174,7 +184,7 @@ https://*.{env.DOMAIN} {
   @files host files.{env.DOMAIN}
 
   handle @files {
-    reverse_proxy oxicloud-app:8086
+    reverse_proxy oxicloud:8086
   }
 
   #################################################
@@ -182,11 +192,8 @@ https://*.{env.DOMAIN} {
   #################################################
   @roborock host api-roborock.{env.DOMAIN}
 
-  reverse_proxy roborock:5555 {
-    transport http {
-      tls
-      tls_insecure_skip_verify
-    }
+  handle @roborock {
+    reverse_proxy roborock:555
   }
 
   #################################################

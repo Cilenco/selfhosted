@@ -1,16 +1,15 @@
 [Unit]
-Description=ActualBudget server
+Description=Roborock API server
 
 [Service]
-ExecStartPre=sh roborock/roborock.bootstrap
+ExecStartPre=sh homeassistant/hass-roborock.bootstrap
 
 [Container]
 Image=ghcr.io/python-roborock/local_roborock_server
 
-HostName=roborock
 ContainerName=roborock
 AutoUpdate=registry
-Network=caddy
+Pod=hass.pod
 
 HealthCmd="curl -skf https://127.0.0.1:5555/admin"
 HealthStartPeriod=1m20s
@@ -21,5 +20,5 @@ HealthRetries=3
 Volume=${VOLUMES_DIR}/roborock/data:/data
 Volume=${VOLUMES_DIR}/roborock/config.toml:/app/config.toml:ro
 
-Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.crt:/data/certs/certificate.crt:ro
-Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.key:/data/certs/certificate.key:ro
+#Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.crt:/data/certs/certificate.crt:ro
+#Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.key:/data/certs/certificate.key:ro

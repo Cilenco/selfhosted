@@ -2,13 +2,14 @@
 Description=FRP Client
 
 [Service]
-ExecStartPre=sh frpclient/frpc.bootstrap
+ExecStartPre=sh remote/remote-frpc.bootstrap
 
 [Container]
-Image=docker.io/snowdreamtech/frpc
+Image=ghcr.io/fatedier/frpc:v0.69.1
+Exec=-c /etc/frp/frpc.toml
 
 ContainerName=frpc
 AutoUpdate=registry
-Network=caddy
+Pod=remote.pod
 
 Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml

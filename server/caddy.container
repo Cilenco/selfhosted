@@ -2,7 +2,7 @@
 Description=Caddy Reverse Proxy
 
 [Service]
-ExecStartPre=sh caddy/caddy.bootstrap
+ExecStartPre=sh server/caddy.bootstrap
 
 [Container]
 Image=docker.io/cilenco/caddy-ionos-dns
@@ -12,7 +12,6 @@ ContainerName=caddy
 AutoUpdate=registry
 Network=caddy
 
-Environment=HOST_IP=${IP_ADDRESS}
 Environment=DOMAIN=${DOMAIN}
 
 Secret=IONOS_PREFIX,type=env,target=IONOS_PREFIX
@@ -21,7 +20,7 @@ Secret=IONOS_SECRET,type=env,target=IONOS_SECRET
 PublishPort=80:8080
 PublishPort=443:4430
 
-Volume=${VOLUMES_DIR}/caddy/conf/Caddyfile:/etc/caddy/Caddyfile:ro
+Volume=./Caddyfile:/etc/caddy/Caddyfile:ro
 
 Volume=${VOLUMES_DIR}/caddy/certs:/certs
 Volume=${VOLUMES_DIR}/caddy/data:/data

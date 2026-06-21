@@ -1,9 +1,9 @@
 [Unit]
-Description=Sparky Fitness
+Description=Auth (Authelia + LDAP)
 
 [Pod]
 UserNS=keep-id:uid=65534,gid=65534
 
-PodName=fitness
-# HostName=fitness
+PodName=auth
+# HostName=auth
 Network=caddy

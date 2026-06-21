@@ -1,11 +1,11 @@
 #!/bin/bash
 
-OIDC_KEY_FILE=$VOLUMES_DIR/authelia/secrets/OIDC_PRIVATE_KEY
+OIDC_KEY_FILE=$VOLUMES_DIR/auth/authelia/secrets/OIDC_PRIVATE_KEY
 
-mkdir -p $VOLUMES_DIR/authelia/config
-mkdir -p $VOLUMES_DIR/authelia/secrets
+mkdir -p $VOLUMES_DIR/auth/authelia/config
+mkdir -p $VOLUMES_DIR/auth/authelia/secrets
 
-touch $VOLUMES_DIR/authelia/config/users.yml
+# touch $VOLUMES_DIR/auth/authelia/config/users.yml
 
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_JWT_SECRET - | true
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET - | true
