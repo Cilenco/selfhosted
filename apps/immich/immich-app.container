@@ -1,18 +1,18 @@
 [Unit]
 Description=Immich server
 
-Requires=immich.db.service immich.redis.service
-After=immich.db.service immich.redis.service
+Requires=immich-db.service immich-cache.service immich-ml.service
+After=immich-db.service immich-cache.service immich-ml.service
 
 [Service]
-ExecStartPre=sh immich/immich.app.bootstrap
+ExecStartPre=sh immich/immich-app.bootstrap
 
 [Container]
 Image=ghcr.io/immich-app/immich-server:release
 
 ContainerName=immich-app
 AutoUpdate=registry
-Network=caddy
+Pod=immich.pod
 
 Environment=IMMICH_ENV=production
 Environment=TZ=Europe/Berlin
@@ -20,8 +20,8 @@ Environment=TZ=Europe/Berlin
 Environment=IMMICH_CONFIG_FILE=/settings.json
 
 Environment=DB_DATABASE_NAME=immich
-Environment=REDIS_HOSTNAME=immich-redis
-Environment=DB_HOSTNAME=immich-db
+Environment=REDIS_HOSTNAME=localhost
+Environment=DB_HOSTNAME=localhost
 
 Secret=IMMICH_DB_USERNAME,type=env,target=DB_USERNAME
 Secret=IMMICH_DB_PASSWORD,type=env,target=DB_PASSWORD

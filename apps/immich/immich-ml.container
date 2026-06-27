@@ -2,14 +2,14 @@
 Description=Immich ML server
 
 [Service]
-ExecStartPre=sh immich/immich.ml.bootstrap
+ExecStartPre=sh immich/immich-ml.bootstrap
 
 [Container]
 Image=ghcr.io/immich-app/immich-machine-learning:release
 
 ContainerName=immich-ml
 AutoUpdate=registry
-Network=caddy
+Pod=immich.pod
 
 Volume=${VOLUMES_DIR}/immich/ml/.cache:/.cache
 Volume=${VOLUMES_DIR}/immich/ml/.config:/.config

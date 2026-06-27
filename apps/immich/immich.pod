@@ -1,0 +1,9 @@
+[Unit]
+Description=Immich
+
+[Pod]
+UserNS=keep-id:uid=65534,gid=65534
+
+PodName=immich
+# HostName=immich
+Network=caddy

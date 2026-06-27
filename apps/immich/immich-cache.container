@@ -2,14 +2,14 @@
 Description=Immich Redis
 
 [Service]
-ExecStartPre=sh immich/immich.redis.bootstrap
+ExecStartPre=sh immich/immich-cache.bootstrap
 
 [Container]
 Image=docker.io/redis
 
 ContainerName=immich-redis
 AutoUpdate=registry
-Network=caddy
+Pod=immich.pod
 
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
