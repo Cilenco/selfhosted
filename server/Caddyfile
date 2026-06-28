@@ -142,7 +142,7 @@ https://*.{env.DOMAIN} {
   @roborock host api-roborock.{env.DOMAIN}
 
   handle @roborock {
-    reverse_proxy hass:5555
+    reverse_proxy host.containers.internal:5555
   }
 
   #################################################
