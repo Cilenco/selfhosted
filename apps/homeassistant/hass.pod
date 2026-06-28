@@ -6,4 +6,4 @@ UserNS=keep-id:uid=65534,gid=65534
 
 PodName=hass
 # HostName=hass
-Network=caddy
+Network=host

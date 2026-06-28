@@ -2,15 +2,14 @@
 Description=HomeAssistant Server
 
 [Service]
-ExecStartPre=sh homeassistant/homeassistant-app.bootstrap
+ExecStartPre=sh homeassistant/hass-app.bootstrap
 
 [Container]
-Image=docker.io/homeassistant/home-assistant
+Image=ghcr.io/home-assistant/home-assistant:latest
 
-HostName=homeassistant
 ContainerName=homeassistant-app
 AutoUpdate=registry
-Network=host
+Pod=hass.pod
 
 Environment=TZ=Europe/Berlin
 

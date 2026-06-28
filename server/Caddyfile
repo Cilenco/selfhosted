@@ -46,7 +46,7 @@ https://*.{env.DOMAIN} {
   @dns host dns.{env.DOMAIN}
 
   handle @dns {
-    forward_auth authelia:9091 {
+    forward_auth auth:9091 {
       uri /api/authz/forward-auth
     }
 
@@ -59,8 +59,18 @@ https://*.{env.DOMAIN} {
   @auth host auth.{env.DOMAIN}
 
   handle @auth {
-    reverse_proxy authelia:9091
+    reverse_proxy auth:9091
   }
+
+  #################################################
+  # Ldap User management                          #
+  #################################################
+  @ldap host user.{env.DOMAIN}
+
+  handle @ldap {
+    reverse_proxy auth:17170
+  }
+
 
   #################################################
   # Home Assistant                                #
@@ -93,16 +103,8 @@ https://*.{env.DOMAIN} {
   @money host money.{env.DOMAIN}
 
   handle @money {
-    reverse_proxy securo-web:80
-  }
-
-  #################################################
-  # Rustical                                      #
-  #################################################
-  @rustical host rustical.{env.DOMAIN}
-
-  handle @rustical {
-    reverse_proxy rustical:4000
+    reverse_proxy /api/* securo:8000
+    reverse_proxy securo:8080
   }
 
   #################################################
@@ -124,61 +126,6 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
-  # SplitPro                                      #
-  #################################################
-  @split host split.{env.DOMAIN}
-
-  handle @split {
-    reverse_proxy split-app:3000
-  }
-
-  #################################################
-  # FileBrowser                                   #
-  #################################################
-  #@files host files.{env.DOMAIN}
-  #
-  #@not_share_path {
-  #  not path /share/*
-  #  not path /static/*
-  #
-  #  not path /api/public/*
-  #}
-
-  #handle @files {
-  #  forward_auth @not_share_path authelia:9091 {
-  #    uri /api/authz/forward-auth
-  #    copy_headers Remote-User
-  #  }
-  #
-  #  reverse_proxy filebrowser:8080
-  #}
-
-  #################################################
-  # Radicale                                      #
-  #################################################
-  @calendar host calendar.{env.DOMAIN}
-
-  handle @calendar {
-    forward_auth authelia:9091 {
-      uri /api/authz/forward-auth
-      copy_headers Remote-User
-    }
-
-    reverse_proxy radicale:5232 {
-      header_up X-remote-user {http.auth.user.id}
-    }
-  }
-
-  #################################################
-  # OpenCloud                                     #
-  #################################################
-  #@cloud host cloud.{env.DOMAIN}
-  #
-  #handle @cloud {
-  #  reverse_proxy opencloud:9200
-  #}
-
-  #################################################
   # OxiCloud                                      #
   #################################################
   @files host files.{env.DOMAIN}
@@ -193,7 +140,7 @@ https://*.{env.DOMAIN} {
   @roborock host api-roborock.{env.DOMAIN}
 
   handle @roborock {
-    reverse_proxy roborock:555
+    reverse_proxy hass:5555
   }
 
   #################################################
@@ -244,7 +191,7 @@ https://*.{env.DOMAIN} {
   @photos host photos.{env.DOMAIN}
 
   handle @photos {
-    reverse_proxy immich-app:2283
+    reverse_proxy immich:2283
   }
 
   #################################################
