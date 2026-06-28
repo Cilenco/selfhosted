@@ -13,7 +13,11 @@ headerStyle: clean
 hideVersion: true
 
 layout:
-  Services:
+  Applications:
     style: row
     header: false
+    columns: 3
+  System management:
+    style: row
+    header: true
     columns: 3

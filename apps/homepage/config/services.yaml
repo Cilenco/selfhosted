@@ -1,42 +1,56 @@
 ---
-- Services:
+- Applications:
     - Adguard Home:
         href: https://dns.${DOMAIN}
         description: Networkwide Adblocker
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/adguard-home-light.svg
-    - Actual Budget:
-        href: https://budget.${DOMAIN}
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/adguard-home.svg
+    - Securo:
+        href: https://money.${DOMAIN}
         description: Personal finance app
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/actual-budget-light.svg
-    - File Browser:
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/actual-budget.svg
+    - OxiCloud:
         href: https://files.${DOMAIN}
         description: Cloud & Web File Browser
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/file-browser-light.svg
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/oxicloud.svg
     - Home Assistant:
         href: https://home.${DOMAIN}
         description: Local and private Home automation
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant-light.svg
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant.svg
     - Immich:
         href: https://photos.${DOMAIN}
         description: Photo and video management
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich-light.svg
-    - Navidrome:
-        href: https://music.${DOMAIN}
-        description: Music streaming server
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/navidrome-light.svg
-    - Outline:
-        href: https://dancing.${DOMAIN}
-        description: Knowledge base for dancing
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
-    - SplitPro:
-        href: https://split.${DOMAIN}
-        description: Splitwise alternative
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/budget-board-light.svg
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg
+    - Sparky Fitness:
+        href: https://fitness.${DOMAIN}
+        description: Sport & Fitness tracker
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/sparkyfitness.png
+    #- Navidrome:
+    #    href: https://music.${DOMAIN}
+    #    description: Music streaming server
+     #   icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/navidrome-light.svg
+    #- Outline:
+    #    href: https://dancing.${DOMAIN}
+    #    description: Knowledge base for dancing
+    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/outline-light.svg
+    #- SplitPro:
+    #    href: https://split.${DOMAIN}
+    #    description: Splitwise alternative
+    #    icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/budget-board-light.svg
+    - Jellyfin:
+        href: https://streaming.${DOMAIN}
+        description: Media streaming server
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/jellyfin.svg
     - Vaultwarden:
         href: https://passwords.${DOMAIN}
         description: Password manager
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/vaultwarden-light.svg
-    - Wireguard:
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bitwarden.svg
+
+- System management:
+  - User management:
+        href: https://user.${DOMAIN}
+        description: User & Group creation
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/authelia.svg
+  - Remote access:
         href: https://wireguard.${DOMAIN}
         description: VPN Manager
-        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wireguard-light.svg
+        icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wireguard.svg
