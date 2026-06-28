@@ -18,6 +18,7 @@ Secret=IONOS_PREFIX,type=env,target=IONOS_PREFIX
 Secret=IONOS_SECRET,type=env,target=IONOS_SECRET
 
 PublishPort=80:8080
+PublishPort=8883:8883
 PublishPort=443:4430
 
 Volume=./Caddyfile:/etc/caddy/Caddyfile:ro

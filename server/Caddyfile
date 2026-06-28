@@ -11,14 +11,16 @@
   # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
 
   admin       off
-}
 
-# Roborock MQTT
-:8883 {
-  route {
-    tls
-    proxy {
-      upstream roborock:8881
+  # Roborock MQTT
+  layer4 {
+    :8883 {
+      route {
+        tls
+        proxy {
+          upstream roborock:8881
+        }
+      }
     }
   }
 }
