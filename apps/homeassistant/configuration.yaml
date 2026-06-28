@@ -45,8 +45,23 @@ sensor:
     display_options:
       - "date_time_iso"
 
+auth_oidc:
+  display_name: "Authelia"
+  client_id: "homeassistant"
+  discovery_url: "https://auth.${DOMAIN}/.well-known/openid-configuration"
+  groups_scope: groups
+  claims:
+    display_name: name
+    username: preferred_username
+    groups: groups
+  roles:
+    admin: admin
+    user: family
+  features:
+    default_redirect: true
+
 lovelace:
-  mode: yaml
+  resource_mode: yaml
   resources:
     - url: /local/bubble-card.js
       type: module

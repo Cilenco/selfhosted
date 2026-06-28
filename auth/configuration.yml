@@ -90,6 +90,13 @@ identity_providers:
       email:
         id_token: [ 'email', 'email_verified' ]
     clients:
+      - client_id: 'homeassistant'
+        client_name: 'Home Assistant'
+        pkce_challenge_method: 'S256'
+        require_pkce: true
+        public: true
+        redirect_uris:
+          - 'https://home.{{env "DOMAIN"}}/auth/oidc/callback'
       - client_id: outline
         client_name: Outline
         client_secret: '{{ env "CLIENT_SECRET"}}'
