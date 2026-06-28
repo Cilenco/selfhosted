@@ -113,7 +113,7 @@ identity_providers:
         access_token_signed_response_alg: 'none'
       - client_id: 'immich'
         client_name: 'immich'
-        client_secret: '25728dcd80dd34ca3683abc1d926d9da5182cb7ddbe4bd338b11414db7e280b86c315419121c2cbb3ea2a98e944c526c94ae1f3d80ea0781f8cdda0f57721c23'
+        client_secret: '{{ env "CLIENT_SECRET"}}'
         public: false
         authorization_policy: one_factor
         require_pkce: false
