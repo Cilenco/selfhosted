@@ -45,10 +45,10 @@
         description: Password manager
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bitwarden.svg
 
-- System management:
+- System administration:
   - User management:
         href: https://user.${DOMAIN}
-        description: User & Group creation
+        description: User & Group control
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/authelia.svg
   - Remote access:
         href: https://wireguard.${DOMAIN}
