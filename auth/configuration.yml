@@ -90,36 +90,6 @@ identity_providers:
       email:
         id_token: [ 'email', 'email_verified' ]
     clients:
-      - client_id: OpenCloudWeb
-        client_name: OpenCloud Web
-        authorization_policy: one_factor
-        require_pkce: false
-        public: true
-        redirect_uris:
-          - https://cloud.{{env "DOMAIN"}}
-          - https://cloud.{{env "DOMAIN"}}/oidc-callback.html
-          - https://cloud.{{env "DOMAIN"}}/oidc-silent-redirect.html
-        scopes:
-          - openid
-          - offline_access
-          - profile
-          - email
-        response_types:
-          - 'code'
-      - client_id: OpenCloudAndroid
-        client_name: OpenCloud Android
-        authorization_policy: one_factor
-        require_pkce: false
-        public: true
-        redirect_uris:
-          - oc://android.opencloud.eu
-        scopes:
-          - openid
-          - offline_access
-          - profile
-          - email
-        response_types:
-          - 'code'
       - client_id: outline
         client_name: Outline
         client_secret: '{{ env "CLIENT_SECRET"}}'
@@ -141,55 +111,28 @@ identity_providers:
         userinfo_signed_response_alg: "none"
         token_endpoint_auth_method: "client_secret_post"
         access_token_signed_response_alg: 'none'
-      - client_id: bewcloud
-        client_name: BewCloud
-        client_secret: '{{ env "CLIENT_SECRET"}}'
-        authorization_policy: one_factor
-        pkce_challenge_method: 'S256'
-        consent_mode: 'implicit'
-        claims_policy: 'email'
-        require_pkce: true
+      - client_id: 'immich'
+        client_name: 'immich'
+        client_secret: '25728dcd80dd34ca3683abc1d926d9da5182cb7ddbe4bd338b11414db7e280b86c315419121c2cbb3ea2a98e944c526c94ae1f3d80ea0781f8cdda0f57721c23'
         public: false
-        redirect_uris:
-          - https://cloud.{{env "DOMAIN"}}/oidc/callback
-        scopes:
-          - openid
-          - email
-        userinfo_signed_response_alg: "none"
-        token_endpoint_auth_method: "client_secret_post"
-      - client_id: nextcloud
-        client_name: Nextcloud
-        client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
-        pkce_challenge_method: 'S256'
-        consent_mode: 'implicit'
-        require_pkce: true
-        public: false
+        require_pkce: false
+        pkce_challenge_method: ''
         redirect_uris:
-          - https://cloud.{{env "DOMAIN"}}/apps/user_oidc/code
+          - 'https://photos.{{env "DOMAIN"}}/auth/login'
+          - 'https://photos.{{env "DOMAIN"}}/user-settings'
+          - 'app.immich:///oauth-callback'
         scopes:
-          - openid
-          - profile
-          - groups
-          - email
+          - 'openid'
+          - 'profile'
+          - 'email'
         response_types:
-          - code
+          - 'code'
         grant_types:
           - 'authorization_code'
-        userinfo_signed_response_alg: "none"
         access_token_signed_response_alg: 'none'
-        token_endpoint_auth_method: "client_secret_post"
-      - client_id: rustical
-        client_secret: '{{ env "CLIENT_SECRET"}}'
-        consent_mode: implicit
-        public: false
-        redirect_uris:
-          - https://rustical.{{env "DOMAIN"}}/frontend/login/oidc/callback
-        scopes:
-          - openid
-          - profile
-          - groups
-        token_endpoint_auth_method: client_secret_basic
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_post'
       - client_id: budget
         client_name: ActualBudget
         client_secret: '{{ env "CLIENT_SECRET"}}'
@@ -203,19 +146,6 @@ identity_providers:
           - email
         userinfo_signed_response_alg: "none"
         token_endpoint_auth_method: "client_secret_basic"
-      - client_id: split
-        client_name: SplitPro
-        client_secret: '{{ env "CLIENT_SECRET"}}'
-        authorization_policy: one_factor
-        redirect_uris:
-          - https://split.{{env "DOMAIN"}}/api/auth/callback/oidc
-        scopes:
-          - openid
-          - offline_access
-          - profile
-          - email
-        userinfo_signed_response_alg: "none"
-        token_endpoint_auth_method: "client_secret_post"
       - client_id: fitness
         client_name: 'Sparky Fitness'
         client_secret: '{{ env "CLIENT_SECRET"}}'
