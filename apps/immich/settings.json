@@ -15,10 +15,10 @@
     "enabled": true
   },
   "machineLearning": {
-    "urls": ["http://immich-ml:3003"]
+    "urls": ["http://localhost:3003"]
   },
   "oauth": {
-    "enabled": false,
+    "enabled": true,
     "autoLaunch": true,
     "autoRegister": true,
     "buttonText": "Login with Authelia",
