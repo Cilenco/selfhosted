@@ -11,7 +11,7 @@ ContainerName=immich-ml
 AutoUpdate=registry
 Pod=immich.pod
 
-Volume=${VOLUMES_DIR}/immich/ml/.cache:/.cache
-Volume=${VOLUMES_DIR}/immich/ml/.config:/.config
+Volume=${VOLUMES_DIR}/immich/ml/.cache:/.cache:idmap
+Volume=${VOLUMES_DIR}/immich/ml/.config:/.config:idmap
 
-Volume=${VOLUMES_DIR}/immich/ml/cache:/cache
+Volume=${VOLUMES_DIR}/immich/ml/cache:/cache:idmap

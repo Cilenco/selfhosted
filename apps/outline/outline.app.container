@@ -52,4 +52,4 @@ Secret=OUTLINE_SECRET_KEY,type=env,target=SECRET_KEY
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OIDC_CLIENT_SECRET
 Secret=OUTLINE_UTILS_SECRET,type=env,target=UTILS_SECRET
 
-Volume=${VOLUMES_DIR}/outline/app/data:/var/lib/outline/data
+Volume=${VOLUMES_DIR}/outline/app/data:/var/lib/outline/data:idmap

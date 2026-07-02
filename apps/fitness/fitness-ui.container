@@ -19,6 +19,6 @@ Environment=SPARKY_FITNESS_FRONTEND_URL=https://fitness.${DOMAIN}
 Environment=SPARKY_FITNESS_SERVER_HOST=localhost
 Environment=SPARKY_FITNESS_SERVER_PORT=3010
 
-Volume=${VOLUMES_DIR}/fitness/ui/cache:/var/cache/nginx
-Volume=${VOLUMES_DIR}/fitness/ui/conf:/etc/nginx/conf.d
-Volume=${VOLUMES_DIR}/fitness/ui/run:/var/run/nginx
+Volume=${VOLUMES_DIR}/fitness/ui/cache:/var/cache/nginx:idmap
+Volume=${VOLUMES_DIR}/fitness/ui/conf:/etc/nginx/conf.d:idmap
+Volume=${VOLUMES_DIR}/fitness/ui/run:/var/run/nginx:idmap

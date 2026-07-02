@@ -17,4 +17,4 @@ HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume=${VOLUMES_DIR}/outline/cache/data:/data
+Volume=${VOLUMES_DIR}/outline/cache/data:/data:idmap

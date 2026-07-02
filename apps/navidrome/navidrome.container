@@ -17,5 +17,5 @@ Environment=ND_REVERSEPROXYWHITELIST=10.89.0.0/24
 Environment=ND_ENABLEUSEREDITING=false
 Environment=ND_AGENTS=""
 
-Volume=${VOLUMES_DIR}/navidrome/data:/data
+Volume=${VOLUMES_DIR}/navidrome/data:/data:idmap
 Volume=${MEDIA_DIR}:/music:ro

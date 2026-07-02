@@ -18,5 +18,5 @@ Environment=TZ=Europe/Berlin
 
 Environment=NTFY_BASE_URL=https://notifications.${DOMAIN}
 
-Volume=${VOLUMES_DIR}/ntfy/cache:/var/cache/ntfy
-Volume=${VOLUMES_DIR}/ntfy/config:/ect/ntfy
+Volume=${VOLUMES_DIR}/ntfy/cache:/var/cache/ntfy:idmap
+Volume=${VOLUMES_DIR}/ntfy/config:/ect/ntfy:idmap

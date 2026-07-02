@@ -19,4 +19,4 @@ Environment=ACTUAL_OPENID_ENFORCE=true
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=ACTUAL_OPENID_CLIENT_SECRET
 
-Volume=${VOLUMES_DIR}/budget/data:/data
+Volume=${VOLUMES_DIR}/budget/data:/data:idmap

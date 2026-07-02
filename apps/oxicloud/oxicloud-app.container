@@ -40,4 +40,4 @@ Environment=OXICLOUD_OIDC_ISSUER_URL=https://auth.${DOMAIN}
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OXICLOUD_OIDC_CLIENT_SECRET
 Secret=OXICLOUD_JWT_SECRET,type=env,target=OXICLOUD_JWT_SECRET
 
-Volume=${MEDIA_DIR}:/app/storage
+Volume=${MEDIA_DIR}:/app/storage:idmap

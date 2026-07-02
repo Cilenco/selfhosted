@@ -22,4 +22,4 @@ Environment=DISABLE_IPV6=true
 Sysctl=net.ipv4.ip_forward=1
 Sysctl=net.ipv4.conf.all.src_valid_mark=1
 
-Volume=${VOLUMES_DIR}/wireguard:/etc/wireguard
+Volume=${VOLUMES_DIR}/wireguard:/etc/wireguard:idmap

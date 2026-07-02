@@ -12,4 +12,4 @@ ContainerName=frpc
 AutoUpdate=registry
 Pod=remote.pod
 
-Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml
+Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml:idmap

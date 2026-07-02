@@ -18,4 +18,4 @@ Pod=securo.pod
 Environment=FRONTEND_URL=https://money.${DOMAIN}
 Environment=BACKEND_URL=http://localhost:8000
 
-Volume=${VOLUMES_DIR}/securo/ui/cache:/var/cache/nginx
+Volume=${VOLUMES_DIR}/securo/ui/cache:/var/cache/nginx:idmap

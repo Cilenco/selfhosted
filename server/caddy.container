@@ -23,5 +23,5 @@ PublishPort=443:4430
 
 Volume=./Caddyfile:/etc/caddy/Caddyfile:ro
 
-Volume=${VOLUMES_DIR}/caddy/certs:/certs
-Volume=${VOLUMES_DIR}/caddy/data:/data
+Volume=${VOLUMES_DIR}/caddy/certs:/certs:idmap
+Volume=${VOLUMES_DIR}/caddy/data:/data:idmap

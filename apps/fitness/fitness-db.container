@@ -22,4 +22,4 @@ Environment=POSTGRES_DB=fitness
 Secret=FITNESS_DB_USERNAME,type=env,target=POSTGRES_USER
 Secret=FITNESS_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/fitness/db/data:/var/lib/postgresql
+Volume=${VOLUMES_DIR}/fitness/db/data:/var/lib/postgresql:idmap

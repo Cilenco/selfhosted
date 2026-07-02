@@ -26,4 +26,4 @@ Secret=LDAP_KEY_SEED,type=env,target=LLDAP_KEY_SEED
 #Secret=SMTP_HOST,type=env,target=LLDAP_SMTP_OPTIONS__SERVER
 #Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
 
-Volume=${VOLUMES_DIR}/auth/ldap/data:/data
+Volume=${VOLUMES_DIR}/auth/ldap/data:/data:idmap
