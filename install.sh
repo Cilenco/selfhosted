@@ -15,7 +15,6 @@
 echo -e "Setting up your machine for selfhosting\n\n"
 
 read -p "Enter domain: " DOMAIN
-read -p "Enter E-Mail: " E_MAIL
 
 read -p "Enter Ionos API prefix: " IONOS_PREFIX
 read -p "Enter Ionos API secret: " IONOS_SECRET
@@ -27,8 +26,6 @@ read    -p "Enter SMTP username: " SMTP_USERNAME
 read -s -p "Enter SMTP password: " SMTP_PASSWORD
 
 # Create podman secrets
-printf $E_MAIL | podman secret create E_MAIL -
-
 printf $IONOS_PREFIX | podman secret create IONOS_PREFIX -
 printf $IONOS_SECRET | podman secret create IONOS_SECRET -
 
