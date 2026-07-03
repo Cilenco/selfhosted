@@ -27,6 +27,6 @@ Secret=IMMICH_DB_USERNAME,type=env,target=DB_USERNAME
 Secret=IMMICH_DB_PASSWORD,type=env,target=DB_PASSWORD
 
 Volume=${VOLUMES_DIR}/immich/app/settings.json:/settings.json
-Volume=/etc/localtime:/etc/localtime:ro
+Volume=/etc/localtime:/etc/localtime:ro,idmap
 
 Volume=${MEDIA_DIR}:/data:idmap

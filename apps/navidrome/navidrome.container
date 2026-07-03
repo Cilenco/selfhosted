@@ -18,4 +18,4 @@ Environment=ND_ENABLEUSEREDITING=false
 Environment=ND_AGENTS=""
 
 Volume=${VOLUMES_DIR}/navidrome/data:/data:idmap
-Volume=${MEDIA_DIR}:/music:ro
+Volume=${MEDIA_DIR}:/music:ro,idmap

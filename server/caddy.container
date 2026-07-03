@@ -21,7 +21,7 @@ PublishPort=80:8080
 PublishPort=8883:8883
 PublishPort=443:4430
 
-Volume=./Caddyfile:/etc/caddy/Caddyfile:ro
+Volume=./Caddyfile:/etc/caddy/Caddyfile:ro,idmap
 
 Volume=${VOLUMES_DIR}/caddy/certs:/certs:idmap
 Volume=${VOLUMES_DIR}/caddy/data:/data:idmap

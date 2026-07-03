@@ -18,4 +18,4 @@ AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
 Volume=${VOLUMES_DIR}/homeassistant/app/config:/config:idmap
 Volume=${VOLUMES_DIR}/homeassistant/app/run:/run:idmap
 
-Volume=/etc/localtime:/etc/localtime:ro
+Volume=/etc/localtime:/etc/localtime:ro,idmap

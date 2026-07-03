@@ -12,4 +12,4 @@ AutoUpdate=registry
 Pod=hass.pod
 
 Volume=${VOLUMES_DIR}/homeassistant/matter:/data:idmap
-Volume=/run/dbus:/run/dbus:ro
+Volume=/run/dbus:/run/dbus:ro,idmap

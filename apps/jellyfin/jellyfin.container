@@ -15,4 +15,4 @@ Network=caddy
 Volume=${VOLUMES_DIR}/jellyfin/cache:/cache:idmap
 Volume=${VOLUMES_DIR}/jellyfin/config:/config:idmap
 
-Volume=${MEDIA_DIR}:/media:ro
+Volume=${MEDIA_DIR}:/media:ro,idmap
