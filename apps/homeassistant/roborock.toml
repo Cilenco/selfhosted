@@ -28,5 +28,5 @@ mode = "provided"
 password_hash = "abc"
 session_secret = "123123123123123123123123"
 
-protocol_login_email = "christian@dielitz.net"
+protocol_login_email = "noreply@${DOMAIN}"
 protocol_login_pin_hash = "sdfhk"
