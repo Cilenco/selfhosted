@@ -14,8 +14,6 @@
 # Gather general information for
 echo -e "Setting up your machine for selfhosting\n\n"
 
-read -p "Enter domain: " DOMAIN
-
 read -p "Enter Ionos API prefix: " IONOS_PREFIX
 read -p "Enter Ionos API secret: " IONOS_SECRET
 
