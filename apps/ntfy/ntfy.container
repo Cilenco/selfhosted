@@ -12,8 +12,6 @@ ContainerName=ntfy
 AutoUpdate=registry
 Network=caddy
 
-User=65534:65534
-
 Environment=NTFY_LISTEN_HTTP=:8080
 Environment=NTFY_BEHIND_PROXY=true
 Environment=TZ=Europe/Berlin

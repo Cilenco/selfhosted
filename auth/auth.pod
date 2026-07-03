@@ -2,8 +2,6 @@
 Description=Auth (Authelia + LDAP)
 
 [Pod]
-UserNS=keep-id:uid=65534,gid=65534
-
 PodName=auth
 # HostName=auth
 Network=caddy
