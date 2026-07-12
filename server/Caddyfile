@@ -151,7 +151,7 @@ https://*.{env.DOMAIN} {
   @fitness host fitness.{env.DOMAIN}
 
   handle @fitness {
-    reverse_proxy fitness-ui:80
+    reverse_proxy fitness:80
   }
 
   #################################################
