@@ -115,7 +115,7 @@ https://*.{env.DOMAIN} {
   @streaming host streaming.{env.DOMAIN}
 
   handle @streaming {
-    reverse_proxy jellyfin:8096
+    reverse_proxy host.containers.internal:8096
   }
 
   #################################################

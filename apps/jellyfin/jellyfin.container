@@ -9,7 +9,7 @@ Image=docker.io/jellyfin/jellyfin
 
 ContainerName=jellyfin
 AutoUpdate=registry
-Network=caddy
+Network=host
 
 Volume=${VOLUMES_DIR}/jellyfin/cache:/cache:idmap
 Volume=${VOLUMES_DIR}/jellyfin/config:/config:idmap
