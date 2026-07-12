@@ -188,6 +188,8 @@ identity_providers:
           - profile
           - groups
           - email
+        token_endpoint_auth_method: "client_secret_post"
+
       - client_id: oxicloud
         client_name: OxiCloud
         client_secret: '{{ env "CLIENT_SECRET"}}'
