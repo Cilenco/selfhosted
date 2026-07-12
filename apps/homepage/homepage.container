@@ -15,4 +15,4 @@ Network=caddy
 Environment=HOMEPAGE_ALLOWED_HOSTS=${DOMAIN}
 Environment=HOMEPAGE_VAR_DOMAIN=${DOMAIN}
 
-Volume=${VOLUMES_DIR}/homepage:/app/config
+Volume=${VOLUMES_DIR}/homepage:/app/config:idmap

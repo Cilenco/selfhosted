@@ -34,7 +34,7 @@ Environment=DOMAIN=${DOMAIN}
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume=${VOLUMES_DIR}/auth/authelia/config:/config
-Volume=${VOLUMES_DIR}/auth/authelia/secrets:/secrets
+Volume=${VOLUMES_DIR}/auth/authelia/config:/config:idmap
+Volume=${VOLUMES_DIR}/auth/authelia/secrets:/secrets:idmap
 
-Volume=./configuration.yml:/config/configuration.yml
+Volume=./configuration.yml:/config/configuration.yml:idmap

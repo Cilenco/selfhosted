@@ -1,7 +1,3 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/fitness/ui/conf
-mkdir -p $VOLUMES_DIR/fitness/ui/cache
-mkdir -p $VOLUMES_DIR/fitness/ui/run
-
-touch $VOLUMES_DIR/fitness/ui/run/nginx.pid
+mkdir -p $VOLUMES_DIR/fitness/ui

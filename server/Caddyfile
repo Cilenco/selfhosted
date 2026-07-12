@@ -202,7 +202,7 @@ https://*.{env.DOMAIN} {
   @wireguard host wireguard.{env.DOMAIN}
 
   handle @wireguard {
-    reverse_proxy wireguard:51821
+    reverse_proxy remote:51821
   }
 
   #################################################

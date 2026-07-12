@@ -11,7 +11,7 @@ ContainerName=jellyfin
 AutoUpdate=registry
 Network=caddy
 
-Volume=${VOLUMES_DIR}/jellyfin/cache:/cache
-Volume=${VOLUMES_DIR}/jellyfin/config:/config
+Volume=${VOLUMES_DIR}/jellyfin/cache:/cache:idmap
+Volume=${VOLUMES_DIR}/jellyfin/config:/config:idmap
 
-Volume=${MEDIA_DIR}:/media:ro
+Volume=${MEDIA_DIR}:/media:ro,idmap

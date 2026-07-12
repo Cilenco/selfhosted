@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p $VOLUMES_DIR/homeassistant/app/config/www
-mkdir -p $VOLUMES_DIR/homeassistant/app/run
+# mkdir -p $VOLUMES_DIR/homeassistant/app/run
 
 cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/app/config/configuration.yaml
 touch $VOLUMES_DIR/homeassistant/app/config/automations.yaml

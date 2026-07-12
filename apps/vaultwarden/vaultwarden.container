@@ -30,4 +30,4 @@ Environment=SSO_SCOPES="openid offline_access profile email"
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=SSO_CLIENT_SECRET
 
-Volume=${VOLUMES_DIR}/vaultwarden/data:/data
+Volume=${VOLUMES_DIR}/vaultwarden/data:/data:idmap
