@@ -93,6 +93,7 @@ identity_providers:
       - client_id: 'homeassistant'
         client_name: 'Home Assistant'
         pkce_challenge_method: 'S256'
+        consent_mode: implicit
         require_pkce: true
         public: true
         redirect_uris:
@@ -125,6 +126,7 @@ identity_providers:
         authorization_policy: one_factor
         require_pkce: false
         pkce_challenge_method: ''
+        consent_mode: implicit
         redirect_uris:
           - 'https://photos.{{env "DOMAIN"}}/auth/login'
           - 'https://photos.{{env "DOMAIN"}}/user-settings'
@@ -144,6 +146,7 @@ identity_providers:
         client_name: ActualBudget
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
+        consent_mode: implicit
         redirect_uris:
           - https://budget.{{env "DOMAIN"}}/openid/callback
         scopes:
@@ -158,6 +161,7 @@ identity_providers:
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
+        consent_mode: implicit
         require_pkce: true
         public: false
         redirect_uris:
@@ -179,6 +183,7 @@ identity_providers:
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
+        consent_mode: implicit
         require_pkce: true
         public: false
         redirect_uris:
@@ -194,6 +199,7 @@ identity_providers:
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
+        consent_mode: implicit
         require_pkce: true
         public: false
         redirect_uris:
@@ -209,6 +215,7 @@ identity_providers:
         client_secret: '{{ env "CLIENT_SECRET"}}'
         authorization_policy: one_factor
         pkce_challenge_method: 'S256'
+        consent_mode: implicit
         require_pkce: true
         public: false
         redirect_uris:
