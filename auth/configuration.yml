@@ -161,7 +161,7 @@ identity_providers:
         require_pkce: true
         public: false
         redirect_uris:
-          - 'https://fitness.{{env "DOMAIN"}}/identity/connect/oidc-signin'
+          - 'https://fitness.{{env "DOMAIN"}}/api/auth/sso/callback/authelia'
         scopes:
           - 'openid'
           - 'profile'
