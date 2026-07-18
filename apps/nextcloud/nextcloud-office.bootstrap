@@ -1,0 +1,3 @@
+#!/bin/bash
+
+printf $(openssl rand -hex 32) | podman secret create NEXTCLOUD_OFFICE_JWT - | true

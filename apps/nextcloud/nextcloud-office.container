@@ -1,0 +1,20 @@
+[Unit]
+Description=Nextcloud Office
+
+[Service]
+ExecStartPre=sh nextcloud/nextcloud-office.bootstrap
+
+[Container]
+# Cannot run in pod as it start nginx, postgres and redis itself
+Image=ghcr.io/euro-office/documentserver:latest
+
+ContainerName=nextcloud-office
+AutoUpdate=registry
+Pod=nextcloud.pod
+
+
+Environment=JWT_ENABLED=true
+Environment=JWT_HEADER=Authorization
+Environment=EXAMPLE_ENABLED=true
+
+Secret=NEXTCLOUD_OFFICE_JWT,type=env,target=JWT_SECRET

@@ -1,0 +1,16 @@
+[Unit]
+Description=Nextcloud Notify Push
+
+[Service]
+ExecStartPre=sh nextcloud/nextcloud-push.bootstrap
+
+[Container]
+Image=ghcr.io/nextcloud/notify_push
+
+ContainerName=nextcloud-push
+AutoUpdate=registry
+Pod=nextcloud.pod
+
+Environment=NEXTCLOUD_URL=http://localhost:8080
+Environment=DATABASE_URL=postgres://postgres:postgres@localhost:5433/nextcloud
+Environment=REDIS_URL=redis://localhost:7777
