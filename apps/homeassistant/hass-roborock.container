@@ -19,6 +19,3 @@ HealthRetries=3
 
 Volume=${VOLUMES_DIR}/roborock/data:/data:idmap
 Volume=${VOLUMES_DIR}/roborock/config.toml:/app/config.toml:ro,idmap
-
-#Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.crt:/data/certs/certificate.crt:ro
-#Volume=${VOLUMES_DIR}/caddy/certs/*.${DOMAIN}/wildcard_.${DOMAIN}.key:/data/certs/certificate.key:ro

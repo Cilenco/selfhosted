@@ -6,16 +6,15 @@ ExecStartPre=sh nextcloud/nextcloud-cache.bootstrap
 
 [Container]
 Image=docker.io/redis
-Exec=redis-server --port 7777
 
 ContainerName=nextcloud-cache
 AutoUpdate=registry
 Pod=nextcloud.pod
 
-HealthCmd="redis-cli -p 7777 ping | grep PONG"
+HealthCmd="redis-cli | grep PONG"
 HealthStartPeriod=1m20s
 HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume=${VOLUMES_DIR}/nextcloud/cache:/data
+Volume=${VOLUMES_DIR}/nextcloud/cache:/data:idmap

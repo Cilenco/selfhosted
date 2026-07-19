@@ -18,7 +18,6 @@ HealthTimeout=30s
 HealthRetries=3
 
 Environment=POSTGRES_DB=nextcloud
-Environment=PGPORT=5433
 
 Environment=POSTGRES_USER=postgres
 Environment=POSTGRES_PASSWORD=postgres
@@ -26,4 +25,4 @@ Environment=POSTGRES_PASSWORD=postgres
 #Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
 #Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/nextcloud/db:/var/lib/postgresql
+Volume=${VOLUMES_DIR}/nextcloud/db:/var/lib/postgresql:idmap

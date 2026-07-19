@@ -5,21 +5,19 @@ Requires=nextcloud-cache.service nextcloud-db.service nextcloud-push.service
 After=nextcloud-cache.service nextcloud-db.service nextcloud-push.service
 
 [Service]
-ExecStartPre=sh nextcloud/nextcloud-fpm.bootstrap
+ExecStartPre=sh nextcloud/nextcloud-app.bootstrap
 
 [Container]
-Image=docker.io/nextcloud:fpm-alpine
+Image=docker.io/nextcloud
 
-ContainerName=nextcloud-fpm
+ContainerName=nextcloud-app
 AutoUpdate=registry
 Pod=nextcloud.pod
 
 Environment=DOMAIN=${DOMAIN}
 
 Environment=REDIS_HOST=localhost
-Environment=REDIS_HOST_PORT=7777
-
-Environment=POSTGRES_HOST=localhost:5433
+Environment=POSTGRES_HOST=localhost
 Environment=POSTGRES_DB=nextcloud
 
 Environment=EUROOFFICE_DOMAIN=https://office.${DOMAIN}
@@ -43,6 +41,8 @@ Secret=AUTHELIA_CLIENT_SECRET,type=env,target=CLIENT_SECRET
 Environment=NEXTCLOUD_ADMIN_USER=admin
 Environment=NEXTCLOUD_ADMIN_PASSWORD=password
 
-Volume=${VOLUMES_DIR}/nextcloud/app:/var/www/html
+Environment=NEXTCLOUD_DATA_DIR=/app/data
+
+Volume=${MEDIA_DIR}/nextcloud/app:/app/data:idmap
 
 Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:ro
