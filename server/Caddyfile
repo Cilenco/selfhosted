@@ -90,6 +90,18 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # Nextcloud                                     #
+  #################################################
+  @cloud host cloud.{env.DOMAIN}
+
+  handle @budget {
+    redir /.well-known/carddav /remote.php/dav/ 301
+    redir /.well-known/caldav /remote.php/dav/ 301
+
+    reverse_proxy nextcloud:8080
+  }
+
+  #################################################
   # ActualBudget                                  #
   #################################################
   @budget host budget.{env.DOMAIN}
@@ -125,15 +137,6 @@ https://*.{env.DOMAIN} {
 
   handle @dancing {
     reverse_proxy outline-app:3000
-  }
-
-  #################################################
-  # OxiCloud                                      #
-  #################################################
-  @files host files.{env.DOMAIN}
-
-  handle @files {
-    reverse_proxy oxicloud:8086
   }
 
   #################################################
