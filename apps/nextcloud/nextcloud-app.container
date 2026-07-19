@@ -43,6 +43,6 @@ Environment=NEXTCLOUD_ADMIN_PASSWORD=password
 
 Environment=NEXTCLOUD_DATA_DIR=/app/data
 
-Volume=${MEDIA_DIR}/nextcloud/app:/app/data:idmap
+Volume=${MEDIA_DIR}:/app/data:idmap
 
 Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:ro
