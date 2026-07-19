@@ -30,7 +30,7 @@ php occ app:install user_oidc
 #php occ app:enable user_ldap
 # occ app:install eurooffice
 
-php occ app:install unroundedcorners
+# php occ app:install unroundedcorners
 
 php occ app:disable dashboard
 php occ app:disable weather_status
