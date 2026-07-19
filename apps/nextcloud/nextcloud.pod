@@ -4,4 +4,4 @@ Description=Nextcloud
 [Pod]
 PodName=nextcloud
 # HostName=nextcloud
-Network=host
+Network=caddy
