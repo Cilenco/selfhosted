@@ -1,0 +1,40 @@
+variant: fcos
+version: 1.7.0
+
+passwd:
+  users:
+    - name: homelab
+      ssh_authorized_keys:
+        - 123 #import from github
+
+storage:
+  links:
+    - path: /etc/localtime
+      target: ../usr/share/zoneinfo/America/New_York
+
+  files:
+    - path: /etc/hostname
+      overwrite: true
+      mode: 0644
+      contents:
+        inline: homelab
+    - path: /etc/vconsole.conf
+      overwrite: true
+      mode: 0644
+      contents:
+        inline: KEYMAP=de
+
+  trees:
+    - local: auth
+      path: /etc/containers/systemd/auth
+    - local: server
+      path: /etc/containers/systemd/server
+    # Application containers
+    - local: apps/adguard
+      path: /etc/containers/systemd/adguard
+    - local: apps/homeassistant
+      path: /etc/containers/systemd/homeassistant
+    - local: apps/jellyfin
+      path: /etc/containers/systemd/jellyfin
+    - local: apps/nextcloud
+      path: /etc/containers/systemd/nextcloud
