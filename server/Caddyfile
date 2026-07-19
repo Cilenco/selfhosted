@@ -98,7 +98,7 @@ https://*.{env.DOMAIN} {
     redir /.well-known/carddav /remote.php/dav/ 301
     redir /.well-known/caldav /remote.php/dav/ 301
 
-    reverse_proxy nextcloud:8080
+    reverse_proxy nextcloud:80
   }
 
   #################################################
