@@ -1,8 +1,8 @@
 [Unit]
 Description=Nextcloud App
 
-Requires=nextcloud-cache.service nextcloud-db.service nextcloud-push.service
-After=nextcloud-cache.service nextcloud-db.service nextcloud-push.service
+Requires=nextcloud-cache.service nextcloud-db.service
+After=nextcloud-cache.service nextcloud-db.service
 
 [Service]
 ExecStartPre=sh nextcloud/nextcloud-app.bootstrap
