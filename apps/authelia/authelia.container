@@ -1,8 +1,8 @@
 [Unit]
 Description=Authelia
 
-Requires=auth-ldap.service
-After=auth-ldap.service
+Requires=lldap.service
+After=lldap.service
 
 [Service]
 ExecStartPre=sh auth/auth-srv.bootstrap
@@ -10,9 +10,10 @@ ExecStartPre=sh auth/auth-srv.bootstrap
 [Container]
 Image=docker.io/authelia/authelia
 
+HostName=Authelia
 ContainerName=authelia
 AutoUpdate=registry
-Pod=auth.pod
+Network=caddy
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET

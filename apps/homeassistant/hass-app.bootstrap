@@ -1,20 +1,20 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/homeassistant/app/config/www
+mkdir -p $VOLUMES_DIR/hass/app/config/www
 # mkdir -p $VOLUMES_DIR/homeassistant/app/run
 
-cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/homeassistant/app/config/configuration.yaml
+cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/hass/app/config/configuration.yaml
 touch $VOLUMES_DIR/homeassistant/app/config/automations.yaml
 
 # Download some Dashboard extensions
-WWW_DIR=$VOLUMES_DIR/homeassistant/app/config/www
+#WWW_DIR=$VOLUMES_DIR/hass/app/config/www
 
-wget -q -O $WWW_DIR/navbar-card.js https://github.com/joseluis9595/lovelace-navbar-card/releases/latest/download/navbar-card.js
+#wget -q -O $WWW_DIR/navbar-card.js https://github.com/joseluis9595/lovelace-navbar-card/releases/latest/download/navbar-card.js
 
-wget -q -O $WWW_DIR/bubble-card.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-card.js
-wget -q -O $WWW_DIR/bubble-pop-up-fix.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-pop-up-fix.js
+#wget -q -O $WWW_DIR/bubble-card.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-card.js
+#wget -q -O $WWW_DIR/bubble-pop-up-fix.js https://raw.githubusercontent.com/Clooos/Bubble-Card/main/dist/bubble-pop-up-fix.js
 
-wget -q -O $WWW_DIR/kiosk-mode.js https://github.com/NemesisRE/kiosk-mode/releases/latest/download/kiosk-mode.js
+#wget -q -O $WWW_DIR/kiosk-mode.js https://github.com/NemesisRE/kiosk-mode/releases/latest/download/kiosk-mode.js
 
 
 # https://github.com/scottsweb/ham?tab=readme-ov-file#home-assistant

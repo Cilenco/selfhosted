@@ -1,4 +1,4 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/jellyfin/cache
-mkdir -p $VOLUMES_DIR/jellyfin/config
+mkdir -p $VOLUMES_DIR/jellyfin/app/cache
+mkdir -p $VOLUMES_DIR/jellyfin/app/config

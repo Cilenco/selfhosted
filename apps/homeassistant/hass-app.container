@@ -13,8 +13,7 @@ Pod=hass.pod
 
 Environment=TZ=Europe/Berlin
 
-AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0
-
-Volume=${VOLUMES_DIR}/homeassistant/app/config:/config:idmap
+Volume=${VOLUMES_DIR}/hass/app/config:/config:idmap
 
 Volume=/etc/localtime:/etc/localtime:ro
+AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0

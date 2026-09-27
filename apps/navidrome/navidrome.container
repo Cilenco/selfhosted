@@ -7,6 +7,7 @@ ExecStartPre=sh navidrome/navidrome.bootstrap
 [Container]
 Image=docker.io/deluan/navidrome
 
+HostName=Navidrome
 ContainerName=navidrome
 AutoUpdate=registry
 Network=caddy

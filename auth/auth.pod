@@ -1,7 +1,0 @@
-[Unit]
-Description=Auth (Authelia + LDAP)
-
-[Pod]
-PodName=auth
-# HostName=auth
-Network=caddy

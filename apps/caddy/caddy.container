@@ -2,7 +2,7 @@
 Description=Caddy Reverse Proxy
 
 [Service]
-ExecStartPre=sh server/caddy.bootstrap
+ExecStartPre=sh caddy/caddy.bootstrap
 
 [Container]
 Image=docker.io/cilenco/caddy-ionos-dns

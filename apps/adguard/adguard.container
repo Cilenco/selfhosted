@@ -7,10 +7,9 @@ ExecStartPre=sh adguard/adguard.bootstrap
 [Container]
 Image=docker.io/adguard/adguardhome
 
-HostName=adguard
+HostName=Adguard
 ContainerName=adguard
 AutoUpdate=registry
-
 Network=caddy
 
 PublishPort=127.0.0.1:53:5300/tcp

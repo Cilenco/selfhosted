@@ -1,16 +1,16 @@
 [Unit]
-Description=Nextcloud Office
+Description=EuroOffice
 
 [Service]
-ExecStartPre=sh nextcloud/nextcloud-office.bootstrap
+ExecStartPre=sh eurooffice/eurooffice.bootstrap
 
 [Container]
-# Cannot run in pod as it start nginx, postgres and redis itself
 Image=ghcr.io/euro-office/documentserver:latest
 
-ContainerName=nextcloud-office
+HostName=EuroOffice
+ContainerName=eurooffice
 AutoUpdate=registry
-Pod=nextcloud.pod
+Network=caddy
 
 
 Environment=JWT_ENABLED=true

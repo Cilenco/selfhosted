@@ -5,13 +5,14 @@ Description=Jellyfin streming server
 ExecStartPre=sh jellyfin/jellyfin.bootstrap
 
 [Container]
-Image=docker.io/jellyfin/jellyfin
+Image=docker.io/jellyfin/jellyfin:latest
 
+HostName=Jellyfin
 ContainerName=jellyfin
 AutoUpdate=registry
-Network=host
+Network=caddy
 
-Volume=${VOLUMES_DIR}/jellyfin/cache:/cache:idmap
-Volume=${VOLUMES_DIR}/jellyfin/config:/config:idmap
+Volume=${VOLUMES_DIR}/jellyfin/app/cache:/cache:idmap
+Volume=${VOLUMES_DIR}/jellyfin/app/config:/config:idmap
 
 Volume=${MEDIA_DIR}:/media:ro,idmap

@@ -5,11 +5,11 @@ Description=HomeAssistant Matter Server
 ExecStartPre=sh homeassistant/hass-matter.bootstrap
 
 [Container]
-Image=ghcr.io/matter-js/matterjs-server:stable
+Image=ghcr.io/matter-js/matterjs-server
 
 ContainerName=hass-matter
 AutoUpdate=registry
 Pod=hass.pod
 
-Volume=${VOLUMES_DIR}/homeassistant/matter:/data:idmap
+Volume=${VOLUMES_DIR}/hass/matter:/data:idmap
 Volume=/run/dbus:/run/dbus:ro

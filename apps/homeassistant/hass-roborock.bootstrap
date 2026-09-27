@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mkdir -p $VOLUMES_DIR/roborock/data
+mkdir -p $VOLUMES_DIR/hass/roborock/data
 
-(envsubst < $PWD/homeassistant/roborock.toml) > $VOLUMES_DIR/roborock/config.toml
+(envsubst < $PWD/homeassistant/roborock.toml) > $VOLUMES_DIR/hass/roborock/config.toml
