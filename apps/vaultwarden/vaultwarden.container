@@ -7,12 +7,12 @@ ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 [Container]
 Image=docker.io/vaultwarden/server:testing
 
+User=65534:65534
+
 HostName=Vaultwarden
 ContainerName=vaultwarden
 AutoUpdate=registry
 Network=caddy
-
-User=65534:65534
 
 Environment=DOMAIN=https://passwords.${DOMAIN}
 
