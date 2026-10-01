@@ -12,6 +12,8 @@ ContainerName=vaultwarden
 AutoUpdate=registry
 Network=caddy
 
+User=65534:65534
+
 Environment=DOMAIN=https://passwords.${DOMAIN}
 
 Environment=SIGNUPS_ALLOWED=false
