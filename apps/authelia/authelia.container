@@ -5,7 +5,7 @@ Requires=lldap.service
 After=lldap.service
 
 [Service]
-ExecStartPre=sh auth/auth-srv.bootstrap
+ExecStartPre=sh authelia/authelia.bootstrap
 
 [Container]
 Image=docker.io/authelia/authelia
@@ -14,6 +14,8 @@ HostName=Authelia
 ContainerName=authelia
 AutoUpdate=registry
 Network=caddy
+
+User=65534:65534
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET
@@ -35,7 +37,7 @@ Environment=DOMAIN=${DOMAIN}
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
 Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
 
-Volume=${VOLUMES_DIR}/auth/authelia/config:/config:idmap
-Volume=${VOLUMES_DIR}/auth/authelia/secrets:/secrets:idmap
+Volume=${VOLUMES_DIR}/authelia/config:/config:idmap
+Volume=${VOLUMES_DIR}/authelia/secrets:/secrets:idmap
 
 Volume=./configuration.yml:/config/configuration.yml:idmap
