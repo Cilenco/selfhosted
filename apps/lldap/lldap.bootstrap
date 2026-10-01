@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/lldap/data
-chown 65534:65534 $VOLUMES_DIR/lldap/data
+chown $OWNER $VOLUMES_DIR/lldap/data
 
 printf $(openssl rand -hex 64) | podman secret create LDAP_JWT_KEY -  | true
 printf $(openssl rand -hex 12) | podman secret create LDAP_USERNAME - | true
