@@ -1,6 +1,13 @@
 #!/bin/bash
+set -euo pipefail; umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/caddy/data
 mkdir -p $VOLUMES_DIR/caddy/conf
+
+chown $OWNER $VOLUMES_DIR/caddy/data
+chown $OWNER $VOLUMES_DIR/caddy/conf
+
 
 # ln -sf $PWD/caddy/Caddyfile $VOLUMES_DIR/caddy/conf/Caddyfile
