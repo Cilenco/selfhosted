@@ -1,4 +1,15 @@
 #!/bin/bash
+set -euo pipefail;
+#umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/adguard/conf
 mkdir -p $VOLUMES_DIR/adguard/work
+
+chown $OWNER $VOLUMES_DIR/adguard/conf
+chown $OWNER $VOLUMES_DIR/adguard/work
+
+(envsubst < $PWD/adguard/AdGuardHome.yaml) > $VOLUMES_DIR/adguard/conf/AdGuardHome.yaml
+
+chown $OWNER $VOLUMES_DIR/adguard/conf/AdGuardHome.yaml
