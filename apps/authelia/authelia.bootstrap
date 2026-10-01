@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#umask 077
 
 OIDC_KEY_FILE=$VOLUMES_DIR/authelia/secrets/OIDC_PRIVATE_KEY
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/authelia/config
 mkdir -p $VOLUMES_DIR/authelia/secrets
 
-chown 65534:65534 $VOLUMES_DIR/authelia/config
-chown 65534:65534 $VOLUMES_DIR/authelia/secrets
+chown $OWNER $VOLUMES_DIR/authelia/config
+chown $OWNER $VOLUMES_DIR/authelia/secrets
 
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_JWT_SECRET - | true
 printf $(openssl rand -hex 64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET - | true
