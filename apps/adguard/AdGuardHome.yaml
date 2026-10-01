@@ -1,0 +1,17 @@
+http:
+  address: 0.0.0.0:3000
+
+dns:
+  port: 5300
+  use_private_ptr_resolvers: false
+  upstream_dns:
+    - 9.9.9.9
+  rewrites:
+    - domain: "${DOMAIN}"
+      answer: "${IP_ADDRESS}"
+    - domain: "*.${DOMAIN}"
+      answer: "${IP_ADDRESS}"
+
+filtering:
+  safe_search:
+    enabled: false

@@ -9,6 +9,7 @@ Image=docker.io/adguard/adguardhome
 
 User=65534:65534
 
+# Required by guard binary
 AddCapability=CAP_NET_BIND_SERVICE
 
 HostName=Adguard
