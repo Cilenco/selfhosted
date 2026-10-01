@@ -10,12 +10,12 @@ ExecStartPre=sh authelia/authelia.bootstrap
 [Container]
 Image=docker.io/authelia/authelia
 
+User=65534:65534
+
 HostName=Authelia
 ContainerName=authelia
 AutoUpdate=registry
 Network=caddy
-
-User=65534:65534
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET
