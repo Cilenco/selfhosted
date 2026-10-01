@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail; umask 077
 
-mkdir -p $VOLUMES_DIR/jellyfin/app/cache
-mkdir -p $VOLUMES_DIR/jellyfin/app/config
+OWNER=65534:65534
+
+mkdir -p $VOLUMES_DIR/jellyfin/cache
+mkdir -p $VOLUMES_DIR/jellyfin/config
+
+chown $OWNER $VOLUMES_DIR/jellyfin/cache
+chown $OWNER $VOLUMES_DIR/jellyfin/config

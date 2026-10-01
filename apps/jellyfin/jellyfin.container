@@ -7,12 +7,14 @@ ExecStartPre=sh jellyfin/jellyfin.bootstrap
 [Container]
 Image=docker.io/jellyfin/jellyfin:latest
 
+User=65534:65534
+
 HostName=Jellyfin
 ContainerName=jellyfin
 AutoUpdate=registry
 Network=caddy
 
-Volume=${VOLUMES_DIR}/jellyfin/app/cache:/cache:idmap
-Volume=${VOLUMES_DIR}/jellyfin/app/config:/config:idmap
+Volume=${VOLUMES_DIR}/jellyfin/cache:/cache:idmap
+Volume=${VOLUMES_DIR}/jellyfin/config:/config:idmap
 
 Volume=${MEDIA_DIR}:/media:ro,idmap
