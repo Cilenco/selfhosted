@@ -1,5 +1,7 @@
 FROM caddy:builder AS builder
 
+ENV XCADDY_SETCAP=0
+
 RUN xcaddy build \
 --with github.com/caddy-dns/ionos \
 --with github.com/mholt/caddy-l4
