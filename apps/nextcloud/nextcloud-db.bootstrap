@@ -1,6 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# set -euo pipefail; umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/nextcloud/db
+chown $OWNER $VOLUMES_DIR/nextcloud/db
 
-#printf $(openssl rand -hex  8) | podman secret create NEXTCLOUD_DB_USERNAME - | true
-#printf $(openssl rand -hex 12) | podman secret create NEXTCLOUD_DB_PASSWORD - | true
+printf $(openssl rand -hex  8) | podman secret create NEXTCLOUD_DB_USERNAME - | true
+printf $(openssl rand -hex 12) | podman secret create NEXTCLOUD_DB_PASSWORD - | true

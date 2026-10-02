@@ -5,3 +5,5 @@ Description=Nextcloud
 PodName=nextcloud
 # HostName=nextcloud
 Network=caddy
+
+PublishPort=8080:80

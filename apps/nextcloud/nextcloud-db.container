@@ -7,6 +7,8 @@ ExecStartPre=sh nextcloud/nextcloud-db.bootstrap
 [Container]
 Image=docker.io/postgres
 
+User=65534:65534
+
 ContainerName=nextcloud-db
 AutoUpdate=registry
 Pod=nextcloud.pod
@@ -19,10 +21,7 @@ HealthRetries=3
 
 Environment=POSTGRES_DB=nextcloud
 
-Environment=POSTGRES_USER=postgres
-Environment=POSTGRES_PASSWORD=postgres
-
-#Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
-#Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=NEXTCLOUD_DB_USERNAME,type=env,target=POSTGRES_USER
+Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
 Volume=${VOLUMES_DIR}/nextcloud/db:/var/lib/postgresql:idmap
