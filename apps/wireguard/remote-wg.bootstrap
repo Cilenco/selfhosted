@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# set -euo pipefail; umask 077
 
-mkdir -p $VOLUMES_DIR/wireguard/conf
-mkdir -p $VOLUMES_DIR/wireguard/run
+OWNER=65534:65534
+
+mkdir -p $VOLUMES_DIR/wireguard
+#mkdir -p $VOLUMES_DIR/wireguard/run
+
+#chown $OWNER $VOLUMES_DIR/wireguard
+#chown $OWNER $VOLUMES_DIR/wireguard/run

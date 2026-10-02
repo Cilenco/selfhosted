@@ -2,10 +2,12 @@
 Description=Easy Wireguard server
 
 [Service]
-ExecStartPre=sh remote/remote-wg.bootstrap
+ExecStartPre=sh wireguard/remote-wg.bootstrap
 
 [Container]
 Image=ghcr.io/wg-easy/wg-easy
+
+#User=65534:65534
 
 ContainerName=wireguard
 AutoUpdate=registry
