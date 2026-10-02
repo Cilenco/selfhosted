@@ -1,5 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail;
+# umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/hass/roborock/data
+chown $OWNER $VOLUMES_DIR/hass/roborock/data
 
 (envsubst < $PWD/homeassistant/roborock.toml) > $VOLUMES_DIR/hass/roborock/config.toml
+
+chown $OWNER $VOLUMES_DIR/hass/roborock/config.toml

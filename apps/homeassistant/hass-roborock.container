@@ -7,11 +7,13 @@ ExecStartPre=sh homeassistant/hass-roborock.bootstrap
 [Container]
 Image=ghcr.io/python-roborock/local_roborock_server
 
+User=65534:65534
+
 ContainerName=hass-roborock
 AutoUpdate=registry
 Pod=hass.pod
 
-HealthCmd="curl -skf https://127.0.0.1:5555/admin"
+HealthCmd="curl -skf http://127.0.0.1:5555/admin"
 HealthStartPeriod=1m20s
 HealthInterval=30s
 HealthTimeout=30s

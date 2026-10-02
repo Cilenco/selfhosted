@@ -1,10 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail;
+#umask 077
+
+#OWNER=9000:9000
 
 mkdir -p $VOLUMES_DIR/hass/app/config/www
-# mkdir -p $VOLUMES_DIR/homeassistant/app/run
+mkdir -p $VOLUMES_DIR/hass/app/run
 
-cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/hass/app/config/configuration.yaml
-touch $VOLUMES_DIR/homeassistant/app/config/automations.yaml
+#chown $OWNER $VOLUMES_DIR/hass/app/config/www
+#chown $OWNER $VOLUMES_DIR/hass/app/run
+
+
+
+
+#cp $PWD/homeassistant/configuration.yaml $VOLUMES_DIR/hass/app/config/configuration.yaml
+#touch $VOLUMES_DIR/homeassistant/app/config/automations.yaml
 
 # Download some Dashboard extensions
 #WWW_DIR=$VOLUMES_DIR/hass/app/config/www

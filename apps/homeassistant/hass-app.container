@@ -7,6 +7,12 @@ ExecStartPre=sh homeassistant/hass-app.bootstrap
 [Container]
 Image=ghcr.io/home-assistant/home-assistant:latest
 
+#User=9000:9000
+
+# Add capabilities for bluetooth management
+AddCapability=CAP_NET_ADMIN,CAP_NET_RAW
+
+
 ContainerName=hass-app
 AutoUpdate=registry
 Pod=hass.pod
@@ -14,6 +20,7 @@ Pod=hass.pod
 Environment=TZ=Europe/Berlin
 
 Volume=${VOLUMES_DIR}/hass/app/config:/config:idmap
+Volume=${VOLUMES_DIR}/hass/app/run:/run:idmap
 
 Volume=/etc/localtime:/etc/localtime:ro
 AddDevice=-/dev/ttyUSB0:/dev/ttyUSB0

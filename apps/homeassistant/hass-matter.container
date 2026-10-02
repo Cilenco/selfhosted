@@ -7,6 +7,8 @@ ExecStartPre=sh homeassistant/hass-matter.bootstrap
 [Container]
 Image=ghcr.io/matter-js/matterjs-server
 
+User=65534:65534
+
 ContainerName=hass-matter
 AutoUpdate=registry
 Pod=hass.pod
