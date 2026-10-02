@@ -7,7 +7,9 @@ ExecStartPre=sh immich/immich-cache.bootstrap
 [Container]
 Image=docker.io/redis
 
-ContainerName=immich-redis
+User=65534:65534
+
+ContainerName=immich-cache
 AutoUpdate=registry
 Pod=immich.pod
 
@@ -17,4 +19,4 @@ HealthInterval=30s
 HealthTimeout=30s
 HealthRetries=3
 
-Volume=${VOLUMES_DIR}/immich/redis:/data:idmap
+Volume=${VOLUMES_DIR}/immich/cache:/data:idmap

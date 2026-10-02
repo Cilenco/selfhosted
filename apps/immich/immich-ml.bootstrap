@@ -1,3 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail; umask 077
+
+OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/immich/ml/cache
+chown $OWNER $VOLUMES_DIR/immich/ml/cache

@@ -7,6 +7,8 @@ ExecStartPre=sh immich/immich-ml.bootstrap
 [Container]
 Image=ghcr.io/immich-app/immich-machine-learning:release
 
+User=65534:65534
+
 ContainerName=immich-ml
 AutoUpdate=registry
 Pod=immich.pod
