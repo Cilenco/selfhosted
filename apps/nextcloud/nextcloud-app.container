@@ -19,8 +19,10 @@ Pod=nextcloud.pod
 Environment=DOMAIN=${DOMAIN}
 
 #Environment=REDIS_HOST=localhost
-Environment=POSTGRES_HOST=localhost
+
 Environment=POSTGRES_DB=nextcloud
+Environment=POSTGRES_HOST=localhost
+Environment=POSTGRES_USER=postgres
 
 Environment=EUROOFFICE_DOMAIN=https://office.${DOMAIN}
 Environment=EUROOFFICE_INTERNAL_URL=http://nextcloud-office

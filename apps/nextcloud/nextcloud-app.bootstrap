@@ -4,4 +4,4 @@
 OWNER=65534:65534
 
 mkdir -p $VOLUMES_DIR/nextcloud/app
-#chown $OWNER $VOLUMES_DIR/nextcloud/app
+chown $OWNER $VOLUMES_DIR/nextcloud/app

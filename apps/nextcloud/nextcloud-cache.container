@@ -13,7 +13,7 @@ ContainerName=nextcloud-cache
 AutoUpdate=registry
 Pod=nextcloud.pod
 
-HealthCmd="redis-cli | grep PONG"
+HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
 HealthInterval=30s
 HealthTimeout=30s
