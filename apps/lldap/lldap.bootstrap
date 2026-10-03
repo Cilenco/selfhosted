@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-umask 077
+#umask 077
 
 OWNER=65534:65534
 

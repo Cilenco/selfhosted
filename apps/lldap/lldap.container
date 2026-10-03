@@ -14,6 +14,12 @@ ContainerName=lldap
 AutoUpdate=registry
 Network=caddy
 
+HealthCmd=/app/lldap healthcheck || exit 1
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
 Environment=LLDAP_LDAP_BASE_DN=dc=homelab,dc=com
 Environment=LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET=true
 

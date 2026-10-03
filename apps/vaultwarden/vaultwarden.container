@@ -14,6 +14,12 @@ ContainerName=vaultwarden
 AutoUpdate=registry
 Network=caddy
 
+HealthCmd=/healthcheck.sh
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
 Environment=DOMAIN=https://passwords.${DOMAIN}
 
 Environment=SIGNUPS_ALLOWED=false
