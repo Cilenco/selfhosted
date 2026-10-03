@@ -5,7 +5,7 @@ Description=Vaultwarden server
 ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 
 [Container]
-Image=docker.io/vaultwarden/server:testing
+Image=docker.io/vaultwarden/server:latest-alpine@sha256:9a905c5cf5df61bb827da3805e160170741c0b53b0c63bb07e1afd3d2e21b1c8
 
 User=65534:65534
 

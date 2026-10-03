@@ -5,7 +5,7 @@ Description=LDAP Server
 ExecStartPre=sh lldap/lldap.bootstrap
 
 [Container]
-Image=docker.io/lldap/lldap:latest-alpine-rootless
+Image=docker.io/lldap/lldap:latest-alpine-rootless@sha256:0b694bb4cf324f2b918c73db13a6518926e5de6a73996c27e0238b1f3d342aae
 
 User=65534:65534
 

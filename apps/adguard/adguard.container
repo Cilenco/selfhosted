@@ -5,7 +5,7 @@ Description=Adguard Home server
 ExecStartPre=sh adguard/adguard.bootstrap
 
 [Container]
-Image=docker.io/adguard/adguardhome
+Image=docker.io/adguard/adguardhome:latest@sha256:aba9e3bf0613be3ba3755e1fc311b126e2c24bec25e18b6483894a88283074f0
 
 User=65534:65534
 

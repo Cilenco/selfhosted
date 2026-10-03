@@ -5,7 +5,7 @@ Description=EuroOffice
 ExecStartPre=sh eurooffice/eurooffice.bootstrap
 
 [Container]
-Image=ghcr.io/euro-office/documentserver:latest
+Image=ghcr.io/euro-office/documentserver:latest@sha256:889e681923d2dcc8bdfb92fe128d10e185fcff880d302b6a0c0c7bf339499290
 
 HostName=EuroOffice
 ContainerName=eurooffice

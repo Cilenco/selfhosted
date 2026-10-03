@@ -5,7 +5,7 @@ Description=FRP Client
 ExecStartPre=sh remote/remote-frpc.bootstrap
 
 [Container]
-Image=ghcr.io/fatedier/frpc:v0.69.1
+Image=ghcr.io/fatedier/frpc:v0.71.0@sha256:99ece6a2b62cfc68731e0df289af804ff1c699911cfc47871856434f1d6d53ee
 Exec=-c /etc/frp/frpc.toml
 
 ContainerName=frpc
