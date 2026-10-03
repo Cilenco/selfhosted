@@ -2,13 +2,9 @@
 #set -euo pipefail;
 #umask 077
 
-OWNER=65534:65534
+OWNER=999:999
 
-mkdir -p $VOLUMES_DIR/immich/db/conf
 mkdir -p $VOLUMES_DIR/immich/db/data
+chown $OWNER $VOLUMES_DIR/immich/db/data
 
-#chown $OWNER $VOLUMES_DIR/immich/db/conf
-#chown $OWNER $VOLUMES_DIR/immich/db/data
-
-printf $(openssl rand -hex  8) | podman secret create IMMICH_DB_USERNAME - | true
 printf $(openssl rand -hex 12) | podman secret create IMMICH_DB_PASSWORD - | true
