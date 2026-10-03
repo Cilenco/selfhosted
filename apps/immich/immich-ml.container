@@ -5,7 +5,7 @@ Description=Immich ML server
 ExecStartPre=sh immich/immich-ml.bootstrap
 
 [Container]
-Image=ghcr.io/immich-app/immich-machine-learning:release
+Image=ghcr.io/immich-app/immich-machine-learning:release@sha256:e16c2f166a8174901959fdf85e2e4c7bd1ebc4b37e0b6655de97c41408a260c4
 
 User=65534:65534
 

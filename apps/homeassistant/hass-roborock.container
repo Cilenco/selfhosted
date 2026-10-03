@@ -5,7 +5,7 @@ Description=Roborock API server
 ExecStartPre=sh homeassistant/hass-roborock.bootstrap
 
 [Container]
-Image=ghcr.io/python-roborock/local_roborock_server
+Image=ghcr.io/python-roborock/local_roborock_server:latest@sha256:3441a7cbde8119388d49392aac5e8c21523b25f71e226fbaf637a505d1ac8b6e
 
 User=65534:65534
 

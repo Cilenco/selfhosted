@@ -8,7 +8,7 @@ After=immich-db.service immich-cache.service immich-ml.service
 ExecStartPre=sh immich/immich-app.bootstrap
 
 [Container]
-Image=ghcr.io/immich-app/immich-server:release
+Image=ghcr.io/immich-app/immich-server:release@sha256:d317916b28090c33eb36b308464ea391f8b7df1d850fcfea227a39ec879718c2
 
 User=65534:65534
 
