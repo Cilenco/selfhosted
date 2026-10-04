@@ -7,6 +7,5 @@ OWNER=65534:65534
 mkdir -p $VOLUMES_DIR/beszel/agent
 #chown $OWNER $VOLUMES_DIR/beszel/agent
 
-
 # Enable the podman system-wide socket
 systemctl enable --now podman.socket
