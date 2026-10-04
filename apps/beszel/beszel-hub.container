@@ -1,0 +1,18 @@
+[Unit]
+Description=Beszel Hub
+
+#Requires=beszel-agent.service
+#After=beszel-agent.service
+
+[Service]
+ExecStartPre=sh beszel/beszel-hub.bootstrap
+
+[Container]
+Image=docker.io/henrygd/beszel:latest
+
+ContainerName=beszel-hub
+Pod=beszel.pod
+
+Environment=APP_URL=http://localhost:8090
+
+Volume=${VOLUMES_DIR}/beszel/hub:/beszel_data:idmap

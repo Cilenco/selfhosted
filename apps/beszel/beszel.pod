@@ -1,0 +1,9 @@
+[Unit]
+Description=Beszel
+
+[Pod]
+PodName=beszel
+# HostName=beszel
+Network=caddy
+
+PublishPort=8090:8090

@@ -1,0 +1,27 @@
+[Unit]
+Description=Beszel Agent
+
+[Service]
+ExecStartPre=sh beszel/beszel-agent.bootstrap
+
+[Container]
+Image=docker.io/henrygd/beszel-agent:latest
+
+ContainerName=beszel-agent
+Pod=beszel.pod
+
+# required for S.M.A.R.T. data
+AddCapability=SYS_MODULE
+AddCapability=SYS_RAWIO
+
+Environment=HUB_URL=http://localhost:8090
+
+Environment=KEY= # Is provided by the Beszel Hub in the Web UI
+Environment=TKOEN= # Is provided by the Beszel Hub in the Web UI
+Environment=DOCKER_HOST=unix:///run/podman/podman.sock
+
+Volume=${VOLUMES_DIR}/beszel/agent:/var/lib/beszel-agent:idmap
+Volume=/run/podman/podman.sock:/run/podman/podman.sock:ro
+
+# monitor other disks by mounting a folder in /extra-filesystems
+# Volume=/mnt/disk1/.beszel:/extra-filesystems/disk1:ro
