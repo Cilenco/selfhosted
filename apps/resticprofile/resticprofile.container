@@ -1,0 +1,20 @@
+[Unit]
+Description=Backup service
+
+[Container]
+Image=ghcr.io/creativeprojects/resticprofile:0.33.1@sha256:bd2f3de1fa0f6e7ab30bcd9c61f935aead030d7eaddf8ee8535e82897ce8fd67
+
+HostName=resticprofile
+ContainerName=resticprofile
+
+Entrypoint=/bin/sh
+Exec=-c resticprofile schedule --all && crond -f
+
+#Exec=-n adguard backup
+
+Environment=TZ=Europe/Berlin
+
+Volume=./backup-profile.yml:/etc/resticprofile/profiles.yaml:ro
+
+Volume=${VOLUMES_DIR}:/data:ro
+Volume=<external HDD>:/backup

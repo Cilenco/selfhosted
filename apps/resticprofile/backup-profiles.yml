@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+version: "2"
+
+mixins:
+  default-conf:
+    initialize: true
+
+    insecure-no-password: true
+
+    repository: "local:/backup/{{ .Profile.Name }}"
+    status-file: "{{ .Profile.Name }}-status.json"
+
+    retention:
+      after-backup: true
+      before-backup: false
+      keep-hourly: 24
+      keep-daily: 7
+      keep-weekly: 4
+      keep-monthly: 12
+      keep-yearly: 1
+      keep-tag:
+        - initial
+
+    restore:
+      target: "/data/{{ .Profile.Name }}"
+
+    backup:
+      verbose: true
+      extended-status: true
+
+      source:
+        - "/data/{{ .Profile.Name }}"
+
+      schedule:
+        - "*-*-* 04:00:00" # daily at 4am
+
+      #send-after:
+      #  method: POST
+      #  url: "{{ .Env.NTFY_URL }}/backups"
+      #  body: "Successfully backed up ${PROFILE_NAME}"
+      #  headers:
+      #    - name: Title
+      #      value: "Created ${PROFILE_NAME} backup"
+      #    - name: Tags
+      #      value: tada
+
+      #send-after-fail:
+      #  method: POST
+      #  url: "{{ .Env.NTFY_URL }}/backups"
+      #  body: "${ERROR_STDERR}"
+      #  headers:
+      #    - name: Title
+      #      value: "Backup of ${PROFILE_NAME} failed"
+      #    - name: Tags
+      #      value: warning
+
+      schedule-permission: system
+      schedule-lock-mode: default
+      schedule-lock-wait: 10m
+
+profiles:
+  adguard:
+    use: default-conf
