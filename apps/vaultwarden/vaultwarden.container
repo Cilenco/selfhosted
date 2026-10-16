@@ -7,8 +7,6 @@ ExecStartPre=sh vaultwarden/vaultwarden.bootstrap
 [Container]
 Image=docker.io/vaultwarden/server:latest-alpine@sha256:9a905c5cf5df61bb827da3805e160170741c0b53b0c63bb07e1afd3d2e21b1c8
 
-User=65534:65534
-
 HostName=Vaultwarden
 ContainerName=vaultwarden
 AutoUpdate=registry
@@ -38,4 +36,4 @@ Environment=SSO_SCOPES="openid offline_access profile email"
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=SSO_CLIENT_SECRET
 
-Volume=${VOLUMES_DIR}/vaultwarden/data:/data:idmap
+Volume=${VOLUMES_DIR}/vaultwarden/data:/data

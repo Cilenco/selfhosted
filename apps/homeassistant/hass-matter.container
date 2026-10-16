@@ -13,5 +13,5 @@ ContainerName=hass-matter
 AutoUpdate=registry
 Pod=hass.pod
 
-Volume=${VOLUMES_DIR}/hass/matter:/data:idmap
+Volume=${VOLUMES_DIR}/hass/matter:/data
 Volume=/run/dbus:/run/dbus:ro

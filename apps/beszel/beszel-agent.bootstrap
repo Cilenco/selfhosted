@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail;
-#umask 077
-
-OWNER=65534:65534
+umask 077
 
 mkdir -p $VOLUMES_DIR/beszel/agent
-#chown $OWNER $VOLUMES_DIR/beszel/agent
 
-# Enable the podman system-wide socket
-systemctl enable --now podman.socket
+# Enable the podman user socket
+systemctl --user enable --now podman.socket

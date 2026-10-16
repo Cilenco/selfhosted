@@ -18,4 +18,4 @@ HealthInterval=120s
 
 Environment=APP_URL=http://localhost:8090
 
-Volume=${VOLUMES_DIR}/beszel/hub:/beszel_data:idmap
+Volume=${VOLUMES_DIR}/beszel/hub:/beszel_data

@@ -26,7 +26,7 @@ Environment=KEY= # Is provided by the Beszel Hub in the Web UI
 Environment=TKOEN= # Is provided by the Beszel Hub in the Web UI
 Environment=DOCKER_HOST=unix:///run/podman/podman.sock
 
-Volume=${VOLUMES_DIR}/beszel/agent:/var/lib/beszel-agent:idmap
+Volume=${VOLUMES_DIR}/beszel/agent:/var/lib/beszel-agent
 Volume=/run/podman/podman.sock:/run/podman/podman.sock:ro
 
 # monitor other disks by mounting a folder in /extra-filesystems

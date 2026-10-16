@@ -27,6 +27,6 @@ Environment=POSTGRES_USER=postgres
 Environment=POSTGRES_INITDB_ARGS="--data-checksums"
 Secret=IMMICH_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/immich/db/data:/var/lib/postgresql/data:idmap
+Volume=${VOLUMES_DIR}/immich/db/data:/var/lib/postgresql/data
 
 Tmpfs=/etc/postgresql

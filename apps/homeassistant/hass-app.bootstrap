@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail;
-#umask 077
-
-#OWNER=9000:9000
+umask 077
 
 mkdir -p $VOLUMES_DIR/hass/app/config/www
 mkdir -p $VOLUMES_DIR/hass/app/run
-
-#chown $OWNER $VOLUMES_DIR/hass/app/config/www
-#chown $OWNER $VOLUMES_DIR/hass/app/run
 
 
 

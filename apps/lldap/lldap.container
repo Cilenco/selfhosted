@@ -33,4 +33,4 @@ Secret=SMTP_PASSWORD,type=env,target=LLDAP_SMTP_OPTIONS__PASSWORD
 Secret=SMTP_HOST,type=env,target=LLDAP_SMTP_OPTIONS__SERVER
 Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
 
-Volume=${VOLUMES_DIR}/lldap/data:/data:idmap
+Volume=${VOLUMES_DIR}/lldap/data:/data

@@ -1,4 +1,5 @@
 #!/bin/bash
+umask 077
 
 mkdir -p $VOLUMES_DIR/frpc
 

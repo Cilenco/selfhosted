@@ -61,3 +61,9 @@ mixins:
 profiles:
   adguard:
     use: default-conf
+  budget:
+    use: default-conf
+  jellyfin:
+    use: default-conf
+  lldap:
+    use: default-conf

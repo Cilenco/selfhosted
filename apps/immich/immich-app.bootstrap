@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail;
-#umask 077
-
-OWNER=65534:65534
+umask 077
 
 mkdir -p $VOLUMES_DIR/immich/app
-chown $OWNER $VOLUMES_DIR/immich/app
+mkdir -p $MEDIA_DIR
 
-# (envsubst < $PWD/immich/settings.json) > $VOLUMES_DIR/immich/app/settings.json
+(envsubst < $PWD/immich/settings.json) > $VOLUMES_DIR/immich/app/settings.json

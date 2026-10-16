@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail;
-#umask 077
-
-OWNER=65534:65534
+umask 077
 
 mkdir -p $VOLUMES_DIR/vaultwarden/data
-chown $OWNER $VOLUMES_DIR/vaultwarden/data

@@ -26,4 +26,4 @@ Environment=POSTGRES_USER=postgres
 
 Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
 
-Volume=${VOLUMES_DIR}/nextcloud/db:/var/lib/postgresql:idmap
+Volume=${VOLUMES_DIR}/nextcloud/db:/var/lib/postgresql

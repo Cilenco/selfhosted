@@ -6,10 +6,6 @@
 #fi
 
 #apt install podman    # Install container runtime
-#apt install bzip2     # Used by autorestic install
-
-# Install restic and autorestic for backing up all data
-#wget -qO - https://raw.githubusercontent.com/cupcakearmy/autorestic/master/install.sh | bash
 
 # Gather general information for
 echo -e "Setting up your machine for selfhosting\n\n"
