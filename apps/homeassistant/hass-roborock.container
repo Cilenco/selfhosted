@@ -10,9 +10,6 @@ Image=ghcr.io/python-roborock/local_roborock_server:latest@sha256:3441a7cbde8119
 ContainerName=hass-roborock
 Pod=hass.pod
 
-ContainerName=hass-app
-Pod=hass.pod
-
 User=65534:65534
 NoNewPrivileges=true
 DropCapability=all
