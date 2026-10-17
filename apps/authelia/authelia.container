@@ -10,12 +10,16 @@ ExecStartPre=sh authelia/authelia.bootstrap
 [Container]
 Image=docker.io/authelia/authelia:latest@sha256:bd97cff4fcbf715b5ff1f9ae286afbe6033afce385302520b0368122d43a6f54
 
-User=65534:65534
-
 HostName=Authelia
 ContainerName=authelia
 AutoUpdate=registry
 Network=caddy
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+
+UserNS=keep-id:uid=65534,gid=65534
 
 Secret=AUTHELIA_JWT_SECRET,type=env,target=JWT_SECRET
 Secret=AUTHELIA_SESSION_SECRET,type=env,target=SESSION_SECRET
@@ -35,9 +39,9 @@ Secret=SMTP_PORT,type=env,target=SMTP_PORT
 Environment=DOMAIN=${DOMAIN}
 
 Environment=X_AUTHELIA_CONFIG_FILTERS=template
-Environment=X_AUTHELIA_CONFIG=/config/configuration.yml
+
+Environment=X_AUTHELIA_CONFIG=/etc/authelia/configuration.yml
+Volume=./configuration.yml:/etc/authelia/configuration.yml:ro
 
 Volume=${VOLUMES_DIR}/authelia/config:/config
 Volume=${VOLUMES_DIR}/authelia/secrets:/secrets
-
-Volume=./configuration.yml:/config/configuration.yml
