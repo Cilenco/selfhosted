@@ -9,8 +9,14 @@ Image=docker.io/actualbudget/actual-server
 
 HostName=budget
 ContainerName=budget
-AutoUpdate=registry
 Network=caddy
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 Environment=DEBUG=actual:config
 

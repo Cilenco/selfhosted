@@ -12,12 +12,12 @@ Image=docker.io/authelia/authelia:latest@sha256:bd97cff4fcbf715b5ff1f9ae286afbe6
 
 HostName=Authelia
 ContainerName=authelia
-AutoUpdate=registry
 Network=caddy
 
 User=65534:65534
 NoNewPrivileges=true
 DropCapability=all
+ReadOnly=true
 
 UserNS=keep-id:uid=65534,gid=65534
 

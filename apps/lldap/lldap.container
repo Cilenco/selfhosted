@@ -7,12 +7,16 @@ ExecStartPre=sh lldap/lldap.bootstrap
 [Container]
 Image=docker.io/lldap/lldap:latest-alpine-rootless@sha256:0b694bb4cf324f2b918c73db13a6518926e5de6a73996c27e0238b1f3d342aae
 
-User=65534:65534
-
 HostName=Lldap
 ContainerName=lldap
-AutoUpdate=registry
 Network=caddy
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 HealthCmd=/app/lldap healthcheck || exit 1
 HealthStartPeriod=1m20s

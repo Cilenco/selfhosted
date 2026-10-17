@@ -8,7 +8,13 @@ ExecStartPre=sh immich/immich-ml.bootstrap
 Image=ghcr.io/immich-app/immich-machine-learning:release@sha256:e16c2f166a8174901959fdf85e2e4c7bd1ebc4b37e0b6655de97c41408a260c4
 
 ContainerName=immich-ml
-AutoUpdate=registry
 Pod=immich.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 Volume=${VOLUMES_DIR}/immich/ml/cache:/cache

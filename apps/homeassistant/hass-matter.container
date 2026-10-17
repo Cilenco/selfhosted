@@ -7,11 +7,15 @@ ExecStartPre=sh homeassistant/hass-matter.bootstrap
 [Container]
 Image=ghcr.io/matter-js/matterjs-server:latest@sha256:54232d0d3e7dff5a54759469d2753399270412b4c30c55b31750a4595e4cb236
 
-User=65534:65534
-
 ContainerName=hass-matter
-AutoUpdate=registry
 Pod=hass.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 Volume=${VOLUMES_DIR}/hass/matter:/data
 Volume=/run/dbus:/run/dbus:ro

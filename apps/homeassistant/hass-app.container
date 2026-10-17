@@ -7,14 +7,18 @@ ExecStartPre=sh homeassistant/hass-app.bootstrap
 [Container]
 Image=ghcr.io/home-assistant/home-assistant:latest@sha256:3e6710a7ab2a61311d9d899b719f6c3657791c63e8f4942cec4ebc42401d6b76
 
-#User=9000:9000
+ContainerName=hass-app
+Pod=hass.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 # Add capabilities for bluetooth management
 AddCapability=CAP_NET_ADMIN,CAP_NET_RAW
-
-ContainerName=hass-app
-AutoUpdate=registry
-Pod=hass.pod
 
 Environment=TZ=Europe/Berlin
 

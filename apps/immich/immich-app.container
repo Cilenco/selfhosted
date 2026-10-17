@@ -10,12 +10,15 @@ ExecStartPre=sh immich/immich-app.bootstrap
 [Container]
 Image=ghcr.io/immich-app/immich-server:release@sha256:d317916b28090c33eb36b308464ea391f8b7df1d850fcfea227a39ec879718c2
 
-# works => only try for nextcloud
-#User=65534:65534
-
 ContainerName=immich-app
-AutoUpdate=registry
 Pod=immich.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 Environment=IMMICH_ENV=production
 Environment=TZ=Europe/Berlin

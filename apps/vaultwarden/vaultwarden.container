@@ -9,8 +9,14 @@ Image=docker.io/vaultwarden/server:latest-alpine@sha256:9a905c5cf5df61bb827da380
 
 HostName=Vaultwarden
 ContainerName=vaultwarden
-AutoUpdate=registry
 Network=caddy
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 HealthCmd=/healthcheck.sh
 HealthStartPeriod=1m20s

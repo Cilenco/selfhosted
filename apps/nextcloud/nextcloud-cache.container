@@ -7,11 +7,15 @@ ExecStartPre=sh nextcloud/nextcloud-cache.bootstrap
 [Container]
 Image=docker.io/redis:alpine@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
 
-User=65534:65534
-
 ContainerName=nextcloud-cache
-AutoUpdate=registry
 Pod=nextcloud.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
 
 HealthCmd="redis-cli ping | grep PONG"
 HealthStartPeriod=1m20s
