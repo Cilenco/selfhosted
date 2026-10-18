@@ -11,7 +11,6 @@ ExecStartPre=sh oxicloud/oxicloud-app.bootstrap
 Image=docker.io/diocrafts/oxicloud
 
 ContainerName=oxicloud-app
-AutoUpdate=registry
 Pod=oxicloud.pod
 
 HealthCmd=wget -qO- http://localhost:8086/ready || exit 1

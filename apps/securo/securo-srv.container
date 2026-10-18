@@ -13,7 +13,6 @@ Image=ghcr.io/securo-finance/securo-backend
 Exec=sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
 ContainerName=securo-srv
-AutoUpdate=registry
 Pod=securo.pod
 
 Environment=DEBUG=false

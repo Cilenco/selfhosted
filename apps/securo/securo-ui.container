@@ -12,7 +12,6 @@ ExecStartPre=sh securo/securo-ui.bootstrap
 Image=ghcr.io/securo-finance/securo-frontend
 
 ContainerName=securo-web
-AutoUpdate=registry
 Pod=securo.pod
 
 Environment=FRONTEND_URL=https://money.${DOMAIN}

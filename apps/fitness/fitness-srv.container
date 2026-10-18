@@ -11,7 +11,6 @@ ExecStartPre=sh fitness/fitness-srv.bootstrap
 Image=docker.io/codewithcj/sparkyfitness_server
 
 ContainerName=fitness-srv
-AutoUpdate=registry
 Pod=fitness.pod
 
 Environment=NODE_ENV=production

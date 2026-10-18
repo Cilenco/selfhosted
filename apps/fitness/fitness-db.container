@@ -8,7 +8,6 @@ ExecStartPre=sh fitness/fitness-db.bootstrap
 Image=docker.io/postgres
 
 ContainerName=fitness-db
-AutoUpdate=registry
 Pod=fitness.pod
 
 HealthCmd=pg_isready

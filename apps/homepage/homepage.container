@@ -9,7 +9,6 @@ Image=docker.io/gethomepage/homepage
 
 HostName=homepage
 ContainerName=homepage
-AutoUpdate=registry
 Network=caddy
 
 Environment=HOMEPAGE_ALLOWED_HOSTS=${DOMAIN}

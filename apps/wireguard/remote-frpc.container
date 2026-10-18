@@ -9,7 +9,6 @@ Image=ghcr.io/fatedier/frpc:v0.71.0@sha256:99ece6a2b62cfc68731e0df289af804ff1c69
 Exec=-c /etc/frp/frpc.toml
 
 ContainerName=frpc
-AutoUpdate=registry
 Pod=remote.pod
 
 Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml:idmap

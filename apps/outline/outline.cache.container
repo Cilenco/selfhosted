@@ -8,7 +8,6 @@ ExecStartPre=sh outline/outline.cache.bootstrap
 Image=docker.io/redis
 
 ContainerName=outline-redis
-AutoUpdate=registry
 Network=caddy
 
 HealthCmd="redis-cli ping | grep PONG"

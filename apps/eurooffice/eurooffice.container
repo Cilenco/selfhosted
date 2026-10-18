@@ -9,7 +9,6 @@ Image=ghcr.io/euro-office/documentserver:latest@sha256:889e681923d2dcc8bdfb92fe1
 
 HostName=EuroOffice
 ContainerName=eurooffice
-AutoUpdate=registry
 Network=caddy
 
 

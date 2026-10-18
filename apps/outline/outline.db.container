@@ -8,7 +8,6 @@ ExecStartPre=sh outline/outline.db.bootstrap
 Image=docker.io/postgres
 
 ContainerName=outline-db
-AutoUpdate=registry
 Network=caddy
 
 HealthCmd=pg_isready

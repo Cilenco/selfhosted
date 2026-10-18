@@ -9,7 +9,6 @@ Image=docker.io/deluan/navidrome
 
 HostName=Navidrome
 ContainerName=navidrome
-AutoUpdate=registry
 Network=caddy
 
 Environment=ND_MUSICFOLDER="./"

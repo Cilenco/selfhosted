@@ -8,7 +8,6 @@ ExecStartPre=sh oxicloud/oxicloud-db.bootstrap
 Image=docker.io/postgres
 
 ContainerName=oxicloud-db
-AutoUpdate=registry
 Pod=oxicloud.pod
 
 HealthCmd=pg_isready
