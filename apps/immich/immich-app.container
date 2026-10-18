@@ -23,7 +23,7 @@ UserNS=keep-id:uid=65534,gid=65534
 Environment=IMMICH_ENV=production
 Environment=TZ=Europe/Berlin
 
-Environment=IMMICH_MEDIA_LOCATION=/data
+# Environment=IMMICH_MEDIA_LOCATION=/data
 Environment=IMMICH_CONFIG_FILE=/settings.json
 
 Environment=DB_HOSTNAME=localhost
@@ -37,4 +37,10 @@ Secret=IMMICH_DB_PASSWORD,type=env,target=DB_PASSWORD
 Volume=${VOLUMES_DIR}/immich/app/settings.json:/settings.json
 Volume=/etc/localtime:/etc/localtime:ro
 
-Volume=${MEDIA_DIR}:/data
+Volume=${VOLUMES_DIR}/immich/app/backups:/data/backups
+Volume=${VOLUMES_DIR}/immich/app/encoded-video:/data/encoded-video
+Volume=${VOLUMES_DIR}/immich/app/profile:/data/profile
+Volume=${VOLUMES_DIR}/immich/app/thumbs:/data/thumbs
+Volume=${VOLUMES_DIR}/immich/app/upload:/data/upload
+
+Volume=${MEDIA_DIR}2:/data/library
