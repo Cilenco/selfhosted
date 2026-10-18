@@ -8,7 +8,7 @@ After=nextcloud-cache.service nextcloud-db.service
 ExecStartPre=sh nextcloud/nextcloud-app.bootstrap
 
 [Container]
-Image=docker.io/nextcloud
+Image=docker.io/nextcloud:fpm-alpine
 
 ContainerName=nextcloud-app
 Pod=nextcloud.pod
@@ -45,7 +45,8 @@ Environment=NEXTCLOUD_ADMIN_USER=admin
 Environment=NEXTCLOUD_ADMIN_PASSWORD=password
 
 Volume=${VOLUMES_DIR}/nextcloud/app:/var/www/html
-Volume=${MEDIA_DIR}:/var/www/html/data
+Volume=${MEDIA_DIR}:/data
 
 Tmpfs=/usr/local/etc/php/conf.d:U
-# Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:ro
+
+Volume=./post-installation.sh:/docker-entrypoint-hooks.d/post-installation/post-installation.sh:ro

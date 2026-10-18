@@ -3,6 +3,9 @@
 #################################################
 php occ config:system:set overwriteprotocol --value="https"
 
+php occ config:system:set datadirectory --value="/data"
+php occ config:system:set log_type --value="errorlog"
+
 php occ config:system:set allow_local_remote_servers --type="boolean" --value="true"
 php occ config:system:set trusted_domains 2 --type="string" --value="cloud.$DOMAIN"
 
@@ -44,7 +47,7 @@ php occ app:disable user_status
 
 #php occ ldap:create-empty-config
 
-#php occ ldap:set-config s01 ldapHost "ldap://ldap"
+#php occ ldap:set-config s01 ldapHost "ldap://lldap"
 #php occ ldap:set-config s01 ldapPort 3890
 
 # EDIT: admin user

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-umask 077
+#umask 077
+
+mkdir -p "${MEDIA_DIR}"
 
 mkdir -p $VOLUMES_DIR/nextcloud/app
+touch ${MEDIA_DIR}/.ncdata

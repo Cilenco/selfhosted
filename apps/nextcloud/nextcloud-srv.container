@@ -1,0 +1,27 @@
+[Unit]
+Description=Nextcloud server
+
+Requires=nextcloud-app.service
+After=nextcloud-app.service
+
+[Service]
+ExecStartPre=sh nextcloud/nextcloud-srv.bootstrap
+
+[Container]
+Image=docker.io/nginxinc/nginx-unprivileged:alpine-slim
+
+ContainerName=nextcloud-srv
+Pod=nextcloud.pod
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
+
+Volume=${VOLUMES_DIR}/nextcloud/app:/var/www/html:ro
+Volume=./server.conf:/etc/nginx/nginx.conf:ro
+
+Tmpfs=/var/cache/nginx:U
+Tmpfs=/var/run:U
