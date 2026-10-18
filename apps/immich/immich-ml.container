@@ -5,7 +5,7 @@ Description=Immich ML server
 ExecStartPre=sh immich/immich-ml.bootstrap
 
 [Container]
-Image=ghcr.io/immich-app/immich-machine-learning:release@sha256:e16c2f166a8174901959fdf85e2e4c7bd1ebc4b37e0b6655de97c41408a260c4
+Image=ghcr.io/immich-app/immich-machine-learning:release-openvino@sha256:7dd945dcea8f5feb3eb4a21af9c92f2957e991a950372e3ea1c846371dab0406
 
 ContainerName=immich-ml
 Pod=immich.pod
@@ -17,4 +17,7 @@ ReadOnly=true
 
 UserNS=keep-id:uid=65534,gid=65534
 
+Environment=MACHINE_LEARNING_MODEL_REVISION=v2
+
 Volume=${VOLUMES_DIR}/immich/ml/cache:/cache
+AddDevice=/dev/dri:/dev/dri

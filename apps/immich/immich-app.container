@@ -44,3 +44,4 @@ Volume=${VOLUMES_DIR}/immich/app/thumbs:/data/thumbs
 Volume=${VOLUMES_DIR}/immich/app/upload:/data/upload
 
 Volume=${MEDIA_DIR}2:/data/library
+AddDevice=/dev/dri:/dev/dri
