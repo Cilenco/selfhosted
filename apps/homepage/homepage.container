@@ -5,13 +5,20 @@ Description=Get Homepage
 ExecStartPre=sh homepage/homepage.bootstrap
 
 [Container]
-Image=docker.io/gethomepage/homepage
+Image=ghcr.io/gethomepage/homepage@sha256:4d522c441303b630524079ac630b60e00d0e536752c922293043a31d1baabfb6
 
 HostName=homepage
 ContainerName=homepage
 Network=caddy
 
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
+
 Environment=HOMEPAGE_ALLOWED_HOSTS=${DOMAIN}
 Environment=HOMEPAGE_VAR_DOMAIN=${DOMAIN}
 
-Volume=${VOLUMES_DIR}/homepage:/app/config:idmap
+Volume=${VOLUMES_DIR}/homepage:/app/config
