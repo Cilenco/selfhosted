@@ -7,6 +7,8 @@ ExecStartPre=sh nextcloud/nextcloud-db.bootstrap
 [Container]
 Image=docker.io/postgres:alpine@sha256:77f585114c32fbca283dc835b0596f4e52b51b4c6662d7810b2f4084f60a1873
 
+Exec=-p 54320
+
 PodmanArgs=--security-opt apparmor=unconfined
 
 ContainerName=nextcloud-db
@@ -19,7 +21,7 @@ ReadOnly=true
 
 UserNS=keep-id:uid=999,gid=999
 
-HealthCmd=pg_isready
+HealthCmd=pg_isready -p 54320
 HealthStartPeriod=1m20s
 HealthInterval=30s
 HealthTimeout=30s

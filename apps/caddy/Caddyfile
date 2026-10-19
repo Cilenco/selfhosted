@@ -99,6 +99,15 @@ https://*.{env.DOMAIN} {
   }
 
   #################################################
+  # EuroOffice                                    #
+  #################################################
+  @office host office.{env.DOMAIN}
+
+  handle @office {
+    reverse_proxy nextcloud:80
+  }
+
+  #################################################
   # ActualBudget                                  #
   #################################################
   @budget host budget.{env.DOMAIN}

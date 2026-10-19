@@ -2,15 +2,13 @@
 Description=EuroOffice
 
 [Service]
-ExecStartPre=sh eurooffice/eurooffice.bootstrap
+ExecStartPre=sh nextcloud/nextcloud-office.bootstrap
 
 [Container]
 Image=ghcr.io/euro-office/documentserver:latest@sha256:889e681923d2dcc8bdfb92fe128d10e185fcff880d302b6a0c0c7bf339499290
 
-HostName=EuroOffice
-ContainerName=eurooffice
-Network=caddy
-
+ContainerName=nextcloud-office
+Pod=nextcloud.pod
 
 Environment=JWT_ENABLED=true
 Environment=JWT_HEADER=Authorization

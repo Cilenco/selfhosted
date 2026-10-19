@@ -23,13 +23,14 @@ UserNS=keep-id:uid=65534,gid=65534
 Environment=DOMAIN=${DOMAIN}
 
 Environment=REDIS_HOST=localhost
+Environment=REDIS_HOST_PORT=63790
 
-Environment=POSTGRES_DB=nextcloud
-Environment=POSTGRES_HOST=localhost
-Environment=POSTGRES_USER=postgres
+#Environment=POSTGRES_DB=nextcloud
+#Environment=POSTGRES_HOST=localhost:54320
+#Environment=POSTGRES_USER=postgres
 
-Environment=EUROOFFICE_DOMAIN=https://office.${DOMAIN}
-Environment=EUROOFFICE_INTERNAL_URL=http://nextcloud-office
+#Environment=EUROOFFICE_DOMAIN=https://office.${DOMAIN}
+#Environment=EUROOFFICE_INTERNAL_URL=http://nextcloud-office
 Secret=NEXTCLOUD_OFFICE_JWT,type=env,target=EUROOFFICE_JWT_SECRET
 
 Secret=NEXTCLOUD_DB_PASSWORD,type=env,target=POSTGRES_PASSWORD
