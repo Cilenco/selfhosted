@@ -1,0 +1,14 @@
+[Unit]
+Description=FRP Client
+
+[Service]
+ExecStartPre=sh remote/remote-frpc.bootstrap
+
+[Container]
+Image=ghcr.io/fatedier/frpc:v0.71.0@sha256:99ece6a2b62cfc68731e0df289af804ff1c699911cfc47871856434f1d6d53ee
+Exec=-c /etc/frp/frpc.toml
+
+ContainerName=frpc
+Pod=remote.pod
+
+Volume=${VOLUMES_DIR}/frpc/frpc.toml:/etc/frp/frpc.toml:idmap

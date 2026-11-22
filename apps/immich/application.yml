@@ -1,0 +1,4 @@
+id: immich
+
+name: Immich
+url: https://photos.${DOMAIN}

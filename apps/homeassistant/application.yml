@@ -1,0 +1,4 @@
+id: hass
+
+name: Home Assistant
+url: https://home.${DOMAIN}

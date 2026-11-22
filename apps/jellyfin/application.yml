@@ -1,0 +1,4 @@
+id: jellyfin
+
+name: Jellyfin
+url: https://streaming.${DOMAIN}

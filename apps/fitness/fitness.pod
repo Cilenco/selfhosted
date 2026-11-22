@@ -1,7 +1,0 @@
-[Unit]
-Description=Sparky Fitness
-
-[Pod]
-PodName=fitness
-# HostName=fitness
-Network=caddy

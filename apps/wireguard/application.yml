@@ -1,0 +1,4 @@
+id: wireguard
+
+name: WG Easy
+url: https://wireguard.${DOMAIN}

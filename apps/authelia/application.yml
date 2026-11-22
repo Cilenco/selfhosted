@@ -1,0 +1,4 @@
+id: authelia
+
+name: Authelia
+url: https://auth.${DOMAIN}

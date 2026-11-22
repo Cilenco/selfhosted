@@ -1,0 +1,4 @@
+id: adguard
+
+name: Adguard Home
+url: https://dns.${DOMAIN}

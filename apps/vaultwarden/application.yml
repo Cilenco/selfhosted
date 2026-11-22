@@ -1,0 +1,4 @@
+id: vaultwarden
+
+name: Vaultwarden
+url: https://passwords.${DOMAIN}

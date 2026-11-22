@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+umask 077
+
+OIDC_KEY_FILE=$VOLUMES_DIR/authelia/secrets/OIDC_PRIVATE_KEY
+
+mkdir -p $VOLUMES_DIR/authelia/config
+mkdir -p $VOLUMES_DIR/authelia/secrets
+
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_JWT_SECRET - | true
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_OIDC_HMAC_SECRET - | true
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_STORAGE_ENCRYPTION_KEY - | true
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_SESSION_SECRET - | true
+
+printf $(openssl rand -hex 64) | podman secret create AUTHELIA_CLIENT_SECRET - | true
+
+if [ ! -f $OIDC_KEY_FILE ]; then
+  openssl genrsa 4096 > $OIDC_KEY_FILE
+fi

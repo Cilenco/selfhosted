@@ -1,0 +1,6 @@
+#!/bin/bash
+umask 077
+
+mkdir -p $VOLUMES_DIR/frpc
+
+(envsubst < $PWD/remote/frpc.toml) > $VOLUMES_DIR/frpc/frpc.toml

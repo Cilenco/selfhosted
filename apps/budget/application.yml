@@ -1,0 +1,4 @@
+id: budget
+
+name: Actual Budget
+url: https://budget.${DOMAIN}

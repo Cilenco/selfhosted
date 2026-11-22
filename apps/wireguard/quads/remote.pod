@@ -1,0 +1,7 @@
+[Unit]
+Description=Remote Access (Wireguard + FRP Cleint)
+
+[Pod]
+PodName=remote
+# HostName=remote
+Network=caddy

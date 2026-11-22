@@ -1,0 +1,222 @@
+{
+  email       noreply@{env.DOMAIN}
+
+  http_port   8080
+  https_port  4430
+
+  #events {
+  #  on cert_obtained store_cert /certs
+  #}
+
+  # acme_ca     https://acme-staging-v02.api.letsencrypt.org/directory
+
+  admin       off
+
+  # Roborock MQTT
+  layer4 {
+    :8883 {
+      route {
+        tls
+        proxy {
+          upstream roborock:8881
+        }
+      }
+    }
+  }
+}
+
+https://{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
+
+  reverse_proxy homepage:3000
+}
+
+https://*.{env.DOMAIN} {
+  tls {
+    dns ionos {env.IONOS_PREFIX}.{env.IONOS_SECRET}
+    resolvers 8.8.8.8   8.8.4.4
+  }
+
+  @private not remote_ip private_ranges
+
+  #################################################
+  # Adguard                                       #
+  #################################################
+  @dns host dns.{env.DOMAIN}
+
+  handle @dns {
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+    }
+
+    reverse_proxy adguard:3000
+  }
+
+  #################################################
+  # Authelia                                      #
+  #################################################
+  @auth host auth.{env.DOMAIN}
+
+  handle @auth {
+    reverse_proxy authelia:9091
+  }
+
+  #################################################
+  # Ldap User management                          #
+  #################################################
+  @ldap host user.{env.DOMAIN}
+
+  handle @ldap {
+    reverse_proxy lldap:17170
+  }
+
+
+  #################################################
+  # Home Assistant                                #
+  #################################################
+  @home host home.{env.DOMAIN}
+
+  handle @home {
+    abort @private
+
+    #forward_auth authelia:9091 {
+    #  uri /api/authz/forward-auth
+    #}
+
+    reverse_proxy host.containers.internal:8123
+  }
+
+  #################################################
+  # Nextcloud                                     #
+  #################################################
+  @cloud host cloud.{env.DOMAIN}
+
+  handle @cloud {
+    reverse_proxy oxicloud:8086
+  }
+
+  #################################################
+  # EuroOffice                                    #
+  #################################################
+  @office host office.{env.DOMAIN}
+
+  handle @office {
+    reverse_proxy nextcloud:80
+  }
+
+  #################################################
+  # ActualBudget                                  #
+  #################################################
+  @budget host budget.{env.DOMAIN}
+
+  handle @budget {
+    abort @private
+    reverse_proxy budget:5006
+  }
+
+  #################################################
+  # Securo                                        #
+  #################################################
+  @money host money.{env.DOMAIN}
+
+  handle @money {
+    reverse_proxy /api/* securo:8000
+    reverse_proxy securo:8080
+  }
+
+  #################################################
+  # Jellyfin                                      #
+  #################################################
+  @streaming host streaming.{env.DOMAIN}
+
+  handle @streaming {
+    reverse_proxy host.containers.internal:8096
+  }
+
+  #################################################
+  # Outline                                       #
+  #################################################
+  @dancing host dancing.{env.DOMAIN}
+
+  handle @dancing {
+    reverse_proxy outline-app:3000
+  }
+
+  #################################################
+  # Roborock local API                            #
+  #################################################
+  @roborock host api-roborock.{env.DOMAIN}
+
+  handle @roborock {
+    reverse_proxy host.containers.internal:5555
+  }
+
+  #################################################
+  # Sparky Fitness                                #
+  #################################################
+  @fitness host fitness.{env.DOMAIN}
+
+  handle @fitness {
+    reverse_proxy fitness:80
+  }
+
+  #################################################
+  # Navidrome                                     #
+  #################################################
+  @music host music.{env.DOMAIN}
+
+  handle @music {
+    forward_auth authelia:9091 {
+      uri /api/authz/forward-auth
+      copy_headers Remote-User
+    }
+
+    reverse_proxy navidrome:4533
+  }
+
+  #################################################
+  # Ntfy                                          #
+  #################################################
+  @notifications host notifications.{env.DOMAIN}
+
+  handle @notifications {
+    reverse_proxy ntfy:8080
+  }
+
+  #################################################
+  # Vaultwarden                                   #
+  #################################################
+  @passwords host passwords.{env.DOMAIN}
+
+  handle @passwords {
+    reverse_proxy vaultwarden:8080
+  }
+
+  #################################################
+  # Immich                                        #
+  #################################################
+  @photos host photos.{env.DOMAIN}
+
+  handle @photos {
+    reverse_proxy immich:2283
+  }
+
+  #################################################
+  # Wireguard                                     #
+  #################################################
+  @wireguard host wireguard.{env.DOMAIN}
+
+  handle @wireguard {
+    reverse_proxy remote:51821
+  }
+
+  #################################################
+  # Fallback                                      #
+  #################################################
+  handle { # all other
+    abort
+  }
+}

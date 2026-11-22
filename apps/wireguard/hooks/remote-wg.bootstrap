@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+umask 077
+
+mkdir -p $VOLUMES_DIR/wireguard

@@ -1,0 +1,10 @@
+[Unit]
+# Only use for short lifed sessions when container needs internet access
+Description=External HomeLab network (with internet access)
+
+[Network]
+NetworkName=external
+Internal=false
+
+[Install]
+WantedBy=default.target

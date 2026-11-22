@@ -1,0 +1,40 @@
+[Unit]
+Description=LDAP Server
+
+[Service]
+ExecStartPre=sh lldap/lldap.bootstrap
+
+[Container]
+Image=docker.io/lldap/lldap:latest-alpine-rootless@sha256:0b694bb4cf324f2b918c73db13a6518926e5de6a73996c27e0238b1f3d342aae
+
+HostName=Lldap
+ContainerName=lldap
+Network=caddy
+
+User=65534:65534
+NoNewPrivileges=true
+DropCapability=all
+ReadOnly=true
+
+UserNS=keep-id:uid=65534,gid=65534
+
+HealthCmd=/app/lldap healthcheck || exit 1
+HealthStartPeriod=1m20s
+HealthInterval=30s
+HealthTimeout=30s
+HealthRetries=3
+
+Environment=LLDAP_LDAP_BASE_DN=dc=homelab,dc=com
+Environment=LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET=true
+
+Secret=LDAP_JWT_KEY,type=env,target=LLDAP_JWT_SECRET
+Secret=LDAP_PASSWORD,type=env,target=LLDAP_LDAP_USER_PASS
+Secret=LDAP_USERNAME,type=env,target=LLDAP_LDAP_USER_DN
+Secret=LDAP_KEY_SEED,type=env,target=LLDAP_KEY_SEED
+
+Secret=SMTP_USERNAME,type=env,target=LLDAP_SMTP_OPTIONS__USER
+Secret=SMTP_PASSWORD,type=env,target=LLDAP_SMTP_OPTIONS__PASSWORD
+Secret=SMTP_HOST,type=env,target=LLDAP_SMTP_OPTIONS__SERVER
+Secret=SMTP_PORT,type=env,target=LLDAP_SMTP_OPTIONS__PORT
+
+Volume=${VOLUMES_DIR}/lldap/data:/data

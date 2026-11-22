@@ -1,0 +1,9 @@
+[Unit]
+Description=Internal HomeLab network (no internet access)
+
+[Network]
+NetworkName=internal
+Internal=true
+
+[Install]
+WantedBy=default.target
