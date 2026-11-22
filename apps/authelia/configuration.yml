@@ -203,7 +203,7 @@ identity_providers:
         require_pkce: true
         public: false
         redirect_uris:
-          - https://files.{{env "DOMAIN"}}/api/auth/oidc/callback
+          - https://cloud.{{env "DOMAIN"}}/api/auth/oidc/callback
         scopes:
           - openid
           - profile
