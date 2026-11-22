@@ -32,8 +32,8 @@ Environment=OXICLOUD_OIDC_SCOPES="openid profile email"
 Environment=OXICLOUD_OIDC_PROVIDER_NAME=Authelia
 Environment=OXICLOUD_OIDC_CLIENT_ID=oxicloud
 
-Environment=OXICLOUD_OIDC_REDIRECT_URI=https://files.${DOMAIN}/api/auth/oidc/callback
-Environment=OXICLOUD_OIDC_FRONTEND_URL=https://files.${DOMAIN}
+Environment=OXICLOUD_OIDC_REDIRECT_URI=https://cloud.${DOMAIN}/api/auth/oidc/callback
+Environment=OXICLOUD_OIDC_FRONTEND_URL=https://cloud.${DOMAIN}
 Environment=OXICLOUD_OIDC_ISSUER_URL=https://auth.${DOMAIN}
 
 Secret=AUTHELIA_CLIENT_SECRET,type=env,target=OXICLOUD_OIDC_CLIENT_SECRET
